@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:crypto/crypto.dart'; // crypto 패키지를 추가해야 합니다.
 
 class AwsServices {
+
   final userPool = CognitoUserPool(
     '${(dotenv.env['POOL_ID'])}',
     '${(dotenv.env['CLIENT_ID'])}',
