@@ -8,18 +8,21 @@ import 'package:young/view/account/join/widgets/SignupAppBar.dart';
 import 'JoinFinishView.dart';
 import 'OldInformationView.dart';
 
-class YoungInformationView extends StatefulWidget {
-  const YoungInformationView({Key? key}) : super(key: key);
+class IdAndPasswordView extends StatefulWidget {
+  const IdAndPasswordView({Key? key}) : super(key: key);
 
   @override
-  _YoungInformationView createState() => _YoungInformationView();
+  _IdAndPasswordView createState() => _IdAndPasswordView();
 }
 
-class _YoungInformationView extends State<YoungInformationView> {
+class _IdAndPasswordView extends State<IdAndPasswordView> {
+  TextEditingController _idController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SignUpAppBar(stepNumber: 1,),
+      appBar: SignUpAppBar(stepNumber: 1, canBack: true,),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(top: 40.h),
@@ -46,6 +49,7 @@ class _YoungInformationView extends State<YoungInformationView> {
                       Container(
                         width: 240.w,
                         height: 40.h,
+                        margin: EdgeInsets.only(top: 5.h),
                         decoration: BoxDecoration(
                             color: kBlankColor,
                             borderRadius: BorderRadius.only(
@@ -67,7 +71,13 @@ class _YoungInformationView extends State<YoungInformationView> {
                       Container(
                         width: 60.w,
                         height: 40.h,
-                        decoration: BoxDecoration(color: kButtonColor),
+                        margin: EdgeInsets.only(top: 5.h),
+                        decoration: BoxDecoration(
+                            borderRadius:  BorderRadius.only(
+                              topRight: Radius.circular(10.0), // 오른쪽 위 모서리 둥글기 설정
+                              bottomRight: Radius.circular(10.0), // 오른쪽 아래 모서리 둥글기 설정
+                            ),
+                            color: kButtonColor),
                         child: Center(
                             child: Text(
                               "중복확인",
@@ -89,6 +99,7 @@ class _YoungInformationView extends State<YoungInformationView> {
                     Container(
                       width: 300.w,
                       height: 40.h,
+                      margin: EdgeInsets.only(top: 5.h),
                       decoration: BoxDecoration(
                           color: kBlankColor,
                           borderRadius: BorderRadius.all(Radius.circular(10))),

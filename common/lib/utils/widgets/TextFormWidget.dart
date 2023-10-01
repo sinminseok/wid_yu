@@ -27,6 +27,7 @@ class _TextFromWidgetState extends State<TextFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+
             child: Text(
               widget.title,
               style: TextStyle(color: Colors.black),
@@ -35,6 +36,7 @@ class _TextFromWidgetState extends State<TextFormWidget> {
           Container(
             width: 300.w,
             height: 40.h,
+            margin: EdgeInsets.only(top: 5.h),
             decoration: BoxDecoration(
                 color: kBlankColor,
                 borderRadius: BorderRadius.all(Radius.circular(10))),

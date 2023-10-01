@@ -30,23 +30,29 @@ class _YoungMissionWidgetState extends State<YoungMissionWidget> {
         color: Colors.white,
       ),
       child: Column(
-        children: List.generate(items.length, (index) {
-          return Column(
-            children: [
-              MissionWidget(items[index]),
-              if (index < items.length - 1) Container(
-                margin: EdgeInsets.only(top: 15.h),
-                width: 302,
-                height: 1,
-                color: kLightGreyColor,
-                child: Divider(
-
-                ),
-              ), // 아이템 사이에 구분선 추가
-            ],
-          );
-        }),
+        children: _buildMissionWidgets(),
       ),
-    ); //items의 크기만큼 MissionWidget을 보여줄거임);
+    );
+  }
+
+  List<Widget> _buildMissionWidgets() {
+    List<Widget> missionWidgets = [];
+
+    for (int index = 0; index < items.length; index++) {
+      missionWidgets.add(MissionWidget(items[index]));
+
+      if (index < items.length - 1) {
+        missionWidgets.add(
+          Container(
+            margin: EdgeInsets.only(top: 15.h),
+            width: 302,
+            height: 1,
+            color: kLightGreyColor,
+          ),
+        );
+      }
+    }
+
+    return missionWidgets;
   }
 }

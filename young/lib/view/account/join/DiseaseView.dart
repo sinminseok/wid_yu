@@ -13,15 +13,14 @@ import 'YoungCodeView.dart';
 
 
 class DiseaseView extends StatefulWidget {
-  final Old old;
 
-  DiseaseView({required this.old});
 
   @override
   State<DiseaseView> createState() => _DiseaseView();
 }
 
 class _DiseaseView extends State<DiseaseView> {
+
   TextEditingController _diseaseNameController = TextEditingController();
   TextEditingController _drugNameController = TextEditingController();
   TextEditingController _introduceController = TextEditingController();
@@ -38,7 +37,7 @@ class _DiseaseView extends State<DiseaseView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SignUpAppBar(stepNumber: 2),
+      appBar: SignUpAppBar(stepNumber: 2, canBack: false,),
       body: SingleChildScrollView(
         child: Column(
           children: [

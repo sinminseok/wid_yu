@@ -19,7 +19,7 @@ class _YoungCodeView extends State<YoungCodeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SignUpAppBar(stepNumber: 3),
+      appBar: SignUpAppBar(stepNumber: 3, canBack: false,),
       body: Container(
         margin: EdgeInsets.only(top: 40.h),
         child: Column(

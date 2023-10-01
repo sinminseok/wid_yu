@@ -44,6 +44,8 @@ dependencies:
   geolocator: ^10.0.0
   permission_handler: ^10.0.0
   flutter_switch: ^0.3.2
+  amazon_cognito_identity_dart_2: ^3.5.0
+  flutter_dotenv: ^5.1.0
 
 
 
@@ -73,6 +75,8 @@ flutter:
     - assets/images/common/
     - assets/images/popup/
     - assets/images/user/
+    - assets/images/icon/mission/
+    - assets/images/goal/goal.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

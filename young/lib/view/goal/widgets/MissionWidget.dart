@@ -8,7 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MissionWidget extends StatefulWidget {
   final Mission _mission;
 
-
   MissionWidget(this._mission);
 
   @override
@@ -45,10 +44,11 @@ class _MissionWidgetState extends State<MissionWidget> {
                         ],
                       ),
                       child: Center(
-                        child: Icon(
-                          Icons.check,
-                          color: Colors.white,
-                        ),
+                        child: Container(
+                          width: 28.w,
+                          height: 28.h,
+                          child: widget._mission.missionType==MissionType.DRUG?Image.asset("assets/images/icon/mission/drug.png"): widget._mission.missionType==MissionType.WALK?Image.asset("assets/images/icon/mission/run.png"):Image.asset("assets/images/icon/mission/common.png")
+                        )
                       ),
                     ),
                     Column(

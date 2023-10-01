@@ -1,10 +1,11 @@
 import 'package:common/view/account/login/SelectUserView.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
-void main() {
-  KakaoSdk.init(nativeAppKey: 'ebfdb39c88ccb4b81ee2de6575fd4027');
+Future<void> main() async {
+  await dotenv.load();  // .env 파일에서 환경 변수 로드
   runApp(MyApp());
 }
 

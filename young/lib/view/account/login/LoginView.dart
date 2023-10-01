@@ -1,3 +1,4 @@
+import 'package:common/model/account/AwsServices.dart';
 import 'package:common/modelView/login/KakaoLogin.dart';
 import 'package:common/modelView/login/SocialLogin.dart';
 import 'package:common/utils/Color.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:young/view/frame/FrameView.dart';
-import '../join/YoungInformationView.dart';
+import '../join/IdAndPasswordView.dart';
 
 class YoungLoginView extends StatefulWidget {
   const YoungLoginView({Key? key}) : super(key: key);
@@ -20,7 +21,9 @@ class _YoungLoginView extends State<YoungLoginView> {
   bool ischeck = false;
   TextEditingController _idController = TextEditingController();
   TextEditingController _passworController = TextEditingController();
-  SocialLogin kakoLogin = KakaoLogin();
+
+  login(String email, String password) =>
+      AwsServices().createInitialRecord(email, password);
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +38,25 @@ class _YoungLoginView extends State<YoungLoginView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+
             Container(
               width: 310.w,
               height: 70.h,
-              margin: EdgeInsets.only(top: 30.h),
+              margin: EdgeInsets.only(top: 100.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("아이디",style: TextStyle(color: kTextBlackColor),),
+                  Text("아이디",style: TextStyle(color: kTextBlackColor, fontWeight: FontWeight.bold),),
                   Container(
                     width: 300.w,
                     height: 40.h,
+                    margin: EdgeInsets.only(top: 5.h),
                     decoration: BoxDecoration(
                         color: kBlankColor,
                         borderRadius: BorderRadius.all(Radius.circular(10))
                     ),
                     child: TextFormField(
+                      controller: _idController,
                       style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
                       textAlign: TextAlign.center,
                       cursorColor: kTextBlackColor,
@@ -67,18 +73,21 @@ class _YoungLoginView extends State<YoungLoginView> {
             Container(
               width: 310.w,
               height: 70.h,
+              margin: EdgeInsets.only(top: 10.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("비밀번호",style: TextStyle(color: kTextBlackColor),),
+                  Text("비밀번호",style: TextStyle(color: kTextBlackColor,fontWeight: FontWeight.bold),),
                   Container(
                     width: 300.w,
                     height: 40.h,
+                    margin: EdgeInsets.only(top: 5.h),
                     decoration: BoxDecoration(
                         color: kBlankColor,
                         borderRadius: BorderRadius.all(Radius.circular(10))
                     ),
                     child: TextFormField(
+                      controller: _passworController,
                       style: TextStyle(color: Colors.black),
                       textAlign: TextAlign.center,
                       cursorColor: kTextBlackColor,
@@ -128,11 +137,14 @@ class _YoungLoginView extends State<YoungLoginView> {
             ),
             InkWell(
               onTap: (){
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.fade,
-                        child: (FrameView())));
+                print(_idController.text);
+                print(_passworController.text);
+                login(_idController.text, _passworController.text);
+                // Navigator.push(
+                //     context,
+                //     PageTransition(
+                //         type: PageTransitionType.fade,
+                //         child: (FrameView())));
               },
               child: Container(
                   margin: EdgeInsets.only(top: 10.h),
@@ -173,7 +185,7 @@ class _YoungLoginView extends State<YoungLoginView> {
                         context,
                         PageTransition(
                             type: PageTransitionType.fade,
-                            child: (YoungInformationView())));
+                            child: (IdAndPasswordView())));
                   },
                   child: Text(
                     "회원가입",
@@ -181,34 +193,6 @@ class _YoungLoginView extends State<YoungLoginView> {
                         color: Colors.black87, fontWeight: FontWeight.bold),
                   )),
             ),
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(top: 130.h),
-                width: 150.w,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap: () async{
-                        var login = await kakoLogin.login();
-                        print(login);
-                      },
-                      child: Container(
-                          width: 50.h,
-                          child:
-                              Image.asset("assets/images/icon/kakao_icon.png")),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                          width: 50.h,
-                          child:
-                              Image.asset("assets/images/icon/naver_icon.png")),
-                    ),
-                  ],
-                ),
-              ),
-            )
           ],
         ),
       ),
