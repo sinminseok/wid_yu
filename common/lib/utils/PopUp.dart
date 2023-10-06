@@ -1,5 +1,6 @@
 
 
+import 'package:common/utils/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -18,14 +19,14 @@ class ToastMessage{
   showAlertDialog(BuildContext context, String title, String content) {
     // set up the AlertDialog
     Widget okButton = TextButton(
-      child: Text("확인"),
+      child: Text("확인",style: TextStyle(color: kTextBlackColor),),
       onPressed: () {
         Navigator.pop(context);
       },
     );
     AlertDialog alert = AlertDialog(
-      title: Text(title),
-      content: Text(content),
+      title: Text(title,style: TextStyle(color: kTextBlackColor),),
+      content: Text(content, style: TextStyle(color: kTextBlackColor),),
       actions: [
         okButton,
       ],

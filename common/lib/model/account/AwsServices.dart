@@ -3,17 +3,30 @@ import 'dart:convert';
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:crypto/crypto.dart'; // crypto 패키지를 추가해야 합니다.
+import 'package:crypto/crypto.dart';
 
 class AwsServices {
-
   final userPool = CognitoUserPool(
     '${(dotenv.env['POOL_ID'])}',
     '${(dotenv.env['CLIENT_ID'])}',
   );
 
-  Future createInitialRecord(email, password) async {
+  Future<void> signUp(String email, String password) async {
+    final userAttributes = [
+      AttributeArg(name: 'phone_number', value: "+8201083131764"),
+    ];
 
+    var data;
+
+    try {
+      data = await userPool.signUp(email, password,
+          userAttributes: userAttributes);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> login(String email, String password) async {
     debugPrint('Authenticating User...');
     final cognitoUser = CognitoUser(email, userPool);
     final authDetails = AuthenticationDetails(
@@ -23,7 +36,9 @@ class AwsServices {
     CognitoUserSession? session;
     try {
       session = await cognitoUser.authenticateUser(authDetails);
+
       debugPrint('Login Success...');
+
     } on CognitoUserNewPasswordRequiredException catch (e) {
       debugPrint('CognitoUserNewPasswordRequiredException $e');
     } on CognitoUserMfaRequiredException catch (e) {
@@ -45,10 +60,13 @@ class AwsServices {
     }
   }
 
-  String getSecretHash(String username) {
-    final text = '$username${dotenv.env['CLIENT_ID']}';
-    final utf82 = utf8.encode(text);
-    final hash = sha256.convert(utf82);
-    return base64.encode(hash.bytes);
+  String calculateSecretHash(
+      String username, String clientId, String clientSecret) {
+    final message = utf8.encode(username + clientId);
+    final secret = utf8.encode(clientSecret);
+    final hmacSha256 = Hmac(sha256, secret);
+    final hash = hmacSha256.convert(message);
+    final secretHash = base64Encode(hash.bytes);
+    return secretHash;
   }
 }

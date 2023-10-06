@@ -23,7 +23,7 @@ class _YoungLoginView extends State<YoungLoginView> {
   TextEditingController _passworController = TextEditingController();
 
   login(String email, String password) =>
-      AwsServices().createInitialRecord(email, password);
+      AwsServices().login(email, password);
 
   @override
   Widget build(BuildContext context) {
@@ -137,14 +137,12 @@ class _YoungLoginView extends State<YoungLoginView> {
             ),
             InkWell(
               onTap: (){
-                print(_idController.text);
-                print(_passworController.text);
                 login(_idController.text, _passworController.text);
-                // Navigator.push(
-                //     context,
-                //     PageTransition(
-                //         type: PageTransitionType.fade,
-                //         child: (FrameView())));
+              //   Navigator.push(
+              //       context,
+              //       PageTransition(
+              //           type: PageTransitionType.fade,
+              //           child: (FrameView())));
               },
               child: Container(
                   margin: EdgeInsets.only(top: 10.h),
