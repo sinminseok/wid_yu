@@ -23,7 +23,6 @@ class YoungDrugWidget extends StatelessWidget {
         child: Column(
           children: [
             _buildMissionInfo(),
-
             _buildDrugMissions(),
           ],
         ),

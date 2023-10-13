@@ -6,13 +6,17 @@ import '../Color.dart';
 
 class TextFormWidget extends StatefulWidget {
   final String title;
+  final String hintText;
   final bool isIntType;
+  final FocusNode? focusNode;
   TextEditingController textEditingController = TextEditingController();
 
   TextFormWidget(
       {required this.title,
+        required this.hintText,
       required this.textEditingController,
-      required this.isIntType});
+      required this.isIntType, this.focusNode,
+      });
 
   @override
   _TextFromWidgetState createState() => _TextFromWidgetState();
@@ -35,26 +39,29 @@ class _TextFromWidgetState extends State<TextFormWidget> {
           ),
           Container(
             width: 300.w,
-            height: 40.h,
-            margin: EdgeInsets.only(top: 5.h),
+            height: 46.h,
+            margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
-                color: kBlankColor,
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            child: TextFormField(
-              style: TextStyle(color: Colors.black),
-              // 텍스트 색상을 검정색으로 설정
-              textAlign: TextAlign.center,
-              cursorColor: kTextBlackColor,
-              keyboardType:
-                  widget.isIntType ? TextInputType.number : TextInputType.name,
-              controller: widget.textEditingController,
-
-              decoration: InputDecoration(
-                  // contentPadding: EdgeInsets.,
-                  hintText: "",
-                  border: InputBorder.none),
+              border: Border.all(color: kTextGreyColor, width: 0.4),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
-          ),
+            child: Container(
+              margin: EdgeInsets.only(top: 5.h,left: 10.w),
+              child: TextFormField(
+                focusNode: widget.focusNode, // FocusNode 설정
+                controller: widget.textEditingController,
+                style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
+                textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
+                cursorColor: kTextBlackColor,
+                decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  hintStyle: TextStyle(fontSize: 13.sp,color: Colors.grey.shade500),
+                  border: InputBorder.none,
+                  isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

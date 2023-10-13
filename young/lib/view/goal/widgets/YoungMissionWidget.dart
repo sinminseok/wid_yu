@@ -24,6 +24,7 @@ class _YoungMissionWidgetState extends State<YoungMissionWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       width: 335.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -45,10 +46,14 @@ class _YoungMissionWidgetState extends State<YoungMissionWidget> {
         missionWidgets.add(
           Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 302,
+            width: 340,
             height: 1,
             color: kLightGreyColor,
           ),
+        );
+      }else{
+        missionWidgets.add(
+          Container(height: 15.h,)
         );
       }
     }

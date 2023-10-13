@@ -23,8 +23,8 @@ class RoundedButtonWidget extends StatelessWidget {
       width: 310.w,
       height: 50.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: kButtonColor,
+        borderRadius: BorderRadius.circular(5),
+        color: kOrangeColor,
       ),
 
       alignment: Alignment.center,
@@ -32,7 +32,8 @@ class RoundedButtonWidget extends StatelessWidget {
         title,
         style: TextStyle(
             color: kTextWhiteColor,
-            fontSize: 18
+            fontSize: 16.sp,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

@@ -17,11 +17,12 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15.h,bottom: 80.h),
+      margin: EdgeInsets.only(top: 10.h, bottom: 30.h),
       width: 330.w,
       decoration: BoxDecoration(
+          border: Border.all(color: kTextGreyColor, width: 0.1.w),
           color: kTextWhiteColor,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+          borderRadius:  BorderRadius.all(Radius.circular(10))),
       child: Column(
         children: [
           Container(
@@ -33,7 +34,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                   width: 80.0.w, // Container의 너비
                   height: 80.0.h, // Container의 높이
                   child: Container(
-                    margin: EdgeInsets.only(left: 5.w,top: 5.h),
+                    margin: EdgeInsets.only(left: 5.w, top: 5.h),
                     child: CircularPercentIndicator(
                       radius: 34.0,
                       // 부모 컨테이너의 크기에 맞게 조절
@@ -57,10 +58,9 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 6.h,left: 2.w),
+                            margin: EdgeInsets.only(top: 6.h, left: 2.w),
                             height: 45.h,
-                            child:
-                            Image.asset("assets/images/user/oldMan.png"),
+                            child: Image.asset("assets/images/user/oldMan.png"),
                           ),
                         ],
                       ),
@@ -123,7 +123,9 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                   child: Container(
                     margin: EdgeInsets.only(top: 33.h, left: 13.w),
                     child: Icon(
-                      _isExpanded ?Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                      _isExpanded
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
                       color: Colors.grey,
                     ),
                   ),

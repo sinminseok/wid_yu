@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 class MissionTime{
-  TimeOfDay timeOfDay;
+  String time;
 
-  MissionTime(this.timeOfDay);
+
+  MissionTime(this.time);
 }

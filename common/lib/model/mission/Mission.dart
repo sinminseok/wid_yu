@@ -7,7 +7,7 @@ class Mission{
   String _title;
   String _subtitle;
   MissionType _type;
-  //List<MissionTime> _times;
+  // List<MissionTime> _times;
 
   Mission(this._title, this._subtitle, this._type);
 

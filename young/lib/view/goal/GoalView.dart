@@ -5,10 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:young/view/goal/GoalCreateView.dart';
+import 'package:young/view/family-manager/FamilyManagerView.dart';
+import 'package:young/view/goal/detailView/GoalCreateView.dart';
+import 'package:young/view/goal/detailView/ChangeOrderView.dart';
 import 'package:young/view/goal/detailView/YoungGoalDetailView.dart';
 import 'package:young/view/goal/widgets/OldMissionWidget.dart';
 import 'package:young/view/goal/widgets/YoungMissionWidget.dart';
+import 'package:young/view/goal/widgets/detail/FloatOldMissionWidget.dart';
 
 class GoalView extends StatefulWidget {
   const GoalView({Key? key}) : super(key: key);
@@ -20,20 +23,67 @@ class GoalView extends StatefulWidget {
 class _GoalViewState extends State<GoalView> {
   bool today = true;
   bool _switchValue = false;
+  bool _isBottomScroll = false;
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    controllScroll();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
+  }
+
+  void controllScroll(){
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // 스크롤이 끝까지 내려갔을 때
+        setState(() {
+          _isBottomScroll = true;
+        });
+      } else if (_scrollController.position.pixels ==
+          _scrollController.position.minScrollExtent) {
+        // 스크롤이 끝까지 올라갔을 때
+        setState(() {
+          _isBottomScroll = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _buildExtendButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+              margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
+              child: _buildExtendButton()),
+          _isBottomScroll == false
+              ? Container(child: FloatOldMissionWidget())
+              : Container()
+        ],
+      ),
       appBar: _buildAppBar(),
       backgroundColor: kBackgroundColor,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             _buildUserInfo(),
             _buildSwitch(),
             YoungMissionWidget(),
-            OldMissionWidget(),
+            _isBottomScroll ? OldMissionWidget() : Container(),
+            _buildChangeOrderButton()
           ],
         ),
       ),
@@ -55,14 +105,29 @@ class _GoalViewState extends State<GoalView> {
           ),
           Row(
             children: [
-              Icon(
-                Icons.notifications_none,
-                color: Colors.black,
-              ),
-              Icon(
-                Icons.person,
-                color: Colors.black,
-              ),
+              InkWell(
+                  onTap: () {},
+                  child: Container(
+                    margin: EdgeInsets.only(right: 8.w),
+                    width: 24.w,
+                    height: 24.h,
+                    child: Image.asset("assets/images/icon/bell-icon.png"),
+                  )),
+              InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.fade,
+                            child: (FamilyManagerView())));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 10.w),
+                    width: 30.w,
+                    height: 30.h,
+                    child: Image.asset(
+                        "assets/images/icon/family-information-icon.png"),
+                  )),
             ],
           )
         ],
@@ -215,9 +280,11 @@ class _GoalViewState extends State<GoalView> {
           ),
         );
       },
-      label: const Text(
-        " 목표생성",
-        style: TextStyle(fontSize: 16),
+      label: Container(
+        child: Text(
+          " 목표생성",
+          style: TextStyle(fontSize: 16),
+        ),
       ),
       icon: const Icon(
         Icons.add,
@@ -226,6 +293,30 @@ class _GoalViewState extends State<GoalView> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       foregroundColor: Colors.white,
       backgroundColor: kPurpleColor,
+    );
+  }
+
+  Widget _buildChangeOrderButton() {
+    return Container(
+      margin: EdgeInsets.only(bottom: 40.h),
+      width: 140.w,
+      height: 50.h,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.all(Radius.circular(5))
+      ),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: (ChangeOrderView())));
+        },
+        child: Center(
+          child: Text("가족 목록 순서 변경", style: TextStyle(fontWeight: FontWeight.bold, color: kTextBlackColor, fontSize: 15.sp),),
+        ),
+      ),
     );
   }
 }

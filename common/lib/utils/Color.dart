@@ -5,6 +5,8 @@ const kPrimaryColor = Color(0xff2651f0);
 const kAppBarColor = Color(0XffEBEBEB);
 const kTextWhiteColor = Color(0xffffffff);
 const kTextBlackColor = Color(0xff000003);
+const kTextGreyColor = Color(0xff636363);
+
 const kButtonColor = Color(0xff222222);
 const kBackgroundColor = Color(0XffFAF5FF);
 const kOrangeColor = Color(0xffFF9D00);

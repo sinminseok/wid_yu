@@ -1,11 +1,3 @@
-# wid_yu
-
-A new Flutter project.
-
-## Getting Started
-
-### common package
-
-### young package
-
-### old package
+diseases.asMap().entries.map((entry) {
+         final index = entry.key;
+        final disease = entry.value;}))

@@ -3,100 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final int stepNumber;
   final bool canBack;
 
-  SignUpAppBar({required this.stepNumber, required this.canBack});
+  SignUpAppBar({required this.canBack});
 
   @override
-  Size get preferredSize => Size.fromHeight(75.h);
+  Size get preferredSize => Size.fromHeight(53.h);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        toolbarHeight: 70.h,
-        backgroundColor: Colors.grey.shade200,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-
-        title: Column(
-          children: [
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(left: 0.w, top: 10.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 23.w,
-                      height: 23.h,
-                      decoration: BoxDecoration(
-                        color: stepNumber == 1 ? Colors.black : Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    Container(
-                      width: 80.w,
-                      height: 2.h,
-                      color: stepNumber == 1 ? Colors.black : Colors.grey,
-                    ),
-                    Container(
-                      width: 23.w,
-                      height: 23.h,
-                      decoration: BoxDecoration(
-                        color: stepNumber == 2 ? Colors.black : Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    Container(
-                      width: 80.w,
-                      height: 2.h,
-                      color: stepNumber == 2 ? Colors.black : Colors.grey,
-                    ),
-                    Container(
-                      width: 23.w,
-                      height: 23.h,
-                      decoration: BoxDecoration(
-                        color: stepNumber == 3 ? Colors.black : Colors.grey,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      automaticallyImplyLeading: false, // 이전 화면으로 자동으로 이동하지 않도록 설정
+      leading: PreferredSize(
+        preferredSize: Size.fromHeight(40.h), // 아이콘의 높이 설정
+        child: Container(
+          margin: EdgeInsets.only(top: 20.h,),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios_outlined, // 사용할 아이콘
+              color: Colors.black, // 아이콘 색상
             ),
-            Center(
-              child: Container(
-                width: 270.w,
-                margin: EdgeInsets.only(right: 45.w, top: 8.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 20.w),
-                      child: Text(
-                        "부양자 정보 입력",
-                        style: TextStyle(color: kTextBlackColor, fontSize: 11.sp),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 30.w),
-                      child: Text(
-                        "시니어 정보 입력",
-                        style: TextStyle(color: kTextBlackColor, fontSize: 11.sp),
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        "완료",
-                        style: TextStyle(color: kTextBlackColor, fontSize: 11.sp),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ));
+            onPressed: () {
+              Navigator.pop(context);
+              // 뒤로 가기 버튼이 눌렸을 때 수행할 동작
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

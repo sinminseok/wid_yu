@@ -1,4 +1,5 @@
 import 'package:common/model/mission/Mission.dart';
+import 'package:common/model/mission/MissionTime.dart';
 import 'package:common/model/mission/MissionType.dart';
 import 'package:common/utils/Color.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,14 +16,24 @@ class MissionWidget extends StatefulWidget {
 }
 
 class _MissionWidgetState extends State<MissionWidget> {
+
+  List<MissionTime> times = [
+    MissionTime("12:00"),
+    MissionTime("13:00"),
+    MissionTime("14:00"),
+    MissionTime("14:00"),
+  ];
   @override
   Widget build(BuildContext context) {
+    double itemWidth = (MediaQuery.of(context).size.width - 40.w - 10.0) / 2; // 화면 가로 크기에서 여백을 뺀 후 2로 나눕니다
+
     return Container(
+      margin: EdgeInsets.only(bottom: 10.h),
       child: Column(
         children: [
           Container(
             width: 335.w,
-            margin: EdgeInsets.only(left: 20.w, top: 20.h),
+            margin: EdgeInsets.only(left: 20.w, top: 10.h),
             decoration: BoxDecoration(color: kTextWhiteColor),
             child: Column(
               children: [
@@ -82,7 +93,8 @@ class _MissionWidgetState extends State<MissionWidget> {
               ],
             ),
           ),
-          Container(
+          // times의 길이가 하나면 아래 코드를 사용하고 times의 길이가 2개 이상이면 gridview를 사용해 가로에 2열, 세로로 남은 요소들을 배치한다
+          times.length == 1 ?Container(
             margin: EdgeInsets.only(top: 15.h, left: 30.w, bottom: 10.h),
             width: 250.w,
             height: 30.h,
@@ -95,6 +107,40 @@ class _MissionWidgetState extends State<MissionWidget> {
                 "19:00",
                 style: TextStyle(color: Colors.grey),
               ),
+            ),
+          ):
+
+          Container(
+            margin: EdgeInsets.only(left: 40.w,top: 10.h),
+            width: 250.w,
+            child: GridView.builder(
+
+              shrinkWrap: true,
+
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: (1 / .2),
+
+                crossAxisCount: 2, // 가로에 2개의 열을 배치합니다
+                mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
+                crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
+              ),
+              itemCount: times.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: itemWidth,
+                  height: 30.h,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      times[index].time,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                );
+              },
             ),
           ),
 

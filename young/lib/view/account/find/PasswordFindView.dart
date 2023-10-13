@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class PassswordFindView extends StatefulWidget {
-  const PassswordFindView({Key? key}) : super(key: key);
+class PasswordFindView extends StatefulWidget {
+  const PasswordFindView({Key? key}) : super(key: key);
 
   @override
-  _PassswordFindViewState createState() => _PassswordFindViewState();
+  _PasswordFindView createState() => _PasswordFindView();
 }
 
-class _PassswordFindViewState extends State<PassswordFindView> {
+class _PasswordFindView extends State<PasswordFindView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,5 +8,9 @@ class Disease{
 
   Disease(this.diseaseName, this.drug, this.introduce);
 
+  String get getDiseaseName => diseaseName;
+  String? get getDrug => drug;
+  String? get getIntroduce => introduce;
+
 
 }
