@@ -1,6 +1,5 @@
 
 
-import 'package:common/common-widget/CommonAppbar.dart';
 import 'package:common/utils/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,10 +16,10 @@ class _EditYoungView extends State<EditYoungView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: wPurpleBackGroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: wPurpleBackGroundColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,8 +1,8 @@
+import 'package:common/utils/Color.dart';
+import 'package:common/utils/widgets/RoundedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:common/utils/Color.dart';
-import 'package:common/utils/widgets/RoundedButton.dart';
 import 'JoinFinishView.dart';
 import 'widgets/ProgressBar.dart';
 import 'widgets/SignupAppBar.dart';
@@ -143,7 +143,7 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("부모님1", style: TextStyle(color: kPurpleColor, fontSize: 18.sp)),
+                Text("부모님1", style: TextStyle(color: wPurpleColor, fontSize: 18.sp)),
                 Text("님 로그인용 초대숫자", style: TextStyle(color: kTextBlackColor, fontSize: 18.sp)),
               ],
             ),

@@ -18,7 +18,7 @@ class _AddYoungViewState extends State<AddYoungView> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: wPurpleBackGroundColor,
       ),
       body: Column(
         children: [

@@ -2,7 +2,11 @@ import 'package:common/utils/Color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:old/view/goal/GoalView.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../../frame/OldFrameView.dart';
 
 class OldLoginView extends StatefulWidget {
   const OldLoginView({Key? key}) : super(key: key);
@@ -84,7 +88,7 @@ class _OldLoginViewState extends State<OldLoginView> {
           activeColor: Colors.transparent,
           errorBorderColor: Colors.orangeAccent,
           inactiveColor: Colors.transparent,
-          disabledColor: kBackgroundColor,
+          disabledColor: wPurpleBackGroundColor,
           selectedColor: Colors.transparent,
           inactiveFillColor: Colors.grey.shade300,
           selectedFillColor: Color(0XffFFF8EE),
@@ -125,9 +129,16 @@ class _OldLoginViewState extends State<OldLoginView> {
               setState(() {
                 _codeController.clear();
               });
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.fade,
+                  child: OldFrameView(),
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
-              primary: kOrangeColor,
+              primary: wOrangeColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),

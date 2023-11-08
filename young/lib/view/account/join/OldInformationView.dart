@@ -11,6 +11,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:young/view/account/join/OtherOldInformationView.dart';
 import 'package:young/view/account/join/widgets/ProgressBar.dart';
 import 'package:young/view/account/join/widgets/SignupAppBar.dart';
+import 'package:young/view/account/popup/AcoountPopup.dart';
 
 import 'JoinSuccessView.dart';
 
@@ -214,7 +215,7 @@ class _OldInformationView extends State<OldInformationView> {
                     decoration: BoxDecoration(
                       border: Border.all(color: kTextGreyColor,width: 0.2),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: isDisease == true ? kPurpleColor : Colors.grey.shade200,
+                      color: isDisease == true ? wPurpleColor : Colors.grey.shade200,
                     ),
                     child: Center(
                         child: Text(
@@ -238,7 +239,7 @@ class _OldInformationView extends State<OldInformationView> {
                     decoration: BoxDecoration(
                       border: Border.all(color: kTextGreyColor,width: 0.2),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: isDisease == false ? kPurpleColor : Colors.grey.shade200,
+                      color: isDisease == false ? wPurpleColor : Colors.grey.shade200,
                     ),
                     child: Center(
                         child: Text(
@@ -410,7 +411,8 @@ class _OldInformationView extends State<OldInformationView> {
     return canNextStep
         ? InkWell(
             onTap: () {
-               var senior = createSenior(_nameController.text, int.parse(_ageController.text), int.parse(_phoneNumberController.text), _addressController.text);
+               var old = createSenior(_nameController.text, int.parse(_ageController.text), int.parse(_phoneNumberController.text), _addressController.text);
+              AccountPopup().showDialog(context, old);
                // Navigator.push(
                //     context,
                //     PageTransition(
@@ -421,14 +423,14 @@ class _OldInformationView extends State<OldInformationView> {
               //     context,
               //     PageTransition(
               //         type: PageTransitionType.fade,
-              //         child: (JoinSuccessView()  )));
+              //         child: (JoinSuccessView())));
             },
             child: Container(
               width: 300.w,
               height: 50.h,
               margin: EdgeInsets.only(top: 30.h, bottom: 20.h),
               decoration: BoxDecoration(
-                  color: kOrangeColor,
+                  color: wOrangeColor,
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Center(
                 child: Text("다음"),

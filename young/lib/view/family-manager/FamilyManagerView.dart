@@ -20,8 +20,8 @@ class _FamilyManagerViewState extends State<FamilyManagerView> {
 
 
     return Scaffold(
-      backgroundColor: kBackgroundColor,
-      appBar: CommonAppBar(canBack: true, title: '가족정보',color: kBackgroundColor, ),
+      backgroundColor: wPurpleBackGroundColor,
+      appBar: CommonAppBar(canBack: true, title: '가족정보',color: wPurpleBackGroundColor, ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

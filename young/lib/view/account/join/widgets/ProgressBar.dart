@@ -24,33 +24,33 @@ class ProgressBar extends StatelessWidget {
                     width: 23.w,
                     height: 23.h,
                     decoration: BoxDecoration(
-                      color: stepNumber == 1 ? kOrangeColor : Colors.grey,
+                      color: stepNumber == 1 ? wOrangeColor : Colors.grey,
                       shape: BoxShape.circle,
                     ),
                   ),
                   Container(
                     width: 80.w,
                     height: 2.h,
-                    color: stepNumber == 1 ? kOrangeColor : Colors.grey,
+                    color: stepNumber == 1 ? wOrangeColor : Colors.grey,
                   ),
                   Container(
                     width: 23.w,
                     height: 23.h,
                     decoration: BoxDecoration(
-                      color: stepNumber == 2 ? kOrangeColor : Colors.grey,
+                      color: stepNumber == 2 ? wOrangeColor : Colors.grey,
                       shape: BoxShape.circle,
                     ),
                   ),
                   Container(
                     width: 80.w,
                     height: 2.h,
-                    color: stepNumber == 2 ? kOrangeColor : Colors.grey,
+                    color: stepNumber == 2 ? wOrangeColor : Colors.grey,
                   ),
                   Container(
                     width: 23.w,
                     height: 23.h,
                     decoration: BoxDecoration(
-                      color: stepNumber == 3 ? kOrangeColor : Colors.grey,
+                      color: stepNumber == 3 ? wOrangeColor : Colors.grey,
                       shape: BoxShape.circle,
                     ),
                   ),

@@ -187,7 +187,7 @@ class FindIdView extends StatelessWidget {
         width: 335.w,
         height: 44.h,
         decoration: BoxDecoration(
-          color: kOrangeColor,
+          color: wOrangeColor,
           borderRadius: BorderRadius.all(Radius.circular(5))
         ),
         child: Center(

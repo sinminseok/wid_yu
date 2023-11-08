@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Future<void> main() async {
-  await dotenv.load();  // .env 파일에서 환경 변수 로드
+ void main() {
   runApp(MyApp());
 }
 

@@ -12,10 +12,10 @@ class AddUserView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: wPurpleBackGroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: wPurpleBackGroundColor,
       ),
       body: Center(
         child: Container(

@@ -6,9 +6,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:crypto/crypto.dart';
 
 class AwsServices {
+  // final String POOL_ID = "ap-northeast-2_L0AqSmYUQ";
+  // final String CLIENT_ID = "6iqdfee6vomkrn5hin54ao2dab";
+  // final String CLIENT_SECRET_ID = "4g5rmor4h11l8mi5p7b99dejo0h0f48i3uki0od03rid39vggfn";
   final userPool = CognitoUserPool(
-    '${(dotenv.env['POOL_ID'])}',
-    '${(dotenv.env['CLIENT_ID'])}',
+    "ap-northeast-2_L0AqSmYUQ",
+    "6iqdfee6vomkrn5hin54ao2dab",
   );
 
   Future<void> signUp(String email, String password) async {

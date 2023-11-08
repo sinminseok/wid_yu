@@ -1,6 +1,4 @@
 import 'package:common/model/account/AwsServices.dart';
-import 'package:common/modelView/login/KakaoLogin.dart';
-import 'package:common/modelView/login/SocialLogin.dart';
 import 'package:common/utils/Color.dart';
 import 'package:common/utils/widgets/RoundedButton.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:young/view/account/find/FindIdView.dart';
-import 'package:young/view/account/find/IdFindView.dart';
 import 'package:young/view/account/find/PasswordFindView.dart';
-import 'package:young/view/frame/FrameView.dart';
+import '../../frame/YoungFrameView.dart';
 import '../join/IdAndPasswordView.dart';
 
 class YoungLoginView extends StatefulWidget {
@@ -22,6 +19,8 @@ class YoungLoginView extends StatefulWidget {
 
 class _YoungLoginView extends State<YoungLoginView> {
   bool ischeck = false;
+  bool _obscurePassword = true; // 비밀번호 가리기 여부를 관리하는 변수
+
   TextEditingController _idController = TextEditingController();
   TextEditingController _passworController = TextEditingController();
 
@@ -78,18 +77,18 @@ class _YoungLoginView extends State<YoungLoginView> {
     return Column(
       children: [
         Container(
-          width: 310.w,
-          height: 70.h,
+          width: 335.w,
+          height: 60.h,
           margin: EdgeInsets.only(top: 50.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 300.w,
+                width: 335.w,
                 height: 46.h,
                 margin: EdgeInsets.only(top: 5.h),
                 decoration: BoxDecoration(
-                  border: Border.all(color: kTextGreyColor, width: 0.4),
+                  border: Border.all(color: wBorderGrey300Color, width: 1),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 child: Padding(
@@ -101,6 +100,7 @@ class _YoungLoginView extends State<YoungLoginView> {
                     cursorColor: kTextBlackColor,
                     decoration: InputDecoration(
                       hintText: "아이디",
+                      hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp),
                       border: InputBorder.none,
                       isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                     ),
@@ -112,76 +112,92 @@ class _YoungLoginView extends State<YoungLoginView> {
           ),
         ),
         Container(
-          width: 310.w,
+          width: 335.w,
           height: 60.h,
           margin: EdgeInsets.only(top: 0.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 300.w,
+                width: 335.w,
                 height: 46.h,
                 margin: EdgeInsets.only(top: 5.h),
                 decoration: BoxDecoration(
-                  border: Border.all(color: kTextGreyColor, width: 0.4),
+                  border: Border.all(color: wBorderGrey300Color, width: 1),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16), // 힌트 텍스트와 입력란 간의 간격 조정
-                  child: TextFormField(
-                    controller: _passworController,
-                    obscureText: true,
-                    style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
-                    textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
-                    cursorColor: kTextBlackColor,
-                    decoration: InputDecoration(
-                      hintText: "비밀번호",
-                      border: InputBorder.none,
-                      isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                    ),
+                  child: Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      TextFormField(
+                        controller: _passworController,
+                        obscureText: _obscurePassword,
+                        style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
+                        textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
+                        cursorColor: kTextBlackColor,
+                        decoration: InputDecoration(
+                          hintText: "비밀번호",
+                          hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                          border: InputBorder.none,
+                          isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                        icon: Icon(
+                          _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              )
-
+              ),
             ],
           ),
-        ),
+        )
       ],
     );
   }
 
-  Widget _buildAutoLoginCheckBox(){
+  Widget _buildAutoLoginCheckBox() {
     return Container(
-      margin: EdgeInsets.only(right: 165.w,bottom: 20.h),
-      width: 160.w,
+      margin: EdgeInsets.only(right: 165.w, bottom: 20.h),
+      width: 185.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Checkbox(
-              focusColor: Colors.white,
-              checkColor: Colors.grey,
-              fillColor:
-              MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.disabled)) {
-                      return Colors.orange.withOpacity(.32);
-                    }
-                    return Colors.grey;
-                  }),
+          Theme(
+            data: ThemeData(
+              unselectedWidgetColor: Colors.black, // 테두리 색 (unchecked 상태의 색)
+            ),
+            child: Checkbox(
+              focusColor: Colors.grey,
+              checkColor: wTextBlackColor,
+              activeColor: Colors.white, // 체크된 상태의 배경색
               value: ischeck,
               onChanged: (value) {
                 setState(() {
                   ischeck = value!;
                 });
-              }),
+              },
+              side: BorderSide(color: ischeck ? Colors.black : Colors.black), // 테두리 색상 변경
+            ),
+          ),
           Text(
             "자동로그인",
             style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.bold,
-                color: kTextGreyColor),
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+              color: wTextBlackColor,
+            ),
           ),
-
         ],
       ),
     );
@@ -190,14 +206,12 @@ class _YoungLoginView extends State<YoungLoginView> {
   Widget _buildLoginButton(){
     return InkWell(
       onTap: (){
-
          //login(_idController.text, _passworController.text);
-
           Navigator.push(
               context,
               PageTransition(
                   type: PageTransitionType.fade,
-                  child: (FrameView())));
+                  child: (YoungFrameView())));
       },
       child: Container(
           margin: EdgeInsets.only(top: 0.h),
@@ -209,7 +223,7 @@ class _YoungLoginView extends State<YoungLoginView> {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 20.h),
-        width: 170.w,
+        width: 190.w,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -222,10 +236,10 @@ class _YoungLoginView extends State<YoungLoginView> {
                         child: (FindIdView())));
               },
               child: Container(
-                child: Text("아이디 찾기",style: TextStyle(color: kTextGreyColor,fontWeight: FontWeight.bold,fontSize: 13.sp),),
+                child: Text("아이디 찾기",style: TextStyle(color: wGrey600Color,fontWeight: FontWeight.bold,fontSize: 16.sp),),
               ),
             ),
-            Container(width: 1,height: 20.h, color: kTextGreyColor,),
+            Container(width: 1,height: 20.h, color: wGreyColor,),
             InkWell(
               onTap: (){
                 Navigator.push(
@@ -235,7 +249,7 @@ class _YoungLoginView extends State<YoungLoginView> {
                         child: (PasswordFindView())));
               },
               child: Container(
-                child: Text("비밀번호 찾기",style: TextStyle(color: kTextGreyColor,fontWeight: FontWeight.bold,fontSize: 13.sp),),
+                child: Text("비밀번호 찾기",style: TextStyle(color: wGrey600Color,fontWeight: FontWeight.bold,fontSize: 16.sp),),
               ),
             ),
           ],
@@ -261,10 +275,10 @@ class _YoungLoginView extends State<YoungLoginView> {
               Text(
                 "회원가입 하러가기",
                 style: TextStyle(
-                    color: kPurpleColor, fontWeight: FontWeight.bold),
+                    color: wPurpleColor, fontWeight: FontWeight.bold, fontSize: 16.sp),
               ),
               Container(
-                child: Icon(Icons.navigate_next_outlined, color: kPurpleColor,),
+                child: Icon(Icons.navigate_next_outlined, color: wPurpleColor,),
               )
             ],
           )),

@@ -20,11 +20,12 @@ class RoundedButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      width: 310.w,
-      height: 50.h,
+      width: 335.w,
+      height: 44.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: kOrangeColor,
+        border: Border.all(color: wOrange200Color),
+        color: wOrangeColor,
       ),
 
       alignment: Alignment.center,

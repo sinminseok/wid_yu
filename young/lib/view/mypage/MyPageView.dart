@@ -14,7 +14,7 @@ class MyPageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: wPurpleBackGroundColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

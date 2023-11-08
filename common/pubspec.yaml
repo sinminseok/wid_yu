@@ -21,6 +21,7 @@ environment:
   sdk: '>=2.19.6 <3.0.0'
 
 dependencies:
+
   old :
     path:  ../old
   young :
@@ -48,6 +49,8 @@ dependencies:
   flutter_dotenv: ^5.1.0
   image_picker: ^1.0.4
   intl: ^0.17.0
+  image: ^3.0.1
+  camera: ^0.10.5+5
 
 dev_dependencies:
   flutter_test:
@@ -63,20 +66,20 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
   # To add Flutter specific assets to your application, add an assets section,
   # like this:
   assets:
-    - .env
-    - assets/images/icon/
+#    - .env
+    - assets/images/
     - assets/images/account/
-    - assets/images/account/people.png
-    - assets/images/account/background.png
+    - assets/images/album/
     - assets/images/common/
+    - assets/images/goal/
+    - assets/images/icon/
+    - assets/images/icon/mission/
     - assets/images/popup/
     - assets/images/user/
-    - assets/images/icon/mission/
-    - assets/images/goal/goal.png
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -112,5 +115,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.example.common
-    iosBundleIdentifier: com.example.common
+    androidPackage: com.example.images
+    iosBundleIdentifier: com.example.images

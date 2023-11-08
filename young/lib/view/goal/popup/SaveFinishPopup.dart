@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:young/view/goal/GoalView.dart';
+import 'package:young/view/goal/YoungGoalView.dart';
 
 class SaveFinishPopup {
   void showDialog( BuildContext context) {
@@ -50,14 +50,14 @@ class SaveFinishPopup {
                         onTap: (){
                           Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  GoalView()), (route) => false);
+                                  YoungGoalView()), (route) => false);
                         },
                         child: Container(
                           margin: EdgeInsets.only(top: 60.h),
                           width: 250.w,
                           height: 44.h,
                           decoration: BoxDecoration(
-                            color: kPurpleColor,
+                            color: wPurpleColor,
                             borderRadius: BorderRadius.all(Radius.circular(10))
                           ),
                           child: Center(

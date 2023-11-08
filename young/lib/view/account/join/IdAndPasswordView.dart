@@ -132,7 +132,7 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
                 width: 221.w,
                 height: 44.h,
                 decoration: BoxDecoration(
-                  color: kOrangeColor,
+                  color: wOrangeColor,
                     border: Border.all(color: Colors.orangeAccent),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(

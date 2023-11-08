@@ -22,6 +22,7 @@ environment:
   sdk: '>=2.19.6 <3.0.0'
 
 
+
 dependencies:
   old:
     path: old
@@ -29,9 +30,9 @@ dependencies:
     path: young
 
   flutter:
+
     sdk: flutter
   flutter_screenutil: ^5.6.0
-
   kakao_flutter_sdk: ^1.5.0
   flutter_naver_login: ^1.8.0
 
@@ -63,7 +64,17 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   # To add assets to your application, add an assets section, like this:
-  assets:
+#  assets:
+#    #    - .env
+#    - assets/images/
+#    - assets/images/account/
+#    - assets/images/album/
+#    - assets/images/common/
+#    - assets/images/goal/
+#    - assets/images/icon/
+#    - assets/images/icon/mission/
+#    - assets/images/popup/
+#    - assets/images/user/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
