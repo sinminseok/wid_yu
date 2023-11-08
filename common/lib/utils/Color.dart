@@ -13,7 +13,6 @@ const wOrangeBackGroundColor = Color(0XffFFF8EE);
 
 const kBorderColor = Color(0xffEEEEEE);
 
-
 const kLightGreyColor = Color(0XffEBEBEB);
 const kBlankColor = Color(0xFFD9D9D9);
 
