@@ -33,7 +33,7 @@ class SaveFinishPopup {
                       Container(
                         width: 200.w,
                         height: 235.h,
-                        child: Image.asset("assets/images/popup/save_goal.png"),
+                        child: Image.asset("assets/common/popup/save_goal.png"),
                       ),
                       Container(
                         child: Center(

@@ -76,7 +76,7 @@ class WalkMissionWidget extends StatelessWidget {
         child: Container(
           width: 28.w,
           height: 28.h,
-          child: Image.asset("assets/images/icon/mission/run.png"),
+          child: Image.asset("assets/common/icon/mission/run.png"),
         ),
       ),
     );

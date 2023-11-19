@@ -46,12 +46,12 @@ class _SecretPhotoWidgetState extends State<SecretPhotoWidget> {
                 Container(
                   width: 40.w,
                   height: 40.h,
-                  child: Image.asset("assets/images/album/photo_dot.png",),
+                  child: Image.asset("assets/common/album/photo_dot.png",),
                 ),
                 Container(
                   width: 324.w,
                   height: 210.h,
-                  child: Image.asset("assets/images/album/family_photo.png"),
+                  child: Image.asset("assets/common/album/family_photo.png"),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 15.h),

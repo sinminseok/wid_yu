@@ -16,7 +16,7 @@ Widget MissionTimeWidget(List<MissionTime> times, BuildContext context){
     ),
     child: Center(
       child: Text(
-        "19:00",
+        times[0].time,
         style: TextStyle(color: Colors.grey),
       ),
     ),
@@ -26,9 +26,7 @@ Widget MissionTimeWidget(List<MissionTime> times, BuildContext context){
     margin: EdgeInsets.only(left: 40.w,top: 10.h),
     width: 250.w,
     child: GridView.builder(
-
       shrinkWrap: true,
-
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: (1 / .2),
 

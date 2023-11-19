@@ -9,6 +9,7 @@ import 'package:young/view/account/find/FindIdView.dart';
 import 'package:young/view/account/find/PasswordFindView.dart';
 import '../../frame/YoungFrameView.dart';
 import '../join/IdAndPasswordView.dart';
+import '../join/VertifyPhoneView.dart';
 
 class YoungLoginView extends StatefulWidget {
   const YoungLoginView({Key? key}) : super(key: key);
@@ -267,7 +268,7 @@ class _YoungLoginView extends State<YoungLoginView> {
                 context,
                 PageTransition(
                     type: PageTransitionType.fade,
-                    child: (IdAndPasswordView())));
+                    child: (VerifyPhoneView())));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,6 @@
 
 
-import 'package:common/common-widget/mission/MissionTimeWidget.dart';
+import 'package:common/common-widget/mission/mission-time/MissionTimeWidget.dart';
 import 'package:common/model/mission/MissionTime.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +85,7 @@ class CommonMissionWidget extends StatelessWidget {
         child: Container(
           width: 28.w,
           height: 28.h,
-          child: Image.asset("assets/images/icon/mission/common.png"),
+          child: Image.asset("assets/common/icon/mission/common.png"),
         ),
       ),
     );

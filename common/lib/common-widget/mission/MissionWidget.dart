@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'MissionTimeWidget.dart';
+import 'mission-time/MissionTimeWidget.dart';
 
 class MissionWidget extends StatefulWidget {
   final Mission _mission;
@@ -34,7 +34,7 @@ class _MissionWidgetState extends State<MissionWidget> {
         children: [
           Container(
             width: 335.w,
-            margin: EdgeInsets.only(left: 20.w, top: 25.h),
+            margin: EdgeInsets.only(left: 20.w, top: 15.h),
             decoration: BoxDecoration(color: kTextWhiteColor),
             child: Column(
               children: [
@@ -59,7 +59,7 @@ class _MissionWidgetState extends State<MissionWidget> {
                           child: Container(
                               width: 28.w,
                               height: 28.h,
-                              child: widget._mission.missionType==MissionType.DRUG?Image.asset("assets/images/icon/mission/drug.png"): widget._mission.missionType==MissionType.WALK?Image.asset("assets/images/icon/mission/run.png"):Image.asset("assets/images/icon/mission/common.png")
+                              child: widget._mission.missionType==MissionType.DRUG?Image.asset("assets/common/icon/mission/drug.png"): widget._mission.missionType==MissionType.WALK?Image.asset("assets/common/icon/mission/run.png"):Image.asset("assets/common/icon/mission/common.png")
                           )
                       ),
                     ),

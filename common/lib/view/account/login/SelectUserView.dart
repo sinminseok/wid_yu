@@ -4,6 +4,7 @@ import 'package:old/view/account/login/OldLoginView.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:young/view/account/login/YoungLoginView.dart';
 import '../../../utils/Color.dart';
+import '../../../utils/FilePath.dart';
 
 class SelectUserView extends StatefulWidget {
   @override
@@ -41,11 +42,57 @@ class _SelectUserViewState extends State<SelectUserView> {
       },
       child: Container(
         margin: EdgeInsets.only(top: 15.h),
-        child: _buildUserType(
-          "부모님",
-          "부모님으로 로그인해요.\n회원가입은 보호자님이 해주세요.",
-          "assets/images/user/oldManBox.png",
-        ),
+        child: Stack(
+          children: [
+            Center(
+              child: Container(
+                width: 339.w,
+                height: 168.h,
+                decoration: BoxDecoration(
+                  color: wOrangeBackGroundColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 110.w,
+                          height: 95.h,
+                          margin: EdgeInsets.only(left: 30.w),
+                          child: Image.asset(commonImagePath + "user/oldMan.png"),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20.h, left: 30.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "부모님",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 24.sp,
+                      color: wTextBlackColor,
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    "부모님으로 로그인해요.\n회원가입은 보호자님이 해주세요.",
+                    style: TextStyle(fontSize: 14.sp, color: kTextBlackColor),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
@@ -62,11 +109,58 @@ class _SelectUserViewState extends State<SelectUserView> {
             ),
           );
         },
-        child: _buildUserType(
-          "보호자",
-          "보호자로 회원가입.\n로그인하여 부모님의 정보를 관리해요",
-          "assets/images/user/youngManBox.png",
-        ),
+        child: Stack(
+          children: [
+            Center(
+              child: Container(
+
+                width: 339.w,
+                height: 168.h,
+                decoration: BoxDecoration(
+                  color: wPurpleBackGroundColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 110.w,
+                          height: 95.h,
+                          margin: EdgeInsets.only(left: 30.w),
+                          child: Image.asset(commonImagePath + "user/youngManBox.png"),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20.h, left: 30.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "보호자",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 24.sp,
+                      color: wTextBlackColor,
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    "보호자로 회원가입,로그인하여\n부모님의 정보를 관리해요",
+                    style: TextStyle(fontSize: 14.sp, color: kTextBlackColor),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
@@ -77,7 +171,7 @@ class _SelectUserViewState extends State<SelectUserView> {
         margin: EdgeInsets.only(top: 116.h),
         width: 110.w,
         height: 35.h,
-        child: Image.asset("assets/images/common/appbar_logo.png"),
+        child: Image.asset("assets/common/common/appbar_logo.png"),
       ),
     );
   }
@@ -109,11 +203,12 @@ class _SelectUserViewState extends State<SelectUserView> {
       children: [
         Center(
           child: Container(
+
             width: 339.w,
             height: 168.h,
             decoration: BoxDecoration(
               border: Border.all(color: wBorderGreyColor, width: 0.4.w),
-              color: wContainerGrey,
+              color: wPurpleBackGroundColor,
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
             child: Column(
@@ -135,14 +230,14 @@ class _SelectUserViewState extends State<SelectUserView> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 20.h, left: 20.w),
+          margin: EdgeInsets.only(top: 20.h, left: 30.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w800,
                   fontSize: 24.sp,
                   color: wTextBlackColor,
                 ),

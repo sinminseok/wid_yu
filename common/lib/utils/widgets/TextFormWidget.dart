@@ -38,11 +38,11 @@ class _TextFromWidgetState extends State<TextFormWidget> {
             ),
           ),
           Container(
-            width: 300.w,
+            width: 335.w,
             height: 46.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
-              border: Border.all(color: kTextGreyColor, width: 0.4),
+              border: Border.all(color: wGrey300Color, width: 1),
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
             child: Container(

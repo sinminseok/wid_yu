@@ -16,6 +16,7 @@ const kBorderColor = Color(0xffEEEEEE);
 const kLightGreyColor = Color(0XffEBEBEB);
 const kBlankColor = Color(0xFFD9D9D9);
 
+const wErrorColor = Color(0xffE52900);
 const wPurpleColor = Color(0xff7200E4);
 const wPurple200Color = Color(0xff440484);
 const wOrangeColor = Color(0xffFF9D00);
@@ -27,6 +28,7 @@ const wGrey300Color = Color(0xffC9C9C9);
 const wGrey500Color = Color(0xff959595);
 const wGrey600Color = Color(0xff636363);
 const wGrey700Color = Color(0xff414141);
+const wGrey800Color = Color(0xff212121);
 const wContainerGrey = Color(0xffEEEEEE);
 const wBorderGreyColor = Color(0xffE0E0E0);
 const wBorderGrey300Color = Color(0xffC9C9C9);

@@ -85,7 +85,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                       Container(
                         margin: EdgeInsets.only(top: 6.h, left: 2.w),
                         height: 45.h,
-                        child: Image.asset("assets/images/user/oldMan.png"),
+                        child: Image.asset("assets/common/user/oldMan.png"),
                       ),
                     ],
                   ),

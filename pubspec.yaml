@@ -66,15 +66,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 #  assets:
 #    #    - .env
-#    - assets/images/
-#    - assets/images/account/
-#    - assets/images/album/
-#    - assets/images/common/
-#    - assets/images/goal/
-#    - assets/images/icon/
-#    - assets/images/icon/mission/
-#    - assets/images/popup/
-#    - assets/images/user/
+#    - assets/common/
+#    - assets/common/account/
+#    - assets/common/album/
+#    - assets/common/common/
+#    - assets/common/goal/
+#    - assets/common/icon/
+#    - assets/common/icon/mission/
+#    - assets/common/popup/
+#    - assets/common/user/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
