@@ -1,4 +1,5 @@
 import 'package:common/utils/Color.dart';
+import 'package:common/utils/FilePath.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,6 @@ class YoungAlbumView extends StatefulWidget {
 }
 
 class _YoungAlbumViewState extends State<YoungAlbumView> {
-
   bool isPhoto = true;
   bool isVideo = false;
 
@@ -35,24 +35,77 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
               child: _buildExtendButton()),
         ],
       ),
-      backgroundColor: wOrangeBackGroundColor,
+      backgroundColor: wPurpleBackGroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildMainText(),
-            _buildCurrentPoint(),
+            _buildAllRead(),
+            
             _buildSelectRewardType(),
-            isPhoto?_buildPhoto():Container(),
-            isVideo?_buildVideo():Container()
-
+            isPhoto ? _buildPhoto() : Container(),
+            isVideo ? _buildVideo() : Container()
           ],
         ),
       ),
     );
   }
 
-  Widget _buildVideo(){
+  Widget _buildAllRead() {
+    return Stack(
+      children: [
+        Center(
+          child: Container(
+            margin: EdgeInsets.only(top: 10.h),
+            width: 335.w,
+            height: 75.h,
+            decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 15,
+                    offset: const Offset(4, 4),
+                    color: Colors.black.withOpacity(0.2),
+                  )
+                ],
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                color: kTextWhiteColor
+            ),
+            child: Row(
+              children: [
+                Container(
+                  child: Image.asset(youngImagePath + "album/camera.png"),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 5.w),
+                  child: Text("부모님께서 모든 사진을 읽었어요.\n새로운 사진을 올려주세요!",
+                    style: TextStyle(fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                        color: wGrey800Color),),
+                )
+              ],
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(),
+            InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 5.w),
+                child: Icon(Icons.cancel,color: wGrey600Color,),
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _buildVideo() {
     return Container(
       child: Column(
         children: [],
@@ -73,8 +126,8 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
       },
       label: Container(
         child: Text(
-          "새로운 사진 모으기",
-          style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
+          "사진 올리기",
+          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
         ),
       ),
       icon: const Icon(
@@ -87,9 +140,9 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
     );
   }
 
-  Widget _buildPhoto(){
+  Widget _buildPhoto() {
     return Container(
-      child:Column(
+      child: Column(
         children: [
           PhotoWidget(),
           PhotoWidget(),
@@ -117,11 +170,17 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
                 height: 60.h,
                 decoration: BoxDecoration(
                     border: Border(
-                        bottom: isPhoto?BorderSide(color: wOrangeColor,width: 2):BorderSide(color: kTextGreyColor,width: 0.5)
-                    )
-                ),
+                        bottom: isPhoto
+                            ? BorderSide(color: wPurpleColor, width: 2)
+                            : BorderSide(color: kTextGreyColor, width: 0.5))),
                 child: Center(
-                  child: Text("사진",style: TextStyle( color: isPhoto?wOrangeColor:kTextBlackColor),),
+                  child: Text(
+                    "사진",
+                    style: TextStyle(
+                        color: isPhoto ? wPurpleColor : kTextBlackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.sp),
+                  ),
                 ),
               ),
             ),
@@ -137,11 +196,17 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
                 height: 60.h,
                 decoration: BoxDecoration(
                     border: Border(
-                        bottom: isVideo?BorderSide(color: wOrangeColor,width: 2):BorderSide(color: kTextGreyColor,width: 0.5)
-                    )
-                ),
+                        bottom: isVideo
+                            ? BorderSide(color: wPurpleColor, width: 2)
+                            : BorderSide(color: kTextGreyColor, width: 0.5))),
                 child: Center(
-                  child: Text("비디오",style: TextStyle( color: isVideo?wOrangeColor:kTextBlackColor),),
+                  child: Text(
+                    "비디오",
+                    style: TextStyle(
+                        color: isVideo ? wPurpleColor : kTextBlackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.sp),
+                  ),
                 ),
               ),
             ),
@@ -153,7 +218,7 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: wOrangeBackGroundColor,
+      backgroundColor: wPurpleBackGroundColor,
       automaticallyImplyLeading: false,
       elevation: 0,
       title: Container(
@@ -179,35 +244,6 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
       ),
     );
   }
-
-  Widget _buildMainText() {
-    return Container(
-      margin: EdgeInsets.only(top: 10.h, left: 20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            child: Text(
-              "가족들의 소식이 궁금하세요?",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.sp,
-                  color: kTextBlackColor),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5.h),
-            child: Text(
-              "목표 달성으로 쌓은 포인트로 구매해서 볼 수 있어요.",
-              style: TextStyle(fontSize: 16.sp, color: kTextBlackColor),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCurrentPoint() {
-    return PointWidget();
-  }
 }
+
+
