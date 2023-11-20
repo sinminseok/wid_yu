@@ -24,28 +24,34 @@ environment:
 
 
 dependencies:
-  old:
-    path: old
-  young:
-    path: young
+#  old:
+#    path: old
+#  young:
+#    path: young
 
   flutter:
 
     sdk: flutter
   flutter_screenutil: ^5.6.0
+  percent_indicator: ^4.2.3
   kakao_flutter_sdk: ^1.5.0
   flutter_naver_login: ^1.8.0
-
   page_transition: ^2.0.5
   pin_code_fields: ^8.0.1
-
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.13
   fluttertoast: ^8.0.9
   easy_stepper: ^0.6.0
-
   geolocator: ^10.0.0
   permission_handler: ^10.0.0
+  flutter_switch: ^0.3.2
+  amazon_cognito_identity_dart_2: ^3.5.0
+  flutter_dotenv: ^5.1.0
+  image_picker: ^1.0.4
+  intl: ^0.17.0
+  image: ^3.0.1
+  camera: ^0.10.5+5
+  flutter_blurhash: ^0.7.0
 
 
 dev_dependencies:
@@ -64,17 +70,21 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   # To add assets to your application, add an assets section, like this:
-#  assets:
+  assets:
 #    #    - .env
-#    - assets/common/
-#    - assets/common/account/
-#    - assets/common/album/
-#    - assets/common/common/
-#    - assets/common/goal/
-#    - assets/common/icon/
-#    - assets/common/icon/mission/
-#    - assets/common/popup/
-#    - assets/common/user/
+    - assets/common/
+    - assets/common/account/
+    - assets/common/album/
+    - assets/common/common/
+    - assets/common/goal/
+    - assets/common/icon/
+    - assets/common/icon/mission/
+    - assets/common/popup/
+    - assets/common/icon/frame/
+    - assets/common/user/
+    - assets/young/health-information/
+    - assets/young/album/
+    - assets/common/goal-conduct/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
