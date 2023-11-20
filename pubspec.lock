@@ -2,7 +2,7 @@
 # See https://dart.dev/tools/pub/glossary#lockfile
 packages:
   amazon_cognito_identity_dart_2:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: amazon_cognito_identity_dart_2
       sha256: "941145fb75b9e437f663ebf2603f963beae404672d3c52172bb1406724632819"
@@ -50,7 +50,7 @@ packages:
     source: hosted
     version: "2.1.1"
   camera:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: camera
       sha256: "1f9010f0689774380fbcd7d6b7820a5157e8e97685fa66d619e1d1f58b3fdf93"
@@ -113,13 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.2"
-  common:
-    dependency: transitive
-    description:
-      path: common
-      relative: true
-    source: path
-    version: "1.0.0+1"
   convert:
     dependency: transitive
     description:
@@ -237,8 +230,16 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_blurhash:
+    dependency: "direct main"
+    description:
+      name: flutter_blurhash
+      sha256: "05001537bd3fac7644fa6558b09ec8c0a3f2eba78c0765f88912882b1331a5c6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.0"
   flutter_dotenv:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_dotenv
       sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
@@ -278,7 +279,7 @@ packages:
     source: hosted
     version: "5.7.0"
   flutter_switch:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_switch
       sha256: b91477f926bba135d2d203d7b24367492662d8d9c3aa6adb960b14c1087d3c41
@@ -368,7 +369,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image
       sha256: "8e9d133755c3e84c73288363e6343157c383a0c6c56fc51afcc5d4d7180306d6"
@@ -376,7 +377,7 @@ packages:
     source: hosted
     version: "3.3.0"
   image_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker
       sha256: "7d7f2768df2a8b0a3cefa5ef4f84636121987d403130e70b17ef7e2cf650ba84"
@@ -440,7 +441,7 @@ packages:
     source: hosted
     version: "0.2.1+1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
@@ -591,13 +592,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
-  old:
-    dependency: "direct main"
-    description:
-      path: old
-      relative: true
-    source: path
-    version: "1.0.0+1"
   page_transition:
     dependency: "direct main"
     description:
@@ -639,7 +633,7 @@ packages:
     source: hosted
     version: "2.2.0"
   percent_indicator:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: percent_indicator
       sha256: c37099ad833a883c9d71782321cb65c3a848c21b6939b6185f0ff6640d05814c
@@ -939,13 +933,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.3.0"
-  young:
-    dependency: "direct main"
-    description:
-      path: young
-      relative: true
-    source: path
-    version: "1.0.0+1"
 sdks:
   dart: ">=3.1.0 <4.0.0"
   flutter: ">=3.13.0"
