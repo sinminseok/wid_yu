@@ -157,7 +157,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                           Container(
                             margin: EdgeInsets.only(top: 6.h, left: 2.w),
                             height: 45.h,
-                            child: Image.asset("assets/images/user/oldMan.png"),
+                            child: Image.asset("assets/common/user/oldMan.png"),
                           ),
                         ],
                       ),
@@ -239,7 +239,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
             width: 47.w,
             height: 30.h,
             margin: EdgeInsets.only(top: 10.h, left: 10.w),
-            child: Image.asset("assets/images/common/appbar_logo.png"),
+            child: Image.asset("assets/common/common/appbar_logo.png"),
           ),
           Row(
             children: [
@@ -249,7 +249,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                     margin: EdgeInsets.only(right: 8.w, top: 10.h),
                     width: 24.w,
                     height: 24.h,
-                    child: Image.asset("assets/images/icon/bell-icon.png"),
+                    child: Image.asset("assets/common/icon/bell-icon.png"),
                   )),
               InkWell(
                   onTap: () {
@@ -264,7 +264,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                     width: 30.w,
                     height: 30.h,
                     child: Image.asset(
-                        "assets/images/icon/family-information-icon.png"),
+                        "assets/common/icon/family-information-icon.png"),
                   )),
             ],
           )
@@ -290,7 +290,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 25.w),
+              margin: EdgeInsets.only(left: 25.w,top: 15.h),
               width: 190.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,35 +300,42 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                     style: TextStyle(
                       color: kTextBlackColor,
                       fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "오늘은",
-                        style: TextStyle(
-                          color: kTextBlackColor,
-                          fontSize: 17.sp,
+                  Container(
+                    margin: EdgeInsets.only(top: 10.h),
+                    child: Row(
+                      children: [
+                        Text(
+                          "오늘은",
+                          style: TextStyle(
+                            color: kTextBlackColor,
+                            fontSize: 17.sp,
+                          ),
                         ),
-                      ),
-                      Text(
-                        " 75%",
-                        style: TextStyle(
-                          color: wPurpleColor,
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          " 75%",
+                          style: TextStyle(
+                            color: wPurpleColor,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "를 달성했어요.",
-                        style: TextStyle(
-                          color: kTextBlackColor,
-                          fontSize: 17.sp,
+                        Text(
+                          "를 달성했어요.",
+                          style: TextStyle(
+                            color: kTextBlackColor,
+                            fontSize: 17.sp,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(top: 5.h),
+                    child: Text("조금만 더 하면 목표 달성!", style: TextStyle(color: wGrey500Color,fontSize: 16.sp, fontWeight: FontWeight.w600),),
+                  )
                 ],
               ),
             ),
@@ -341,7 +348,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
 
   Widget _buildCircularProgress() {
     return Container(
-      margin: EdgeInsets.only(right: 10.w, top: 17.h),
+      margin: EdgeInsets.only(right: 20.w, top: 17.h),
       width: 100.0.w,
       height: 100.0.h,
       child: CircularPercentIndicator(
@@ -375,7 +382,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
         Container(
           margin: EdgeInsets.only(top: 5.h),
           height: 65.h,
-          child: Image.asset("assets/images/user/youngMan.png"),
+          child: Image.asset("assets/common/user/youngMan.png"),
         ),
       ],
     );
@@ -383,7 +390,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
 
   Widget _buildSwitch() {
     return Container(
-      margin: EdgeInsets.only(right: 250.w, bottom: 20.h),
+      margin: EdgeInsets.only(right: 250.w, bottom: 10.h,top: 20.h),
       child: FlutterSwitch(
         width: 60.0.w,
         height: 29.0.h,
@@ -435,6 +442,8 @@ class _YoungGoalViewState extends State<YoungGoalView> {
   }
 
   Widget _buildYoungMissions() {
+    //사용자의 미션이 없을 경우 EmptyMissionGroupWidget
+    //사용자의 미션이 있을 경우 MissionGroupWidget
     return MissionGroupWidget();
   }
 

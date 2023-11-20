@@ -1,4 +1,5 @@
 import 'package:common/common-widget/mission/EmptyMissionGroupWidget.dart';
+import 'package:common/model/mission/Mission.dart';
 import 'package:common/utils/Color.dart';
 import 'package:common/view/goal/goal-create/GoalCreateView.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,8 @@ class OldGoalView extends StatefulWidget {
 class _OldGoalView extends State<OldGoalView> {
   bool today = true;
   bool _switchValue = false;
-  bool _isBottomScroll = false;
+
+  //List<Mission> missions = [Mission("미션1", _subtitle, _type)];
 
   @override
   void initState() {
@@ -80,7 +82,7 @@ class _OldGoalView extends State<OldGoalView> {
               width: 47.w,
               height: 30.h,
               margin: EdgeInsets.only(top: 10.h, left: 10.w),
-              child: Image.asset("assets/images/common/appbar_logo.png"),
+              child: Image.asset("assets/common/common/appbar_logo.png"),
             ),
           ),
           Row(
@@ -91,7 +93,7 @@ class _OldGoalView extends State<OldGoalView> {
                     margin: EdgeInsets.only(right: 8.w, top: 10.h),
                     width: 24.w,
                     height: 24.h,
-                    child: Image.asset("assets/images/icon/bell-icon.png"),
+                    child: Image.asset("assets/common/icon/bell-icon.png"),
                   )),
               InkWell(
                   onTap: () {
@@ -102,7 +104,7 @@ class _OldGoalView extends State<OldGoalView> {
                     width: 30.w,
                     height: 30.h,
                     child: Image.asset(
-                        "assets/images/icon/family-information-icon.png"),
+                        "assets/common/icon/family-information-icon.png"),
                   )),
             ],
           )
@@ -180,7 +182,9 @@ class _OldGoalView extends State<OldGoalView> {
   Widget _buildMissions() {
     return Container(
         margin: EdgeInsets.only(bottom: 60.h),
-        child: EmptyMissionGroupWidget());
+        //미션이 없을때 EmptyMissionGroupWidget()
+        // 미션이 있을때 MissionGroupWidget()
+        child: MissionGroupWidget());
   }
 
   Widget _buildCircularProgress() {
@@ -219,7 +223,7 @@ class _OldGoalView extends State<OldGoalView> {
         Container(
           margin: EdgeInsets.only(top: 5.h),
           height: 65.h,
-          child: Image.asset("assets/images/user/youngMan.png"),
+          child: Image.asset("assets/common/user/youngMan.png"),
         ),
       ],
     );

@@ -89,7 +89,7 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
             margin: EdgeInsets.only(top: 30.h),
             width: 110.w,
             height: 95.h,
-            child: Image.asset("assets/images/user/youngManBox.png"),
+            child: Image.asset("assets/common/user/youngManBox.png"),
           ),
         ],
       ),

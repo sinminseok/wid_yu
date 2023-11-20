@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:young/view/alarm/YoungAlarmView.dart';
 import 'package:young/view/album/YoungAlbumView.dart';
 import 'package:young/view/frame/widgets/BottomNavigationWidget.dart';
 import 'package:young/view/goal/YoungGoalView.dart';
+
+import '../health-infroamtion/YoungAlarmView.dart';
 
 class YoungFrameView extends StatefulWidget {
   const YoungFrameView({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _FrameView extends State<YoungFrameView> {
   final admin_screens = [
     YoungGoalView(),
     YoungAlbumView(),
-    YoungAlarmView()
+    YoungHealthInformationView()
   ];
 
   @override

@@ -165,7 +165,7 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
               margin: EdgeInsets.only(left: 10.w),
               width: 47.w,
               height: 30.h,
-              child: Image.asset("assets/images/images/appbar_logo.png"),
+              child: Image.asset("assets/common/common/appbar_logo.png"),
             ),
             Container(
               margin: EdgeInsets.only(right: 10.w),

@@ -2,7 +2,7 @@ import 'package:common/utils/Color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:old/view/goal/GoalView.dart';
+import 'package:old/view/goal/OldGoalView.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 

@@ -75,7 +75,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
         child: Container(
           width: 28.w,
           height: 28.h,
-          child: Image.asset("assets/images/icon/mission/drug.png"),
+          child: Image.asset("assets/common/icon/mission/drug.png"),
         ),
       ),
     );
@@ -198,7 +198,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
             margin: EdgeInsets.only(top: 60.h),
             width: 40.w,
             height: 40.h,
-            child: Image.asset("assets/images/icon/mission/drug.png"),
+            child: Image.asset("assets/common/icon/mission/drug.png"),
           ),
         ),
       ],

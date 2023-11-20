@@ -1,5 +1,7 @@
 
+import 'package:common/common-widget/CommonAppbar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class HealthInformationView extends StatefulWidget {
   const HealthInformationView({Key? key}) : super(key: key);
@@ -11,11 +13,15 @@ class HealthInformationView extends StatefulWidget {
 class _HealthInformationViewState extends State<HealthInformationView> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
 
-        ],
+
+          ],
+        ),
       ),
     );
   }

@@ -66,7 +66,6 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(top: 5.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -85,7 +84,7 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
 
   Widget _buildButtons() {
     return Container(
-      margin: EdgeInsets.only(top: 160.h),
+      margin: EdgeInsets.only(top: 190.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -146,7 +145,7 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
   }
   Widget _buildHeaderText() {
     return Container(
-      margin: EdgeInsets.only(left: 30.w, top: 30.h),
+      margin: EdgeInsets.only(left: 15.w, top: 30.h),
       child: Text(
         "사용하실 아이디와 비밀번호를\n설정해주세요.",
         style: TextStyle(
@@ -164,21 +163,21 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.w, top: 30.h),
+          margin: EdgeInsets.only(left: 15.w, top: 30.h),
           child:  Text(
             "아이디",
-            style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
+            style: TextStyle(color: kTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 300.w,
+              width: 335.w,
               height: 46.h,
               margin: EdgeInsets.only(top: 10.h),
               decoration: BoxDecoration(
-                border: Border.all(color: kTextGreyColor, width: 0.4),
+                border: Border.all(color: wGrey300Color),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               child: Container(
@@ -209,21 +208,21 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.w, top: 15.h),
+          margin: EdgeInsets.only(left: 15.w, top: 15.h),
           child:  Text(
             "비밀번호",
-            style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
+            style: TextStyle(color: kTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 300.w,
+              width: 335.w,
               height: 46.h,
               margin: EdgeInsets.only(top: 10.h),
               decoration: BoxDecoration(
-                border: Border.all(color: kTextGreyColor, width: 0.4),
+                border: Border.all(color: wGrey300Color),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               child: Container(

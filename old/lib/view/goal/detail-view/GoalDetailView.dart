@@ -341,7 +341,7 @@ class _GoalDetailView extends State<GoalDetailView> {
         Container(
           margin: EdgeInsets.only(top: 9.h, left: 2.w),
           height: 70.h,
-          child: Image.asset("assets/images/goal/goal.png"),
+          child: Image.asset("assets/common/goal/goal.png"),
         ),
       ],
     );

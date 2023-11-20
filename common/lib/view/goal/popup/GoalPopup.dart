@@ -37,7 +37,7 @@ class GoalPopup {
                           width: 173.w,
                           height: 175.h,
                           child:
-                              Image.asset("assets/images/popup/save_goal.png"),
+                              Image.asset("assets/common/popup/save_goal.png"),
                         ),
                         Container(
                           child: Center(

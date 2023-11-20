@@ -21,7 +21,7 @@ Widget PointWidget(){
             margin: EdgeInsets.only(left: 11.w),
             width: 85.w,
             height: 69.h,
-            child: Image.asset("assets/images/album/point_hand.png"),
+            child: Image.asset("assets/common/album/point_hand.png"),
           ),
           Container(
             margin: EdgeInsets.only(left: 30.w,top: 10.h),

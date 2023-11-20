@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:old/view/album/OldAlbumView.dart';
 import 'package:old/view/frame/widgets/BottomNavigationWidget.dart';
-import 'package:old/view/goal/GoalView.dart';
+import 'package:old/view/goal/OldGoalView.dart';
 
 import '../health-information/HealthInformationView.dart';
 
