@@ -51,7 +51,7 @@ class _EditOldViewState extends State<EditOldView> {
       width: 335.w,
       height: 52.h,
       decoration: BoxDecoration(
-          color: kTextWhiteColor,
+          color: wWhiteColor,
           border: Border.all(
             color: wGrey100Color,
           ),
@@ -88,7 +88,7 @@ class _EditOldViewState extends State<EditOldView> {
       width: 335.w,
       height: 144.h,
       decoration: BoxDecoration(
-        color: kTextWhiteColor,
+        color: wWhiteColor,
         border: Border.all(color: wGrey100Color),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
@@ -259,7 +259,7 @@ class _EditOldViewState extends State<EditOldView> {
                   width: 38.w,
                   height: 38.h,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: kTextWhiteColor),
+                      shape: BoxShape.circle, color: wWhiteColor),
                 ),
                 Positioned(
                   top: 9.h,
@@ -316,7 +316,7 @@ class _EditOldViewState extends State<EditOldView> {
       height: 52.h,
       decoration: BoxDecoration(
           border: Border.all(color: wGrey100Color),
-          color: kTextWhiteColor,
+          color: wWhiteColor,
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -363,8 +363,8 @@ class _EditOldViewState extends State<EditOldView> {
         activeColor: wGrey500Color,
         inactiveColor: wOrangeColor,
         toggleColor: Colors.white,
-        activeTextColor: kTextWhiteColor,
-        inactiveTextColor: kTextWhiteColor,
+        activeTextColor: wWhiteColor,
+        inactiveTextColor: wWhiteColor,
         activeText: "",
         inactiveText: "",
       ),

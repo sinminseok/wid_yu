@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../common/utils/Color.dart';
+import '../../utils/Color.dart';
 
 class ConductAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String missionName;
@@ -17,7 +17,7 @@ class ConductAppBar extends StatelessWidget implements PreferredSizeWidget{
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: kTextWhiteColor,
+      backgroundColor: wWhiteColor,
       title: Center(child: Container(
           margin: EdgeInsets.only(top: 10.h,right: 43.w),
           child: Text(missionName,style: TextStyle(color: kTextBlackColor,fontWeight: FontWeight.bold,fontSize: 18.sp),))),

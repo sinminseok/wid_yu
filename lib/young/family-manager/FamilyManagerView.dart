@@ -82,7 +82,7 @@ class _FamilyManagerViewState extends State<FamilyManagerView> {
         height: 86.h,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: kTextGreyColor, width: 0.4.w),
+            border: Border.all(color: wGrey300Color),
             borderRadius: BorderRadius.all(Radius.circular(5))
         ),
         child: InkWell(
@@ -164,7 +164,7 @@ class _FamilyManagerViewState extends State<FamilyManagerView> {
         height: 86.h,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: kTextGreyColor, width: 0.3.w),
+            border: Border.all(color: wGrey300Color),
             borderRadius: BorderRadius.all(Radius.circular(5))
         ),
         child: Row(

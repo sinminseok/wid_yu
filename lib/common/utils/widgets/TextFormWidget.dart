@@ -8,14 +8,13 @@ class TextFormWidget extends StatefulWidget {
   final String title;
   final String hintText;
   final bool isIntType;
-  final FocusNode? focusNode;
   TextEditingController textEditingController = TextEditingController();
 
   TextFormWidget(
       {required this.title,
         required this.hintText,
       required this.textEditingController,
-      required this.isIntType, this.focusNode,
+      required this.isIntType,
       });
 
   @override
@@ -48,7 +47,6 @@ class _TextFromWidgetState extends State<TextFormWidget> {
             child: Container(
               margin: EdgeInsets.only(top: 5.h,left: 10.w),
               child: TextFormField(
-                focusNode: widget.focusNode, // FocusNode 설정
                 controller: widget.textEditingController,
                 style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
                 textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬

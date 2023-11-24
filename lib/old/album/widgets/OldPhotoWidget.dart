@@ -21,11 +21,11 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 15.h,bottom: 10.h),
-        width: 340.w,
+        width: 375.w,
         height: 357.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
-          color: kTextWhiteColor,
+          color: wWhiteColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.18),
@@ -49,7 +49,7 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
 
   Widget _buildHeader(){
     return Container(
-      margin: EdgeInsets.only(top: 10.h,left: 20.w),
+      margin: EdgeInsets.only(top: 9.h,left: 21.w),
       child: Row(
         children: [
           Container(
@@ -65,13 +65,14 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
                   child: Image.asset(commonImagePath + "user/youngMan.png"),
                 ),
                 Container(
+                  margin: EdgeInsets.only(left: 9.w),
                   child: Text("보호자2 님", style: TextStyle(color: wTextBlackColor, fontWeight: FontWeight.w600, fontSize: 16.sp),),
                 )
               ],
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 30.w),
+            margin: EdgeInsets.only(left: 25.w),
             width: 40.w,
             height: 40.h,
             child: Image.asset("assets/common/album/photo_dot.png",),
@@ -84,25 +85,29 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
 
   Widget _buildPhoto(){
     return Container(
-      margin: EdgeInsets.only(top: 10.h),
-      width: 335.w,
+      margin: EdgeInsets.only(top: 10.h,left: 10.w,right: 10.w),
+      width: 315.w,
       height: 210.h,
-      child: Image.asset("assets/common/album/family_photo.png"),
+      child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+          child: Image.asset("assets/common/album/family_photo.png", fit: BoxFit.fitWidth,)),
     );
   }
 
   Widget _buildPhotoInformation(){
     return Container(
       margin: EdgeInsets.only(top: 15.h),
-      width: 270.w,
+      width: 310.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 210.w,
-            height: 45.h,
-            child: Text("오늘 서울숲으로 나들이가기 전에 찍어봤어.다음에 같이 가보자!",style: TextStyle(color: kTextBlackColor, fontWeight: FontWeight.bold,fontSize: 16.sp),),
-
+            width: 235.w,
+            height: 55.h,
+            child: Text("오늘 서울숲으로 나들이가기 전에 찍어ddd오늘 서울숲으로 나들이어ddasdasdasddasdasdasdasdasdadasdasdasdasdsadasddd",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(color: kTextBlackColor, fontWeight: FontWeight.w500,fontSize: 14.sp),),
           ),
           InkWell(
             onTap: (){

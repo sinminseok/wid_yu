@@ -69,7 +69,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                       child: Center(
                         child: Text("월",
                             style: TextStyle(
-                                color: widget.monday ? kTextWhiteColor : wGrey500Color,
+                                color: widget.monday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),
@@ -100,7 +100,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                         child: Text("화",
                             style: TextStyle(
                                 color:
-                                widget.tuesday ? kTextWhiteColor : wGrey500Color,
+                                widget.tuesday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),
@@ -131,7 +131,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                         child: Text("수",
                             style: TextStyle(
                                 color:
-                                widget.wednesday ? kTextWhiteColor : wGrey500Color,
+                                widget.wednesday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),
@@ -162,7 +162,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                         child: Text("목",
                             style: TextStyle(
                                 color:
-                                widget.thursday ? kTextWhiteColor : wGrey500Color,
+                                widget.thursday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),
@@ -192,7 +192,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                       child: Center(
                         child: Text("금",
                             style: TextStyle(
-                                color: widget.friday ? kTextWhiteColor : wGrey500Color,
+                                color: widget.friday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),
@@ -223,7 +223,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                         child: Text("토",
                             style: TextStyle(
                                 color:
-                                widget.saturday ? kTextWhiteColor : wGrey500Color,
+                                widget.saturday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),
@@ -253,7 +253,7 @@ class _MissionTermWidgetState extends State<MissionTermWidget> {
                       child: Center(
                         child: Text("일",
                             style: TextStyle(
-                                color: widget.sunday ? kTextWhiteColor : wGrey500Color,
+                                color: widget.sunday ? wWhiteColor : wGrey500Color,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp)),
                       ),

@@ -4,10 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wid_yu/old/goal/detail-view/OldMessageView.dart';
 
 import '../../common/common-widget/mission/MissionGroupWidget.dart';
 import '../../common/utils/Color.dart';
 import '../../common/view/goal/goal-create/GoalCreateView.dart';
+import '../../common/view/popup/AlarmOnPopup.dart';
 import '../goal-register/GoalRegisterView.dart';
 import 'detail-view/OldGoalDetailView.dart';
 
@@ -27,7 +30,16 @@ class _OldGoalView extends State<OldGoalView> {
 
   @override
   void initState() {
+    checkAlarm();
     super.initState();
+  }
+
+  void checkAlarm()async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var key = prefs.get("alarmOn");
+    if(key == null){
+      AlarmOnPopup().showDialog(context);
+    }
   }
 
   @override
@@ -66,13 +78,14 @@ class _OldGoalView extends State<OldGoalView> {
         children: [
           InkWell(
             onTap: (){
-              Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.fade,
-                  child: GoalRegisterView(),
-                ),
-              );
+
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.fade,
+              //     child: GoalRegisterView(),
+              //   ),
+              // );
             },
             child: Container(
               width: 47.w,
@@ -84,7 +97,15 @@ class _OldGoalView extends State<OldGoalView> {
           Row(
             children: [
               InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: OldMessageView(),
+                      ),
+                    );
+                  },
                   child: Container(
                     margin: EdgeInsets.only(right: 8.w, top: 10.h),
                     width: 24.w,
@@ -126,17 +147,17 @@ class _OldGoalView extends State<OldGoalView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 25.w),
-              width: 190.w,
+              margin: EdgeInsets.only(left: 30.w),
+              width: 210.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "보호자님",
+                    "부모님 님",
                     style: TextStyle(
                       color: kTextBlackColor,
                       fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                   Row(
@@ -185,7 +206,7 @@ class _OldGoalView extends State<OldGoalView> {
 
   Widget _buildCircularProgress() {
     return Container(
-      margin: EdgeInsets.only(right: 10.w, top: 17.h),
+      margin: EdgeInsets.only(right: 20.w, top: 17.h),
       width: 100.0.w,
       height: 100.0.h,
       child: CircularPercentIndicator(
@@ -205,7 +226,7 @@ class _OldGoalView extends State<OldGoalView> {
           width: 63.h,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: kTextWhiteColor,
+            color: wWhiteColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -243,8 +264,8 @@ class _OldGoalView extends State<OldGoalView> {
         activeColor: wOrangeColor,
         inactiveColor: wPurple200Color,
         toggleColor: Colors.white,
-        activeTextColor: kTextWhiteColor,
-        inactiveTextColor: kTextWhiteColor,
+        activeTextColor: wWhiteColor,
+        inactiveTextColor: wWhiteColor,
         activeText: "전체",
         inactiveText: "오늘",
       ),
@@ -258,7 +279,7 @@ class _OldGoalView extends State<OldGoalView> {
           context,
           PageTransition(
             type: PageTransitionType.fade,
-            child: GoalCreateView(),
+            child: GoalCreateView(true),
           ),
         );
       },

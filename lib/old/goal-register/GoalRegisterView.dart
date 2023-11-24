@@ -19,8 +19,8 @@ class _GoalRegisterViewState extends State<GoalRegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kTextWhiteColor,
-      appBar: CommonAppBar(canBack: true, color: kTextWhiteColor, title: '목표 등록',),
+      backgroundColor: wWhiteColor,
+      appBar: CommonAppBar(canBack: true, color: wWhiteColor, title: '목표 등록',),
       body: SingleChildScrollView(
         child:Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,7 +83,7 @@ class _GoalRegisterViewState extends State<GoalRegisterView> {
                           borderRadius: BorderRadius.all(Radius.circular(6))
                       ),
                       child: Center(
-                        child: Text("완료하기", style: TextStyle(fontSize: 16.sp, color: kTextWhiteColor, fontWeight: FontWeight.bold),),
+                        child: Text("완료하기", style: TextStyle(fontSize: 16.sp, color: wWhiteColor, fontWeight: FontWeight.bold),),
                       ),
                     ),
                   ),

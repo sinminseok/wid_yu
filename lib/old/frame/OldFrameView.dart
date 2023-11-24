@@ -8,7 +8,9 @@ import '../goal/OldGoalView.dart';
 import '../health-information/HealthInformationView.dart';
 
 class OldFrameView extends StatefulWidget {
-  const OldFrameView({Key? key}) : super(key: key);
+  final int index;
+
+  OldFrameView(this.index);
 
   @override
   _OldFrameView createState() => _OldFrameView();
@@ -17,10 +19,11 @@ class OldFrameView extends StatefulWidget {
 class _OldFrameView extends State<OldFrameView> {
   var authority;
 
-  int admin_selectedItem = 0;
+  late int admin_selectedItem;
 
   @override
   void initState() {
+    admin_selectedItem = widget.index;
     super.initState();
   }
 
@@ -32,14 +35,11 @@ class _OldFrameView extends State<OldFrameView> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
-
-
         bottomNavigationBar: BottomNavigationWidget(
-          0,
-              (val) {
+          widget.index,
+          (val) {
             setState(() {
               admin_selectedItem = val;
             });
@@ -49,7 +49,7 @@ class _OldFrameView extends State<OldFrameView> {
             commonImagePath + "icon/frame/album_icon.png",
             commonImagePath + "icon/frame/health_icon.png",
           ],
-          ["목표", "앨범 위듀", "응급 알림"],
+          ["목표", "앨범 위듀", "건강정보"],
         ),
         body: admin_screens[admin_selectedItem]);
   }

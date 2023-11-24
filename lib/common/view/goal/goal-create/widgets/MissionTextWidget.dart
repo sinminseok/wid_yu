@@ -50,8 +50,8 @@ class _MissionTextWidgetState extends State<MissionTextWidget> {
                   child: Text("제목",
                       style: TextStyle(
                           color: wGrey700Color,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold)),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600)),
                 ),
                 Center(
                   child: Container(
@@ -119,12 +119,12 @@ class _MissionTextWidgetState extends State<MissionTextWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 10.w, top: 15.h),
+                  margin: EdgeInsets.only(left: 10.w, top: 15.h,right: 10.w),
                   child: Text("내용",
                       style: TextStyle(
                           color: wGrey700Color,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold)),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600)),
                 ),
                 Center(
                   child: Container(

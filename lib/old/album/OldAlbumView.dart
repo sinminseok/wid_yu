@@ -1,12 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/old/album/detail-view/LikePhotoView.dart';
 import 'package:wid_yu/old/album/widgets/OldPhotoWidget.dart';
 
 import '../../common/utils/Color.dart';
-import '../../young/album/widgets/PhotoWidget.dart';
+import '../../young/album/widgets/YoungPhotoWidget.dart';
 import '../../young/album/widgets/PointWidget.dart';
 import 'detail-view/CollectPhotoView.dart';
 
@@ -18,9 +18,9 @@ class OldAlbumView extends StatefulWidget {
 }
 
 class _OldAlbumViewState extends State<OldAlbumView> {
-
   bool isPhoto = true;
   bool isVideo = false;
+  bool isBigShow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,108 +44,8 @@ class _OldAlbumViewState extends State<OldAlbumView> {
             _buildMainText(),
             _buildCurrentPoint(),
             _buildSelectRewardType(),
-            isPhoto?_buildPhoto():Container(),
-            isVideo?_buildVideo():Container()
-
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildVideo(){
-    return Container(
-      child: Column(
-        children: [],
-      ),
-    );
-  }
-
-  FloatingActionButton _buildExtendButton() {
-    return FloatingActionButton.extended(
-      onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.fade,
-            child: CollectPhotoView(),
-          ),
-        );
-      },
-      label: Container(
-        child: Text(
-          "새로운 사진 모으기",
-          style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
-        ),
-      ),
-      icon: const Icon(
-        Icons.add,
-        size: 20,
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      foregroundColor: Colors.white,
-      backgroundColor: wPurpleColor,
-    );
-  }
-
-  Widget _buildPhoto(){
-    return Container(
-      child:Column(
-        children: [
-          OldPhotoWidget(),
-          OldPhotoWidget(),
-          OldPhotoWidget(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSelectRewardType() {
-    return Center(
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isPhoto = true;
-                  isVideo = false;
-                });
-              },
-              child: Container(
-                width: 158.w,
-                height: 60.h,
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: isPhoto?BorderSide(color: wOrangeColor,width: 2):BorderSide(color: kTextGreyColor,width: 0.5)
-                    )
-                ),
-                child: Center(
-                  child: Text("사진",style: TextStyle( color: isPhoto?wOrangeColor:kTextBlackColor),),
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isPhoto = false;
-                  isVideo = true;
-                });
-              },
-              child: Container(
-                width: 158.w,
-                height: 60.h,
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: isVideo?BorderSide(color: wOrangeColor,width: 2):BorderSide(color: kTextGreyColor,width: 0.5)
-                    )
-                ),
-                child: Center(
-                  child: Text("비디오",style: TextStyle( color: isVideo?wOrangeColor:kTextBlackColor),),
-                ),
-              ),
-            ),
+            isPhoto ? _buildPhotos() : Container(),
+            isVideo ? _buildVideo() : Container()
           ],
         ),
       ),
@@ -169,7 +69,7 @@ class _OldAlbumViewState extends State<OldAlbumView> {
               child: Image.asset("assets/common/common/appbar_logo.png"),
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   PageTransition(
@@ -189,6 +89,33 @@ class _OldAlbumViewState extends State<OldAlbumView> {
           ],
         ),
       ),
+    );
+  }
+
+  FloatingActionButton _buildExtendButton() {
+    return FloatingActionButton.extended(
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.fade,
+            child: CollectPhotoView(),
+          ),
+        );
+      },
+      label: Container(
+        child: Text(
+          "새로운 사진 모으기",
+          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+        ),
+      ),
+      icon: const Icon(
+        Icons.add,
+        size: 20,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      foregroundColor: Colors.white,
+      backgroundColor: wPurpleColor,
     );
   }
 
@@ -222,4 +149,166 @@ class _OldAlbumViewState extends State<OldAlbumView> {
   Widget _buildCurrentPoint() {
     return PointWidget();
   }
+
+  Widget _buildSelectRewardType() {
+    return Column(
+      children: [
+        Center(
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      isPhoto = true;
+                      isVideo = false;
+                    });
+                  },
+                  child: Container(
+                    width: 158.w,
+                    height: 60.h,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: isPhoto
+                                ? BorderSide(color: wOrangeColor, width: 2)
+                                : BorderSide(
+                                color: kTextGreyColor, width: 0.5))),
+                    child: Center(
+                      child: Text(
+                        "사진",
+                        style: TextStyle(
+                            color: isPhoto ? wOrangeColor : kTextBlackColor),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      isPhoto = false;
+                      isVideo = true;
+                    });
+                  },
+                  child: Container(
+                    width: 158.w,
+                    height: 60.h,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: isVideo
+                                ? BorderSide(color: wOrangeColor, width: 2)
+                                : BorderSide(
+                                color: kTextGreyColor, width: 0.5))),
+                    child: Center(
+                      child: Text(
+                        "비디오",
+                        style: TextStyle(
+                            color: isVideo ? wOrangeColor : kTextBlackColor),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 9.h, bottom: 14.h),
+          width: 320.w,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    isBigShow = !isBigShow;
+                  });
+                },
+                child: Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 14.w,
+                        height: 14.h,
+                        child: Image.asset(commonImagePath +
+                            "icon/photo-type-select-icon.png"),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5.w),
+                        child: Text(
+                          isBigShow ? "크게 보기" : "작게 보기",
+                          style:
+                          TextStyle(color: wGrey600Color, fontSize: 14.sp),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildPhotos() {
+    return isBigShow ? _buildBigPhotos() : _buildSmallPhotos();
+  }
+
+  Widget _buildBigPhotos() {
+    return Container(
+      child: Column(
+        children: [
+          OldPhotoWidget(),
+          OldPhotoWidget(),
+          OldPhotoWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSmallPhotos() {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 5.h, bottom: 20.h),
+        width: 320.w,
+        child: GridView.builder(
+          shrinkWrap: true,
+          itemCount: 10,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
+            childAspectRatio: 1.3 / 1, //item 의 가로 1, 세로 1 의 비율
+            mainAxisSpacing: 1, //수평 Padding
+            crossAxisSpacing: 3.w, //수직 Padding
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            // return Text(index.toString());
+            return Container(
+              width: 116.w,
+              height: 75.h,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                child: Image.asset(
+                  "assets/common/album/family_photo.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVideo() {
+    return Container(
+      child: Column(
+        children: [],
+      ),
+    );
+  }
+
+
 }

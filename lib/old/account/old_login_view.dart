@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../common/utils/Color.dart';
-import '../../frame/OldFrameView.dart';
+import '../../common/utils/Color.dart';
+import '../frame/OldFrameView.dart';
 
 class OldLoginView extends StatefulWidget {
   const OldLoginView({Key? key}) : super(key: key);
@@ -28,13 +28,15 @@ class _OldLoginViewState extends State<OldLoginView> {
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildHeaderText(),
-          _buildPinCodeTextField(),
-          _buildLoginButton(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHeaderText(),
+            _buildPinCodeTextField(),
+            _buildLoginButton(),
+          ],
+        ),
       ),
     );
   }
@@ -132,7 +134,7 @@ class _OldLoginViewState extends State<OldLoginView> {
                 context,
                 PageTransition(
                   type: PageTransitionType.fade,
-                  child: OldFrameView(),
+                  child: OldFrameView(0),
                 ),
               );
             },
@@ -145,7 +147,7 @@ class _OldLoginViewState extends State<OldLoginView> {
             child: Text(
               "로그인",
               style: TextStyle(
-                color: kTextWhiteColor,
+                color: wWhiteColor,
                 fontWeight: FontWeight.bold,
               ),
             ),

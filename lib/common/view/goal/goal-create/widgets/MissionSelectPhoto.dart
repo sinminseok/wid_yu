@@ -51,9 +51,9 @@ class _MissionSelectPhotoState extends State<MissionSelectPhoto> {
         activeColor: wTextBlackColor,
         inactiveColor: wOrangeColor,
         toggleColor: Colors.white,
-        activeTextColor: kTextWhiteColor,
+        activeTextColor: wWhiteColor,
 
-        inactiveTextColor: kTextWhiteColor,
+        inactiveTextColor: wWhiteColor,
         activeText: "끔",
         inactiveText: "켬",
 

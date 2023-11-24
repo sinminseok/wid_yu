@@ -10,7 +10,10 @@ import '../../../utils/Color.dart';
 import '../popup/GoalPopup.dart';
 
 class GoalCreateView extends StatefulWidget {
-  const GoalCreateView({Key? key}) : super(key: key);
+  final bool isOld;
+
+
+  GoalCreateView(this.isOld);
 
   @override
   _GoalCreateViewState createState() => _GoalCreateViewState();
@@ -77,7 +80,7 @@ class _GoalCreateViewState extends State<GoalCreateView> {
   Widget _buildSaveButton() {
     return InkWell(
       onTap: () {
-        GoalPopup().createGoalPopup(context, false);
+        GoalPopup().createGoalPopup(context, widget.isOld);
         //SaveFinishPopup().showDialog(context);
       },
       child: Center(

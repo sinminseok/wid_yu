@@ -46,7 +46,7 @@ class WalkMissionWidget extends StatelessWidget {
 
   Widget _buildMissionInfo() {
     return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 10.w),
+      margin: EdgeInsets.only(top: 20.h, left: 20.w),
       child: Row(
         children: [
           _buildMissionIcon(),

@@ -25,6 +25,15 @@ class _GoalDetailView extends State<OldGoalDetailView> {
   ];
   final List<String> days = ["일", "월", "화", "수", "목", "금", "토"];
 
+  bool isOpenCalendar = true;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    isOpenCalendar = true;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +47,7 @@ class _GoalDetailView extends State<OldGoalDetailView> {
             _buildMissionDate(),
             _buildTodayMission(),
             _buildMonthSuccess(),
-            _buildCallendar()
+            isOpenCalendar ? _buildCallendar() : Container()
           ],
         ),
       ),
@@ -56,63 +65,102 @@ class _GoalDetailView extends State<OldGoalDetailView> {
   }
 
   Widget _buildMonthSuccess() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.only(left: 15.w, top: 35.h),
-          child: Text("이번달 달성률", style: TextStyle(color: wGrey600Color,fontSize: 16.sp, fontWeight: FontWeight.bold),),
-        ),
-        Center(
-          child: Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 335.w,
-            height: 87.h,
-            decoration: BoxDecoration(
-              border: Border.all(color: wGrey100Color),
-                color: kTextWhiteColor,
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 15.h,left: 25.w),
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Text("80%",style: TextStyle(color: wGrey500Color, fontSize: 16.sp),),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 8.h),
-                        child: Text("저번달 평균",style: TextStyle(color: wGrey500Color, fontSize: 14.sp),),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 13.h,right: 25.w),
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Text("13%", style: TextStyle(color: wPurpleColor,fontSize: 20.sp,fontWeight: FontWeight.bold),),
-                      ),
-                      Container(
-
-                        child: Text("이번달 평균", style: TextStyle(color: wGrey600Color,fontSize: 16.sp,fontWeight: FontWeight.bold),),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(right: 20.w),
-                  child: Icon(Icons.keyboard_arrow_up, color: wGrey500Color,),
-                )
-              ],
+    return Container(
+      margin: EdgeInsets.only(bottom: 20.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 20.w, top: 35.h),
+            child: Text(
+              "이번달 달성률",
+              style: TextStyle(
+                  color: wGrey700Color,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600),
             ),
           ),
-        ),
-      ],
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 10.h),
+              width: 335.w,
+              height: 87.h,
+              decoration: BoxDecoration(
+                  border: Border.all(color: wGrey100Color),
+                  color: wWhiteColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 15.h, left: 25.w),
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text(
+                            "80%",
+                            style:
+                                TextStyle(color: wGrey500Color, fontSize: 16.sp),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 8.h),
+                          child: Text(
+                            "저번달 평균",
+                            style:
+                                TextStyle(color: wGrey500Color, fontSize: 14.sp),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 13.h, right: 25.w),
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text(
+                            "13%",
+                            style: TextStyle(
+                                color: wPurpleColor,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            "이번달 평균",
+                            style: TextStyle(
+                                color: wGrey600Color,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isOpenCalendar = !isOpenCalendar;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 20.w),
+                      child: Icon(
+                        isOpenCalendar
+                            ? Icons.keyboard_arrow_up
+                            : Icons.keyboard_arrow_down,
+                        color: wGrey500Color,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -123,17 +171,17 @@ class _GoalDetailView extends State<OldGoalDetailView> {
     int totalDaysInMonth = DateTime(year, month + 1, 0).day;
 
     return Container(
-        margin: EdgeInsets.only(left: 10.w, right: 10.w,top: 15.h),
-        width: 360.w,
-        height: 400.h,
+        margin:
+            EdgeInsets.only(left: 10.w, right: 10.w, bottom: 30.h),
+        width: 335.w,
         decoration: BoxDecoration(
-            border: Border.all(color: wGrey100Color),
-            color: kTextWhiteColor,
+            border: Border.all(color: wGrey100Color, width: 1.w),
+            color: wWhiteColor,
             borderRadius: BorderRadius.all(Radius.circular(5))),
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20.h),
+              margin: EdgeInsets.only(top: 15.h),
               child: Text(
                 "${month}월",
                 style: TextStyle(
@@ -142,8 +190,9 @@ class _GoalDetailView extends State<OldGoalDetailView> {
                     fontSize: 16.sp),
               ),
             ),
+            // 요일 출력
             Container(
-              margin: EdgeInsets.only(top: 20.h),
+              margin: EdgeInsets.only(top: 15.h),
               width: 305.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,12 +207,14 @@ class _GoalDetailView extends State<OldGoalDetailView> {
                 }).toList(),
               ),
             ),
+
             Container(
               width: 340.w,
-              height: 300.h,
+              height: 420.h,
               margin: EdgeInsets.only(top: 10.h),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 1 / 1.5,
                   crossAxisCount: 7, // 7 columns for 7 days in a week
                 ),
                 itemCount: totalDaysInMonth,
@@ -172,7 +223,6 @@ class _GoalDetailView extends State<OldGoalDetailView> {
                   bool isToday = currentDate.day == now.day &&
                       currentDate.month == now.month;
                   return Container(
-                    width: 45.w,
                     child: Column(
                       children: [
                         Text(
@@ -185,8 +235,8 @@ class _GoalDetailView extends State<OldGoalDetailView> {
                         Container(
                           margin: EdgeInsets.only(top: 5.h),
                           child: CircularPercentIndicator(
-                            radius: 15.0,
-                            lineWidth: 4.0,
+                            radius: 14.0.sp,
+                            lineWidth: 6.0.sp,
                             percent: 0.7, // Set your percentage here
 
                             progressColor:
@@ -269,7 +319,7 @@ class _GoalDetailView extends State<OldGoalDetailView> {
                           child: Text(
                             "100P",
                             style: TextStyle(
-                                color: kTextWhiteColor,
+                                color: wWhiteColor,
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -308,12 +358,12 @@ class _GoalDetailView extends State<OldGoalDetailView> {
 
   Widget _buildCircularProgress() {
     return Container(
-      margin: EdgeInsets.only(right: 30.w, top: 10.h),
-      width: 100.0.w,
-      height: 100.0.h,
+      margin: EdgeInsets.only(right: 20.w, top: 10.h),
+      width: 120.0.w,
+      height: 120.0.h,
       child: CircularPercentIndicator(
-        radius: 45.0,
-        lineWidth: 5.0,
+        radius: 60.0,
+        lineWidth: 10.0,
         percent: 0.7,
         center: _buildCircularProgressCenter(),
         progressColor: wOrangeColor,
@@ -322,36 +372,18 @@ class _GoalDetailView extends State<OldGoalDetailView> {
   }
 
   Widget _buildCircularProgressCenter() {
-    return Stack(
-      children: [
-        Container(
-          width: 70.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: kTextWhiteColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0, 1),
-                blurRadius: 2.0,
-                spreadRadius: 0.0,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 9.h, left: 2.w),
-          height: 70.h,
-          child: Image.asset("assets/common/goal/goal.png"),
-        ),
-      ],
-    );
+    return Container(
+        height: 85.h,
+        width: 85.w,
+        decoration:
+            BoxDecoration(color: wWhiteColor, shape: BoxShape.circle),
+        child: Image.asset("assets/common/goal/goal.png"));
   }
 
   Widget _buildMissionDate() {
     return Container(
       margin: EdgeInsets.only(left: 20.w, top: 20.h, bottom: 10.h),
-      width: 120.w,
+      width: 140.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

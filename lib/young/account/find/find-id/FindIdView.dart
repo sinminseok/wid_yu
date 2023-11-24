@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../common/common-widget/CommonAppbar.dart';
-import '../../../common/common-widget/OrangeButton.dart';
-import '../../../common/utils/Color.dart';
-import '../../../common/utils/FilePath.dart';
-import '../join/IdAndPasswordView.dart';
-import '../login/YoungLoginView.dart';
+import '../../../../common/common-widget/CommonAppbar.dart';
+import '../../../../common/common-widget/OrangeButton.dart';
+import '../../../../common/utils/Color.dart';
+import '../../../../common/utils/FilePath.dart';
+import '../../join/IdAndPasswordView.dart';
+import '../../login/YoungLoginView.dart';
+import 'FindIdSuccessView.dart';
 
 class FindIdView extends StatefulWidget {
   const FindIdView({Key? key}) : super(key: key);
@@ -18,11 +19,7 @@ class FindIdView extends StatefulWidget {
 }
 
 class _FindIdViewState extends State<FindIdView> {
-  /*
-  0 일때 아이디 찾기 위젯
-  1일때 아이디 찾기 성공 위젯
-  -1일때 아이디 찾기 실패 위젯
-  */
+
   int isSuccessFind = 0;
   TextEditingController _nameController = TextEditingController();
   TextEditingController _verifyNumberController = TextEditingController();
@@ -39,15 +36,14 @@ class _FindIdViewState extends State<FindIdView> {
       appBar: CommonAppBar(
         canBack: true,
         title: '',
-        color: kTextWhiteColor,
+        color: wWhiteColor,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            isSuccessFind == 0?_buildDuringFind():Container(),
-            isSuccessFind == -1?_buildFaliFind():Container(),
-            isSuccessFind == 1?_buildSuccessFind():Container(),
+            isSuccessFind == 0 ? _buildDuringFind() : Container(),
+            isSuccessFind == -1 ? _buildFaliFind() : Container(),
           ],
         ),
       ),
@@ -93,9 +89,9 @@ class _FindIdViewState extends State<FindIdView> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 30.h),
+          margin: EdgeInsets.only(top: 25.h, bottom: 5.h),
           child: InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.push(
                   context,
                   PageTransition(
@@ -105,7 +101,7 @@ class _FindIdViewState extends State<FindIdView> {
             child: Text(
               "회원 가입하러 가기 >",
               style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 15.sp,
                   color: wPurpleColor,
                   fontWeight: FontWeight.w600),
             ),
@@ -113,9 +109,11 @@ class _FindIdViewState extends State<FindIdView> {
         ),
         InkWell(
             onTap: () {
-              setState(() {
-                isSuccessFind = 1;
-              });
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => FindIdSuccessView()),
+                      (route) => false);
             },
             child: Container(
                 margin: EdgeInsets.only(top: 10.h),
@@ -138,15 +136,15 @@ class _FindIdViewState extends State<FindIdView> {
           child: Text(
             "등록된 정보와 일치하는 아이디가 없어요.",
             style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
+                fontSize: 19.sp,
+                fontWeight: FontWeight.w800,
                 color: wTextBlackColor),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 8.h),
+          margin: EdgeInsets.only(top: 5.h),
           child: Text(
-            "혹시 정보를 잘못 입력하지는 않았나요?.",
+            "혹시 정보를 잘못 입력하지는 않았나요?",
             style: TextStyle(
                 color: wGrey600Color,
                 fontSize: 14.sp,
@@ -297,7 +295,7 @@ class _FindIdViewState extends State<FindIdView> {
                     decoration: InputDecoration(
                       hintText: "숫자만 입력",
                       hintStyle:
-                      TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                          TextStyle(color: wGrey300Color, fontSize: 14.sp),
                       border: InputBorder.none,
                       isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                     ),
@@ -306,7 +304,7 @@ class _FindIdViewState extends State<FindIdView> {
               ),
               Positioned(
                   top: 15.h,
-                  left: 240.w,
+                  left: 220.w,
                   child: InkWell(
                     onTap: () {
                       print("dasd");
@@ -328,194 +326,5 @@ class _FindIdViewState extends State<FindIdView> {
     );
   }
 
-  Widget _buildSuccessFind() {
-    return Column(
-      children: [
-        _buildMainText(),
-        _buildFindInformation(),
-        _buildGoFindPassword(),
-        InkWell(
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => YoungLoginView()),
-                      (route) => false);
-            },
-            child: _buildButton()),
-      ],
-    );
-  }
 
-  Widget _buildMainText() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(
-          child: Container(
-            margin: EdgeInsets.only(top: 30.h),
-            child: Text(
-              "아이디를 찾았어요!",
-              style: TextStyle(
-                  color: kTextBlackColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.sp),
-            ),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 5.h),
-          child: Text(
-            "해당 정보로 가입된 아이디가 있어요.",
-            style: TextStyle(color: kTextBlackColor, fontSize: 15.sp),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildFindInformation() {
-    return Container(
-      width: 335.h,
-      height: 290.h,
-      margin: EdgeInsets.only(top: 30.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 5,
-            blurRadius: 3,
-            offset: Offset(0, 1), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Container(
-            width: 230.w,
-            margin: EdgeInsets.only(top: 20.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "이름",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "신민석",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 240.w,
-            height: 0.3,
-            color: kTextGreyColor,
-          ),
-          Container(
-            width: 230.w,
-            margin: EdgeInsets.only(top: 20.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "연락처",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "01012341234",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 240.w,
-            height: 0.3,
-            color: kTextGreyColor,
-          ),
-          Container(
-            width: 230.w,
-            margin: EdgeInsets.only(top: 20.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "아이디",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "sin1768",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 240.w,
-            height: 0.3,
-            color: kTextGreyColor,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20.h),
-            width: 110.w,
-            height: 94.h,
-            child: Image.asset("assets/common/user/youngManBox.png"),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildGoFindPassword() {
-    return Container(
-      margin: EdgeInsets.only(top: 90.h),
-      child: InkWell(
-          onTap: () {},
-          child: Text(
-            "비밀번호 찾기",
-            style:
-            TextStyle(color: kTextGreyColor, fontWeight: FontWeight.bold),
-          )),
-    );
-  }
-
-  Widget _buildButton() {
-    return InkWell(
-      child: Container(
-        margin: EdgeInsets.only(top: 20.h),
-        width: 335.w,
-        height: 44.h,
-        decoration: BoxDecoration(
-            color: wOrangeColor,
-            borderRadius: BorderRadius.all(Radius.circular(5))),
-        child: Center(
-          child: Text(
-            "로그인 하러가기",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }

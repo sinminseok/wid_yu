@@ -13,6 +13,6 @@ Widget OrangeButton(String title){
         borderRadius: BorderRadius.all(Radius.circular(6)),
         color: wOrangeColor
     ),
-    child: Center(child: Text("$title", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: kTextWhiteColor),)),
+    child: Center(child: Text("$title", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: wWhiteColor),)),
   );
 }

@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import '../../../common/model/user/Old.dart';
 import '../../../common/utils/Color.dart';
 import '../join/JoinFinishView.dart';
+import '../join/JoinSuccessView.dart';
 import '../join/OtherOldInformationView.dart';
 
 class AccountPopup {
@@ -52,12 +53,12 @@ class AccountPopup {
                             child: Text(
                               "또 다른 부모님의 계정도\n추가로 생성할까요?",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18.sp),
+                                  fontWeight: FontWeight.bold, fontSize: 17.sp),
                             ),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 60.h),
+                          margin: EdgeInsets.only(top: 50.h),
                           width: 315,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +83,7 @@ class AccountPopup {
                                     child: Text(
                                       "추가 생성하기",
                                       style: TextStyle(
-                                          color: kTextWhiteColor,
+                                          color: wWhiteColor,
                                           fontSize: 16.sp),
                                     ),
                                   ),
@@ -94,15 +95,16 @@ class AccountPopup {
                                       context,
                                       PageTransition(
                                           type: PageTransitionType.fade,
-                                          child: (JoinFinishView())));
+                                          child: (JoinSuccessView())));
                                 },
                                 child: Container(
                                   width: 114.w,
                                   height: 44.h,
                                   decoration: BoxDecoration(
+                                    border: Border.all(color: wGrey300Color),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5)),
-                                      color: Colors.grey.shade400),
+                                      color: wGrey200Color),
                                   child: Center(
                                     child: Text(
                                       "건너뛰기",

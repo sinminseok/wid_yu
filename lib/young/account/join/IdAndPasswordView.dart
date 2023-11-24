@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/young/account/join/JoinSuccessView.dart';
 import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 import 'package:wid_yu/young/account/join/widgets/SignupAppBar.dart';
 
@@ -97,7 +98,7 @@ class _IdAndPasswordView extends State<IdAndPasswordView> {
                       context,
                       PageTransition(
                           type: PageTransitionType.fade,
-                          child: (OldInformationView())));
+                          child: (JoinSuccessView())));
 
                 } catch (e) {
                   if (e is InvalidInformationException) {

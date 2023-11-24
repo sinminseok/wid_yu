@@ -22,7 +22,7 @@ class _AddYoungViewState extends State<AddYoungView> {
       appBar: CommonAppBar(
         canBack: true,
         title: '보호자 추가',
-        color: kTextWhiteColor,
+        color: wWhiteColor,
       ),
       body: Column(
         children: [
@@ -48,7 +48,7 @@ class _AddYoungViewState extends State<AddYoungView> {
         color: wOrangeColor
       ),
       child: Center(
-        child: Text("추가하기", style: TextStyle(fontSize: 16.sp, color: kTextWhiteColor, fontWeight: FontWeight.bold),),
+        child: Text("추가하기", style: TextStyle(fontSize: 16.sp, color: wWhiteColor, fontWeight: FontWeight.bold),),
       ),
     );
   }
@@ -62,7 +62,7 @@ class _AddYoungViewState extends State<AddYoungView> {
 
           margin: EdgeInsets.only(top: 40.h),
           decoration: BoxDecoration(
-              color: kTextWhiteColor,
+              color: wWhiteColor,
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),

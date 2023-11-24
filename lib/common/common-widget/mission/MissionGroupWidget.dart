@@ -29,7 +29,7 @@ class _MissionGroupWidgetState extends State<MissionGroupWidget> {
     return Container(
       width: 335.w,
       decoration: BoxDecoration(
-        border: Border.all(color: wBorderGreyColor),
+        border: Border.all(color: wGrey100Color),
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: Colors.white,
       ),

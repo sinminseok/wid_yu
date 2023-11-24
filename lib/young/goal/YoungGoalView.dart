@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/young/goal/widgets/OldMissionWidget.dart';
 import '../../common/common-widget/mission/MissionGroupWidget.dart';
 import '../../common/utils/Color.dart';
 import '../../common/view/goal/goal-create/GoalCreateView.dart';
+import '../../common/view/popup/AlarmOnPopup.dart';
 import '../family-manager/FamilyManagerView.dart';
 import 'detail-view/ChangeOrderView.dart';
 import 'detail-view/YoungGoalDetailView.dart';
@@ -28,15 +30,23 @@ class _YoungGoalViewState extends State<YoungGoalView> {
 
   @override
   void initState() {
-    super.initState();
+    checkAlarm();
     controllScroll();
+    super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _scrollController.dispose();
+  }
+
+  void checkAlarm() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var key = prefs.get("alarmOn");
+    if (key == null) {
+      AlarmOnPopup().showDialog(context);
+    }
   }
 
   void controllScroll() {
@@ -69,7 +79,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
               margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
               child: _buildExtendButton()),
           _isBottomScroll == false
-              ? Container(child: _buildUserInformation())
+              ? Container(child: _buildFloatingOldInformation())
               : Container()
         ],
       ),
@@ -91,10 +101,11 @@ class _YoungGoalViewState extends State<YoungGoalView> {
     );
   }
 
-  Widget _buildUserInformation() {
+  Widget _buildFloatingOldInformation() {
     return InkWell(
       onTap: () {
-        double desiredPosition = _scrollController.position.maxScrollExtent + 400.h;
+        double desiredPosition =
+            _scrollController.position.maxScrollExtent + 400.h;
         setState(() {
           _isBottomScroll = true;
           _scrollController.animateTo(
@@ -106,10 +117,10 @@ class _YoungGoalViewState extends State<YoungGoalView> {
       },
       child: Container(
         width: 360.w,
-        height: 100.h,
-        margin: EdgeInsets.only(top: 10.h, bottom: 0.h),
+        height: 120.h,
+        margin: EdgeInsets.only(top: 20.h, bottom: 0.h),
         decoration: BoxDecoration(
-          color: kTextWhiteColor,
+          color: wWhiteColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
@@ -126,11 +137,12 @@ class _YoungGoalViewState extends State<YoungGoalView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 15.w, top: 5.h, bottom: 10.h),
-                  width: 80.0.w, // Container의 너비
-                  height: 80.0.h, // Container의 높이
+                  margin: EdgeInsets.only(left: 15.w, top: 0.h, bottom: 10.h),
+                  width: 70.0.w, // Container의 너비
+                  height: 85.0.h, // Container의 높이
                   child: Container(
                     margin: EdgeInsets.only(left: 5.w, top: 5.h),
                     child: CircularPercentIndicator(
@@ -138,39 +150,21 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                       // 부모 컨테이너의 크기에 맞게 조절
                       lineWidth: 5.0,
                       percent: 0.7,
-                      center: Stack(
-                        children: [
-                          Container(
-                            width: 50.h,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: kTextWhiteColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey, // 그림자 색상
-                                  offset: Offset(0, 1), // 그림자 위치 (가로, 세로)
-                                  blurRadius: 2.0, // 그림자 흐림 정도
-                                  spreadRadius: 0.0, // 그림자 퍼짐 정도
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 6.h, left: 2.w),
-                            height: 45.h,
-                            child: Image.asset("assets/common/user/oldMan.png"),
-                          ),
-                        ],
+                      center: Container(
+                        height: 50.h,
+                        width: 50.w,
+                        decoration: BoxDecoration(
+                          color: wGrey200Color,
+                          shape: BoxShape.circle
+                        ),
+                        child: Image.asset("assets/common/user/oldMan.png"),
                       ),
                       progressColor: wOrangeColor,
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                    top: 20.h,
-                    left: 4.w
-                  ),
+                  margin: EdgeInsets.only(top: 30.h, left: 8.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -180,16 +174,16 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                           style: TextStyle(
                               color: kTextBlackColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20.sp),
+                              fontSize: 18.sp),
                         ),
                       ),
                       Row(
                         children: [
                           Container(
                             child: Text(
-                              "오늘은 .",
+                              "오늘은 ",
                               style: TextStyle(
-                                  color: kTextBlackColor, fontSize: 18.sp),
+                                  color: kTextBlackColor, fontSize: 16.sp),
                             ),
                           ),
                           Container(
@@ -197,7 +191,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                               "40%",
                               style: TextStyle(
                                   color: wPurpleColor,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w900,
                                   fontSize: 18.sp),
                             ),
                           ),
@@ -205,7 +199,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                             child: Text(
                               " 를 달성했어요.",
                               style: TextStyle(
-                                  color: kTextBlackColor, fontSize: 18.sp),
+                                  color: kTextBlackColor, fontSize: 16.sp),
                             ),
                           ),
                         ],
@@ -216,12 +210,12 @@ class _YoungGoalViewState extends State<YoungGoalView> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(top: 33.h, right: 25.w),
+              margin: EdgeInsets.only(top: 45.h, right: 18.w),
               child: Icon(
                 Icons.keyboard_arrow_down,
                 color: Colors.grey,
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -297,8 +291,8 @@ class _YoungGoalViewState extends State<YoungGoalView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 25.w,top: 15.h),
-              width: 190.w,
+              margin: EdgeInsets.only(left: 20.w, top: 15.h),
+              width: 210.w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -311,7 +305,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10.h),
+                    margin: EdgeInsets.only(top: 5.h),
                     child: Row(
                       children: [
                         Text(
@@ -341,7 +335,13 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 5.h),
-                    child: Text("조금만 더 하면 목표 달성!", style: TextStyle(color: wGrey500Color,fontSize: 16.sp, fontWeight: FontWeight.w600),),
+                    child: Text(
+                      "조금만 더 하면 목표 달성!",
+                      style: TextStyle(
+                          color: wGrey500Color,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600),
+                    ),
                   )
                 ],
               ),
@@ -362,42 +362,29 @@ class _YoungGoalViewState extends State<YoungGoalView> {
         radius: 40.0,
         lineWidth: 5.0,
         percent: 0.7,
-        center: _buildCircularProgressCenter(),
+        center: Container(
+          margin: EdgeInsets.only(top: 0.h),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: wWhiteColor,
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 1.0,
+                offset: Offset(0.0, 0.3),
+              ),
+            ],
+          ),
+          height: 65.h,
+          child: Image.asset("assets/common/user/youngMan.png"),
+        ),
         progressColor: wOrangeColor,
       ),
     );
   }
 
-  Widget _buildCircularProgressCenter() {
-    return Stack(
-      children: [
-        Container(
-          width: 63.h,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: kTextWhiteColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0, 1),
-                blurRadius: 2.0,
-                spreadRadius: 0.0,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 5.h),
-          height: 65.h,
-          child: Image.asset("assets/common/user/youngMan.png"),
-        ),
-      ],
-    );
-  }
-
   Widget _buildSwitch() {
     return Container(
-      margin: EdgeInsets.only(right: 250.w, bottom: 10.h,top: 20.h),
+      margin: EdgeInsets.only(right: 250.w, bottom: 10.h, top: 20.h),
       child: FlutterSwitch(
         width: 60.0.w,
         height: 29.0.h,
@@ -413,8 +400,8 @@ class _YoungGoalViewState extends State<YoungGoalView> {
         activeColor: wOrangeColor,
         inactiveColor: wPurple200Color,
         toggleColor: Colors.white,
-        activeTextColor: kTextWhiteColor,
-        inactiveTextColor: kTextWhiteColor,
+        activeTextColor: wWhiteColor,
+        inactiveTextColor: wWhiteColor,
         activeText: "전체",
         inactiveText: "오늘",
       ),
@@ -428,7 +415,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
           context,
           PageTransition(
             type: PageTransitionType.fade,
-            child: GoalCreateView(),
+            child: GoalCreateView(false),
           ),
         );
       },

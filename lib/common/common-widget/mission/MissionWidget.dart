@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/old/goal-conduct/CommonConductView.dart';
-import 'package:wid_yu/old/goal-conduct/DrugConductView.dart';
-import 'package:wid_yu/old/goal-conduct/RunningConductView.dart';
+import 'package:wid_yu/common/model/mission/TimeType.dart';
+import 'package:wid_yu/old/goal-conduct/OldCommonConductView.dart';
+import 'package:wid_yu/old/goal-conduct/OldDrugConductView.dart';
+import 'package:wid_yu/old/goal-conduct/OldRunningConductView.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -25,10 +26,10 @@ class MissionWidget extends StatefulWidget {
 class _MissionWidgetState extends State<MissionWidget> {
 
   List<MissionTime> times = [
-    MissionTime("12:00"),
-    MissionTime("13:00"),
-    MissionTime("14:00"),
-    MissionTime("14:00"),
+    MissionTime("12:00", TimeType.DONE),
+    MissionTime("13:00", TimeType.NONE),
+    MissionTime("14:00", TimeType.YET),
+    MissionTime("15:00", TimeType.YET),
   ];
 
   @override
@@ -37,24 +38,24 @@ class _MissionWidgetState extends State<MissionWidget> {
     return InkWell(
       onTap: (){
         //약일때
-        if(widget._mission.missionType == MissionType.DRUG){
-          Navigator.push(
-              context,
-              PageTransition(
-                  type: PageTransitionType.fade, child: (DrugConductView(widget._mission))));
-        }
-        if(widget._mission.missionType == MissionType.WALK){
-          Navigator.push(
-              context,
-              PageTransition(
-                  type: PageTransitionType.fade, child: (RunningConductView(widget._mission))));
-        }
-        if(widget._mission.missionType == MissionType.COMMON){
-          Navigator.push(
-              context,
-              PageTransition(
-                  type: PageTransitionType.fade, child: (CommonConductView(widget._mission))));
-        }
+        // if(widget._mission.missionType == MissionType.DRUG){
+        //   Navigator.push(
+        //       context,
+        //       PageTransition(
+        //           type: PageTransitionType.fade, child: (OldDrugConductView(widget._mission))));
+        // }
+        // if(widget._mission.missionType == MissionType.WALK){
+        //   Navigator.push(
+        //       context,
+        //       PageTransition(
+        //           type: PageTransitionType.fade, child: (OldRunningConductView(widget._mission))));
+        // }
+        // if(widget._mission.missionType == MissionType.COMMON){
+        //   Navigator.push(
+        //       context,
+        //       PageTransition(
+        //           type: PageTransitionType.fade, child: (OldCommonConductView(widget._mission))));
+        // }
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10.h),
@@ -63,7 +64,7 @@ class _MissionWidgetState extends State<MissionWidget> {
             Container(
               width: 335.w,
               margin: EdgeInsets.only(left: 20.w, top: 15.h),
-              decoration: BoxDecoration(color: kTextWhiteColor),
+              decoration: BoxDecoration(color: wWhiteColor),
               child: Column(
                 children: [
                   Row(
@@ -127,7 +128,7 @@ class _MissionWidgetState extends State<MissionWidget> {
             ),
             // times의 길이가 하나면 아래 코드를 사용하고 times의 길이가 2개 이상이면 gridview를 사용해 가로에 2열, 세로로 남은 요소들을 배치한다
             Container(
-                margin: EdgeInsets.only(top: 5.h,left: 15.w),
+                margin: EdgeInsets.only(top: 15.h,left: 50.w),
                 child: MissionTimeWidget(times, context)),
 
           ],

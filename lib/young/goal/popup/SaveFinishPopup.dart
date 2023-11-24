@@ -61,7 +61,7 @@ class SaveFinishPopup {
                             borderRadius: BorderRadius.all(Radius.circular(10))
                           ),
                           child: Center(
-                            child: Text("목록으로",style: TextStyle(color: kTextWhiteColor),),
+                            child: Text("목록으로",style: TextStyle(color: wWhiteColor),),
                           ),
                         ),
                       )

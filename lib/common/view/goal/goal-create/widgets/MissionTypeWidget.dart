@@ -19,17 +19,15 @@ class MissionTypeWidget extends StatefulWidget {
 
 class _MissionTypeWidgetState extends State<MissionTypeWidget> {
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 67.w, top: 10.h),
+      margin: EdgeInsets.only(left: 67.w, top: 20.h),
       child: Stack(
         children: [
           Container(
             width: 215.w,
-            height: 45.h,
+            height: 50.h,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 border: Border.all(color: Colors.grey)),
@@ -46,7 +44,7 @@ class _MissionTypeWidgetState extends State<MissionTypeWidget> {
                 },
                 child: Container(
                   width: 71.5.w,
-                  height: 45.h,
+                  height: 50.h,
                   decoration: BoxDecoration(
                       color: widget.drug != true
                           ? Colors.transparent
@@ -98,7 +96,7 @@ class _MissionTypeWidgetState extends State<MissionTypeWidget> {
                 },
                 child: Container(
                   width: 71.5.w,
-                  height: 45.h,
+                  height: 50.h,
                   decoration: BoxDecoration(
                       color: widget.outing != true
                           ? Colors.transparent
@@ -150,7 +148,7 @@ class _MissionTypeWidgetState extends State<MissionTypeWidget> {
                 },
                 child: Container(
                   width: 71.5.w,
-                  height: 45.h,
+                  height: 50.h,
                   decoration: BoxDecoration(
                       color: widget.common != true
                           ? Colors.transparent

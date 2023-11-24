@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 const kPrimaryColor = Color(0xff2651f0);
 const kAppBarColor = Color(0XffEBEBEB);
-const kTextWhiteColor = Color(0xffffffff);
+
 const kTextBlackColor = Color(0xff000003);
 const kTextGreyColor = Color(0xff636363);
 
@@ -16,6 +16,8 @@ const kBorderColor = Color(0xffEEEEEE);
 const kLightGreyColor = Color(0XffEBEBEB);
 const kBlankColor = Color(0xFFD9D9D9);
 
+const wWhiteBackGroundColor = Color(0xffFFFFF);
+const wWhiteColor = Color(0xffFFFFFF);
 const wErrorColor = Color(0xffE52900);
 const wPurpleColor = Color(0xff7200E4);
 const wPurple200Color = Color(0xff440484);

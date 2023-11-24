@@ -14,7 +14,7 @@ class _AddOldViewState extends State<AddOldView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(canBack: true, title: '보호자 추가', color: kTextWhiteColor,),
+      appBar: CommonAppBar(canBack: true, title: '보호자 추가', color: wWhiteColor,),
     );
   }
 }

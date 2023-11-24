@@ -94,7 +94,7 @@ class DeleteDiseasePopup {
                                     borderRadius: BorderRadius.all(Radius.circular(6))
                                 ),
                                 child: Center(
-                                  child: Text("삭제하기", style: TextStyle(color: kTextWhiteColor, fontWeight: FontWeight.w600, fontSize: 16.sp),),
+                                  child: Text("삭제하기", style: TextStyle(color: wWhiteColor, fontWeight: FontWeight.w600, fontSize: 16.sp),),
                                 ),
                               ),
                             ],
