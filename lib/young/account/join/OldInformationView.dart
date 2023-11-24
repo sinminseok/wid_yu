@@ -12,7 +12,6 @@ import '../../../common/utils/exception/InvalidInformationException.dart';
 import '../../../common/utils/widgets/TextFormWidget.dart';
 import '../popup/AcoountPopup.dart';
 
-
 class OldInformationView extends StatefulWidget {
   const OldInformationView({Key? key}) : super(key: key);
 
@@ -21,9 +20,6 @@ class OldInformationView extends StatefulWidget {
 }
 
 class _OldInformationView extends State<OldInformationView> {
-
-
-
   TextEditingController _nameController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
   TextEditingController _phoneNumberController = TextEditingController();
@@ -68,9 +64,7 @@ class _OldInformationView extends State<OldInformationView> {
     _ageController.addListener(updateNextStepState);
     _phoneNumberController.addListener(updateNextStepState);
     _addressController.addListener(updateNextStepState);
-
   }
-
 
   void updateNextStepState() {
     // 각 컨트롤러의 입력값이 비어있지 않으면 true로 설정합니다.
@@ -87,20 +81,18 @@ class _OldInformationView extends State<OldInformationView> {
     }
   }
 
-  Old createSenior(
-      String name, int age, int phoneNumber, String address) {
+  Old createSenior(String name, int age, int phoneNumber, String address) {
     return Old(name, age, phoneNumber, address, false);
   }
 
-  void removeDisease(int index){
+  void removeDisease(int index) {
     setState(() {
       diseases.removeAt(index);
     });
-
   }
 
   void checkDiseaseAnswer() {
-    if(_diseaseNameController.text.isEmpty){
+    if (_diseaseNameController.text.isEmpty) {
       throw InvalidInformationException("질병이름은 필수로 입력해주세요.");
     }
   }
@@ -125,7 +117,6 @@ class _OldInformationView extends State<OldInformationView> {
                 _buildMainText(),
                 _buildOldInformationTextFied(),
                 _buildAskHaveDisease(),
-                //_buildSaveDiseaseInformation(),
                 _buildDiseaseInformationTextField(),
                 Center(child: _buildButton()),
               ],
@@ -138,11 +129,11 @@ class _OldInformationView extends State<OldInformationView> {
 
   Widget _buildMainText() {
     return Container(
-      margin: EdgeInsets.only(top: 30.h, bottom: 10.h,left: 15.w),
+      margin: EdgeInsets.only(top: 30.h, bottom: 10.h, left: 15.w),
       child: Text(
         "부모님의 정보를 대신 입력해 주세요.",
         style: TextStyle(
-            color: wGrey800Color,fontSize: 20.sp, fontWeight: FontWeight.bold),
+            color: wGrey800Color, fontSize: 20.sp, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -190,7 +181,10 @@ class _OldInformationView extends State<OldInformationView> {
             margin: EdgeInsets.only(top: 10.h, left: 20.w),
             child: Text(
               "부모님께서 보유한 질병이 있나요?",
-              style: TextStyle(color: kTextBlackColor, fontWeight: FontWeight.bold,fontSize: 17.sp),
+              style: TextStyle(
+                  color: kTextBlackColor,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 17.sp),
             ),
           ),
           Container(
@@ -208,16 +202,23 @@ class _OldInformationView extends State<OldInformationView> {
                     width: 157.w,
                     height: 40.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: kTextGreyColor,width: 0.2),
+                      border: Border.all(
+                          color: isDisease == null
+                              ? wGrey200Color
+                              : isDisease == true
+                                  ? wPurple200Color
+                                  : wGrey200Color),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: isDisease == true ? wPurpleColor : Colors.grey.shade200,
+                      color: isDisease == true
+                          ? wPurpleColor
+                          : Colors.grey.shade200,
                     ),
                     child: Center(
                         child: Text(
                       "있음",
                       style: TextStyle(
                           color: isDisease == true
-                              ? kTextWhiteColor
+                              ? wWhiteColor
                               : Colors.grey.shade600),
                     )),
                   ),
@@ -232,16 +233,21 @@ class _OldInformationView extends State<OldInformationView> {
                     width: 157.w,
                     height: 40.h,
                     decoration: BoxDecoration(
-                      border: Border.all(color: kTextGreyColor,width: 0.2),
+                      border: Border.all(
+                          color: isDisease == false
+                              ? wPurple200Color
+                              : wGrey200Color),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: isDisease == false ? wPurpleColor : Colors.grey.shade200,
+                      color: isDisease == false
+                          ? wPurpleColor
+                          : Colors.grey.shade200,
                     ),
                     child: Center(
                         child: Text(
                       "없음",
                       style: TextStyle(
                           color: isDisease == false
-                              ? kTextWhiteColor
+                              ? wWhiteColor
                               : Colors.grey.shade600),
                     )),
                   ),
@@ -260,47 +266,49 @@ class _OldInformationView extends State<OldInformationView> {
         final index = entry.key;
         final disease = entry.value;
         return Container(
-          margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ExpansionTile(
-                initiallyExpanded: true,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ExpansionTile(
+                  initiallyExpanded: true,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '질병 #${index + 1}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: kTextBlackColor),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete, color: Colors.red), // 삭제 아이콘
+                        onPressed: () {
+                          // 삭제 버튼을 눌렀을 때 처리할 로직을 여기에 추가
+                          removeDisease(index); // 해당 객체를 삭제하는 함수 호출
+                        },
+                      ),
+                    ],
+                  ),
                   children: [
-                    Text(
-                      '질병 #${index + 1}',
-                      style: TextStyle(fontWeight: FontWeight.bold, color: kTextBlackColor),
+                    ListTile(
+                      title: Text('질병 이름: ${disease.diseaseName}',
+                          style: TextStyle(color: kTextBlackColor)),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.delete, color: Colors.red), // 삭제 아이콘
-                      onPressed: () {
-                        // 삭제 버튼을 눌렀을 때 처리할 로직을 여기에 추가
-                        removeDisease(index); // 해당 객체를 삭제하는 함수 호출
-                      },
-                    ),
+                    if (disease.drug!.isNotEmpty)
+                      ListTile(
+                        title: Text('복용 중인 약: ${disease.drug}',
+                            style: TextStyle(color: kTextBlackColor)),
+                      ),
+                    if (disease.introduce!.isNotEmpty)
+                      ListTile(
+                        title: Text('설명: ${disease.introduce}',
+                            style: TextStyle(color: kTextBlackColor)),
+                      ),
                   ],
                 ),
-                children: [
-                  ListTile(
-                    title: Text('질병 이름: ${disease.diseaseName}', style: TextStyle(color: kTextBlackColor)),
-                  ),
-                  if (disease.drug!.isNotEmpty)
-                    ListTile(
-                      title: Text('복용 중인 약: ${disease.drug}', style: TextStyle(color: kTextBlackColor)),
-                    ),
-                  if (disease.introduce!.isNotEmpty)
-                    ListTile(
-                      title: Text('설명: ${disease.introduce}', style: TextStyle(color: kTextBlackColor)),
-                    ),
-                ],
-              ),
-
-
-            ],
-          )
-        );
+              ],
+            ));
       }).toList(),
     );
   }
@@ -308,7 +316,7 @@ class _OldInformationView extends State<OldInformationView> {
   Widget _buildDiseaseInformationTextField() {
     return isDisease == true
         ? Center(
-          child: Container(
+            child: Container(
               margin: EdgeInsets.only(top: 0.h),
               width: 340.w,
               decoration: BoxDecoration(
@@ -316,18 +324,19 @@ class _OldInformationView extends State<OldInformationView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Container(
                       margin: EdgeInsets.only(top: 0.h),
                       child: TextFormWidget(
                         textEditingController: _diseaseNameController,
                         title: '질병이름(필수)',
-                        isIntType: false, hintText: '12',
+                        isIntType: false,
+                        hintText: '12',
                       )),
                   TextFormWidget(
                     textEditingController: _drugNameController,
                     title: '복용중인 약(선택)',
-                    isIntType: false, hintText: '12',
+                    isIntType: false,
+                    hintText: '12',
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 0.w, top: 10.h),
@@ -349,15 +358,20 @@ class _OldInformationView extends State<OldInformationView> {
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                           ),
                           child: Container(
-                            margin: EdgeInsets.only(top: 5.h,left: 10.w),
+                            margin: EdgeInsets.only(top: 5.h, left: 10.w),
                             child: TextFormField(
-                              controller: _introduceController,
-                              style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
-                              textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
+                              controller: _drugInformationController,
+                              style: TextStyle(color: Colors.black),
+                              // 텍스트 색상을 검정색으로 설정
+                              textAlign: TextAlign.left,
+                              // 텍스트를 왼쪽으로 정렬
                               cursorColor: kTextBlackColor,
                               decoration: InputDecoration(
-                                hintText: "질병에 관련된 자세한 설명이나\n응급상황시 구조자가 알아야 하는 설명을 적어주세요.",
-                                hintStyle: TextStyle(fontSize: 13.sp,color: Colors.grey.shade500),
+                                hintText:
+                                    "질병에 관련된 자세한 설명이나\n응급상황시 구조자가 알아야 하는 설명을 적어주세요.",
+                                hintStyle: TextStyle(
+                                    fontSize: 13.sp,
+                                    color: Colors.grey.shade500),
                                 border: InputBorder.none,
                                 isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                               ),
@@ -400,7 +414,7 @@ class _OldInformationView extends State<OldInformationView> {
                 ],
               ),
             ),
-        )
+          )
         : Container();
   }
 
@@ -408,13 +422,17 @@ class _OldInformationView extends State<OldInformationView> {
     return canNextStep
         ? InkWell(
             onTap: () {
-               var old = createSenior(_nameController.text, int.parse(_ageController.text), int.parse(_phoneNumberController.text), _addressController.text);
+              var old = createSenior(
+                  _nameController.text,
+                  int.parse(_ageController.text),
+                  int.parse(_phoneNumberController.text),
+                  _addressController.text);
               AccountPopup().showDialog(context, old);
-               // Navigator.push(
-               //     context,
-               //     PageTransition(
-               //         type: PageTransitionType.fade,
-               //         child: (OtherOldInformationView(senior)  )));
+              // Navigator.push(
+              //     context,
+              //     PageTransition(
+              //         type: PageTransitionType.fade,
+              //         child: (OtherOldInformationView(senior)  )));
 
               // Navigator.push(
               //     context,
@@ -439,7 +457,7 @@ class _OldInformationView extends State<OldInformationView> {
               ToastMessage().showtoast("모든 문항을 입력해주세요.");
             },
             child: Container(
-              width: 300.w,
+              width: 335.w,
               height: 50.h,
               margin: EdgeInsets.only(top: 30.h, bottom: 20.h),
               decoration: BoxDecoration(

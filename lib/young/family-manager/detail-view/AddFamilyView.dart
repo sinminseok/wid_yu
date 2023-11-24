@@ -20,7 +20,7 @@ class _AddFamilyViewState extends State<AddFamilyView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(canBack: true, title: '추가하기', color: kTextWhiteColor,),
+      appBar: CommonAppBar(canBack: true, title: '추가하기', color: wWhiteColor,),
       body: Column(
         children: [
           _buildMainText(),

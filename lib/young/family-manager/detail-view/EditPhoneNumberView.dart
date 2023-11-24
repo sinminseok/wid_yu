@@ -185,7 +185,7 @@ class _EditPhoneNumberViewState extends State<EditPhoneNumberView> {
   AppBar _buildAppBar() {
     return AppBar(
       elevation: 0,
-      backgroundColor: kTextWhiteColor,
+      backgroundColor: wWhiteColor,
       title: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

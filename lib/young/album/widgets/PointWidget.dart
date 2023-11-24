@@ -12,7 +12,7 @@ Widget PointWidget(){
       width: 335.w,
       height: 75.h,
       decoration: BoxDecoration(
-          color: kTextWhiteColor,
+          color: wWhiteColor,
           borderRadius: BorderRadius.all(Radius.circular(6)),
           border: Border.all(color: kBorderColor,width: 1)
       ),

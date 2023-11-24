@@ -11,7 +11,7 @@ Widget DiseaseInformationWidget(BuildContext context){
     margin: EdgeInsets.only(top: 10.h),
     width: 335.w,
     decoration: BoxDecoration(
-        color: kTextWhiteColor,
+        color: wWhiteColor,
         border: Border.all(color: wGrey100Color),
         borderRadius: BorderRadius.all(Radius.circular(10))),
     child: Column(

@@ -50,13 +50,13 @@ class _JoinFinishView extends State<JoinFinishView>  with TickerProviderStateMix
 
       body: InkWell(
         onTap: (){
-          Navigator.push(
-              context,
-              PageTransition(
-                  type: PageTransitionType.fade,
-                  child: SelectUserView(
-
-                  )));
+          // Navigator.push(
+          //     context,
+          //     PageTransition(
+          //         type: PageTransitionType.fade,
+          //         child: SelectUserView(
+          //
+          //         )));
         },
         child: SingleChildScrollView(
           child: Column(

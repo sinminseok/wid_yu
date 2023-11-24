@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
 import '../../../../young/goal/YoungGoalView.dart';
 import '../../../utils/Color.dart';
@@ -62,14 +64,14 @@ class GoalPopup {
                               context,
                               PageTransition(
                                 type: PageTransitionType.fade,
-                                child: YoungGoalView(),
+                                child: OldFrameView(0),
                               ),
                             ):
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.fade,
-                                child: YoungGoalView(),
+                                child: YoungFrameView(0),
                               ),
                             );
                           },
@@ -83,7 +85,7 @@ class GoalPopup {
                               color: wPurpleColor
                             ),
                             child: Center(
-                              child: Text("목록으로", style: TextStyle(color: kTextWhiteColor, fontWeight: FontWeight.bold, fontSize: 16.sp),),
+                              child: Text("목록으로", style: TextStyle(color: wWhiteColor, fontWeight: FontWeight.bold, fontSize: 16.sp),),
                             ),
                           ),
                         )

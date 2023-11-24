@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../old/account/login/OldLoginView.dart';
+import '../../../old/account/old_login_view.dart';
 import '../../../young/account/login/YoungLoginView.dart';
 import '../../utils/Color.dart';
 import '../../utils/FilePath.dart';
@@ -79,7 +79,7 @@ class _SelectUserViewState extends State<SelectUserView> {
                   Text(
                     "부모님",
                     style: TextStyle(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w900,
                       fontSize: 24.sp,
                       color: wTextBlackColor,
                     ),
@@ -99,7 +99,7 @@ class _SelectUserViewState extends State<SelectUserView> {
   }
 
   Widget _buildYoungButton(){
-    return Container(margin: EdgeInsets.only(top: 60.h),
+    return Container(margin: EdgeInsets.only(top: 56.h),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -147,7 +147,7 @@ class _SelectUserViewState extends State<SelectUserView> {
                   Text(
                     "보호자",
                     style: TextStyle(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w900,
                       fontSize: 24.sp,
                       color: wTextBlackColor,
                     ),
@@ -169,7 +169,7 @@ class _SelectUserViewState extends State<SelectUserView> {
   Widget _buildLogo() {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 116.h),
+        margin: EdgeInsets.only(top: 93.h),
         width: 110.w,
         height: 35.h,
         child: Image.asset("assets/common/common/appbar_logo.png"),
@@ -199,59 +199,4 @@ class _SelectUserViewState extends State<SelectUserView> {
     );
   }
 
-  Widget _buildUserType(String title, String description, String imagePath) {
-    return Stack(
-      children: [
-        Center(
-          child: Container(
-
-            width: 339.w,
-            height: 168.h,
-            decoration: BoxDecoration(
-              border: Border.all(color: wBorderGreyColor, width: 0.4.w),
-              color: wPurpleBackGroundColor,
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: 110.w,
-                      height: 95.h,
-                      margin: EdgeInsets.only(left: 30.w),
-                      child: Image.asset(imagePath),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20.h, left: 30.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 24.sp,
-                  color: wTextBlackColor,
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                description,
-                style: TextStyle(fontSize: 14.sp, color: kTextBlackColor),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
 }

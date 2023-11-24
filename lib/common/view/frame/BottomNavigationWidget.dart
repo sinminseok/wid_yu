@@ -44,7 +44,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: wWhiteColor,
         border: Border(
           top: BorderSide(width: 0.2, color: Colors.grey),
         ),

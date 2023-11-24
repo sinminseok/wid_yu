@@ -8,7 +8,10 @@ import '../goal/YoungGoalView.dart';
 import '../health-infroamtion/YoungAlarmView.dart';
 
 class YoungFrameView extends StatefulWidget {
-  const YoungFrameView({Key? key}) : super(key: key);
+  final int index;
+
+
+  YoungFrameView(this.index);
 
   @override
   _FrameView createState() => _FrameView();
@@ -17,11 +20,12 @@ class YoungFrameView extends StatefulWidget {
 class _FrameView extends State<YoungFrameView> {
   var authority;
 
-  int admin_selectedItem = 0;
+  late int admin_selectedItem;
 
   @override
   void initState() {
     super.initState();
+    admin_selectedItem = widget.index;
   }
 
   final admin_screens = [
@@ -35,7 +39,7 @@ class _FrameView extends State<YoungFrameView> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: BottomNavigationWidget(
-          0,
+          widget.index,
           (val) {
             setState(() {
               admin_selectedItem = val;

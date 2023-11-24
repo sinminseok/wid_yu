@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:wid_yu/common/common-widget/OrangeButton.dart';
 
 import '../../../common/common-widget/CommonAppbar.dart';
+import '../../../common/common-widget/PurpleButton.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
-import '../widgets/PointWidget.dart';
-import '../widgets/SecretPhotoWidget.dart';
+import '../popup/SaveRewardPopup.dart';
 
 class AddPhotoView extends StatefulWidget {
   const AddPhotoView({Key? key}) : super(key: key);
@@ -45,36 +46,10 @@ class _AddPhotoViewState extends State<AddPhotoView> {
         color: wPurpleBackGroundColor,
       ),
       body: SingleChildScrollView(
-        reverse: true,
         child: Column(
           children: [
             _buildPhotoInformation(),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: wGrey600Color
-                ),
-                child: TextFormField(
-
-                  controller: _textController,
-                  style: TextStyle(color: Colors.black),
-                  // 텍스트 색상을 검정색으로 설정
-                  textAlign: TextAlign.left,
-                  // 텍스트를 왼쪽으로 정렬
-                  cursorColor: kTextBlackColor,
-                  decoration: InputDecoration(
-                    hintText: "",
-                    hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp),
-                    border: InputBorder.none,
-                    isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                  ),
-                ),
-              ),
-            ),
-
+            _buildSaveButton(),
           ],
         ),
       ),
@@ -88,11 +63,10 @@ class _AddPhotoViewState extends State<AddPhotoView> {
       ),
       child: Center(
         child: Container(
-          margin: EdgeInsets.only(top: 50.h),
+          margin: EdgeInsets.only(top: 50.h,left: 12.w, right: 12.w),
           width: 351.w,
-          height: 367.h,
           decoration: BoxDecoration(
-            color: kTextWhiteColor,
+            color: wWhiteColor,
             borderRadius: BorderRadius.all(Radius.circular(6)),
             boxShadow: [
               BoxShadow(
@@ -116,19 +90,24 @@ class _AddPhotoViewState extends State<AddPhotoView> {
               image_picked == null
                   ? _buildNotYetSelectPhoto()
                   : _buildDoneSelectPhoto(),
-              // Container(
-              //   padding: EdgeInsets.only(bottom: 8.0), // Adjust bottom padding
-              //   child: TextField(
-              //
-              //     controller: _textController,
-              //
-              //     maxLines: 2,
-              //     decoration: InputDecoration(
-              //       border: UnderlineInputBorder(),
-              //     ),
-              //     style: TextStyle(fontSize: 18.0),
-              //   ),
-              // ),
+              Container(
+                margin: EdgeInsets.only(top: 14.h, left: 20.w, right: 20.w,bottom: 30.h),
+                child: TextFormField(
+                  controller: _textController,
+                  style: TextStyle(color: Colors.black),
+                  textAlign: TextAlign.left,
+                  cursorColor: kTextBlackColor,
+                  keyboardType: TextInputType.multiline, // 여러 줄 입력을 가능하게 함
+                  maxLines: null, // 또는 maxLines를 null로 설정
+                  decoration: InputDecoration(
+                    hintText: "메모 입력",
+                    hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                    border: InputBorder.none,
+                  ),
+                  textInputAction: TextInputAction.done, // 완료 버튼 활성화
+
+                ),
+              ),
 
 
             ],
@@ -144,8 +123,9 @@ class _AddPhotoViewState extends State<AddPhotoView> {
         getImage();
       },
       child: Container(
-        width: 324.w,
+        width: 310.w,
         height: 210.w,
+
         decoration: BoxDecoration(
             color: wGrey300Color,
             borderRadius: BorderRadius.all(Radius.circular(6))),
@@ -177,7 +157,7 @@ class _AddPhotoViewState extends State<AddPhotoView> {
 
   Widget _buildDoneSelectPhoto() {
     return Container(
-        width: 324.w,
+        width: 310.w,
         height: 210.w,
         decoration: BoxDecoration(
             color: wGrey300Color,
@@ -186,5 +166,15 @@ class _AddPhotoViewState extends State<AddPhotoView> {
           File(image_picked!.path),
           fit: BoxFit.fitWidth,
         ));
+  }
+
+  Widget _buildSaveButton(){
+    return Container(
+        margin: EdgeInsets.only(top: 100.h),
+        child: InkWell(
+            onTap: (){
+              SaveRewardPopup().showDialog(context);
+            },
+            child: PurpleButton("저장하기")));
   }
 }

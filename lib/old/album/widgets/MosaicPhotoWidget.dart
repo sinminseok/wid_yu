@@ -31,7 +31,7 @@ class _MosaicPhotoWidgetState extends State<MosaicPhotoWidget> {
               height: 357.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: kTextWhiteColor,
+                color: wWhiteColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.18),

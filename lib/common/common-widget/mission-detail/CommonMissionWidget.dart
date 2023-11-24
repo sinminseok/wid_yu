@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/model/mission/TimeType.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -15,7 +16,7 @@ class CommonMissionWidget extends StatelessWidget {
   CommonMissionWidget(this._mission);
 
 
-  List<MissionTime> times = [MissionTime("12:00")];
+  List<MissionTime> times = [MissionTime("12:00", TimeType.NONE)];
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -39,7 +40,9 @@ class CommonMissionWidget extends StatelessWidget {
   }
 
   Widget _buildTime(BuildContext context) {
-    return MissionTimeWidget(times, context);
+    return Container(
+        margin: EdgeInsets.only(left: 40.w, top: 10.h, bottom: 20.h),
+        child: MissionTimeWidget(times, context));
   }
 
   Widget _buildNotReady() {
@@ -54,7 +57,7 @@ class CommonMissionWidget extends StatelessWidget {
 
   Widget _buildMissionInfo() {
     return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 10.w),
+      margin: EdgeInsets.only(top: 20.h, left: 20.w),
       child: Row(
         children: [
           _buildMissionIcon(),

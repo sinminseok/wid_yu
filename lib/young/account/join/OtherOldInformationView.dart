@@ -225,7 +225,7 @@ class _OtherOldInformationView extends State<OtherOldInformationView> {
                       "있음",
                       style: TextStyle(
                           color: isDisease == true
-                              ? kTextWhiteColor
+                              ? wWhiteColor
                               : Colors.grey.shade600),
                     )),
                   ),
@@ -251,7 +251,7 @@ class _OtherOldInformationView extends State<OtherOldInformationView> {
                       "없음",
                       style: TextStyle(
                           color: isDisease == false
-                              ? kTextWhiteColor
+                              ? wWhiteColor
                               : Colors.grey.shade600),
                     )),
                   ),

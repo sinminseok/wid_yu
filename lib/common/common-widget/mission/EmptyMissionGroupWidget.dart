@@ -18,7 +18,7 @@ class _EmptyMissionGroupWidgetState extends State<EmptyMissionGroupWidget> {
       width: 335.w,
       height: 410.h,
       decoration: BoxDecoration(
-          color: kTextWhiteColor,
+          color: wWhiteColor,
           border: Border.all(color: wGrey100Color),
           borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Column(

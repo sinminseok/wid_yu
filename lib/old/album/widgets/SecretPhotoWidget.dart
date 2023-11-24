@@ -31,7 +31,7 @@ class _SecretPhotoWidgetState extends State<SecretPhotoWidget> {
             height: 327.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: kTextWhiteColor,
+              color: wWhiteColor,
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.18),

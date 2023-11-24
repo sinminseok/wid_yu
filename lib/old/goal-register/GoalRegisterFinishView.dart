@@ -46,12 +46,12 @@ class GoalRegisterFinishView extends StatelessWidget {
                     context,
                     PageTransition(
                       type: PageTransitionType.fade,
-                      child: OldFrameView(),
+                      child: OldFrameView(0),
                     ),
                   );
                 },
                 child: Center(
-                  child: Text("확인", style: TextStyle(color: kTextWhiteColor, fontWeight: FontWeight.bold, fontSize: 16.sp),),
+                  child: Text("확인", style: TextStyle(color: wWhiteColor, fontWeight: FontWeight.bold, fontSize: 16.sp),),
                 ),
               ),
             )
