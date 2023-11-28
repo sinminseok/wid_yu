@@ -7,7 +7,7 @@ import '../../../../common/common-widget/CommonAppbar.dart';
 import '../../../../common/common-widget/OrangeButton.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/FilePath.dart';
-import '../../join/IdAndPasswordView.dart';
+import '../../join/login-information/IdAndPasswordView.dart';
 import '../../login/YoungLoginView.dart';
 import 'FindIdSuccessView.dart';
 

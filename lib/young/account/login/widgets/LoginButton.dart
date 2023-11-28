@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../common/common-widget/OrangeButton.dart';
+import '../../../frame/YoungFrameView.dart';
 import '../controller/YoungLoginController.dart';
 
 class LoginButton extends StatelessWidget {
@@ -17,13 +18,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.test();
-        //validateInforamtion();
-        // login(_idController.text, _passworController.text);
-        // Navigator.push(
-        //     context,
-        //     PageTransition(
-        //         type: PageTransitionType.fade, child: (YoungFrameView(0))));
+        Get.to(() => YoungFrameView(0), transition: Transition.fadeIn);
       },
       child: Container(
           margin: EdgeInsets.only(top: 0.h),

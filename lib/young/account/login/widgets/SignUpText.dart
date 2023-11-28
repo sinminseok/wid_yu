@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../join/VertifyPhoneView.dart';
+import '../../join/phone-vertify/VertifyPhoneView.dart';
 
 Widget SignUpText(){
   return Container(
     margin: EdgeInsets.only(top: 120.h),
     child: InkWell(
         onTap: () {
-          Get.to(() => VerifyPhoneView(), transition: Transition.fadeIn);
+          Get.to(() => VerificationPhoneView(), transition: Transition.fadeIn);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

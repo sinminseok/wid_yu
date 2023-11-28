@@ -5,9 +5,9 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../../common/model/user/Old.dart';
 import '../../../common/utils/Color.dart';
-import '../join/JoinFinishView.dart';
-import '../join/JoinSuccessView.dart';
-import '../join/OtherOldInformationView.dart';
+import '../join/finish/JoinFinishView.dart';
+import '../join/finish/JoinSuccessView.dart';
+import '../join/old-information/OtherOldInformationView.dart';
 
 class AccountPopup {
   void showDialog(BuildContext context, Old old) {

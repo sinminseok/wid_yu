@@ -1,7 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/utils/FilePath.dart';
+import 'package:wid_yu/young/health-infroamtion/controller/YoungHealthInformationController.dart';
+import 'package:wid_yu/young/health-infroamtion/widgets/CurrentPosition.dart';
+import 'package:wid_yu/young/health-infroamtion/widgets/HealthInformation.dart';
+import 'package:wid_yu/young/health-infroamtion/widgets/SideBarUsers.dart';
 
+import '../../common/model/user/TestHealth.dart';
+import '../../common/model/user/TestUser.dart';
 import '../../common/utils/Color.dart';
 
 class YoungHealthInformationView extends StatefulWidget {
@@ -12,142 +18,118 @@ class YoungHealthInformationView extends StatefulWidget {
 }
 
 class _YoungHealthInformationView extends State<YoungHealthInformationView> {
+  YoungHealthInformationController controller =
+      YoungHealthInformationController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    controller.initPickUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: wPurpleBackGroundColor,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    //  floatingActionButton: _buildExtendButton(),
+      backgroundColor: wWhiteBackGroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildOldList(),
-                _buildHealthInformation(),
+                SideBarUsers(
+                  controller: controller,
+                ),
+                Container(
+                    width: 290.w,
+                    margin: EdgeInsets.only(top: 10.h),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                        border: Border.all(color: wGrey100Color)),
+                    child: Column(
+                      children: [
+                        HealthInformation(controller: controller),
+                        CurrentPosition(controller: controller)
+                      ],
+                    ))
               ],
             )
-
           ],
         ),
       ),
-
     );
   }
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: wPurpleBackGroundColor,
-      automaticallyImplyLeading: false,
-      elevation: 0,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 47.w,
-            height: 30.h,
-            margin: EdgeInsets.only(top: 10.h, left: 10.w),
-            child: Image.asset("assets/common/common/appbar_logo.png"),
-          ),
-          Row(
-            children: [
-              InkWell(
-                  onTap: () {},
-                  child: Container(
-                    margin: EdgeInsets.only(right: 8.w, top: 10.h),
-                    width: 24.w,
-                    height: 24.h,
-                    child: Image.asset("assets/common/icon/bell-icon.png"),
-                  )),
-              InkWell(
-                  onTap: () {
-
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 10.w, top: 10.h),
-                    width: 30.w,
-                    height: 30.h,
-                    child: Image.asset(
-                        "assets/common/icon/family-information-icon.png"),
-                  )),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildOldList() {
-    return Container(
-      width: 100.w,
-      child: Column(
-        children: [
-          Container(
-            width: 36.w,
-            height: 36.h,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: wGrey200Color
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHealthInformation(){
-    return Column(
-      children: [
-        _buildO2(),
-        _buildHeartBreak(),
-        _buildTemperature(),
-      ],
-    );
-  }
-
-  Widget _buildO2() {
-    return Container();
-  }
-  Widget _buildHeartBreak() {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            child: Text("산소포화도", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.bold, fontSize: 14.sp),),
-          ),
-          Container(
-            width: 282.w,
-            height: 64.h,
-            decoration: BoxDecoration(
-              border: Border.all(color: wGrey200Color),
-              borderRadius: BorderRadius.all(Radius.circular(6))
-            ),
-            child: Row(
+        backgroundColor: wWhiteBackGroundColor,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 36.w,
-                  height: 36.h,
-                  child: Image.asset("assets/young/health-information/check_list.png"),
+                  width: 47.w,
+                  height: 30.h,
+                  margin: EdgeInsets.only(top: 10.h, left: 10.w),
+                  child: Image.asset("assets/common/common/appbar_logo.png"),
                 ),
-                Column(
+                Row(
                   children: [
-                    //체온
+                    InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10.w, top: 10.h),
+                          width: 30.w,
+                          height: 30.h,
+                          child: Image.asset(
+                              "assets/common/icon/family-information-icon.png"),
+                        )),
                   ],
-                ),
-                Container(
-                  //img
                 )
               ],
             ),
-          )
-
-        ],
-      ),
-    );
+          ],
+        ));
   }
-  Widget _buildTemperature() {
-    return Container();
+
+  FloatingActionButton _buildExtendButton() {
+    return FloatingActionButton.extended(
+      onPressed: () {
+
+      },
+      label: Container(
+        width: 290.w,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "김옥례 님의 건강수치가 평소와 달라요.",
+              style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w900),
+            ),
+            Container(
+              width: 36.w,
+              height: 36.h,
+              decoration: BoxDecoration(
+                color: wWhiteColor,
+                shape: BoxShape.circle
+              ),
+              child: Icon(Icons.call, color: wErrorColor,),
+            )
+          ],
+        )
+      ),
+
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      foregroundColor: Colors.white,
+      backgroundColor: wErrorColor,
+    );
   }
 
 }
-

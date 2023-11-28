@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../common/utils/Color.dart';
-import '../../../common/view/account/SelectUserView.dart';
+import '../../../../common/utils/Color.dart';
+import '../../../../common/view/account/SelectUserView.dart';
 
 
 class JoinFinishView extends StatefulWidget {

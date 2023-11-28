@@ -53,6 +53,8 @@ dependencies:
   image: ^3.0.1
   camera: ^0.10.5+5
   flutter_blurhash: ^0.7.0
+  fl_chart: ^0.45.0
+  chart_sparkline: ^1.0.14
 
 
 dev_dependencies:
@@ -75,11 +77,13 @@ flutter:
 #    #    - .env
     - assets/common/
     - assets/common/account/
+    - assets/common/mission/
     - assets/common/album/
     - assets/common/common/
     - assets/common/goal/
     - assets/common/icon/
     - assets/common/icon/mission/
+    - assets/common/health-information/
     - assets/common/popup/
     - assets/common/icon/frame/
     - assets/common/user/
@@ -87,6 +91,7 @@ flutter:
     - assets/young/album/
     - assets/common/goal-conduct/
     - assets/common/alarm/
+    - assets/common/health-information/graph/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

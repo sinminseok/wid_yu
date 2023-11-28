@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Color.dart';
 
-class TextFormWidget extends StatefulWidget {
+class TextFormWidget extends StatelessWidget {
   final String title;
   final String hintText;
   final bool isIntType;
@@ -18,11 +18,6 @@ class TextFormWidget extends StatefulWidget {
       });
 
   @override
-  _TextFromWidgetState createState() => _TextFromWidgetState();
-}
-
-class _TextFromWidgetState extends State<TextFormWidget> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 0.w, top: 10.h),
@@ -32,7 +27,7 @@ class _TextFromWidgetState extends State<TextFormWidget> {
           Container(
 
             child: Text(
-              widget.title,
+              title,
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -47,12 +42,13 @@ class _TextFromWidgetState extends State<TextFormWidget> {
             child: Container(
               margin: EdgeInsets.only(top: 5.h,left: 10.w),
               child: TextFormField(
-                controller: widget.textEditingController,
+                keyboardType: isIntType?TextInputType.number:TextInputType.name,
+                controller: textEditingController,
                 style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
                 textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
                 cursorColor: kTextBlackColor,
                 decoration: InputDecoration(
-                  hintText: widget.hintText,
+                  hintText: hintText,
                   hintStyle: TextStyle(fontSize: 13.sp,color: Colors.grey.shade500),
                   border: InputBorder.none,
                   isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
