@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import '../../../common/utils/Color.dart';
-import '../../../common/utils/widgets/RoundedButton.dart';
+import '../../../../common/utils/Color.dart';
+import '../../../../common/utils/widgets/RoundedButton.dart';
 import 'JoinFinishView.dart';
-import 'widgets/ProgressBar.dart';
-import 'widgets/SignupAppBar.dart';
+import '../widgets/ProgressBar.dart';
+import '../widgets/SignupAppBar.dart';
 
 class JoinSuccessView extends StatefulWidget {
   const JoinSuccessView({Key? key}) : super(key: key);

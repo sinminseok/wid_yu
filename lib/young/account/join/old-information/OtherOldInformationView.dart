@@ -5,13 +5,13 @@ import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 import 'package:wid_yu/young/account/join/widgets/SignupAppBar.dart';
 
-import '../../../common/model/disease/Disease.dart';
-import '../../../common/model/user/Old.dart';
-import '../../../common/utils/Color.dart';
-import '../../../common/utils/PopUp.dart';
-import '../../../common/utils/exception/InvalidInformationException.dart';
-import '../../../common/utils/widgets/TextFormWidget.dart';
-import 'JoinSuccessView.dart';
+import '../../../../common/model/disease/Disease.dart';
+import '../../../../common/model/user/Old.dart';
+import '../../../../common/utils/Color.dart';
+import '../../../../common/utils/PopUp.dart';
+import '../../../../common/utils/exception/InvalidInformationException.dart';
+import '../../../../common/utils/widgets/TextFormWidget.dart';
+import '../finish/JoinSuccessView.dart';
 
 class OtherOldInformationView extends StatefulWidget {
   final Old old;

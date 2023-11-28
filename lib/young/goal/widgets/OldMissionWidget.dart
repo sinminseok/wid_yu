@@ -8,13 +8,12 @@ import '../../../common/common-widget/mission/MissionWidget.dart';
 import '../../../common/model/mission/Mission.dart';
 import '../../../common/model/mission/MissionType.dart';
 import '../../../common/utils/Color.dart';
-import 'MissionGroupContainWidget.dart';
 
 /*
  보호자가 목표 화면에서 볼 보호자 미션
  */
 class OldMissionWidget extends StatefulWidget {
-  const OldMissionWidget({Key? key}) : super(key: key);
+
 
   @override
   _OldMissionWidgetState createState() => _OldMissionWidgetState();
@@ -80,17 +79,10 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                     width: 49.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: wGrey200Color,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey, // 그림자 색상
-                          offset: Offset(0, 1), // 그림자 위치 (가로, 세로)
-                          blurRadius: 2.0, // 그림자 흐림 정도
-                          spreadRadius: 0.0, // 그림자 퍼짐 정도
-                        ),
-                      ],
+                      color: wGrey100Color,
+
                     ),
-                    child: Image.asset("assets/common/user/oldMan.png"),
+                    child: Image.asset("assets/common/user/old-man-circle.png"),
                   ),
                   progressColor: wOrangeColor,
                 ),

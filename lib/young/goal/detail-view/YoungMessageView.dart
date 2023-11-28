@@ -4,7 +4,7 @@ import 'package:wid_yu/common/common-widget/CommonAppbar.dart';
 import 'package:wid_yu/common/model/mission/Mission.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
-import 'package:wid_yu/young/goal/widgets/YoungMessageWidget.dart';
+import 'package:wid_yu/young/goal/detail-view/widgets/YoungMessageWidget.dart';
 
 class YoungMessageView extends StatefulWidget {
   const YoungMessageView({Key? key}) : super(key: key);
