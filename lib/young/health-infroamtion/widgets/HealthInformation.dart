@@ -8,6 +8,8 @@ import 'package:wid_yu/young/health-infroamtion/widgets/HeartBitInformation.dart
 import 'package:wid_yu/young/health-infroamtion/widgets/O2Information.dart';
 import 'package:wid_yu/young/health-infroamtion/widgets/TemperatureInformation.dart';
 
+import 'NotConnect.dart';
+
 class HealthInformation extends StatelessWidget {
   final YoungHealthInformationController controller;
 
@@ -15,16 +17,18 @@ class HealthInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          O2Information(controller),
-          HeartBitInformation(controller),
-          TemperatureInformation(controller),
-        ],
-      ),
-    );
+    return Obx(() => controller.currentUser.value!.isConnect
+        ? Container(
+            margin: EdgeInsets.only(top: 10.h, left: 12.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                O2Information(controller),
+                HeartBitInformation(controller),
+                TemperatureInformation(controller),
+              ],
+            ),
+          )
+        : NotConnect());
   }
 }

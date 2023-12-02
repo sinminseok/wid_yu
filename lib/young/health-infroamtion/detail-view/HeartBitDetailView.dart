@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/utils/constants/HealthExplanationConstants.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/widgets/HealthGraph.dart';
+import 'package:wid_yu/young/health-infroamtion/detail-view/widgets/YoungHealthGraph.dart';
 
 import '../../../common/common-widget/CommonAppbar.dart';
 import '../../../common/model/user/TestUser.dart';
@@ -23,6 +23,7 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: wWhiteColor,
       appBar: CommonAppBar(
         title: "심박수",
         color: wWhiteBackGroundColor,
@@ -30,11 +31,23 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildHeader(),
-            _buildGraph(),
-            _buildAvaeage(),
+            Container(
+              width: 330.w,
+              height: 460.h,
+              decoration: BoxDecoration(
+                  color: wWhiteColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+              ),
+              child: Column(
+                children: [
+                  _buildGraph(),
+                  _buildAvaeage(),
+                ],
+              ),
+            ),
             _buildInformation(),
           ],
         ),
@@ -98,7 +111,7 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 20.w),
+              margin: EdgeInsets.only(left: 20.w, top: 20.h),
               child: Text(
                 "심박수란?",
                 style: TextStyle(
@@ -221,7 +234,7 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
   }
 
   Widget _buildGraph() {
-    return HealthGraph([
+    return YoungHealthGraph([
       10,
       20,
       30,

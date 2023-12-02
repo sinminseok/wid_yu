@@ -1,21 +1,21 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/TemperatureDetailView.dart';
+import 'package:wid_yu/old/health-information/controller/OldHealthInformationController.dart';
+import 'package:wid_yu/old/health-information/detail-view/OldTemperatureDetailView.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../controller/YoungHealthInformationController.dart';
-import '../detail-view/HeartBitDetailView.dart';
+import '../../../young/health-infroamtion/detail-view/TemperatureDetailView.dart';
 
 class TemperatureInformation extends StatelessWidget {
-  YoungHealthInformationController controller;
+  OldHealthInformationController controller;
+
 
   TemperatureInformation(this.controller);
 
@@ -23,15 +23,15 @@ class TemperatureInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: (){
-          Get.to(() => TemperatureDetailView(controller.currentUser.value), transition: Transition.fadeIn);
+          Get.to(() => OldTemperatureDetailView(controller.user.value), transition: Transition.fadeIn);
         },
         child: _buildNomal());
   }
 
   Widget _buildNomal(){
     return Obx(() => Container(
-      width: 275.w,
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
+      width: 315.w,
+      margin: EdgeInsets.only(top: 10.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,7 +39,7 @@ class TemperatureInformation extends StatelessWidget {
             child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -96,8 +96,8 @@ class TemperatureInformation extends StatelessWidget {
 
   Widget _buildDangerous(){
     return Obx(() => Container(
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
-      width: 275.w,
+      margin: EdgeInsets.only(top: 10.h),
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -105,7 +105,7 @@ class TemperatureInformation extends StatelessWidget {
             child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -162,8 +162,8 @@ class TemperatureInformation extends StatelessWidget {
 
   Widget _buildAttention(){
     return Obx(() => Container(
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
-      width: 275.w,
+      margin: EdgeInsets.only(top: 10.h),
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -171,7 +171,7 @@ class TemperatureInformation extends StatelessWidget {
             child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -225,7 +225,6 @@ class TemperatureInformation extends StatelessWidget {
       ),
     ));
   }
-
 
 
 }

@@ -4,7 +4,7 @@ import 'package:wid_yu/common/model/user/TestHealth.dart';
 import 'package:wid_yu/common/model/user/TestUser.dart';
 
 class YoungHealthInformationController extends GetxController{
-  List<TestUser> users = [TestUser("부모님1", TestHealth(50, 60, 70)),TestUser("부모님2", TestHealth(10, 20, 100)),];
+  List<TestUser> users = [TestUser("부모님1", TestHealth(50, 60, 70), true),TestUser("부모님2", TestHealth(10, 20, 100), false),];
 
   Rx<TestUser?> currentUser = Rx<TestUser?>(null);
 
@@ -18,6 +18,7 @@ class YoungHealthInformationController extends GetxController{
     update();
   }
 
+
   double? getUserO2(){
     return currentUser.value?.testHealth.o2;
   }
@@ -29,4 +30,5 @@ class YoungHealthInformationController extends GetxController{
   double? getUserHeartBit(){
     return currentUser.value?.testHealth.healthBit;
   }
+
 }

@@ -6,7 +6,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:wid_yu/common/common-widget/CommonAppbar.dart';
 import 'package:wid_yu/common/model/user/TestUser.dart';
 import 'package:wid_yu/common/utils/Color.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/widgets/HealthGraph.dart';
+import 'package:wid_yu/young/health-infroamtion/detail-view/widgets/YoungHealthGraph.dart';
 
 import '../../../common/utils/FilePath.dart';
 
@@ -18,18 +18,31 @@ class O2DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: wPurpleBackGroundColor,
       appBar: CommonAppBar(
         title: "산소포화도",
-        color: wWhiteBackGroundColor,
+        color: wPurpleBackGroundColor,
         canBack: true,
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildHeader(),
-            _buildGraph(),
-            _buildAvaeage(),
+            Container(
+              width: 330.w,
+              height: 460.h,
+              decoration: BoxDecoration(
+                  color: wWhiteColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+              ),
+              child: Column(
+                children: [
+                  _buildGraph(),
+                  _buildAvaeage(),
+                ],
+              ),
+            ),
             _buildInformation(),
           ],
         ),
@@ -45,7 +58,7 @@ class O2DetailView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 20.w),
+              margin: EdgeInsets.only(left: 20.w, top: 20.h),
               child: Text("산소포화도란?", style: TextStyle(color: wTextBlackColor, fontWeight: FontWeight.w600, fontSize: 14.sp),),
             ),
             Container(
@@ -185,6 +198,6 @@ class O2DetailView extends StatelessWidget {
   }
 
   Widget _buildGraph() {
-    return HealthGraph([10, 20, 30, 20, 50, 60, 30,10, 20, 30, 20, 50, 60, 30,10, 20, 30, 20, 50, 60, 30,20,50,30]);
+    return YoungHealthGraph([10, 20, 30, 20, 50, 60, 30,10, 20, 30, 20, 50, 60, 30,10, 20, 30, 20, 50, 60, 30,20,50,30]);
   }
 }

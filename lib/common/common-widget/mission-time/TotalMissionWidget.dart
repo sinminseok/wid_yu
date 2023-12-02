@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,9 +9,9 @@ import 'DoneMissionTimeWidget.dart';
 import 'NoneMissionTimeWidget.dart';
 import 'YetMissionTimeWidget.dart';
 
-Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context){
+Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context) {
   return Container(
-    margin: EdgeInsets.only(left: 25.w,top: 0.h),
+    margin: EdgeInsets.only(left: 25.w, top: 0.h),
     width: 200.w,
     child: GridView.builder(
       shrinkWrap: true,
@@ -29,29 +28,26 @@ Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context){
       },
     ),
   );
-
 }
 
-
-Widget _buildTotalTime(MissionTime time){
+Widget _buildTotalTime(MissionTime time) {
   return Container(
     width: 70.w,
     height: 30.h,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(50)),
-      border: Border.all(color: wGrey500Color)
-    ),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        border: Border.all(color: wGrey500Color)),
   );
 }
 
-Widget _buildFilterTime(MissionTime missionTime){
-  if(missionTime.timeType == TimeType.DONE){
+Widget _buildFilterTime(MissionTime missionTime) {
+  if (missionTime.timeType == TimeType.DONE) {
     return DoneMissionTimeWidget(missionTime.time);
   }
-  if(missionTime.timeType == TimeType.NONE){
+  if (missionTime.timeType == TimeType.NONE) {
     return NoneMissionTimeWidget(missionTime.time);
   }
-  if(missionTime.timeType == null){
+  if (missionTime.timeType == null) {
     return Container();
   }
   return YetMissionTimeWidget(missionTime.time);

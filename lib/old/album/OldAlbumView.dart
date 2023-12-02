@@ -6,8 +6,8 @@ import 'package:wid_yu/old/album/detail-view/LikePhotoView.dart';
 import 'package:wid_yu/old/album/widgets/OldPhotoWidget.dart';
 
 import '../../common/utils/Color.dart';
-import '../../young/album/widgets/YoungPhotoWidget.dart';
-import '../../young/album/widgets/PointWidget.dart';
+import '../../young/album/wid/YoungPhotoWidget.dart';
+import '../../young/album/wid/PointWidget.dart';
 import 'detail-view/CollectPhotoView.dart';
 
 class OldAlbumView extends StatefulWidget {

@@ -1,18 +1,20 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/HeartBitDetailView.dart';
+import 'package:wid_yu/old/health-information/controller/OldHealthInformationController.dart';
+import 'package:wid_yu/old/health-information/detail-view/OldHeartBitDetailView.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../controller/YoungHealthInformationController.dart';
-import '../detail-view/O2DetailView.dart';
+import '../../../young/health-infroamtion/detail-view/HeartBitDetailView.dart';
 
 class HeartBitInformation extends StatefulWidget {
-  final YoungHealthInformationController controller;
+  OldHealthInformationController controller;
+
 
   HeartBitInformation(this.controller);
 
@@ -20,7 +22,7 @@ class HeartBitInformation extends StatefulWidget {
   State<HeartBitInformation> createState() => _HeartBitInformationState();
 }
 
-class _HeartBitInformationState extends State<HeartBitInformation> with TickerProviderStateMixin {
+class _HeartBitInformationState extends State<HeartBitInformation> with TickerProviderStateMixin{
   late AnimationController shakingController;
 
   @override
@@ -43,7 +45,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     return InkWell(
 
         onTap: (){
-          Get.to(() => HeartBitDetailView(widget.controller.currentUser.value), transition: Transition.fadeIn);
+          Get.to(() => OldHeartBitDetailView(widget.controller.user.value), transition: Transition.fadeIn);
         },
         child: _buildDangerous());
   }
@@ -90,9 +92,8 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     required Widget graph,
   }) {
     return Obx(() => Container(
-      width: 275.w,
-
-      margin: EdgeInsets.only(left: 3.w, right: 12.w, top: 10.h),
+      width: 315.w,
+      margin: EdgeInsets.only(top: 10.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -107,7 +108,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
             ),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(

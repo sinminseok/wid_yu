@@ -5,7 +5,7 @@ import 'package:wid_yu/common/utils/FilePath.dart';
 import '../../common/view/frame/BottomNavigationWidget.dart';
 import '../album/YoungAlbumView.dart';
 import '../goal/YoungGoalView.dart';
-import '../health-infroamtion/YoungAlarmView.dart';
+import '../health-infroamtion/YoungHealthInformationView.dart';
 
 class YoungFrameView extends StatefulWidget {
   final int index;
