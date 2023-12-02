@@ -1,45 +1,48 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/widgets/YoungHealthGraph.dart';
+import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/CommonAppbar.dart';
-import '../../../common/model/user/TestUser.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthExplanationConstants.dart';
+import '../../../young/health-infroamtion/detail-view/widgets/YoungHealthGraph.dart';
 
-class TemperatureDetailView extends StatefulWidget {
-  final TestUser? user;
+class OldO2DetailView extends StatefulWidget {
+  TestUser user;
 
-  TemperatureDetailView(this.user);
+
+  OldO2DetailView(this.user);
 
   @override
-  State<TemperatureDetailView> createState() => _TemperatureDetailViewState();
+  State<OldO2DetailView> createState() => _OldO2DetailViewState();
 }
 
-class _TemperatureDetailViewState extends State<TemperatureDetailView> {
+class _OldO2DetailViewState extends State<OldO2DetailView> {
   bool isExpand = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: wPurpleBackGroundColor,
+      backgroundColor: wYellow100Color,
       appBar: CommonAppBar(
-        title: "체온",
-        color: wPurpleBackGroundColor,
+        title: "산소포화도",
+        color: wYellow100Color,
         canBack: true,
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildHeader(),
             Container(
+              margin: EdgeInsets.only(top: 15.h),
               width: 330.w,
-              height: 460.h,
+              height: 420.h,
               decoration: BoxDecoration(
-                color: wWhiteColor,
-                borderRadius: BorderRadius.all(Radius.circular(10))
+                  color: wWhiteColor,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
               ),
               child: Column(
                 children: [
@@ -48,7 +51,6 @@ class _TemperatureDetailViewState extends State<TemperatureDetailView> {
                 ],
               ),
             ),
-
             _buildInformation(),
           ],
         ),
@@ -90,8 +92,8 @@ class _TemperatureDetailViewState extends State<TemperatureDetailView> {
                           child: Text("93", style: TextStyle(color: wTextBlackColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
                         ),
                         Container(
-                            margin: EdgeInsets.only(left: 1.w, bottom: 14.h),
-                            child: Icon(Icons.fiber_manual_record_outlined, size: 8.sp,)
+                          margin: EdgeInsets.only(left: 5.w),
+                          child: Text("%", style: TextStyle(color: wGrey600Color, fontSize: 14.sp),),
                         )
                       ],
                     )
@@ -115,7 +117,7 @@ class _TemperatureDetailViewState extends State<TemperatureDetailView> {
             Container(
               margin: EdgeInsets.only(left: 20.w, top: 20.h),
               child: Text(
-                "체온은...",
+                "심박수란?",
                 style: TextStyle(
                     color: wTextBlackColor,
                     fontWeight: FontWeight.w600,
@@ -132,7 +134,7 @@ class _TemperatureDetailViewState extends State<TemperatureDetailView> {
                 margin: EdgeInsets.only(top: 5.h, left: 20.w, right: 20.w),
                 child: Text(
                   overflow: isExpand ? null : TextOverflow.ellipsis,
-                  HealthExplanation.TEMPERATURE_EXPLANATION,
+                  HealthExplanation.HEART_EXPLANATION,
                   style: TextStyle(
                       color: wGrey600Color,
                       fontWeight: FontWeight.w500,
@@ -181,8 +183,11 @@ class _TemperatureDetailViewState extends State<TemperatureDetailView> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 1.w, bottom: 14.h),
-                child: Icon(Icons.fiber_manual_record_outlined, size: 8.sp,)
+                margin: EdgeInsets.only(left: 5.w, top: 3.h),
+                child: Text(
+                  "bpm",
+                  style: TextStyle(color: wGrey600Color),
+                ),
               )
             ],
           ),
@@ -199,41 +204,9 @@ class _TemperatureDetailViewState extends State<TemperatureDetailView> {
     );
   }
 
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        Container(
-          height: 70.h,
-          margin: EdgeInsets.only(top: 12.h, left: 20.w),
-          child: Row(
-            children: [
-              Container(
-                width: 40.w,
-                height: 40.h,
-                decoration: BoxDecoration(
-                    color: wWhiteColor,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: wGrey200Color, width: 3.sp)),
-                child: Image.asset(
-                    commonImagePath + "health-information/old-man.png"),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 5.w),
-                child: Text(
-                  "${widget.user?.name}",
-                  style: TextStyle(
-                      color: wTextBlackColor, fontWeight: FontWeight.w800),
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _buildGraph() {
-    return YoungHealthGraph([
+    return OldHealthGraph([
       10,
       20,
       30,

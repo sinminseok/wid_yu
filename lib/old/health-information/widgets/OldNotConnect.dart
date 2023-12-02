@@ -1,45 +1,39 @@
 
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/TemperatureDetailView.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
-import '../../../common/utils/constants/HealthInformation.dart';
-import '../controller/YoungHealthInformationController.dart';
-import '../detail-view/HeartBitDetailView.dart';
 
-class TemperatureInformation extends StatelessWidget {
-  YoungHealthInformationController controller;
-
-  TemperatureInformation(this.controller);
+class OldNotConnect extends StatelessWidget {
+  const OldNotConnect({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: (){
-          Get.to(() => TemperatureDetailView(controller.currentUser.value), transition: Transition.fadeIn);
-        },
-        child: _buildNomal());
+    return Container(
+      margin: EdgeInsets.only(top: 10.h, left: 12.w),
+      child: Column(
+        children: [
+          _buildO2(),
+          _buildHeartBit(),
+          _buildTemperature()
+        ],
+      ),
+    );
   }
 
-  Widget _buildNomal(){
-    return Obx(() => Container(
-      width: 275.w,
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
+  Widget _buildO2(){
+    return Container(
+      margin: EdgeInsets.only(top: 0.h,left: 3.w, right: 12.w),
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+            child: Text("산소포화도", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -55,27 +49,28 @@ class TemperatureInformation extends StatelessWidget {
                     width: 36.w,
                     height: 36.h,
                     margin: EdgeInsets.only(left: 9.w),
-                    child: Image.asset(commonImagePath + "health-information/temperature-icon.png"),
+                    child: Image.asset(commonImagePath + "health-information/grey/grey-02.png"),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5.h,left: 20.w),
+                    margin: EdgeInsets.only(top: 7.h,left: 20.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Container(
-                              child: Text("${controller.getUserTemperature()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey800Color),),
+                              child: Text("-", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey500Color),),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom: 12.h, left: 2.w),
-                              child: Icon(Icons.fiber_manual_record_outlined, size: 10.sp,),
+                              margin: EdgeInsets.only(top: 2.h, left: 2.w),
+                              child: Text("%", style: TextStyle(color: wGrey500Color, fontWeight: FontWeight.w600, ),),
                             )
                           ],
                         ),
                         Container(
-                          child: Text("${HealthInformationState.NOMAL.message}", style: TextStyle(color: wGrey700Color, fontSize: 12.sp, fontWeight: FontWeight.w500),),
-                        ),
+                          child: Text("-", style: TextStyle(color: wGrey500Color),),
+                        )
+
                       ],
                     ),
                   ),
@@ -84,33 +79,33 @@ class TemperatureInformation extends StatelessWidget {
                   margin: EdgeInsets.only(right: 13.w),
                   width: 80.w,
                   height: 44.h,
-                  child: Image.asset(commonImagePath + "health-information/graph/purple-graph.png"),
+                  child: Image.asset(commonImagePath + "health-information/grey/grey-graph.png"),
                 )
               ],
             ),
           )
         ],
       ),
-    ));
+    );
   }
 
-  Widget _buildDangerous(){
-    return Obx(() => Container(
+  Widget _buildHeartBit(){
+    return Container(
       margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
-      width: 275.w,
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+            child: Text("심박수", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
-                color: wError100Color,
-                border: Border.all(color: wErrorColor),
+                color: wWhiteBackGroundColor,
+                border: Border.all(color: wGrey200Color),
                 borderRadius: BorderRadius.all(Radius.circular(6))
             ),
             child: Row(
@@ -121,27 +116,28 @@ class TemperatureInformation extends StatelessWidget {
                     width: 36.w,
                     height: 36.h,
                     margin: EdgeInsets.only(left: 9.w),
-                    child: Image.asset(commonImagePath + "health-information/danger-temperature-icon.png"),
+                    child: Image.asset(commonImagePath + "health-information/grey/grey-heart.png"),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5.h,left: 20.w),
+                    margin: EdgeInsets.only(top: 7.h,left: 20.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Container(
-                              child: Text("${controller.getUserTemperature()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wErrorColor),),
+                              child: Text("-", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey500Color),),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom: 12.h, left: 2.w),
-                              child: Icon(Icons.fiber_manual_record_outlined, size: 10.sp, color: wErrorColor,),
+                              margin: EdgeInsets.only(top: 2.h, left: 2.w),
+                              child: Text("%", style: TextStyle(color: wGrey500Color, fontWeight: FontWeight.w600, ),),
                             )
                           ],
                         ),
                         Container(
-                          child: Text("${HealthInformationState.DANGEROUS.message}", style: TextStyle(color: wErrorColor, fontSize: 12.sp, fontWeight: FontWeight.w500),),
-                        ),
+                          child: Text("-", style: TextStyle(color: wGrey500Color),),
+                        )
+
                       ],
                     ),
                   ),
@@ -150,20 +146,20 @@ class TemperatureInformation extends StatelessWidget {
                   margin: EdgeInsets.only(right: 13.w),
                   width: 80.w,
                   height: 44.h,
-                  child: Image.asset(commonImagePath + "health-information/graph/red-graph.png"),
+                  child: Image.asset(commonImagePath + "health-information/grey/grey-bar.png"),
                 )
               ],
             ),
           )
         ],
       ),
-    ));
+    );
   }
 
-  Widget _buildAttention(){
-    return Obx(() => Container(
+  Widget _buildTemperature(){
+    return Container(
       margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
-      width: 275.w,
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -171,12 +167,12 @@ class TemperatureInformation extends StatelessWidget {
             child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
-                color: wYellow100Color,
-                border: Border.all(color: wYellowColor),
+                color: wWhiteBackGroundColor,
+                border: Border.all(color: wGrey200Color),
                 borderRadius: BorderRadius.all(Radius.circular(6))
             ),
             child: Row(
@@ -187,27 +183,28 @@ class TemperatureInformation extends StatelessWidget {
                     width: 36.w,
                     height: 36.h,
                     margin: EdgeInsets.only(left: 9.w),
-                    child: Image.asset(commonImagePath + "health-information/o2-icon.png"),
+                    child: Image.asset(commonImagePath + "health-information/grey/grey-temperature.png"),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5.h,left: 20.w),
+                    margin: EdgeInsets.only(top: 7.h,left: 20.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Container(
-                              child: Text("${controller.getUserTemperature()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey800Color),),
+                              child: Text("-", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey500Color),),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom: 12.h, left: 2.w),
-                              child: Icon(Icons.fiber_manual_record_outlined, size: 10.sp),
+                              margin: EdgeInsets.only(top: 2.h, left: 2.w),
+                              child: Text("%", style: TextStyle(color: wGrey500Color, fontWeight: FontWeight.w600, ),),
                             )
                           ],
                         ),
                         Container(
-                          child: Text("${HealthInformationState.ATTENTION.message}", style: TextStyle(color: wGrey800Color, fontSize: 12.sp, fontWeight: FontWeight.w500),),
-                        ),
+                          child: Text("-", style: TextStyle(color: wGrey500Color),),
+                        )
+
                       ],
                     ),
                   ),
@@ -216,16 +213,13 @@ class TemperatureInformation extends StatelessWidget {
                   margin: EdgeInsets.only(right: 13.w),
                   width: 80.w,
                   height: 44.h,
-                  child: Image.asset(commonImagePath + "health-information/graph/yellow-graph.png"),
+                  child: Image.asset(commonImagePath + "health-information/grey/grey-graph.png"),
                 )
               ],
             ),
           )
         ],
       ),
-    ));
+    );
   }
-
-
-
 }

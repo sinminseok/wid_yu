@@ -5,7 +5,7 @@ import '../../common/utils/FilePath.dart';
 import '../../common/view/frame/BottomNavigationWidget.dart';
 import '../album/OldAlbumView.dart';
 import '../goal/OldGoalView.dart';
-import '../health-information/HealthInformationView.dart';
+import '../health-information/OldHealthInformationView.dart';
 
 class OldFrameView extends StatefulWidget {
   final int index;
@@ -30,7 +30,7 @@ class _OldFrameView extends State<OldFrameView> {
   final admin_screens = [
     OldGoalView(),
     OldAlbumView(),
-    HealthInformationView()
+    OldHealthInformationView()
   ];
 
   @override

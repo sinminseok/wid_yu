@@ -6,40 +6,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/young/health-infroamtion/detail-view/TemperatureDetailView.dart';
+import 'package:wid_yu/old/health-information/controller/OldHealthInformationController.dart';
+import 'package:wid_yu/old/health-information/detail-view/OldO2DetailView.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../controller/YoungHealthInformationController.dart';
-import '../detail-view/HeartBitDetailView.dart';
+import '../../../young/health-infroamtion/detail-view/O2DetailView.dart';
 
-class TemperatureInformation extends StatelessWidget {
-  YoungHealthInformationController controller;
+class O2Information extends StatelessWidget {
+  OldHealthInformationController controller;
 
-  TemperatureInformation(this.controller);
+
+  O2Information(this.controller);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: (){
-          Get.to(() => TemperatureDetailView(controller.currentUser.value), transition: Transition.fadeIn);
+          Get.to(() => OldO2DetailView(controller.user.value), transition: Transition.fadeIn);
         },
-        child: _buildNomal());
+        child: Container(
+            margin: EdgeInsets.only(top: 15.h),
+            child: _buildNomal()));
   }
+
 
   Widget _buildNomal(){
     return Obx(() => Container(
-      width: 275.w,
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+            child: Text("산소포화도", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -55,7 +58,7 @@ class TemperatureInformation extends StatelessWidget {
                     width: 36.w,
                     height: 36.h,
                     margin: EdgeInsets.only(left: 9.w),
-                    child: Image.asset(commonImagePath + "health-information/temperature-icon.png"),
+                    child: Image.asset(commonImagePath + "health-information/o2-icon.png"),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 5.h,left: 20.w),
@@ -65,11 +68,11 @@ class TemperatureInformation extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              child: Text("${controller.getUserTemperature()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey800Color),),
+                              child: Text("${controller.getUserO2()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey800Color),),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom: 12.h, left: 2.w),
-                              child: Icon(Icons.fiber_manual_record_outlined, size: 10.sp,),
+                              margin: EdgeInsets.only(top: 2.h, left: 2.w),
+                              child: Text("%", style: TextStyle(color: wGrey600Color, fontWeight: FontWeight.w600, ),),
                             )
                           ],
                         ),
@@ -96,16 +99,15 @@ class TemperatureInformation extends StatelessWidget {
 
   Widget _buildDangerous(){
     return Obx(() => Container(
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
-      width: 275.w,
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+            child: Text("산소포화도", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -121,7 +123,7 @@ class TemperatureInformation extends StatelessWidget {
                     width: 36.w,
                     height: 36.h,
                     margin: EdgeInsets.only(left: 9.w),
-                    child: Image.asset(commonImagePath + "health-information/danger-temperature-icon.png"),
+                    child: Image.asset(commonImagePath + "health-information/o2-icon.png"),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 5.h,left: 20.w),
@@ -131,11 +133,11 @@ class TemperatureInformation extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              child: Text("${controller.getUserTemperature()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wErrorColor),),
+                              child: Text("${controller.getUserO2()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wErrorColor),),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom: 12.h, left: 2.w),
-                              child: Icon(Icons.fiber_manual_record_outlined, size: 10.sp, color: wErrorColor,),
+                              margin: EdgeInsets.only(top: 2.h, left: 2.w),
+                              child: Text("%", style: TextStyle(color: wErrorColor, fontWeight: FontWeight.w600, ),),
                             )
                           ],
                         ),
@@ -162,16 +164,15 @@ class TemperatureInformation extends StatelessWidget {
 
   Widget _buildAttention(){
     return Obx(() => Container(
-      margin: EdgeInsets.only(top: 10.h,left: 3.w, right: 12.w),
-      width: 275.w,
+      width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: Text("체온", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+            child: Text("산소포화도", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
           ),
           Container(
-            width: 282.w,
+            width: 315.w,
             height: 64.h,
             margin: EdgeInsets.only(top: 10.h),
             decoration: BoxDecoration(
@@ -197,11 +198,11 @@ class TemperatureInformation extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              child: Text("${controller.getUserTemperature()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey800Color),),
+                              child: Text("${controller.getUserO2()}", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900, color: wGrey800Color),),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom: 12.h, left: 2.w),
-                              child: Icon(Icons.fiber_manual_record_outlined, size: 10.sp),
+                              margin: EdgeInsets.only(top: 2.h, left: 2.w),
+                              child: Text("%", style: TextStyle(color: wGrey800Color, fontWeight: FontWeight.w600, ),),
                             )
                           ],
                         ),
@@ -225,7 +226,5 @@ class TemperatureInformation extends StatelessWidget {
       ),
     ));
   }
-
-
 
 }

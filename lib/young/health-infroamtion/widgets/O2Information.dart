@@ -31,6 +31,7 @@ class O2Information extends StatelessWidget {
   Widget _buildNomal(){
     return Obx(() => Container(
       width: 275.w,
+      margin: EdgeInsets.only(left: 3.w, right: 12.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -96,6 +97,7 @@ class O2Information extends StatelessWidget {
   Widget _buildDangerous(){
     return Obx(() => Container(
       width: 275.w,
+      margin: EdgeInsets.only(left: 3.w, right: 12.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -161,6 +163,7 @@ class O2Information extends StatelessWidget {
   Widget _buildAttention(){
     return Obx(() => Container(
       width: 275.w,
+      margin: EdgeInsets.only(left: 3.w, right: 12.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
