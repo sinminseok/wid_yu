@@ -50,14 +50,16 @@ dependencies:
   amazon_cognito_identity_dart_2: ^3.5.0
   flutter_dotenv: ^5.1.0
   image_picker: ^1.0.4
-  intl: ^0.17.0
+  intl: ^0.18.1
   image: ^3.0.1
   camera: ^0.10.5+5
   flutter_blurhash: ^0.7.0
+  video_trimmer: ^3.0.1
   fl_chart: ^0.45.0
   chart_sparkline: ^1.0.14
   video_editor: ^3.0.0
   chewie: ^1.7.4
+  fraction: ^5.0.2
 
 
 dev_dependencies:
