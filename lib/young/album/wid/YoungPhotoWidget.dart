@@ -14,7 +14,7 @@ Widget YoungPhotoWidget(BuildContext context){
     child: Container(
       margin: EdgeInsets.only(top: 15.h,bottom: 10.h),
       width: 370.w,
-      height: 357.h,
+      height: 367.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
         color: wWhiteColor,
@@ -48,8 +48,8 @@ Widget _buildPhotoInformation(){
         Container(
           margin: EdgeInsets.only(left: 10.w),
           width: 210.w,
-          height: 45.h,
-          child: Text("오늘 서울숲으로 나들이가기 전에 찍어봤어.다음에 같이 가보자!",style: TextStyle(color: kTextBlackColor, fontWeight: FontWeight.bold,fontSize: 16.sp),),
+          height: 60.h,
+          child: Text("오늘 서울숲으로 나들이가기 전에 찍어봤어.다음에 같이 가보자!",overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(color: kTextBlackColor, fontWeight: FontWeight.bold,fontSize: 16.sp),),
 
          ),
 
