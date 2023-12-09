@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/DiseaseForm.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/NextButton.dart';
@@ -9,8 +10,6 @@ import 'package:wid_yu/young/account/join/old-information/widgets/SelectHaveDise
 import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 import 'package:wid_yu/young/account/join/widgets/SignupAppBar.dart';
 
-import '../../../../common/model/disease/Disease.dart';
-import '../../../../common/model/user/Old.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/PopUp.dart';
 import '../../../../common/utils/exception/InvalidInformationException.dart';
@@ -31,7 +30,8 @@ class _OldInformationView extends State<OldInformationView> {
   void initState() {
     controller.nameController.addListener(controller.updateNextStepState);
     controller.ageController.addListener(controller.updateNextStepState);
-    controller.phoneNumberController.addListener(controller.updateNextStepState);
+    controller.phoneNumberController
+        .addListener(controller.updateNextStepState);
     controller.addressController.addListener(controller.updateNextStepState);
     super.initState();
   }
@@ -45,10 +45,8 @@ class _OldInformationView extends State<OldInformationView> {
       ),
       body: Container(
         child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
           child: SingleChildScrollView(
+            physics : BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,14 +66,9 @@ class _OldInformationView extends State<OldInformationView> {
 
   Widget _buildMainText() {
     return Container(
+      height: 30.h,
       margin: EdgeInsets.only(top: 30.h, bottom: 10.h, left: 15.w),
-      child: Text(
-        "부모님의 정보를 대신 입력해 주세요.",
-        style: TextStyle(
-            color: wGrey800Color, fontSize: 20.sp, fontWeight: FontWeight.bold),
-      ),
+      child: Title2Text("부모님의 계정을 생성해 주세요.", wGrey800Color),
     );
   }
-
-  
 }

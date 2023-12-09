@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/common-widget/OrangeButton.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 
 import '../../../../../common/utils/Color.dart';
@@ -17,16 +19,8 @@ Widget NextButton(OldInformationController controller, BuildContext context) {
         AccountPopup().showDialog(context, old);
       },
       child: Container(
-        width: 335.w,
-        height: 50.h,
-        margin: EdgeInsets.only(top: 60.h, bottom: 20.h),
-        decoration: BoxDecoration(
-            color: wOrangeColor,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        child: Center(
-          child: Text("다음"),
-        ),
-      ),
+          margin: EdgeInsets.only(bottom: 60.h),
+          child: OrangeButton("다음"))
     ),
   )
       : Center(
@@ -37,12 +31,13 @@ Widget NextButton(OldInformationController controller, BuildContext context) {
       child: Container(
         width: 335.w,
         height: 50.h,
-        margin: EdgeInsets.only(top: 30.h, bottom: 20.h),
+        margin: EdgeInsets.only(top: 30.h, bottom: 60.h,left: 20.w, right: 20.w),
         decoration: BoxDecoration(
-            color: Color(0xffD5DDE4),
+          border: Border.all(color: wGrey200Color),
+            color: wGrey100Color,
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Center(
-          child: Text("다음"),
+          child: ButtonText("다음", wGrey400Color),
         ),
       ),
     ),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../controller/YoungLoginController.dart';
@@ -11,36 +12,50 @@ import '../controller/YoungLoginController.dart';
 class AutoLoginCheckBox extends StatelessWidget {
   final YoungLoginController controller;
 
-  const AutoLoginCheckBox({Key? key, required this.controller}) : super(key: key);
+  const AutoLoginCheckBox({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 165.w, bottom: 20.h),
-      width: 185.w,
+      margin: EdgeInsets.only(top: 20.5.h),
+      width: 325.w,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Obx(() => Theme(
-              data: ThemeData(unselectedWidgetColor: wTextBlackColor),
-              child: Checkbox(
-                focusColor: Colors.grey,
-                checkColor: wTextBlackColor,
-                activeColor: Colors.white,
-                value: controller.isChecked.value,
-                onChanged: (value) {
-                  controller.updateIsCheck(value);
-                  //controller.isChecked.value = value!;
-                },
-              ))),
-          Text(
-            "자동로그인",
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
-              color: wTextBlackColor,
+          Container(
+            child: Row(
+              children: [
+                Obx(() => Container(
+                  width: 24.w,
+                  height: 23.h,
+                  child: Checkbox(
+                    activeColor: wGrey700Color,
+                      fillColor: const MaterialStatePropertyAll(wWhiteColor),
+                      checkColor: wGrey700Color,
+                      visualDensity: VisualDensity.standard,
+                      side: MaterialStateBorderSide.resolveWith(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return const BorderSide(color: wGrey700Color, width: 2);
+                          }
+                          return const BorderSide(color: wGrey700Color, width: 2);
+                        },
+                      ),
+                      value: controller.isChecked,
+                      onChanged: (bool? newValue) {
+                        controller.updateIsCheck(newValue);
+                      }),
+                )
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 8.w),
+                  child: ButtonText("자동로그인", wGrey700Color)
+                ),
+              ],
             ),
           ),
+          Container()
         ],
       ),
     );

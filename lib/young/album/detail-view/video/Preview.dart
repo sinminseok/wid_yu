@@ -40,7 +40,8 @@ class _VideoPreviewState extends State<VideoPreview> {
     return Scaffold(
       body: Stack(
         children: [
-          Center(
+          Container(
+            width: 360.w,
             child: AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
               child: _controller.value.isInitialized
@@ -95,7 +96,7 @@ class _VideoPreviewState extends State<VideoPreview> {
                       onPressed: () {},
                     ),
                   ));
-                  Get.to(() => YoungFrameView(1));
+                  Get.offAll(() => YoungFrameView(1));
                 },
                 child: Container(
                   margin: EdgeInsets.only(bottom: 10.h),

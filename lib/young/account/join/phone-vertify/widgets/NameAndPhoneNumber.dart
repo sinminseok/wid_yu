@@ -1,35 +1,55 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/young/account/join/controller/YoungJoinController.dart';
+import 'package:wid_yu/young/account/join/format/PhoneNumberFormat.dart';
 
 import '../../../../../common/utils/Color.dart';
 import '../controller/VertifyPhoneController.dart';
 
-class NameAndPhoneNumber extends StatelessWidget {
-  final VerificationPhoneController controller;
+class NameAndPhoneNumber extends StatefulWidget {
+  YoungJoinController controller;
 
   NameAndPhoneNumber({required this.controller});
 
   @override
+  State<NameAndPhoneNumber> createState() => _NameAndPhoneNumberState();
+}
+
+class _NameAndPhoneNumberState extends State<NameAndPhoneNumber> {
+  int _countdown = 30;
+  Timer? _timer;
+
+  void _startCountdown() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_countdown > 0) {
+          _countdown--;
+        } else {
+          _timer?.cancel();
+        }
+      });
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    return Center(
+    return Obx(() => Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 30.h, left: 20.w),
-            child: Text(
-              "이름",
-              style: TextStyle(
-                  color: wGrey700Color,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600),
-            ),
+              height: 21.h,
+              margin: EdgeInsets.only(top: 40.h, left: 20.w),
+              child: SubTitle2Text("이름", wGrey700Color)
           ),
           Container(
             width: 335.w,
             height: 46.h,
-            margin: EdgeInsets.only(top: 5.h, left: 20.w, right: 20.w),
+            margin: EdgeInsets.only(top: 6.h, left: 20.w, right: 20.w),
             decoration: BoxDecoration(
               border: Border.all(color: wBorderGrey300Color, width: 1),
               borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -38,7 +58,7 @@ class NameAndPhoneNumber extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               // 힌트 텍스트와 입력란 간의 간격 조정
               child: TextFormField(
-                controller: controller.nameController,
+                controller: widget.controller.nameController,
                 style: TextStyle(color: Colors.black),
                 // 텍스트 색상을 검정색으로 설정
                 textAlign: TextAlign.left,
@@ -46,7 +66,7 @@ class NameAndPhoneNumber extends StatelessWidget {
                 cursorColor: kTextBlackColor,
                 decoration: InputDecoration(
                   hintText: "예) 홍길동",
-                  hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                  hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp, fontFamily: "hint"),
                   border: InputBorder.none,
                   isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                 ),
@@ -54,14 +74,9 @@ class NameAndPhoneNumber extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10.h, left: 20.w),
-            child: Text(
-              "연락처",
-              style: TextStyle(
-                  color: wGrey700Color,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600),
-            ),
+              height: 21.h,
+              margin: EdgeInsets.only(top: 13.h, left: 20.w),
+              child: SubTitle2Text("연락처", wGrey700Color)
           ),
           Stack(
             children: [
@@ -69,7 +84,7 @@ class NameAndPhoneNumber extends StatelessWidget {
                 child: Container(
                   width: 335.w,
                   height: 46.h,
-                  margin: EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
+                  margin: EdgeInsets.only(top: 6.h, left: 20.w, right: 20.w),
                   decoration: BoxDecoration(
                     border: Border.all(color: wBorderGrey300Color, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -78,9 +93,10 @@ class NameAndPhoneNumber extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     // 힌트 텍스트와 입력란 간의 간격 조정
                     child: TextFormField(
+                      inputFormatters: [PhoneNumberFormatter()],
                       keyboardType: TextInputType.number,
-                      controller: controller.phoneNumberController,
-                      style: TextStyle(color: Colors.black),
+                      controller: widget.controller.phoneNumberController,
+                      style: TextStyle(color: Colors.black, fontFamily: "hint"),
                       // 텍스트 색상을 검정색으로 설정
                       textAlign: TextAlign.left,
                       // 텍스트를 왼쪽으로 정렬
@@ -88,7 +104,7 @@ class NameAndPhoneNumber extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: "숫자만 입력",
                         hintStyle:
-                            TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                        TextStyle(color: wGrey300Color, fontSize: 14.sp),
                         border: InputBorder.none,
                         isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                       ),
@@ -100,112 +116,113 @@ class NameAndPhoneNumber extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(),
-                  InkWell(
-                    onTap: () {
-                      print("dasd");
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(top: 20.h, right: 30.w),
-                      child: Text(
-                        "인증 번호 전송",
-                        style: TextStyle(
-                            color: wPurpleColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.sp),
-                      ),
-                    ),
-                  )
+                  Container(
+                      margin: EdgeInsets.only(top: 18.h, right: 32.w),
+                      child: InkWell(
+                          onTap: (){
+                            widget.controller.sendVertifyNumber();
+                            _startCountdown();
+                          },
+                          child: ButtonText("인증 번호 전송", wPurpleColor))
+                  ),
                 ],
               )
-              // Positioned(
-              //     top: 15.h,
-              //     left: 225.w,
-              //     child: InkWell(
-              //       onTap: () {
-              //         print("dasd");
-              //       },
-              //       child: Container(
-              //         child: Text(
-              //           "인증 번호 전송",
-              //           style: TextStyle(
-              //               color: wPurpleColor,
-              //               fontWeight: FontWeight.bold,
-              //               fontSize: 15.sp),
-              //         ),
-              //       ),
-              //     ))
+
             ],
           ),
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 30.h, left: 20.w, right: 20.w),
-                  child: Text(
-                    "인증번호",
-                    style: TextStyle(
-                        color: wGrey700Color,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      width: 335.w,
-                      height: 46.h,
-                      margin:
-                          EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(color: wBorderGrey300Color, width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        // 힌트 텍스트와 입력란 간의 간격 조정
-                        child: TextFormField(
-                          controller: controller.verifyNumberController,
-                          style: TextStyle(color: Colors.black),
-                          // 텍스트 색상을 검정색으로 설정
-                          textAlign: TextAlign.left,
-                          // 텍스트를 왼쪽으로 정렬
-                          cursorColor: kTextBlackColor,
-                          decoration: InputDecoration(
-                            hintText: "",
-                            hintStyle: TextStyle(
-                                color: wGrey300Color, fontSize: 14.sp),
-                            border: InputBorder.none,
-                            isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                          ),
+          _buildInputNumber(),
+        ],
+      ),
+    ));
+  }
+
+  Widget _buildInputNumber(){
+    return Column(
+      children: [
+        widget.controller.canInputVertifyNumber?Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  margin: EdgeInsets.only(top: 63.h, left: 20.w, right: 20.w),
+                  child: SubTitle2Text("인증번호", wGrey700Color)
+              ),
+              Stack(
+                children: [
+                  Container(
+                    width: 335.w,
+                    height: 46.h,
+                    margin:
+                    EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
+                    decoration: BoxDecoration(
+                      border:
+                      Border.all(color: wBorderGrey300Color, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      // 힌트 텍스트와 입력란 간의 간격 조정
+                      child: TextFormField(
+                        controller: widget.controller.verifyNumberController,
+                        style: TextStyle(color: Colors.black),
+                        // 텍스트 색상을 검정색으로 설정
+                        textAlign: TextAlign.left,
+                        // 텍스트를 왼쪽으로 정렬
+                        cursorColor: kTextBlackColor,
+                        decoration: InputDecoration(
+                          hintText: "",
+                          hintStyle: TextStyle(
+                              color: wGrey300Color, fontSize: 14.sp),
+                          border: InputBorder.none,
+                          isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                         ),
                       ),
                     ),
-                    Positioned(
-                        top: 18.h,
-                        left: 290.w,
-                        child: InkWell(
-                          onTap: () {
-                            print("dasd");
-                          },
-                          child: Container(
-                            child: Text(
-                              "확인",
-                              style: TextStyle(
-                                  color: wPurpleColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15.sp),
-                            ),
-                          ),
-                        )),
+                  ),
+                  Positioned(
+                      top: 22.h,
+                      left: 290.w,
+                      child: InkWell(
+                        onTap: () {
+                          print("dasd");
+                        },
+                        child: Container(
+                            child: ButtonText("확인", wPurpleColor)
+                        ),
+                      )),
+                ],
+              ),
+              _countdown > 0?Container(
+                margin: EdgeInsets.only(top:10.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(right: 5.w),
+                          height: 12.h,
+                          width: 12.w,
+                          child: Image.asset("assets/images/icon/reset-icon.png"),
+                        ),
+                        Container(
+                            margin: EdgeInsets.only(right: 22.w),
+                            child: HelperText('$_countdown초', wGrey600Color))
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                ),
+              ): Container(
+                height: 10.h,
+              )
+              // _countdown > 0
+              //     ? Text('$_countdown초', style: TextStyle(fontSize: 30))
+              //     : Container(),
+            ],
+          ),
+        ):Container()
+      ],
     );
   }
 }

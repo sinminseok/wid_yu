@@ -361,7 +361,10 @@ class _GoalDetailView extends State<OldGoalDetailView> {
       margin: EdgeInsets.only(right: 20.w, top: 10.h),
       width: 120.0.w,
       height: 120.0.h,
+
       child: CircularPercentIndicator(
+        backgroundColor: wGrey200Color,
+        circularStrokeCap: CircularStrokeCap.round,
         radius: 60.0,
         lineWidth: 10.0,
         percent: 0.7,

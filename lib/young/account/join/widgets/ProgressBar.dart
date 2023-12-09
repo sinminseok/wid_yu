@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 
@@ -86,23 +87,14 @@ class ProgressBar extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 30.w),
-                  child: Text(
-                    "보호자 정보",
-                    style: TextStyle(color: wOrange200Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("보호자 정보", wOrange200Color)
                 ),
                 Container(
                   margin: EdgeInsets.only(right: 20.w),
-                  child: Text(
-                    "부모님 정보",
-                    style: TextStyle(color: wGrey300Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("부모님 정보", wGrey300Color)
                 ),
                 Container(
-                  child: Text(
-                    "완료",
-                    style: TextStyle(color: wGrey300Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("완료", wGrey300Color)
                 ),
               ],
             ),
@@ -175,23 +167,14 @@ class ProgressBar extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 30.w),
-                  child: Text(
-                    "보호자 정보",
-                    style: TextStyle(color: wOrange200Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("보호자 정보", wOrange200Color)
                 ),
                 Container(
                   margin: EdgeInsets.only(right: 20.w),
-                  child: Text(
-                    "부모님 정보",
-                    style: TextStyle(color: wOrange200Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("부모님 정보", wOrange200Color)
                 ),
                 Container(
-                  child: Text(
-                    "완료",
-                    style: TextStyle(color: wGrey300Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("완료", wGrey300Color)
                 ),
               ],
             ),
@@ -271,23 +254,14 @@ class ProgressBar extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 30.w),
-                  child: Text(
-                    "보호자 정보",
-                    style: TextStyle(color: wOrange200Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("보호자 정보", wOrange200Color)
                 ),
                 Container(
                   margin: EdgeInsets.only(right: 20.w),
-                  child: Text(
-                    "부모님 정보",
-                    style: TextStyle(color: wOrange200Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("부모님 정보", wOrange200Color)
                 ),
                 Container(
-                  child: Text(
-                    "완료",
-                    style: TextStyle(color: wOrange200Color, fontSize: 14.sp, fontWeight: FontWeight.w500),
-                  ),
+                  child: Helper2Text("완료", wOrange200Color)
                 ),
               ],
             ),

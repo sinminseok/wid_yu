@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/common-widget/CommonAppbar.dart';
 import 'package:wid_yu/young/account/login/widgets/AutoLoginCheckBox.dart';
 import 'package:wid_yu/young/account/login/widgets/FindInformation.dart';
 import 'package:wid_yu/young/account/login/widgets/LoginButton.dart';
@@ -19,22 +20,7 @@ class YoungLoginView extends StatelessWidget {
     final YoungLoginController controller = YoungLoginController();
 
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: kTextBlackColor,
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_outlined,
-            color: kTextBlackColor,
-          ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        elevation: 0,
-        backgroundColor: Colors.white,
-      ),
+      appBar: CommonAppBar(canBack: true,title: "",color: wWhiteColor,),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(

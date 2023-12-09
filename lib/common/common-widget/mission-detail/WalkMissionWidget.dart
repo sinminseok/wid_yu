@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../model/mission/Mission.dart';
+import '../../text/CustomText.dart';
 import '../../utils/Color.dart';
 
 class WalkMissionWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class WalkMissionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 10.h),
+        margin: EdgeInsets.only(top: 10.h,right: 20.w, left: 20.w),
         width: 335.w,
         height: 150.h,
         decoration: BoxDecoration(
@@ -75,9 +76,10 @@ class WalkMissionWidget extends StatelessWidget {
       ),
       child: Center(
         child: Container(
-          width: 28.w,
-          height: 28.h,
-          child: Image.asset("assets/common/icon/mission/run.png"),
+          margin: EdgeInsets.only(top: 0.h),
+          width: 38.w,
+          height: 38.h,
+          child: Image.asset("assets/images/common/mission/walk.png"),
         ),
       ),
     );
@@ -89,23 +91,16 @@ class WalkMissionWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(left: 20.w),
-          child: Text(
+          child: Title3Text(
             _mission.title,
-            style: TextStyle(
-              color: kTextBlackColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
+              wTextBlackColor
           ),
         ),
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 5.h),
-          child: Text(
+          child: Body2Text(
             _mission.subtitle,
-            style: TextStyle(
-              color: kTextBlackColor,
-              fontSize: 14.sp,
-            ),
+              wGrey800Color
           ),
         )
       ],

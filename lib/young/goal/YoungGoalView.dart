@@ -44,26 +44,6 @@ class _YoungGoalViewState extends State<YoungGoalView> {
     controller.scrollController.dispose();
   }
 
-
-
-  // void controllScroll() {
-  //   _scrollController.addListener(() {
-  //     if (_scrollController.position.pixels ==
-  //         _scrollController.position.maxScrollExtent) {
-  //       // 스크롤이 끝까지 내려갔을 때
-  //       setState(() {
-  //         _isBottomScroll = true;
-  //       });
-  //     } else if (_scrollController.position.pixels ==
-  //         _scrollController.position.minScrollExtent) {
-  //       // 스크롤이 끝까지 올라갔을 때
-  //       setState(() {
-  //         _isBottomScroll = false;
-  //       });
-  //     }
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +79,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
           Container(
             width: 47.w,
             height: 30.h,
-            margin: EdgeInsets.only(top: 10.h, left: 10.w),
+            margin: EdgeInsets.only(top: 10.h, left: 15.w),
             child: Image.asset("assets/common/common/appbar_logo.png"),
           ),
           Row(

@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 
 Widget DoneMissionTimeWidget(String time){
@@ -18,11 +19,13 @@ Widget DoneMissionTimeWidget(String time){
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-              margin: EdgeInsets.only(left: 20.w),
-              child: Text("${time}", style: TextStyle(color: wWhiteColor, fontSize: 16.sp, fontWeight: FontWeight.w600),)),
+              margin: EdgeInsets.only(left: 0.w),
+              child: ChipText("${time}", wWhiteColor)),
           Container(
-            margin: EdgeInsets.only(left: 3.w),
-            child: Icon(Icons.check, color: wWhiteColor,),
+            width: 13.w,
+              height: 9.5.h,
+              margin: EdgeInsets.only(left: 3.w),
+              child: Image.asset("assets/images/icon/check-icon.png")
           )
         ],
       )

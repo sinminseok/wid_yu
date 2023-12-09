@@ -1,11 +1,16 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../utils/Color.dart';
 
 Widget OrangeButton(String title){
   return Container(
+    margin: EdgeInsets.only(
+      left: 20.w,
+      right: 20.w
+    ),
     width: 335.w,
     height: 44.h,
     decoration: BoxDecoration(
@@ -13,6 +18,6 @@ Widget OrangeButton(String title){
         borderRadius: BorderRadius.all(Radius.circular(6)),
         color: wOrangeColor
     ),
-    child: Center(child: Text("$title", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: wWhiteColor),)),
+    child: Center(child: ButtonText("${title}", wWhiteColor),)
   );
 }

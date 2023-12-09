@@ -14,24 +14,29 @@ import '../../utils/Color.dart';
 메인 화면에서 보여줄 미션 시간 위젯
  */
 Widget MissionTimeWidget(List<MissionTime> times, BuildContext context){
-  return times.length == 1 ?_buildOnlyOneTime(times[0]):
+  return times.length == 1 ?Container(
+      margin: EdgeInsets.only(top: 5.h),
+      child: _buildOnlyOneTime(times[0])):
 
   Container(
     margin: EdgeInsets.only(left: 0.w,top: 10.h),
-    width: 250.w,
-    child: GridView.builder(
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: (1 / .2),
+    width: 240.w,
+    child: SingleChildScrollView(
+      child: GridView.builder(
+        primary: false,
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: (1 / 0.27),
 
-        crossAxisCount: 2, // 가로에 2개의 열을 배치합니다
-        mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
-        crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
+          crossAxisCount: 2, // 가로에 2개의 열을 배치합니다
+          mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
+          crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
+        ),
+        itemCount: times.length,
+        itemBuilder: (context, index) {
+          return _buildFilterTime(times[index]);
+        },
       ),
-      itemCount: times.length,
-      itemBuilder: (context, index) {
-        return _buildFilterTime(times[index]);
-      },
     ),
   );
 }
@@ -44,7 +49,8 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
   if(missionTime.timeType == TimeType.DONE){
     return Container(
       width: 250.w,
-      height: 30.h,
+      height: 34.h,
+      margin: EdgeInsets.only(left: 20.w,right: 20.w),
       decoration: BoxDecoration(
           color: wOrangeColor,
           border: Border.all(color: wOrange200Color),
@@ -55,11 +61,13 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 20.w),
+                  margin: EdgeInsets.only(left: 0.w),
                   child: Text("${missionTime.time}", style: TextStyle(color: wWhiteColor, fontSize: 16.sp, fontWeight: FontWeight.w600),)),
               Container(
-                margin: EdgeInsets.only(left: 3.w),
-                child: Icon(Icons.check, color: wWhiteColor,),
+                  width: 13.w,
+                  height: 9.5.h,
+                  margin: EdgeInsets.only(left: 3.w),
+                  child: Image.asset("assets/images/icon/check-icon.png")
               )
             ],
           )
@@ -68,8 +76,9 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
   }
   if(missionTime.timeType == TimeType.NONE){
     return Container(
-      width: 250.w,
+      width: 240.w,
       height: 30.h,
+      margin: EdgeInsets.only(left: 30.w, right: 16.w),
       decoration: BoxDecoration(
           color: wGrey200Color,
           border: Border.all(color: wGrey300Color),
@@ -80,6 +89,7 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
           style: TextStyle(
               decoration: TextDecoration.lineThrough,
               color: wWhiteColor,
+              fontFamily: "chip",
               fontSize: 16.sp,
               fontWeight: FontWeight.w600),
         ),

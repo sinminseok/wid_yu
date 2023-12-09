@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/old/goal/widgets/OldMessageWidget.dart';
+import 'package:wid_yu/old/goal/detail-view/widgets/OldMessageWidget.dart';
 
 import '../../../common/common-widget/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';

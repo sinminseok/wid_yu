@@ -16,11 +16,11 @@ Widget SwitchButton(YoungGoalController controller) {
             Container(
               margin: EdgeInsets.only(bottom: 10.h, top: 20.h),
               child: FlutterSwitch(
-                width: 60.0.w,
-                height: 29.0.h,
+                width: 80.0.w,
+                height: 40.0.h,
                 showOnOff: true,
                 valueFontSize: 13.sp,
-                toggleSize: 20.0,
+                toggleSize: 30.0,
                 value: controller.switchValue.value,
                 onToggle: (value) {
                   controller.updateSwitchValue(value);

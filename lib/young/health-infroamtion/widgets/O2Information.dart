@@ -11,7 +11,6 @@ import 'package:wid_yu/young/health-infroamtion/detail-view/O2DetailView.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../../account/join/phone-vertify/VertifyPhoneView.dart';
 import '../controller/YoungHealthInformationController.dart';
 
 class O2Information extends StatelessWidget {

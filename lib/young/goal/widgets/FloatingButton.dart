@@ -94,7 +94,8 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                     margin: EdgeInsets.only(left: 5.w, top: 5.h),
                     child: CircularPercentIndicator(
                       radius: 34.0,
-                      // 부모 컨테이너의 크기에 맞게 조절
+                      backgroundColor: wGrey200Color,
+                      circularStrokeCap: CircularStrokeCap.round,
                       lineWidth: 5.0,
                       percent: 0.7,
                       center: Container(

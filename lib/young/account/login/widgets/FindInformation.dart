@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../find/find-id/FindIdView.dart';
@@ -11,8 +12,8 @@ import '../../find/find-password/FindPasswordView.dart';
 Widget FindInformation() {
   return Center(
     child: Container(
-      margin: EdgeInsets.only(top: 20.h),
-      width: 190.w,
+      margin: EdgeInsets.only(top: 16.h),
+      width: 205.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -21,13 +22,7 @@ Widget FindInformation() {
               Get.to(() => FindIdView(), transition: Transition.fadeIn);
             },
             child: Container(
-              child: Text(
-                "아이디 찾기",
-                style: TextStyle(
-                    color: wGrey600Color,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp),
-              ),
+              child: ButtonText("아이디 찾기", wGrey600Color),
             ),
           ),
           Container(
@@ -40,13 +35,7 @@ Widget FindInformation() {
               Get.to(() => FindPasswordView(), transition: Transition.fadeIn);
             },
             child: Container(
-              child: Text(
-                "비밀번호 찾기",
-                style: TextStyle(
-                    color: wGrey600Color,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp),
-              ),
+              child: ButtonText("비밀번호 찾기", wGrey600Color),
             ),
           ),
         ],

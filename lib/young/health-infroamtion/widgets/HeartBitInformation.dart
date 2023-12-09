@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -124,7 +125,11 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
                       width: 36.w,
                       height: 36.h,
                       margin: EdgeInsets.only(left: 9.w),
-                      child: Image.asset(commonImagePath + "health-information/heart-icon.png"),
+                      child: Image.asset(
+                        "assets/young/health-information/heart.png",
+                        width: 36.w,
+                        height: 36.h,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 5.h, left: 20.w),

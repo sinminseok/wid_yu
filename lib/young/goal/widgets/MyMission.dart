@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,19 +12,19 @@ import '../../../common/utils/Color.dart';
 class MyMission extends StatelessWidget {
   final YoungGoalController controller;
 
-
   MyMission({required this.controller});
 
   @override
   Widget build(BuildContext context) {
 //EmptyMissionGroupWidget
-    return Obx(() =>
-    controller.switchValue.value?_buildTotalMission():_buildTodayMission());
+    return Obx(() => controller.switchValue.value
+        ? _buildTotalMission()
+        : _buildTodayMission());
   }
 
-  Widget _buildTodayMission(){
+  Widget _buildTodayMission() {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
       },
       child: Container(
@@ -64,7 +63,8 @@ class MyMission extends StatelessWidget {
     List<Widget> missionWidgets = [];
 
     for (int index = 0; index < controller.myMission.length; index++) {
-      missionWidgets.add(TotalMissionWidget(controller, controller.myMission[index], false));
+      missionWidgets.add(
+          TotalMissionWidget(controller, controller.myMission[index], false));
 
       if (index < controller.myMission.length - 1) {
         missionWidgets.add(
@@ -75,10 +75,10 @@ class MyMission extends StatelessWidget {
             color: kLightGreyColor,
           ),
         );
-      }else{
-        missionWidgets.add(
-            Container(height: 15.h,)
-        );
+      } else {
+        missionWidgets.add(Container(
+          height: 15.h,
+        ));
       }
     }
 
@@ -100,14 +100,13 @@ class MyMission extends StatelessWidget {
             color: kLightGreyColor,
           ),
         );
-      }else{
-        missionWidgets.add(
-            Container(height: 15.h,)
-        );
+      } else {
+        missionWidgets.add(Container(
+          height: 15.h,
+        ));
       }
     }
 
     return missionWidgets;
   }
-
 }

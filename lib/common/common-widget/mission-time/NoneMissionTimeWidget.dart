@@ -19,6 +19,7 @@ Widget NoneMissionTimeWidget(String time) {
             decoration: TextDecoration.lineThrough,
             color: wWhiteColor,
             fontSize: 16.sp,
+            fontFamily: "Chip",
             fontWeight: FontWeight.w600),
       ),
     ),

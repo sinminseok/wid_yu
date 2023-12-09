@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../../common/model/user/Old.dart';
 import '../../../common/utils/Color.dart';
-import '../join/finish/JoinFinishView.dart';
 import '../join/finish/JoinSuccessView.dart';
 import '../join/old-information/OtherOldInformationView.dart';
 
@@ -28,8 +28,8 @@ class AccountPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
-                    width: 320.w,
-                    height: 230.h,
+                    width: 335.w,
+                    height: 224.h,
                     child: Column(
                       children: [
                         Row(
@@ -40,26 +40,34 @@ class AccountPopup {
                                 Navigator.pop(context);
                               },
                               child: Container(
-                                margin: EdgeInsets.only(left: 15.w, top: 10.h),
-                                child: Icon(Icons.close),
+                                margin: EdgeInsets.only(left: 18.w, top: 18.h),
+                                child: Icon(Icons.close, color: wGrey600Color,),
                               ),
                             ),
                             Container(),
                           ],
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 30.h),
+                          margin: EdgeInsets.only(top: 28.h),
                           child: Center(
-                            child: Text(
-                              "또 다른 부모님의 계정도\n추가로 생성할까요?",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17.sp),
+                            child: Title3Text(
+                              "또 다른 부모님의 계정도",
+                              wGrey800Color,
                             ),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 50.h),
-                          width: 315,
+                          margin: EdgeInsets.only(top: 5.h),
+                          child: Center(
+                            child: Title3Text(
+                              "추가로 생성할까요?",
+                              wGrey800Color,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 45.h,left: 16.w, right: 16.w),
+                          width: 325,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -73,18 +81,16 @@ class AccountPopup {
                                               (OtherOldInformationView(old))));
                                 },
                                 child: Container(
-                                  width: 156.w,
+                                  width: 146.w,
                                   height: 44.h,
                                   decoration: BoxDecoration(
+                                    border: Border.all(color: wOrange200Color),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5)),
                                       color: wOrangeColor),
                                   child: Center(
-                                    child: Text(
-                                      "추가 생성하기",
-                                      style: TextStyle(
-                                          color: wWhiteColor,
-                                          fontSize: 16.sp),
+                                    child: ButtonText(
+                                      "추가 생성하기", wWhiteColor,
                                     ),
                                   ),
                                 ),
@@ -98,7 +104,7 @@ class AccountPopup {
                                           child: (JoinSuccessView())));
                                 },
                                 child: Container(
-                                  width: 114.w,
+                                  width: 104.w,
                                   height: 44.h,
                                   decoration: BoxDecoration(
                                     border: Border.all(color: wGrey300Color),
@@ -106,11 +112,8 @@ class AccountPopup {
                                           BorderRadius.all(Radius.circular(5)),
                                       color: wGrey200Color),
                                   child: Center(
-                                    child: Text(
-                                      "건너뛰기",
-                                      style: TextStyle(
-                                          color: kTextGreyColor,
-                                          fontSize: 16.sp),
+                                    child: ButtonText(
+                                      "건너뛰기", wGrey600Color,
                                     ),
                                   ),
                                 ),

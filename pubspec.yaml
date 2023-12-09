@@ -60,6 +60,8 @@ dependencies:
   video_editor: ^3.0.0
   chewie: ^1.7.4
   fraction: ^5.0.2
+  flutter_blue: ^0.8.0
+  flutter_svg: ^2.0.5
 
 
 dev_dependencies:
@@ -98,6 +100,12 @@ flutter:
     - assets/common/alarm/
     - assets/common/health-information/graph/
     - assets/common/health-information/grey/
+    - assets/images/common/account/
+    - assets/images/icon/
+    - assets/images/icon/heart-bit.svg
+    - assets/images/user/
+    - assets/images/common/mission/
+    - assets/images/common/goal/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -110,12 +118,50 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: Body1
+      fonts:
+        - asset: assets/fonts/Body1.otf
+    - family: Body2
+      fonts:
+        - asset: assets/fonts/Body2.otf
+    - family: Button
+      fonts:
+        - asset: assets/fonts/Button.otf
+    - family: Chip
+      fonts:
+        - asset: assets/fonts/Chip.otf
+    - family: Helper
+      fonts:
+        - asset: assets/fonts/Helper.otf
+    - family: Helper2
+      fonts:
+        - asset: assets/fonts/Helper2.otf
+    - family: Hint
+      fonts:
+        - asset: assets/fonts/Hint.otf
+    - family: LargeTitle
+      fonts:
+        - asset: assets/fonts/LargeTitle.otf
+    - family: Percentage
+      fonts:
+        - asset: assets/fonts/Percentage.otf
+    - family: SubTitle1
+      fonts:
+        - asset: assets/fonts/SubTitle1.otf
+    - family: SubTitle2
+      fonts:
+        - asset: assets/fonts/SubTitle2.otf
+    - family: Title1
+      fonts:
+        - asset: assets/fonts/Title1.otf
+    - family: Title2
+      fonts:
+        - asset: assets/fonts/Title2.otf
+    - family: Title3
+      fonts:
+        - asset: assets/fonts/Title3.otf
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

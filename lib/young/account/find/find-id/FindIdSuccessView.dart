@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/common-widget/OrangeButton.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/account/find/find-password/FindPasswordSuccessView.dart';
 import 'package:wid_yu/young/account/find/find-password/FindPasswordView.dart';
 
@@ -19,9 +21,10 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: wWhiteColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: wWhiteBackGroundColor,
+        backgroundColor: wWhiteColor,
         leading: Container(
           margin: EdgeInsets.only(
             top: 10.h,
@@ -43,19 +46,30 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildMainText(),
-          _buildFindInformation(),
-          _buildGoFindPassword(),
-          InkWell(
-              onTap: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => YoungLoginView()),
-                    (route) => false);
-              },
-              child: _buildButton()),
+          Column(
+            children: [
+              _buildMainText(),
+              _buildFindInformation(),
+            ],
+          ),
+          Column(
+            children: [
+              _buildGoFindPassword(),
+              InkWell(
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => YoungLoginView()),
+                            (route) => false);
+                  },
+                  child: _buildButton()),
+            ],
+          )
+
+
         ],
       ),
     );
@@ -67,22 +81,15 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
       children: [
         Center(
           child: Container(
-            margin: EdgeInsets.only(top: 30.h),
-            child: Text(
-              "아이디를 찾았어요!",
-              style: TextStyle(
-                  color: kTextBlackColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.sp),
-            ),
+            height: 30.h,
+            margin: EdgeInsets.only(top: 28.h),
+            child: Title2Text("아이디를 찾았어요!", wGrey800Color)
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 5.h),
-          child: Text(
-            "해당 정보로 가입된 아이디가 있어요.",
-            style: TextStyle(color: kTextBlackColor, fontSize: 15.sp),
-          ),
+          height: 21.h,
+          margin: EdgeInsets.only(top: 4.h),
+          child: Body2Text("해당 정보로 가입된 아이디가 있어요.", wGrey600Color)
         ),
       ],
     );
@@ -91,17 +98,17 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
   Widget _buildFindInformation() {
     return Container(
       width: 335.h,
-      height: 290.h,
+      height: 247.h,
       margin: EdgeInsets.only(top: 30.h),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5)),
+        borderRadius: BorderRadius.all(Radius.circular(6)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.black.withOpacity(0.1),
             spreadRadius: 5,
-            blurRadius: 3,
-            offset: Offset(0, 1), // changes position of shadow
+            blurRadius: 12,
+            offset: Offset(1, 1), // changes position of shadow
           ),
         ],
       ),
@@ -109,87 +116,64 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
         children: [
           Container(
             width: 230.w,
-            margin: EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(top: 18.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  child: Text(
-                    "이름",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
+                  child: SubTitle2Text("이름", wGrey600Color)
                 ),
                 Container(
-                  child: Text(
-                    "신민석",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
+                  child: Body1Text("보호자 님", wTextBlackColor)
                 ),
               ],
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 240.w,
+            margin: EdgeInsets.only(left: 15.w, right: 15.w,top: 13.h),
+            width: 308.w,
             height: 0.3,
-            color: kTextGreyColor,
+            color: wGrey300Color,
           ),
           Container(
             width: 230.w,
-            margin: EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(top: 18.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  child: Text(
-                    "연락처",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
+                    child: SubTitle2Text("연락처", wGrey600Color)
                 ),
                 Container(
-                  child: Text(
-                    "01012341234",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
+                    child: Body1Text("보호자 님", wTextBlackColor)
                 ),
               ],
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 240.w,
+            margin: EdgeInsets.only(left: 15.w, right: 15.w,top: 13.h),
+            width: 308.w,
             height: 0.3,
-            color: kTextGreyColor,
+            color: wGrey300Color,
           ),
           Container(
             width: 230.w,
-            margin: EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(top: 18.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  child: Text(
-                    "아이디",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
+                    child: SubTitle2Text("아이디", wGrey600Color)
                 ),
                 Container(
-                  child: Text(
-                    "sin1768",
-                    style: TextStyle(color: kTextBlackColor, fontSize: 16.sp),
-                  ),
+                    child: Title2Text("SIN1762", wTextBlackColor)
                 ),
               ],
             ),
           ),
+
           Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 240.w,
-            height: 0.3,
-            color: kTextGreyColor,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(top: 0.h),
             width: 110.w,
             height: 94.h,
             child: Image.asset("assets/common/user/youngManBox.png"),
@@ -201,7 +185,7 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
 
   Widget _buildGoFindPassword() {
     return Container(
-      margin: EdgeInsets.only(top: 90.h),
+      margin: EdgeInsets.only(top: 0.h),
       child: InkWell(
           onTap: () {
             Navigator.pushAndRemoveUntil(
@@ -210,32 +194,18 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
                     builder: (BuildContext context) => FindPasswordView()),
                 (route) => false);
           },
-          child: Text(
-            "비밀번호 찾기",
-            style:
-                TextStyle(color: kTextGreyColor, fontWeight: FontWeight.bold),
+          child: Container(
+            height: 24.h,
+            margin: EdgeInsets.only(bottom: 20.h),
+            child: ButtonText("비밀번호 찾기", wGrey600Color)
           )),
     );
   }
 
   Widget _buildButton() {
-    return InkWell(
-      child: Container(
-        margin: EdgeInsets.only(top: 20.h),
-        width: 335.w,
-        height: 44.h,
-        decoration: BoxDecoration(
-            color: wOrangeColor,
-            borderRadius: BorderRadius.all(Radius.circular(5))),
-        child: Center(
-          child: Text(
-            "로그인 하러가기",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+    return Container(
+      margin: EdgeInsets.only(bottom: 20.h),
+      child: OrangeButton("로그인하러 가기")
     );
   }
 }

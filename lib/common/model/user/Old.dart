@@ -4,8 +4,8 @@ import '../disease/Disease.dart';
 
 class Old{
   String name;
-  int age;
-  int phoneNumber;
+  String age;
+  String phoneNumber;
   String address;
   bool hasDisease;
   List<Disease>? diseases;

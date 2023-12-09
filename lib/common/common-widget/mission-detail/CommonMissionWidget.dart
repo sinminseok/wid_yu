@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/model/mission/TimeType.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -21,7 +22,7 @@ class CommonMissionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
+        margin: EdgeInsets.only(top: 10.h, bottom: 10.h,right: 20.w,left: 20.w),
         width: 335.w,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -41,7 +42,7 @@ class CommonMissionWidget extends StatelessWidget {
 
   Widget _buildTime(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: 40.w, top: 10.h, bottom: 20.h),
+        margin: EdgeInsets.only(left: 50.w, top: 10.h, bottom: 20.h),
         child: MissionTimeWidget(times, context));
   }
 
@@ -100,23 +101,16 @@ class CommonMissionWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(left: 20.w),
-          child: Text(
+          child: Title3Text(
             _mission.title,
-            style: TextStyle(
-              color: kTextBlackColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-            ),
+              kTextBlackColor
           ),
         ),
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 5.h),
-          child: Text(
+          child: Body2Text(
             _mission.subtitle,
-            style: TextStyle(
-              color: kTextBlackColor,
-              fontSize: 14.sp,
-            ),
+           wGrey800Color
           ),
         )
       ],

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../Color.dart';
 
@@ -8,6 +10,7 @@ class TextFormWidget extends StatelessWidget {
   final String title;
   final String hintText;
   final bool isIntType;
+  final TextInputFormatter? formatter;
   TextEditingController textEditingController = TextEditingController();
 
   TextFormWidget(
@@ -15,6 +18,7 @@ class TextFormWidget extends StatelessWidget {
         required this.hintText,
       required this.textEditingController,
       required this.isIntType,
+        required this.formatter
       });
 
   @override
@@ -26,9 +30,9 @@ class TextFormWidget extends StatelessWidget {
         children: [
           Container(
 
-            child: Text(
+            child: SubTitle2Text(
               title,
-              style: TextStyle(color: Colors.black),
+              wGrey700Color
             ),
           ),
           Container(
@@ -42,6 +46,7 @@ class TextFormWidget extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(top: 5.h,left: 10.w),
               child: TextFormField(
+                inputFormatters: formatter == null?null:[formatter!],
                 keyboardType: isIntType?TextInputType.number:TextInputType.name,
                 controller: textEditingController,
                 style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
@@ -49,7 +54,8 @@ class TextFormWidget extends StatelessWidget {
                 cursorColor: kTextBlackColor,
                 decoration: InputDecoration(
                   hintText: hintText,
-                  hintStyle: TextStyle(fontSize: 13.sp,color: Colors.grey.shade500),
+                  contentPadding: EdgeInsets.only(top: 5.h),
+                  hintStyle: TextStyle(fontSize: 13.sp,color: wGrey300Color, fontFamily: "hint"),
                   border: InputBorder.none,
                   isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                 ),

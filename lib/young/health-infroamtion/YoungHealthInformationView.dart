@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/young/health-infroamtion/controller/YoungHealthInformationController.dart';
 import 'package:wid_yu/young/health-infroamtion/widgets/CurrentPosition.dart';
@@ -19,12 +20,18 @@ class _YoungHealthInformationView extends State<YoungHealthInformationView> {
   YoungHealthInformationController controller =
       YoungHealthInformationController();
 
+  FlutterBlue flutterBlue = FlutterBlue.instance;
+  BluetoothDevice? targetDevice;
+  BluetoothCharacteristic? targetCharacteristic;
+
   @override
   void initState() {
     // TODO: implement initState
     controller.initPickUser();
     super.initState();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +50,7 @@ class _YoungHealthInformationView extends State<YoungHealthInformationView> {
               children: [
                 SideBarUsers(
                   controller: controller,
-
                 ),
-
                 Container(
                     width: 290.w,
                     margin: EdgeInsets.only(top: 10.h),

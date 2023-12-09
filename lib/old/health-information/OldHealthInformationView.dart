@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/old/health-information/controller/OldHealthInformationController.dart';
@@ -22,6 +23,15 @@ class OldHealthInformationView extends StatefulWidget {
 
 class _OldHealthInformationViewState extends State<OldHealthInformationView> {
   OldHealthInformationController controller = OldHealthInformationController();
+  FlutterBlue flutterBlue = FlutterBlue.instance;
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +43,7 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+
             Center(
               child: Container(
                   width: 341.w,

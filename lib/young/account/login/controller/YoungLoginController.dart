@@ -5,9 +5,11 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../../../common/model/account/AwsServices.dart';
 
 class YoungLoginController extends GetxController {
-  RxBool isChecked = false.obs;
-  bool isWrongInformation = false;
-  bool obscurePassword = true;
+  RxBool _isChecked = false.obs;
+  RxBool _isWrongInformation = false.obs;
+  RxBool _obscurePassword = false.obs;
+
+
   TextEditingController idController = TextEditingController();
   TextEditingController passworController = TextEditingController();
 
@@ -19,7 +21,7 @@ class YoungLoginController extends GetxController {
   @override
   void onClose() {
     // TODO: implement onClose
-    isChecked.close();
+    _isChecked.close();
     super.onClose();
   }
 
@@ -27,21 +29,28 @@ class YoungLoginController extends GetxController {
   login(String email, String password) => AwsServices().login(email, password);
 
   void validateInforamtion() {
-    isWrongInformation = !isWrongInformation;
+    _isWrongInformation.value = !_isWrongInformation.value;
   }
 
   void changeObscurePassword() {
-    obscurePassword = !obscurePassword;
+    _obscurePassword.value = !_obscurePassword.value;
   }
 
   void updateIsCheck(bool? value) {
     if (value != null) {
-      isChecked.value = value;
+      _isChecked.value = value;
       update();
     }
   }
 
+
+  bool get isChecked => _isChecked.value;
+
   void test() {
     print(idController.text);
   }
+
+  bool get isWrongInformation => _isWrongInformation.value;
+
+  bool get obscurePassword => _obscurePassword.value;
 }

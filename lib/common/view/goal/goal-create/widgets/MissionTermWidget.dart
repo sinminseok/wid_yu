@@ -3,267 +3,231 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 
 import '../../../../utils/Color.dart';
 
-class MissionTermWidget extends StatefulWidget {
-  bool monday;
-  bool tuesday;
-  bool wednesday;
-  bool thursday;
-  bool friday;
-  bool saturday;
-  bool sunday;
+class MissionTerm extends StatelessWidget {
+  GoalCreateController controller;
 
 
-  MissionTermWidget(this.monday, this.tuesday, this.wednesday, this.thursday,
-      this.friday, this.saturday, this.sunday);
-
-  @override
-  _MissionTermWidgetState createState() => _MissionTermWidgetState();
-}
-
-class _MissionTermWidgetState extends State<MissionTermWidget> {
+  MissionTerm(this.controller);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(top: 30.h, left: 15.w),
+    return Obx(() => Container(
+        margin: EdgeInsets.only(top: 30.h, left: 20.w, right: 15.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Text(
-                "복용주기",
-                style: TextStyle(
-                    color: wGrey700Color,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 10.h),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.monday = !widget.monday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.monday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("월",
-                            style: TextStyle(
-                                color: widget.monday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.tuesday = !widget.tuesday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.tuesday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("화",
-                            style: TextStyle(
-                                color:
-                                widget.tuesday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.wednesday = !widget.wednesday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.wednesday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("수",
-                            style: TextStyle(
-                                color:
-                                widget.wednesday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.thursday = !widget.thursday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.thursday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("목",
-                            style: TextStyle(
-                                color:
-                                widget.thursday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.friday = !widget.friday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.friday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("금",
-                            style: TextStyle(
-                                color: widget.friday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.saturday = !widget.saturday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.saturday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("토",
-                            style: TextStyle(
-                                color:
-                                widget.saturday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.sunday = !widget.sunday;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 40.w,
-                      height: 54.h,
-                      decoration: widget.sunday
-                          ? BoxDecoration(
-                          color: wOrangeColor,
-                          border: Border.all(color: wOrange200Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5)))
-                          : BoxDecoration(
-                          color: wGrey100Color,
-                          border: Border.all(color: wGrey300Color),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))),
-                      child: Center(
-                        child: Text("일",
-                            style: TextStyle(
-                                color: widget.sunday ? wWhiteColor : wGrey500Color,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.sp)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            _buildText(),
+            _buildSelectDay(),
           ],
-        ));
+        )));
+  }
+
+  Widget _buildText(){
+    return Container(
+      child: SubTitle2Text(
+        "복용주기",
+          wGrey700Color
+      ),
+    );
+  }
+
+  Widget _buildSelectDay(){
+    return  Container(
+      margin: EdgeInsets.only(top: 10.h),
+      child: Row(
+        children: [
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.monday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectMonday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("월", controller.monday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.tuesday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectTuesday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("화", controller.tuesday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.wednesday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectWednesday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("수", controller.wednesday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.thursday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectTuesday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("목", controller.thursday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.friday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectFriday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("금", controller.friday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.saturday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectSaturday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("토", controller.saturday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 8.w),
+            width: 38.w,
+            height: 54.h,
+            decoration: controller.sunday
+                ? BoxDecoration(
+                color: wOrangeColor,
+                border: Border.all(color: wOrange200Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5)))
+                : BoxDecoration(
+                color: wGrey100Color,
+                border: Border.all(color: wGrey300Color),
+                borderRadius:
+                BorderRadius.all(Radius.circular(5))),
+            child: InkWell(
+              onTap: (){
+                controller.selectSunday();
+                controller.validateCanSave();
+              },
+              child: Center(
+                child: ChipText("일", controller.sunday ? wWhiteColor : wGrey500Color,),
+              ),
+            ),
+
+          ),
+
+        ],
+      ),
+    );
   }
 }
 

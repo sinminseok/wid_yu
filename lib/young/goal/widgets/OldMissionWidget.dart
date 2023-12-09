@@ -71,6 +71,8 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
               child: Container(
                 child: CircularPercentIndicator(
                   radius: 34.0,
+                  backgroundColor: wGrey200Color,
+                  circularStrokeCap: CircularStrokeCap.round,
                   // 부모 컨테이너의 크기에 맞게 조절
                   lineWidth: 6.0,
                   percent: 0.7,

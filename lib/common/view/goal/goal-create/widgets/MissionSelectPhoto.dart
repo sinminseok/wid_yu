@@ -2,51 +2,49 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:get/get.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 
 import '../../../../utils/Color.dart';
 
-class MissionSelectPhoto extends StatefulWidget {
-  bool _switchValue;
+class MissionSelectPhoto extends StatelessWidget {
+
+  GoalCreateController controller;
 
 
-  MissionSelectPhoto(this._switchValue);
+  MissionSelectPhoto(this.controller);
 
-  @override
-  _MissionSelectPhotoState createState() => _MissionSelectPhotoState();
-}
-
-class _MissionSelectPhotoState extends State<MissionSelectPhoto> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Obx(() => controller.drug?Container(
       margin: EdgeInsets.only(top: 25.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             margin: EdgeInsets.only(left: 20.w),
-            child: Text("약복용 사진찍기", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: wTextBlackColor),),
+            child: SubTitle2Text("약복용 사진찍기", wTextBlackColor),
           ),
           _buildSwitch()
         ],
       ),
-    );
+    ):Container());
   }
 
   Widget _buildSwitch() {
     return Container(
       margin: EdgeInsets.only(right: 25.w, top: 10.h),
       child: FlutterSwitch(
-        width: 60.0.w,
-        height: 35.0.h,
+        width: 70.0.w,
+        height: 45.0.h,
         showOnOff: true,
         valueFontSize: 13.sp,
-        toggleSize: 20.0,
-        value: widget._switchValue,
+        toggleSize: 30.0,
+        borderRadius: 40,
+        value: controller.switchValue,
         onToggle: (value) {
-          setState(() {
-            widget._switchValue = value;
-          });
+          controller.clickSwitch(value);
         },
         activeColor: wTextBlackColor,
         inactiveColor: wOrangeColor,

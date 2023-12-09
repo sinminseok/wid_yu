@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
 import '../../../common/common-widget/mission-detail/DrugMissionWidget.dart';
@@ -41,6 +43,7 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
       appBar: _buildAppBar(),
       backgroundColor: wPurpleBackGroundColor,
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -48,7 +51,7 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
             _buildMissionDate(),
             _buildTodayMission(),
             _buildMonthSuccess(),
-            _buildCallendar()
+            isOpenCalendar?_buildCallendar():Container()
           ],
         ),
       ),
@@ -66,18 +69,15 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
   }
   Widget _buildMonthSuccess() {
     return Container(
-      margin: EdgeInsets.only(bottom: 20.h),
+      margin: EdgeInsets.only(bottom: 20.h, left: 20.w,right: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(left: 20.w, top: 35.h),
-            child: Text(
+            margin: EdgeInsets.only(left: 0.w, top: 35.h),
+            child: SubTitle2Text(
               "이번달 달성률",
-              style: TextStyle(
-                  color: wGrey700Color,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600),
+                wGrey700Color
             ),
           ),
           Center(
@@ -93,47 +93,44 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 15.h, left: 25.w),
+                    margin: EdgeInsets.only(top: 15.h, left: 20.w),
                     child: Column(
                       children: [
                         Container(
-                          child: Text(
+                          height: 24.h,
+                          child: Body1Text(
                             "80%",
-                            style:
-                            TextStyle(color: wGrey500Color, fontSize: 16.sp),
+                              wGrey500Color
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 8.h),
-                          child: Text(
+                          height: 21.h,
+                          margin: EdgeInsets.only(top: 6.h),
+                          child: Body2Text(
                             "저번달 평균",
-                            style:
-                            TextStyle(color: wGrey500Color, fontSize: 14.sp),
+                        wGrey500Color
                           ),
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 13.h, right: 25.w),
+                    margin: EdgeInsets.only(top: 13.h, right: 35.w),
                     child: Column(
                       children: [
                         Container(
-                          child: Text(
+                          height: 30.h,
+                          child: PercentageText(
                             "13%",
-                            style: TextStyle(
-                                color: wPurpleColor,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold),
+                              wPurpleColor
                           ),
                         ),
                         Container(
-                          child: Text(
+                          height: 21.h,
+                          margin: EdgeInsets.only(top: 3.h),
+                          child: SubTitle2Text(
                             "이번달 평균",
-                            style: TextStyle(
-                                color: wGrey600Color,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold),
+                              wGrey600Color
                           ),
                         ),
                       ],
@@ -171,7 +168,7 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
     int totalDaysInMonth = DateTime(year, month + 1, 0).day;
 
     return Container(
-        margin: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 30.h),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 30.h),
         width: 335.w,
         decoration: BoxDecoration(
             border: Border.all(color: wGrey100Color, width: 1.w),
@@ -180,27 +177,24 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 15.h),
-              child: Text(
+              margin: EdgeInsets.only(top: 17.h),
+              child: SubTitle2Text(
                 "${month}월",
-                style: TextStyle(
-                    color: kTextBlackColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp),
+                  kTextBlackColor
               ),
             ),
             // 요일 출력
             Container(
-              margin: EdgeInsets.only(top: 15.h),
+              margin: EdgeInsets.only(top: 15.h,right: 20.w, left: 20.w),
               width: 305.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: days.asMap().entries.map((entry) {
                   final day = entry.value;
                   return Container(
-                    child: Text(
+                    child: Body2Text(
                       day,
-                      style: TextStyle(color: kTextBlackColor),
+                  wGrey600Color
                     ),
                   );
                 }).toList(),
@@ -212,7 +206,8 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
               height: 420.h,
               margin: EdgeInsets.only(top: 10.h),
               child: GridView.builder(
-
+                primary: false,
+                shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 1 / 1.5,
                   crossAxisCount: 7, // 7 columns for 7 days in a week
@@ -225,22 +220,20 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
                   return Container(
                     child: Column(
                       children: [
-                        Text(
+                        SubTitle2Text(
                           "${index + 1}", // Display day of the month
-                          style: TextStyle(
-                            color: isToday ? wOrangeColor : kTextBlackColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                            wTextBlackColor
                         ),
                         Container(
                           margin: EdgeInsets.only(top: 5.h),
                           child: CircularPercentIndicator(
                             radius: 14.0.sp,
-                            lineWidth: 6.0.sp,
+                            lineWidth: 5.5.sp,
+                            backgroundColor: wGrey200Color,
+                            circularStrokeCap: CircularStrokeCap.round,
                             percent: 0.7, // Set your percentage here
 
-                            progressColor:
-                            isToday ? wOrangeColor : wPurpleColor,
+                            progressColor:wPurpleColor
                           ),
                         ),
                       ],
@@ -257,27 +250,35 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
     return AppBar(
       elevation: 0,
       backgroundColor: wPurpleBackGroundColor,
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: Colors.black87,
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-      title: Center(
-        child: Container(
-          margin: EdgeInsets.only(right: 45.w),
-          child: Text(
-            "보호자",
-            style: TextStyle(
-              color: kTextBlackColor,
-              fontSize: 18.sp,
+      automaticallyImplyLeading: false,
+      title: Container(
+        width: 360.w,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Container(
+                  width: 11.w,
+                  height: 19.h,
+                  child: Image.asset("assets/images/icon/back-icon.png",   width: 11.w,
+                    height: 19.h,fit: BoxFit.contain,)
+              ),
             ),
-          ),
+            Center(
+                child: Container(
+                    margin: EdgeInsets.only(top: 10.h, right: 0.w),
+                    child: Title3Text(
+                      "보호자님",
+                      wGrey800Color
+                    ))),
+            Container()
+          ],
         ),
       ),
+
     );
   }
 
@@ -287,37 +288,37 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            margin: EdgeInsets.only(left: 30.w),
-            width: 190.w,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "보호자 님,",
-                  style: TextStyle(
-                    color: kTextBlackColor,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w900,
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20.w,top: 20.h),
+                child: Container(
+                  height: 72.h,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Title2Text(
+                        "보호자 님,",
+                        wGrey800Color
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 3.h),
+                        child: Title2Text(
+                          "오늘 75% 달성!",
+                            wGrey800Color
+                        ),
+                      ),
+
+                    ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 3.h),
-                  child: Text(
-                    "오늘 75% 달성!",
-                    style: TextStyle(
-                      color: wTextBlackColor,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 4.h),
-                  child: Text("조금만 더 힘내요!", style: TextStyle(color: wGrey500Color, fontSize: 18.sp, fontWeight: FontWeight.w600),),
-                )
-              ],
-            ),
+              ),
+              Container(
+
+                margin: EdgeInsets.only(left: 20.h),
+                child: Title3Text("조금만 더 힘내요!", wGrey500Color),
+              )
+            ],
           ),
           _buildTrophyImage(),
         ],
@@ -327,14 +328,17 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
 
   Widget _buildTrophyImage() {
     return Container(
-      margin: EdgeInsets.only(right: 10.w, top: 10.h),
+      margin: EdgeInsets.only(right: 20.w, top: 30.h),
       width: 120.0.w,
       height: 120.0.h,
       child: CircularPercentIndicator(
+        backgroundColor: wGrey200Color,
         radius: 60.0,
         lineWidth: 10.0,
         percent: 0.7,
         center: _buildCircularProgressCenter(),
+        circularStrokeCap: CircularStrokeCap.round,
+
         progressColor: wOrangeColor,
       ),
     );
@@ -354,17 +358,14 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
   Widget _buildMissionDate() {
     return Container(
       margin: EdgeInsets.only(left: 20.w, top: 20.h, bottom: 10.h),
-      width: 140.w,
+      width: 130.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("2023.09.23",
-              style: TextStyle(
-                  color: kTextBlackColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.sp)),
-          Text("수요일",
-              style: TextStyle(color: kTextBlackColor, fontSize: 15.sp)),
+          SubTitle2Text("2023.09.23",
+              wGrey800Color),
+          SubTitle2Text("수요일",
+              wGrey800Color),
         ],
       ),
     );

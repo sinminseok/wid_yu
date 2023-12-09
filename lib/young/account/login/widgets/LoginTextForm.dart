@@ -14,28 +14,29 @@ class LoginTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Obx(() => Column(
       children: [
         Container(
           width: 335.w,
-          margin: EdgeInsets.only(top: 58.h),
+
+          margin: EdgeInsets.only(top: 58.h,left: 20.w, right: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 335.w,
                 height: 46.h,
-                margin: EdgeInsets.only(top: 5.h),
+                margin: EdgeInsets.only(top: 0.h),
                 decoration: BoxDecoration(
                   border: Border.all(
                       color: controller.isWrongInformation
                           ? wErrorColor
                           : wBorderGrey300Color,
                       width: 1),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: BorderRadius.all(Radius.circular(6)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.only(left: 14.w,top: 2.h),
                   // 힌트 텍스트와 입력란 간의 간격 조정
                   child: TextFormField(
                     controller: controller.idController,
@@ -47,7 +48,7 @@ class LoginTextForm extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "아이디",
                       hintStyle:
-                          TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                      TextStyle(color: wGrey300Color, fontSize: 14.sp, fontFamily: "hint"),
                       border: InputBorder.none,
                       isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                     ),
@@ -56,19 +57,19 @@ class LoginTextForm extends StatelessWidget {
               ),
               controller.isWrongInformation
                   ? Container(
-                      margin: EdgeInsets.only(top: 5.h, left: 5.w),
-                      child: Text(
-                        "아이디를 다시 입력해 보세요.",
-                        style: TextStyle(color: wErrorColor, fontSize: 14.sp),
-                      ),
-                    )
+                margin: EdgeInsets.only(top: 4.h, left: 0.w),
+                child: Text(
+                  "아이디를 다시 입력해 보세요.",
+                  style: TextStyle(color: wErrorColor, fontSize: 14.sp),
+                ),
+              )
                   : Container()
             ],
           ),
         ),
         Container(
           width: 335.w,
-          margin: EdgeInsets.only(top: 10.h),
+          margin: EdgeInsets.only(top: 20.h,left: 20.w, right: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -85,7 +86,7 @@ class LoginTextForm extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.only(left: 14.w,top: 0.h),
                   // 힌트 텍스트와 입력란 간의 간격 조정
                   child: Stack(
                     alignment: Alignment.centerRight,
@@ -101,7 +102,7 @@ class LoginTextForm extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: "비밀번호",
                           hintStyle:
-                              TextStyle(color: wGrey300Color, fontSize: 14.sp),
+                          TextStyle(color: wGrey300Color, fontSize: 14.sp, fontFamily: "hint"),
                           border: InputBorder.none,
                           isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                         ),
@@ -123,17 +124,17 @@ class LoginTextForm extends StatelessWidget {
               ),
               controller.isWrongInformation
                   ? Container(
-                      margin: EdgeInsets.only(top: 0.h, left: 5.w),
-                      child: Text(
-                        "비밀번호를 다시 입력해 보세요.",
-                        style: TextStyle(color: wErrorColor, fontSize: 14.sp),
-                      ),
-                    )
+                margin: EdgeInsets.only(top: 4.h, left: 0.w),
+                child: Text(
+                  "비밀번호를 다시 입력해 보세요.",
+                  style: TextStyle(color: wErrorColor, fontSize: 14.sp),
+                ),
+              )
                   : Container()
             ],
           ),
         ),
       ],
-    );
+    ));
   }
 }

@@ -45,11 +45,11 @@ class _OldFrameView extends State<OldFrameView> {
             });
           },
           [
-            commonImagePath + "icon/frame/menu_icon.png",
-            commonImagePath + "icon/frame/album_icon.png",
-            commonImagePath + "icon/frame/health_icon.png",
+        "assets/images/icon/menu-icon.png",
+           "assets/images/icon/album-icon.png",
+          "assets/images/icon/health-icon.png"
           ],
-          ["목표", "앨범 위듀", "건강정보"],
+          ["목록", "앨범 위듀", "건강정보"],
         ),
         body: admin_screens[admin_selectedItem]);
   }

@@ -4,7 +4,7 @@ import 'package:wid_yu/common/model/user/TestHealth.dart';
 import 'package:wid_yu/common/model/user/TestUser.dart';
 
 class YoungHealthInformationController extends GetxController{
-  List<TestUser> users = [TestUser("부모님1", TestHealth(50, 60, 70), true),TestUser("부모님2", TestHealth(10, 20, 100), false),];
+  List<TestUser> users = [TestUser("부모님1", TestHealth(50, 60, 70), true)];
 
   Rx<TestUser?> currentUser = Rx<TestUser?>(null);
 

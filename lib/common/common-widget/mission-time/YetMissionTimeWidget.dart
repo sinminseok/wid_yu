@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../utils/Color.dart';
 
@@ -13,12 +14,9 @@ Widget YetMissionTimeWidget(String time){
         border: Border.all(color: wGrey500Color),
         borderRadius: BorderRadius.all(Radius.circular(50))),
     child: Center(
-      child: Text(
+      child: ChipText(
         "${time}",
-        style: TextStyle(
-            color: wGrey500Color,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600),
+          wGrey500Color
       ),
     ),
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/utils/Color.dart';
 
 class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool canBack;
@@ -12,7 +13,7 @@ class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: wWhiteColor,
       elevation: 0,
       automaticallyImplyLeading: false, // 이전 화면으로 자동으로 이동하지 않도록 설정
       leading: PreferredSize(

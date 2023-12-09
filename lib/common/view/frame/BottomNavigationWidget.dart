@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../utils/Color.dart';
 
@@ -10,10 +11,8 @@ class BottomNavigationWidget extends StatefulWidget {
   final List<String> iconImagePaths;
   final List<String> titleList;
 
-
   BottomNavigationWidget(this.defaultSelectedIndex, this.onChange,
       this.iconImagePaths, this.titleList);
-
 
   @override
   _BottomNavigationWidget createState() => _BottomNavigationWidget();
@@ -46,10 +45,11 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
       decoration: BoxDecoration(
         color: wWhiteColor,
         border: Border(
-          top: BorderSide(width: 0.2, color: Colors.grey),
+          top: BorderSide(width: 1, color: wGrey200Color),
         ),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: _navBarItemList,
       ),
     );
@@ -64,27 +64,27 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
           });
         },
         child: Container(
-          height: 70,
+
+          height: 80.h,
+          width: 120.w,
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 14.h),
-                width: MediaQuery.of(context).size.width / _iconList.length,
-                child: Container(
-                  width: 18.w,
-                  height: 18.h,
-                  child: Image.asset(
-                    iconPath,
-                    color: index == _selectedIndex ? Colors.black : Colors.grey,
-                  ),
+                width: 24.w,
+                height: 21.h,
+                margin: EdgeInsets.only(top: 17.5.h),
+                child: Image.asset(
+                  iconPath,
+                  color:
+                      index == _selectedIndex ? wGrey800Color : wGrey400Color,
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 7.h),
                 child: Center(
-                  child: Text(
+                  child: Helper2Text(
                     title,
-                    style: TextStyle(color: kTextBlackColor, fontSize: 13.sp),
+                    index == _selectedIndex ? wGrey800Color : wGrey400Color,
                   ),
                 ),
               )

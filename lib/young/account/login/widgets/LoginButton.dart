@@ -16,15 +16,16 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Get.to(() => YoungFrameView(0), transition: Transition.fadeIn);
-      },
-      child: Container(
-          margin: EdgeInsets.only(top: 0.h),
-          child: OrangeButton(
-            '로그인',
-          )),
+    return Container(
+          margin: EdgeInsets.only(top: 60.h),
+          child: InkWell(
+            onTap: (){
+              Get.to(() => YoungFrameView(0), transition: Transition.fadeIn);
+            },
+            child: OrangeButton(
+              '로그인',
+            ),
+          )
     );
   }
 }
