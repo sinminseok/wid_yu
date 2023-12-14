@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/goal/controller/YoungGoalController.dart';
 
 import '../../../common/utils/Color.dart';
@@ -23,17 +24,21 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Container(
-            margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
-            child: _buildExtendButton()),
-        widget.controller.isBottomScroll == false
-            ? Container(child: _buildFloatingOldInformation())
-            : Container()
-      ],
-    ));
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              width: 105.w,
+                height: 43.h,
+                margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
+                child: _buildExtendButton()),
+            widget.controller.olds.value.length == 0
+                ? Container()
+                : widget.controller.isBottomScroll == false
+                    ? Container(child: _buildFloatingOldInformation())
+                    : Container()
+          ],
+        ));
   }
 
   FloatingActionButton _buildExtendButton() {
@@ -41,15 +46,20 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
       onPressed: () {
         Get.to(() => GoalCreateView(false), transition: Transition.fadeIn);
       },
-      label: Container(
-        child: Text(
-          " 목표생성",
-          style: TextStyle(fontSize: 16),
-        ),
-      ),
-      icon: const Icon(
-        Icons.add,
-        size: 20,
+      label: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: Icon(Icons.add,size: 17.sp,),
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 0.w),
+            child: ButtonText(
+              " 목표생성",
+              wWhiteColor
+            ),
+          ),
+        ],
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       foregroundColor: Colors.white,
@@ -65,7 +75,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
       child: Container(
         width: 360.w,
         height: 120.h,
-        margin: EdgeInsets.only(top: 20.h, bottom: 0.h),
+        margin: EdgeInsets.only(top:20.h, bottom: 0.h),
         decoration: BoxDecoration(
           color: wWhiteColor,
           borderRadius: BorderRadius.only(
@@ -103,7 +113,8 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                         width: 50.w,
                         decoration: BoxDecoration(
                             color: wGrey100Color, shape: BoxShape.circle),
-                        child: Image.asset("assets/common/user/old-man-circle.png"),
+                        child: Image.asset(
+                            "assets/common/user/old-man-circle.png"),
                       ),
                       progressColor: wOrangeColor,
                     ),

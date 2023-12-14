@@ -171,7 +171,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
     List<Widget> missionWidgets = [];
 
     for (int index = 0; index < items.length; index++) {
-      missionWidgets.add(MissionWidget(items[index], false));
+      missionWidgets.add(MissionWidget(items[index]));
 
       if (index < items.length - 1) {
         missionWidgets.add(

@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/album/controller/YoungAlbumController.dart';
 
 import '../../../common/utils/Color.dart';
@@ -27,35 +28,47 @@ class YoungAlbumFloatingButton extends StatefulWidget {
 class _YoungAlbumFloatingButtonState extends State<YoungAlbumFloatingButton> {
   @override
   Widget build(BuildContext context) {
-    return Obx(() => widget.controller.isPhoto?_buildAddPhotoButton():_buildVideoPhotoButton());
+    return Obx(() => widget.controller.isPhoto?Container(
+        width: 124.w,
+        height: 45.h,
+        child: _buildAddPhotoButton()):Container(
+        width: 128.w,
+        height: 45.h,
+        child: _buildVideoPhotoButton()));
   }
 
   FloatingActionButton _buildAddPhotoButton() {
     return FloatingActionButton.extended(
-      onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.fade,
-            //AddPhotoView
-            child: AddPhotoView(),
-          ),
-        );
-      },
-      label: Container(
-        child: Text(
-          "사진 올리기",
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+
+        onPressed: () {
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.fade,
+              //AddPhotoView
+              child: AddPhotoView(),
+            ),
+          );
+        },
+        label: Row(
+          children: [
+            Icon(
+              Icons.add,
+              size: 20,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 2.w),
+              child: ButtonText(
+                "사진 올리기",
+                wWhiteColor
+              ),
+            ),
+          ],
         ),
-      ),
-      icon: const Icon(
-        Icons.add,
-        size: 20,
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      foregroundColor: Colors.white,
-      backgroundColor: wPurpleColor,
-    );
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        foregroundColor: Colors.white,
+        backgroundColor: wPurpleColor,
+      );
   }
 
   FloatingActionButton _buildVideoPhotoButton() {
@@ -71,16 +84,21 @@ class _YoungAlbumFloatingButtonState extends State<YoungAlbumFloatingButton> {
           ),
         );
       },
-      label: Container(
-        child: Text(
-          "비디오 올리기",
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-        ),
+      label: Row(
+        children: [
+          Icon(
+            Icons.add,
+            size: 20,
+          ),
+          Container(
+            child: ButtonText(
+              "동영상 올리기",
+              wWhiteColor
+            ),
+          ),
+        ],
       ),
-      icon: const Icon(
-        Icons.add,
-        size: 20,
-      ),
+
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       foregroundColor: Colors.white,
       backgroundColor: wPurpleColor,

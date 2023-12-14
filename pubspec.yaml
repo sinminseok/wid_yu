@@ -35,7 +35,7 @@ dependencies:
   get: ^4.6.6
   flutter_screenutil: ^5.6.0
   percent_indicator: ^4.2.3
-  kakao_flutter_sdk: ^1.5.0
+  #kakao_flutter_sdk: ^1.5.0
   flutter_naver_login: ^1.8.0
   page_transition: ^2.0.5
   pin_code_fields: ^8.0.1
@@ -62,7 +62,9 @@ dependencies:
   fraction: ^5.0.2
   flutter_blue: ^0.8.0
   flutter_svg: ^2.0.5
+  remedi_kopo: ^0.0.2
 
+  webview_flutter: ^2.8.0
 
 dev_dependencies:
   flutter_test:
@@ -144,6 +146,9 @@ flutter:
       fonts:
         - asset: assets/fonts/LargeTitle.otf
     - family: Percentage
+      fonts:
+        - asset: assets/fonts/Percentage.otf
+    - family: Pretendard
       fonts:
         - asset: assets/fonts/Percentage.otf
     - family: SubTitle1

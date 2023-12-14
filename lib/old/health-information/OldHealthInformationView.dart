@@ -78,36 +78,34 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-        backgroundColor: wYellow100Color,
+        backgroundColor: wOrangeBackGroundColor,
         automaticallyImplyLeading: false,
         elevation: 0,
-        title: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 47.w,
-                  height: 30.h,
-                  margin: EdgeInsets.only(top: 10.h, left: 10.w),
-                  child: Image.asset("assets/common/common/appbar_logo.png"),
+        title: Container(
+          width: 360.w,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 47.w,
+                height: 21.62.h,
+                margin: EdgeInsets.only(top: 10.h, left: 10.w),
+                child: Image.asset("assets/common/common/appbar_logo.png"),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 10.w, top: 10.h),
+                width: 30.w,
+                height: 30.h,
+                child: InkWell(
+                  onTap: (){
+
+                  },
+                  child: Image.asset(
+                      "assets/common/icon/family-information-icon.png"),
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                        onTap: () {},
-                        child: Container(
-                          margin: EdgeInsets.only(right: 10.w, top: 10.h),
-                          width: 30.w,
-                          height: 30.h,
-                          child: Image.asset(
-                              "assets/common/icon/family-information-icon.png"),
-                        )),
-                  ],
-                )
-              ],
-            ),
-          ],
+              )
+            ],
+          ),
         ));
   }
 }

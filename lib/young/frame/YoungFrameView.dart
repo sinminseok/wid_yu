@@ -33,7 +33,7 @@ class _FrameView extends State<YoungFrameView> {
   final admin_screens = [
     YoungGoalView(),
     YoungAlbumView(),
-    YoungHealthInformationView(),
+    BleYoungHealthInformationView(),
     //YoungHealthInformationView()
   ];
 

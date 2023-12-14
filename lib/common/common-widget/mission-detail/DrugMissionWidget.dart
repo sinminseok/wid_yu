@@ -27,10 +27,9 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
   List<Widget> datas = [
     _finishDrugWidget(),
     _finishDrugWidget(),
-    _doNotDrugWidget(),
-    _doNotDrugWidget(),
-    _willDrugWidget(),
-    _willDrugWidget()
+    _finishDrugWidget(),
+    _finishDrugWidget(),
+    _finishDrugWidget(),
   ];
 
   @override
@@ -153,13 +152,17 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
     return Container(
         width: 335.w,
         height: 215.h,
-        child: ListView.builder(
-            controller: _scrollController, // 추가된 부분
-            scrollDirection: Axis.horizontal,
-            itemCount: datas.length,
-            itemBuilder: (BuildContext ctx, int idx) {
-              return datas[idx];
-            }));
+        child: Container(
+          margin: EdgeInsets.only(left: 5.w,right: 7.w),
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+              controller: _scrollController, // 추가된 부분
+              scrollDirection: Axis.horizontal,
+              itemCount: datas.length,
+              itemBuilder: (BuildContext ctx, int idx) {
+                return datas[idx];
+              }),
+        ));
 
     // Row(
     //   children: [
@@ -201,7 +204,7 @@ Widget _finishDrugWidget() {
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 100.w,
+            width: 97.w,
             height: 165.h,
             decoration: BoxDecoration(
               color: wWhiteColor,
@@ -267,7 +270,7 @@ Widget _doNotDrugWidget() {
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 100.w,
+            width: 97.w,
             height: 165.h,
             decoration: BoxDecoration(
               color: wGrey100Color,
@@ -323,7 +326,7 @@ Widget _willDrugWidget() {
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 100.w,
+            width: 97.w,
             height: 165.h,
             decoration: BoxDecoration(
               color: wGrey100Color,

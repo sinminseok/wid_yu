@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/album/controller/YoungAlbumController.dart';
 
 import '../../../common/utils/Color.dart';
@@ -28,21 +29,18 @@ class SelectAlbumType extends StatelessWidget {
                     controller.showPhotos();
                   },
                   child: Container(
-                    width: 158.w,
+                    width: 153.w,
                     height: 60.h,
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: controller.isPhoto
-                                ? BorderSide(color: wPurpleColor, width: 2)
+                                ? BorderSide(color: wPurple200Color, width: 3)
                                 : BorderSide(
-                                color: kTextGreyColor, width: 0.5))),
+                                color: kTextGreyColor, width: 1))),
                     child: Center(
-                      child: Text(
+                      child: Title3Text(
                         "사진",
-                        style: TextStyle(
-                            color: controller.isPhoto ? wPurpleColor : wGrey500Color,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.sp),
+                        controller.isPhoto ? wPurpleColor : wGrey500Color,
                       ),
                     ),
                   ),
@@ -52,21 +50,18 @@ class SelectAlbumType extends StatelessWidget {
                     controller.showVideos();
                   },
                   child: Container(
-                    width: 158.w,
+                    width: 153.w,
                     height: 60.h,
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: controller.isVideo
-                                ? BorderSide(color: wPurpleColor, width: 2)
+                                ? BorderSide(color: wPurple200Color, width: 3)
                                 : BorderSide(
-                                color: kTextGreyColor, width: 0.5))),
+                                color: kTextGreyColor, width: 1))),
                     child: Center(
-                      child: Text(
-                        "비디오",
-                        style: TextStyle(
-                            color: controller.isVideo ? wPurpleColor : wGrey600Color,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16.sp),
+                      child: Title3Text(
+                        "동영상",
+                        controller.isVideo ? wPurple200Color : wGrey600Color,
                       ),
                     ),
                   ),
@@ -75,7 +70,7 @@ class SelectAlbumType extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+        controller.isVideo?Container():Container(
           margin: EdgeInsets.only(
             top: 9.h,
           ),
@@ -100,9 +95,10 @@ class SelectAlbumType extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(left: 5.w),
                         child: Text(
-                          controller.isBigShow ? "크게 보기" : "작게 보기",
+                          controller.isBigShow ? "작게보기" : "크게 보기",
                           style: TextStyle(
-                              color: controller.isBigShow ? wPurpleColor : wGrey600Color,
+                              fontFamily: "pretendText",
+                              color: controller.isBigShow ? wGrey600Color : wPurpleColor,
                               fontSize: 14.sp, fontWeight: FontWeight.w600),
                         ),
                       )

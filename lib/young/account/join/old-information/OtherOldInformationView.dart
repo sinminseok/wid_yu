@@ -40,7 +40,7 @@ class _OtherOldInformationView extends State<OtherOldInformationView> {
     controller.ageController.addListener(controller.updateNextStepState);
     controller.phoneNumberController
         .addListener(controller.updateNextStepState);
-    controller.addressController.addListener(controller.updateNextStepState);
+    //controller.addressController.addListener(controller.updateNextStepState);
     super.initState();
   }
 

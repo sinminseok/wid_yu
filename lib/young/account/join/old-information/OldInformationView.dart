@@ -10,6 +10,7 @@ import 'package:wid_yu/young/account/join/old-information/widgets/SelectHaveDise
 import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 import 'package:wid_yu/young/account/join/widgets/SignupAppBar.dart';
 
+import '../../../../common/common-widget/CommonAppbar.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/PopUp.dart';
 import '../../../../common/utils/exception/InvalidInformationException.dart';
@@ -32,7 +33,6 @@ class _OldInformationView extends State<OldInformationView> {
     controller.ageController.addListener(controller.updateNextStepState);
     controller.phoneNumberController
         .addListener(controller.updateNextStepState);
-    controller.addressController.addListener(controller.updateNextStepState);
     super.initState();
   }
 
@@ -40,9 +40,7 @@ class _OldInformationView extends State<OldInformationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: SignUpAppBar(
-        canBack: false,
-      ),
+      appBar: CommonAppBar(canBack: true, title: "", color: wWhiteColor),
       body: Container(
         child: GestureDetector(
           child: SingleChildScrollView(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:remedi_kopo/remedi_kopo.dart';
 
 import '../../../../../common/model/disease/Disease.dart';
 import '../../../../../common/model/user/Old.dart';
@@ -9,7 +10,7 @@ class OldInformationController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
+  Rx<String> _addressController = "".obs;
 
   TextEditingController diseaseNameController = TextEditingController();
   TextEditingController drugNameController = TextEditingController();
@@ -31,7 +32,7 @@ class OldInformationController extends GetxController {
   void updateNextStepState() {
     // 각 컨트롤러의 입력값이 비어있지 않으면 true로 설정합니다.
     if(isDisease == 1){
-      bool isAllFilled = nameController.text.isNotEmpty &&
+      bool isAllFilled = _addressController != "" &&nameController.text.isNotEmpty &&
           ageController.text.isNotEmpty &&
           phoneNumberController.text.isNotEmpty && isDisease?.value != 0 && drugNameController.text.isNotEmpty && diseaseNameController.text.isNotEmpty;
       if (canNextStep.value != isAllFilled) {
@@ -39,7 +40,7 @@ class OldInformationController extends GetxController {
       }
       return;
     }
-    bool isAllFilled = nameController.text.isNotEmpty &&
+    bool isAllFilled =_addressController != "" && nameController.text.isNotEmpty &&
         ageController.text.isNotEmpty &&
         phoneNumberController.text.isNotEmpty && isDisease?.value != 0;
 
@@ -79,8 +80,8 @@ class OldInformationController extends GetxController {
     return hasMatch;
   }
 
-
   void resetController() {
+    _addressController.value = "";
     diseaseNameController.clear();
     drugNameController.clear();
     introduceController.clear();
@@ -88,7 +89,7 @@ class OldInformationController extends GetxController {
 
   Old createSenior() {
     return Old(nameController.text, ageController.text,
-        phoneNumberController.text, addressController.text, false);
+        phoneNumberController.text, _addressController.value, false);
   }
 
   void removeDisease(int index) {
@@ -109,9 +110,25 @@ class OldInformationController extends GetxController {
     }
   }
 
+  void addressAPI(BuildContext context) async {
+    KopoModel model = await Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (context) => RemediKopo(),
+      ),
+    );
+
+    String address = "${model.zonecode!} ${model.address!} ${model.buildingName!}";
+    _addressController.value = address;
+    updateNextStepState();
+  }
+
   void onChangeDrugText(){
     drugInformationTextLength?.value = drugInformationController.text.length;
   }
+
+
+  String get addressController => _addressController.value;
 
   int get isRightPhoneNumberFormat => _isRightPhoneNumberFormat.value;
 

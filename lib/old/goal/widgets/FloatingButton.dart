@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../../common/text/CustomText.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/view/goal/goal-create/GoalCreateView.dart';
 
 FloatingActionButton OldGoalFloatingButton() {
   return FloatingActionButton.extended(
     onPressed: () {
-      Get.to(() => GoalCreateView(true));
+      Get.to(() => GoalCreateView(false), transition: Transition.fadeIn);
     },
-    label: Container(
-      child: Text(
-        " 목표생성",
-        style: TextStyle(fontSize: 16),
-      ),
-    ),
-    icon: const Icon(
-      Icons.add,
-      size: 20,
+    label: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: Icon(Icons.add,size: 17.sp,),
+        ),
+        Container(
+          margin: EdgeInsets.only(right: 0.w),
+          child: ButtonText(
+              " 목표생성",
+              wWhiteColor
+          ),
+        ),
+      ],
     ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
     foregroundColor: Colors.white,
     backgroundColor: wPurpleColor,
   );
 }
+

@@ -78,15 +78,15 @@ class _BleYoungHealthInformationView
       service.characteristics.forEach((characteristic) {
         if (characteristic.uuid.toString() == "eff4c89c-d2ba-40d2-875e-5d82d95457f8") {
           // Replace with the actual UUID of your characteristic
+          //
           targetCharacteristic = characteristic;
         }
       });
     });
     var list = await targetCharacteristic.read();
-    print(list);
+    var list2 = await targetCharacteristic.value;
+  //  print(list);
     return list;
-    // Handle the received data as needed
-
   }
 
 

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/young/album/controller/YoungAlbumController.dart';
 
 import '../../../common/utils/Color.dart';
@@ -21,7 +22,7 @@ class AllRead extends StatelessWidget {
       children: [
         Center(
           child: Container(
-            margin: EdgeInsets.only(top: 10.h),
+            margin: EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
             width: 335.w,
             height: 75.h,
             decoration: BoxDecoration(
@@ -37,17 +38,31 @@ class AllRead extends StatelessWidget {
             child: Row(
               children: [
                 Container(
+                  margin: EdgeInsets.only(left: 10.w),
+                  width: 74.w,
+                  height: 74.h,
                   child: Image.asset(youngImagePath + "album/camera.png"),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 5.w),
-                  child: Text(
-                    "부모님께서 모든 사진을 읽었어요.\n새로운 사진을 올려주세요!",
-                    style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                        color: wGrey800Color),
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 21.h,
+                      margin: EdgeInsets.only(left: 5.w, top: 15.h),
+                      child: SubTitle2Text(
+                          "부모님께서 모든 사진을 읽었어요.",
+                          wGrey800Color
+                      ),
+                    ),
+                    Container(
+                      height: 21.h,
+                      margin: EdgeInsets.only(left: 5.w, top: 4.h),
+                      child: SubTitle2Text(
+                          "새로운 사진을 올려주세요!",
+                          wGrey800Color
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
@@ -62,10 +77,10 @@ class AllRead extends StatelessWidget {
                 controller.checkReadAlarm();
               },
               child: Container(
-                margin: EdgeInsets.only(right: 5.w),
+                margin: EdgeInsets.only(right: 10.w),
                 child: Icon(
                   Icons.cancel,
-                  color: wGrey600Color,
+                  color: wGrey500Color,
                 ),
               ),
             ),

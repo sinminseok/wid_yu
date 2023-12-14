@@ -16,9 +16,8 @@ import '../mission-time/MissionTimeWidget.dart';
 
 class MissionWidget extends StatelessWidget {
   final Mission _mission;
-  final bool isOld;
 
-  MissionWidget(this._mission, this.isOld);
+  MissionWidget(this._mission, );
 
   List<MissionTime> times = [
     MissionTime("12:00", TimeType.DONE),

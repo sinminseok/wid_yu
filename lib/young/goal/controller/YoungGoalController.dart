@@ -3,11 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/model/mission/Mission.dart';
+import 'package:wid_yu/common/model/user/TestHealth.dart';
+import 'package:wid_yu/common/model/user/TestUser.dart';
 
 import '../../../common/model/mission/MissionType.dart';
 import '../../../common/view/popup/AlarmOnPopup.dart';
 
 class YoungGoalController extends GetxController {
+  Rx<TestUser> myUser = TestUser("보호자님", TestHealth(1,1,1), false).obs;
+  RxList<TestUser> olds = <TestUser>[TestUser("부모님1", TestHealth(1,1,1), false),TestUser("부모님2", TestHealth(1,1,1), false)].obs;
+  //RxList<TestUser> olds = <TestUser>[].obs;
+
   RxBool switchValue = false.obs;
   RxBool isBottomScroll = false.obs;
   RxBool canEdit = false.obs;
@@ -63,4 +69,6 @@ class YoungGoalController extends GetxController {
   void updateSwitchValue(bool value) {
     switchValue.value = value;
   }
+
+
 }

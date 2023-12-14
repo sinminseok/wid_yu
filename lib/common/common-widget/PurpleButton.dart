@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../utils/Color.dart';
 
@@ -13,6 +14,6 @@ Widget PurpleButton(String title){
         borderRadius: BorderRadius.all(Radius.circular(6)),
         color: wPurpleColor
     ),
-    child: Center(child: Text("$title", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: wWhiteColor),)),
+    child: Center(child: ButtonText("$title", wWhiteColor)),
   );
 }

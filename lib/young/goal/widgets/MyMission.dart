@@ -29,6 +29,7 @@ class MyMission extends StatelessWidget {
       },
       child: Container(
         width: 335.w,
+        margin: EdgeInsets.only(left: 20.w, right: 20.w),
         decoration: BoxDecoration(
           border: Border.all(color: wGrey100Color),
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -43,9 +44,35 @@ class MyMission extends StatelessWidget {
     );
   }
 
+  List<Widget> _buildMissionWidgets() {
+    List<Widget> missionWidgets = [];
+
+    for (int index = 0; index < controller.myMission.length; index++) {
+      missionWidgets.add(MissionWidget(controller.myMission[index]));
+
+      if (index < controller.myMission.length - 1) {
+        missionWidgets.add(
+          Container(
+            margin: EdgeInsets.only(top: 15.h),
+            width: 340,
+            height: 1,
+            color: kLightGreyColor,
+          ),
+        );
+      } else {
+        missionWidgets.add(Container(
+          height: 15.h,
+        ));
+      }
+    }
+
+    return missionWidgets;
+  }
+
   Widget _buildTotalMission() {
     return Container(
       width: 335.w,
+      margin: EdgeInsets.only(left: 20.w, right: 20.w),
       decoration: BoxDecoration(
         border: Border.all(color: wGrey100Color),
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -64,7 +91,7 @@ class MyMission extends StatelessWidget {
 
     for (int index = 0; index < controller.myMission.length; index++) {
       missionWidgets.add(
-          TotalMissionWidget(controller, controller.myMission[index], false));
+          TotalMissionWidget(controller.myMission[index]));
 
       if (index < controller.myMission.length - 1) {
         missionWidgets.add(
@@ -85,28 +112,4 @@ class MyMission extends StatelessWidget {
     return missionWidgets;
   }
 
-  List<Widget> _buildMissionWidgets() {
-    List<Widget> missionWidgets = [];
-
-    for (int index = 0; index < controller.myMission.length; index++) {
-      missionWidgets.add(MissionWidget(controller.myMission[index], false));
-
-      if (index < controller.myMission.length - 1) {
-        missionWidgets.add(
-          Container(
-            margin: EdgeInsets.only(top: 15.h),
-            width: 340,
-            height: 1,
-            color: kLightGreyColor,
-          ),
-        );
-      } else {
-        missionWidgets.add(Container(
-          height: 15.h,
-        ));
-      }
-    }
-
-    return missionWidgets;
-  }
 }

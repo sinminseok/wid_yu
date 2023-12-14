@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:wid_yu/young/album/controller/YoungAlbumController.dart';
 
 import '../wid/YoungPhotoWidget.dart';
+import '../wid/YoungVideoWidget.dart';
 
 class Album extends StatelessWidget {
   YoungAlbumController controller;
@@ -27,8 +28,24 @@ class Album extends StatelessWidget {
 
   Widget _buildVideo() {
     return Container(
-      child: Column(
-        children: [],
+      margin: EdgeInsets.only(left: 0.w,top: 25.h),
+      width: 310.w,
+      child: SingleChildScrollView(
+        child: GridView.builder(
+          primary: false,
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: (1 / 1.25),
+
+            crossAxisCount: 2, // 가로에 2개의 열을 배치합니다
+            mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
+            crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
+          ),
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return YoungVideoWidget();
+          },
+        ),
       ),
     );
   }

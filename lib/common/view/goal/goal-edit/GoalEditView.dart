@@ -1,108 +1,131 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionTypeWidget.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/controller/GoalEditController.dart';
-import 'package:wid_yu/common/view/goal/goal-edit/popup/DeleteMissionFinishPopup.dart';
-import 'package:wid_yu/common/view/goal/goal-edit/popup/DeleteMissionPopup.dart';
-import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionInformationForm.dart';
-import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionTime.dart';
-import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionType.dart';
+import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionAddTime.dart';
+import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionSelectPhoto.dart';
+import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionSetTime.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionTerm.dart';
+import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionTextForm.dart';
+import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionType.dart';
 
 import '../../../utils/Color.dart';
+import '../popup/GoalPopup.dart';
 
 class GoalEditView extends StatefulWidget {
-  const GoalEditView({Key? key}) : super(key: key);
+
 
   @override
-  State<GoalEditView> createState() => _GoalEditViewState();
+  _GoalEditView createState() => _GoalEditView();
 }
 
-class _GoalEditViewState extends State<GoalEditView> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _contentController = TextEditingController();
-  TextEditingController _drugDountController = TextEditingController();
-  TextEditingController _hourController = TextEditingController(text: "1");
-  TextEditingController _minuteController = TextEditingController(text: "1");
-
+class _GoalEditView extends State<GoalEditView> {
   GoalEditController controller = GoalEditController();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context); //뒤로가기
-            },
-            color: kTextBlackColor,
-            icon: Icon(Icons.close)),
-        title: Container(
-            margin: EdgeInsets.only(left: 80.w),
-            child: Text(
-              "목표수정",
-              style: TextStyle(color: kTextBlackColor, fontSize: 17.sp),
-            )),
-      ),
+      appBar: _buildAppBar(),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EditMissionType(controller),
-            EditMissionInformationForm(
-                _titleController, _contentController, controller),
+            // SelectUser(controller),
+            EditMissionTextForm(controller),
             EditMissionTerm(controller),
-            EditMissionTime(controller, _drugDountController, _hourController,
-                _minuteController),
-            // MissionSelectPhoto(_switchValue),
-            _buildSaveButton()
+            EditMissionSetTime(controller),
+            EditMissionAddTime(controller),
+            EditMissionSelectPhoto(controller),
+            _buildSaveButton(),
+            _buildDeleteGoal(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildSaveButton() {
-    return Column(
-      children: [
-        InkWell(
-          onTap: () {
-            //GoalPopup().createGoalPopup(context, widget.isOld);
-            //SaveFinishPopup().showDialog(context);
+  AppBar _buildAppBar() {
+    return AppBar(
+      elevation: 0,
+      centerTitle: true,
+      backgroundColor: Colors.white,
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context); //뒤로가기
           },
+          color: kTextBlackColor,
+          icon: Icon(Icons.close)),
+      title:  Container(
+          margin: EdgeInsets.only(left: 0.w),
+          child: Title3Text(
+              "목표 수정",
+              kTextBlackColor
+          )),
+    );
+  }
+
+  Widget _buildDeleteGoal() {
+    return Container(
+      height: 24.h,
+      margin: EdgeInsets.only(bottom: 60.h),
+      child: InkWell(
+        onTap: (){
+
+        },
+        child: Center(
+          child: ButtonText("목표 삭제하기", wErrorColor),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSaveButton() {
+    return Obx(() => controller.canSaveMission?_buildCanSaveButton():_buildCanNotSaveButton());
+  }
+
+  Widget _buildCanNotSaveButton(){
+    return Center(
+      child: Container(
+          width: 335.w,
+          height: 44.h,
+          margin: EdgeInsets.only(top: 50.h,bottom: 20.h,right: 20.w, left: 20.w),
+          decoration: BoxDecoration(
+              border: Border.all(color: wGrey200Color),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: wGrey100Color),
           child: Center(
-            child: Container(
-              width: 335.w,
-              height: 44.h,
-              margin: EdgeInsets.only(top: 50.h, bottom: 20.h),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: wOrangeColor),
-              child: Center(
-                child: Text(
-                  "변경사항 저장하기",
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
+            child: ButtonText("변경사항 저장하기", wGrey400Color),
+          )
+      ),
+
+    );
+  }
+
+  Widget _buildCanSaveButton(){
+    return InkWell(
+      onTap: () {
+
+        //SaveFinishPopup().showDialog(context);
+      },
+      child: Center(
+        child: Container(
+          width: 335.w,
+          height: 44.h,
+          margin: EdgeInsets.only(top: 50.h,bottom: 20.h),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: wOrangeColor),
+          child: Center(
+            child: Text("변경사항 저장하기", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),),
           ),
         ),
-        InkWell(
-          onTap: (){
-            DeleteMissionPopup().showDialog(context);
-          },
-          child: Container(
-            margin: EdgeInsets.only(bottom: 30.h),
-            child: Center(
-              child: Text("목표 삭제하기", style: TextStyle(fontWeight: FontWeight.w600,color: wErrorColor, fontSize: 14.sp),),
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 }

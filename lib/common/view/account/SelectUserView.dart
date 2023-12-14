@@ -16,16 +16,23 @@ class SelectUserView extends StatefulWidget {
 class _SelectUserViewState extends State<SelectUserView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildLogo(),
-            _buildMainText(),
-            _buildYoungButton(),
-            _buildOldButton(),
-          ],
+    return Theme(
+      data: ThemeData(
+        primarySwatch: Colors.blue,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildLogo(),
+              _buildMainText(),
+              _buildYoungButton(),
+              _buildOldButton(),
+            ],
+          ),
         ),
       ),
     );

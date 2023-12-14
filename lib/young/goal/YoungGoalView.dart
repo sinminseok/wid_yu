@@ -16,7 +16,7 @@ import '../../common/common-widget/mission/MissionGroupWidget.dart';
 import '../../common/utils/Color.dart';
 import '../../common/view/goal/goal-create/GoalCreateView.dart';
 import '../../common/view/popup/AlarmOnPopup.dart';
-import '../family-manager/FamilyManagerView.dart';
+import '../family-manager/family-information/view/FamilyManagerView.dart';
 import 'detail-view/ChangeOrderView.dart';
 import 'detail-view/YoungGoalDetailView.dart';
 import 'detail-view/YoungMessageView.dart';
@@ -46,22 +46,28 @@ class _YoungGoalViewState extends State<YoungGoalView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: YoungGoalFloatinButton(controller: controller,),
-      appBar: _buildAppBar(),
-      backgroundColor: wPurpleBackGroundColor,
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        controller: controller.scrollController,
-        child: Column(
-          children: [
-            HeaderInformation(),
-            SwitchButton(controller),
-            MyMission(controller: controller),
-            Obx(() => controller.isBottomScroll.value ? OldMissionWidget() : Container()),
-            _buildChangeOrderButton()
-          ],
+    return Theme(
+      data: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: YoungGoalFloatinButton(controller: controller,),
+        appBar: _buildAppBar(),
+        backgroundColor: wPurpleBackGroundColor,
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          controller: controller.scrollController,
+          child: Column(
+            children: [
+              HeaderInformation(controller),
+              SwitchButton(controller),
+              MyMission(controller: controller),
+              Obx(() => controller.isBottomScroll.value ? OldMissionWidget() : Container()),
+              _buildChangeOrderButton()
+            ],
+          ),
         ),
       ),
     );
@@ -78,8 +84,8 @@ class _YoungGoalViewState extends State<YoungGoalView> {
         children: [
           Container(
             width: 47.w,
-            height: 30.h,
-            margin: EdgeInsets.only(top: 10.h, left: 15.w),
+            height: 21.6.h,
+            margin: EdgeInsets.only(top: 10.h, left: 13.w),
             child: Image.asset("assets/common/common/appbar_logo.png"),
           ),
           Row(

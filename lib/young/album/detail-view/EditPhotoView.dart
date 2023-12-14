@@ -7,6 +7,7 @@ import 'package:wid_yu/young/album/popup/EditRewardPopup.dart';
 
 import '../../../common/common-widget/CommonAppbar.dart';
 import '../../../common/common-widget/PurpleButton.dart';
+import '../../../common/text/CustomText.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../popup/SaveRewardPopup.dart';
@@ -57,61 +58,76 @@ class _EditPhotoViewState extends State<EditPhotoView> {
   }
 
   Widget _buildPhotoInformation() {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      child: Center(
-        child: Container(
-          margin: EdgeInsets.only(top: 50.h,left: 12.w, right: 12.w),
-          width: 351.w,
-          decoration: BoxDecoration(
-            color: wWhiteColor,
-            borderRadius: BorderRadius.all(Radius.circular(6)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              Center(
-                child: Container(
-                    width: 50.w,
-                    height: 50.h,
-                    child: Image.asset(
-                      commonImagePath + "album/photo_dot.png",
-                    )),
-              ),
-              image_picked == null
-                  ? _buildNotYetSelectPhoto()
-                  : _buildDoneSelectPhoto(),
-              Container(
-                margin: EdgeInsets.only(top: 14.h, left: 20.w, right: 20.w,bottom: 30.h),
-                child: TextFormField(
-                  controller: _textController,
-                  style: TextStyle(color: Colors.black),
-                  textAlign: TextAlign.left,
-                  cursorColor: kTextBlackColor,
-                  keyboardType: TextInputType.multiline, // 여러 줄 입력을 가능하게 함
-                  maxLines: null, // 또는 maxLines를 null로 설정
-                  decoration: InputDecoration(
-                    hintText: "메모 입력",
-                    hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp),
-                    border: InputBorder.none,
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 50.h,left: 12.w, right: 12.w),
+        width: 351.w,
+        decoration: BoxDecoration(
+          color: wWhiteColor,
+          borderRadius: BorderRadius.all(Radius.circular(6)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            image_picked == null
+                ? _buildNotYetSelectPhoto()
+                : _buildDoneSelectPhoto(),
+            Stack(
+              children: [
+                Container(
+                  width: 210.w,
+                  height: 80,
+                  margin: EdgeInsets.only(top: 6.h, left: 20.w, right: 20.w,bottom: 30.h),
+                  child: TextFormField(
+                    controller: _textController,
+                    style: TextStyle(color: Colors.black, height: 1.5.h),
+                    textAlign: TextAlign.left,
+                    cursorColor: kTextBlackColor,
+                    keyboardType: TextInputType.multiline, // 여러 줄 입력을 가능하게 함
+                    maxLines: null, // 또는 maxLines를 null로 설정
+                    decoration: InputDecoration(
+                      counterText: "",
+                      hintText: "메모 입력",
+
+                      contentPadding: EdgeInsets.symmetric(vertical: 10.h),
+                      hintStyle: TextStyle(color: wGrey300Color, fontSize: 14.sp, fontFamily: "hint"),
+                      border: InputBorder.none,
+                    ),
+                    maxLength: 45,
+                    textInputAction: TextInputAction.done, // 완료 버튼 활성화
+
                   ),
-                  textInputAction: TextInputAction.done, // 완료 버튼 활성화
-
                 ),
-              ),
+
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 47.h,left: 20.w),
+                      width: 210.w,
+                      height: 1.h,
+                      color: wGrey300Color,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 28.h, left: 20.w),
+                      width: 210.w,
+                      height: 1.h,
+                      color: wGrey300Color,
+                    ),
+                  ],
+                )
+              ],
+            )
 
 
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -123,29 +139,26 @@ class _EditPhotoViewState extends State<EditPhotoView> {
         getImage();
       },
       child: Container(
-        width: 310.w,
+        margin: EdgeInsets.only(top: 40.h,left: 13.w, right: 13.w),
+        width: 324.w,
         height: 210.w,
-
         decoration: BoxDecoration(
             color: wGrey300Color,
             borderRadius: BorderRadius.all(Radius.circular(6))),
-        child: Center(
+        child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 18.w,
-                height: 18.h,
-                child: Icon(
-                  Icons.photo_camera_back,
-                  color: wGrey600Color,
-                ),
+                  width: 18.w,
+                  height: 18.h,
+                  child: Image.asset("assets/images/icon/gallery-icon.png")
               ),
               Container(
                 margin: EdgeInsets.only(top: 10.h),
-                child: Text(
-                  "사진 선택",
-                  style: TextStyle(color: wGrey600Color, fontSize: 16.sp),
+                child: Helper2Text(
+                    "사진 선택",
+                    wGrey600Color
                 ),
               )
             ],
@@ -168,9 +181,10 @@ class _EditPhotoViewState extends State<EditPhotoView> {
         ));
   }
 
+
   Widget _buildSaveButton(){
     return Container(
-        margin: EdgeInsets.only(top: 100.h),
+        margin: EdgeInsets.only(top: 100.h,right: 20.w,left: 20.w),
         child: InkWell(
             onTap: (){
               EditRewardPopup().showDialog(context);

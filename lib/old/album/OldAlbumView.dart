@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
+import 'package:wid_yu/old/album/controller/OldAlbumController.dart';
 import 'package:wid_yu/old/album/detail-view/LikePhotoView.dart';
 import 'package:wid_yu/old/album/widgets/OldPhotoWidget.dart';
 
@@ -18,9 +20,8 @@ class OldAlbumView extends StatefulWidget {
 }
 
 class _OldAlbumViewState extends State<OldAlbumView> {
-  bool isPhoto = true;
-  bool isVideo = false;
-  bool isBigShow = false;
+
+  OldAlbumController controller = OldAlbumController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +39,16 @@ class _OldAlbumViewState extends State<OldAlbumView> {
       ),
       backgroundColor: wOrangeBackGroundColor,
       body: SingleChildScrollView(
-        child: Column(
+        child: Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildMainText(),
             _buildCurrentPoint(),
             _buildSelectRewardType(),
-            isPhoto ? _buildPhotos() : Container(),
-            isVideo ? _buildVideo() : Container()
+            controller.isPhoto ? _buildPhotos() : Container(),
+            controller.isVideo ? _buildVideo() : Container()
           ],
-        ),
+        ))
       ),
     );
   }
@@ -58,37 +59,29 @@ class _OldAlbumViewState extends State<OldAlbumView> {
       automaticallyImplyLeading: false,
       elevation: 0,
       title: Container(
-        margin: EdgeInsets.only(top: 5.h),
+        width: 360.w,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 10.w),
               width: 47.w,
-              height: 30.h,
+              height: 21.62.h,
+              margin: EdgeInsets.only(top: 10.h, left: 10.w),
               child: Image.asset("assets/common/common/appbar_logo.png"),
             ),
             InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    child: LikePhotoView(),
-                  ),
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 10.w),
-                child: Icon(
-                  Icons.favorite_border,
-                  color: kTextBlackColor,
-                ),
-              ),
-            )
+                onTap: () {
+
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 10.w, top: 10.h),
+                  width: 30.w,
+                  height: 30.h,
+                  child: Icon(Icons.favorite_outline, color: wGrey800Color,)
+                )),
           ],
         ),
-      ),
+      )
     );
   }
 
@@ -160,17 +153,14 @@ class _OldAlbumViewState extends State<OldAlbumView> {
               children: [
                 InkWell(
                   onTap: () {
-                    setState(() {
-                      isPhoto = true;
-                      isVideo = false;
-                    });
+                    controller.selectPhoto();
                   },
                   child: Container(
                     width: 158.w,
                     height: 60.h,
                     decoration: BoxDecoration(
                         border: Border(
-                            bottom: isPhoto
+                            bottom: controller.isPhoto
                                 ? BorderSide(color: wOrangeColor, width: 2)
                                 : BorderSide(
                                 color: kTextGreyColor, width: 0.5))),
@@ -178,24 +168,21 @@ class _OldAlbumViewState extends State<OldAlbumView> {
                       child: Text(
                         "사진",
                         style: TextStyle(
-                            color: isPhoto ? wOrangeColor : kTextBlackColor),
+                            color: controller.isPhoto ? wOrangeColor : kTextBlackColor),
                       ),
                     ),
                   ),
                 ),
                 InkWell(
                   onTap: () {
-                    setState(() {
-                      isPhoto = false;
-                      isVideo = true;
-                    });
+                    controller.selectVideo();
                   },
                   child: Container(
                     width: 158.w,
                     height: 60.h,
                     decoration: BoxDecoration(
                         border: Border(
-                            bottom: isVideo
+                            bottom: controller.isVideo
                                 ? BorderSide(color: wOrangeColor, width: 2)
                                 : BorderSide(
                                 color: kTextGreyColor, width: 0.5))),
@@ -203,7 +190,7 @@ class _OldAlbumViewState extends State<OldAlbumView> {
                       child: Text(
                         "비디오",
                         style: TextStyle(
-                            color: isVideo ? wOrangeColor : kTextBlackColor),
+                            color: controller.isVideo ? wOrangeColor : kTextBlackColor),
                       ),
                     ),
                   ),
@@ -221,9 +208,7 @@ class _OldAlbumViewState extends State<OldAlbumView> {
               Container(),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    isBigShow = !isBigShow;
-                  });
+                  controller.clickBigShow();
                 },
                 child: Container(
                   child: Row(
@@ -237,7 +222,7 @@ class _OldAlbumViewState extends State<OldAlbumView> {
                       Container(
                         margin: EdgeInsets.only(left: 5.w),
                         child: Text(
-                          isBigShow ? "크게 보기" : "작게 보기",
+                          controller.isBigShow ? "크게 보기" : "작게 보기",
                           style:
                           TextStyle(color: wGrey600Color, fontSize: 14.sp),
                         ),
@@ -254,7 +239,7 @@ class _OldAlbumViewState extends State<OldAlbumView> {
   }
 
   Widget _buildPhotos() {
-    return isBigShow ? _buildBigPhotos() : _buildSmallPhotos();
+    return controller.isBigShow ? _buildBigPhotos() : _buildSmallPhotos();
   }
 
   Widget _buildBigPhotos() {

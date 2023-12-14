@@ -34,22 +34,7 @@ Widget SwitchButton(YoungGoalController controller) {
                 inactiveText: "오늘",
               ),
             ),
-            controller.switchValue.value
-                ? InkWell(
-                    onTap: () {
-                      controller.updateCanEdit();
-                    },
-                    child: Container(
-                      child: Text(
-                        "목표 수정",
-                        style: TextStyle(
-                          color: wOrange200Color,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  )
-                : Container()
+
           ],
         ),
       ));

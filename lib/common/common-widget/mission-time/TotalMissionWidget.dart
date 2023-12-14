@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/text/CustomText.dart';
 
 import '../../model/mission/MissionTime.dart';
 import '../../model/mission/TimeType.dart';
@@ -12,11 +13,11 @@ import 'YetMissionTimeWidget.dart';
 Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context) {
   return Container(
     margin: EdgeInsets.only(left: 25.w, top: 0.h),
-    width: 200.w,
+    width: 210.w,
     child: GridView.builder(
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: (0.9 / 0.3),
+        childAspectRatio: (0.8.sp / 0.4.sp),
 
         crossAxisCount: 3, // 가로에 2개의 열을 배치합니다
         mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
@@ -37,6 +38,9 @@ Widget _buildTotalTime(MissionTime time) {
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(50)),
         border: Border.all(color: wGrey500Color)),
+    child: Center(
+      child: ChipText("${time.time}", wGrey500Color),
+    ),
   );
 }
 

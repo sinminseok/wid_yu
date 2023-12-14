@@ -18,6 +18,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     return Text("${text}", style: TextStyle(color : color, fontSize: 20.sp, fontFamily: "Percentage", fontWeight: FontWeight.w900),);
   }
 
+  Widget PretandardText(String text, Color color){
+    return Text("${text}", style: TextStyle(color : color, fontSize: 18.sp, fontFamily: "Pretandard", fontWeight: FontWeight.w600),);
+  }
+
    Widget Title1Text(String text, Color color){
     return Text("${text}", style: TextStyle(color : color, fontSize: 24.sp , fontFamily: "Title1", fontWeight: FontWeight.w900),);
   }
