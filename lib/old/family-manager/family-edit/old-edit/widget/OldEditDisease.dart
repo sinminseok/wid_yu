@@ -6,13 +6,16 @@ import 'package:get/get.dart';
 import 'package:wid_yu/common/model/disease/Disease.dart';
 import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
+import 'package:wid_yu/old/family-manager/family-edit/old-edit/controller/OldDiseaseEditByOldController.dart';
+import 'package:wid_yu/old/family-manager/family-edit/old-edit/controller/OldEditByOldController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldDiseaseController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
 
-class OldEditDisease extends StatelessWidget {
-  OldDiseaseEditByYoungController controller;
+class OldEditByOldDisease extends StatelessWidget {
+  OldDiseaseEditByOldController controller;
 
-  OldEditDisease(this.controller);
+
+  OldEditByOldDisease(this.controller);
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +215,7 @@ class OldEditDisease extends StatelessWidget {
 
   Widget _buildAddButton(){
     return Container(
-      margin: EdgeInsets.only(right: 20.w, left: 20.w, top: 16.h),
+      margin: EdgeInsets.only(right: 20.w, left: 20.w, top: 16.h,bottom: 60.h),
       width: 335.w,
       height: 52.h,
       decoration: BoxDecoration(

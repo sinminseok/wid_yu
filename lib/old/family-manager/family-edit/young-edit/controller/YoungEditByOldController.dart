@@ -1,9 +1,9 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/disease/Disease.dart';
 import 'package:wid_yu/common/model/user/User.dart';
 
-class OldEditByYoungController extends GetxController {
+class YoungEditByOldController extends GetxController {
   Rx<User> _user = User("사용자", "010 1234 1234", "오목로11길 5", "2000.10.31").obs;
 
   late TextEditingController _addressController;
@@ -12,12 +12,10 @@ class OldEditByYoungController extends GetxController {
   RxBool _canSave = false.obs;
 
 
-  OldEditByYoungController() {
+  YoungEditByOldController() {
     _addressController = TextEditingController(text: _user.value.address);
     _brithController = TextEditingController(text: _user.value.brith);
   }
-
-
 
   void validateCanSave() {
     bool isNotEmpty = _addressController.text.isNotEmpty && _brithController.text.isNotEmpty;
@@ -28,6 +26,16 @@ class OldEditByYoungController extends GetxController {
 
   void saveChanges() {
 
+    // // Add logic to save changes here
+    // // For example, update the user object with the new values
+    // _user.update((user) {
+    //     _addressController.text;
+    //     _brithController.text;
+    //   // Update other properties as needed
+    // });
+    //
+    // // Reset the canSave flag after saving changes
+    // _canSave.value = false;
   }
 
 

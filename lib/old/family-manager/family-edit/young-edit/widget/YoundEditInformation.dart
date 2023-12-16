@@ -7,10 +7,11 @@ import 'package:wid_yu/young/family-manager/family-edit/young-edit/controller/Yo
 
 import '../../../../../common/text/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
-import '../../phone-number-edit/view/EditPhoneNumberView.dart';
+import '../controller/YoungEditByOldController.dart';
+
 
 class YoungEditInformation extends StatelessWidget {
-  YoungEditByYoungController controller;
+  YoungEditByOldController controller;
 
   YoungEditInformation(this.controller);
 
@@ -50,11 +51,11 @@ class YoungEditInformation extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => EditPhoneNumberView());
+           //   Get.to(() => EditPhoneNumberView());
             },
             child: Container(
               child:
-                  Body1Text("${controller.user.phoneNumber}", kTextBlackColor),
+              Body1Text("${controller.user.phoneNumber}", kTextBlackColor),
             ),
           )
         ],
@@ -120,7 +121,7 @@ class YoungEditInformation extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => EditPhoneNumberView(), transition: Transition.fade);
+             // Get.to(() => EditPhoneNumberView(), transition: Transition.fade);
             },
             child: Container(
               width: 90.w,

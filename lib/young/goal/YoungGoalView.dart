@@ -110,7 +110,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                         context,
                         PageTransition(
                             type: PageTransitionType.fade,
-                            child: (FamilyManagerView())));
+                            child: (FamilyManagerByYoung())));
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 10.w, top: 10.h),

@@ -1,44 +1,44 @@
-import 'package:flutter/cupertino.dart';
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
-import 'package:wid_yu/young/family-manager/family-edit/old-edit/view/EditOldView.dart';
-import 'package:wid_yu/young/family-manager/family-information/controller/FamilyManagerController.dart';
 
 import '../../../../common/common-widget/CommonAppbar.dart';
+import '../../../../common/model/user/TestUser.dart';
+import '../../../../common/text/CustomText.dart';
 import '../../../../common/utils/Color.dart';
-import '../../family-add/AddFamilyView.dart';
-import '../../family-edit/young-edit/view/EditYoungView.dart';
+import '../../family-edit/old-edit/view/OldEditByOldView.dart';
+import '../controller/OldFamilyManagerController.dart';
 
-class FamilyManagerByYoung extends StatefulWidget {
-  const FamilyManagerByYoung({Key? key}) : super(key: key);
+class OldFamilyManagerView extends StatefulWidget {
+  const OldFamilyManagerView({Key? key}) : super(key: key);
 
   @override
-  State<FamilyManagerByYoung> createState() => _FamilyManagerByYoungState();
+  State<OldFamilyManagerView> createState() => _OldFamilyManagerView();
 }
 
-class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
-  FamilyManagerByYoungController controller = FamilyManagerByYoungController();
+class _OldFamilyManagerView extends State<OldFamilyManagerView> {
+  OldFamilyManagerController controller = OldFamilyManagerController();
 
   @override
   Widget build(BuildContext context) {
 
 
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-              margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
-              child: _buildAddButton()),
-        ],
-      ),
-      backgroundColor: wPurpleBackGroundColor,
-      appBar: CommonAppBar(canBack: true, title: '가족정보',color: wPurpleBackGroundColor, ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      // floatingActionButton: Column(
+      //   crossAxisAlignment: CrossAxisAlignment.end,
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   children: [
+      //     Container(
+      //         margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
+      //         child: _buildAddButton()),
+      //   ],
+      // ),
+      backgroundColor: wOrangeBackGroundColor,
+      appBar: CommonAppBar(canBack: true, title: '가족정보',color: wOrangeBackGroundColor, ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -56,13 +56,13 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
   FloatingActionButton _buildAddButton(){
     return FloatingActionButton.extended(
       onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.fade,
-            child: AddFamilyView(),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.fade,
+        //     child: AddFamilyView(),
+        //   ),
+        // );
       },
       label: Container(
         child: Text(
@@ -93,10 +93,10 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
         ),
         child: InkWell(
           onTap: (){
-            Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.fade, child: (EditYoungView())));
+            // Navigator.push(
+            //     context,
+            //     PageTransition(
+            //         type: PageTransitionType.fade, child: (EditYoungView())));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,7 +105,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(left: 13.w,
-                      top: 9.h,bottom: 9.h
+                        top: 9.h,bottom: 9.h
                     ),
                     child: Stack(
                       children: [
@@ -157,13 +157,13 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                 margin: EdgeInsets.only(right: 20.w),
 
                 child: InkWell(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.fade,
-                            child: (EditYoungView())));
-                  },
+                    onTap: (){
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         type: PageTransitionType.fade,
+                      //         child: (EditYoungView())));
+                    },
                     child: Image.asset("assets/images/icon/next-icon.png", color: wGrey500Color,width: 6.w,height: 12.h,)),
               )
             ],
@@ -180,7 +180,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
       height: 600.h,
       margin: EdgeInsets.only(top: 60.h),
       child: ListView.builder(
-        physics: BouncingScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           itemCount: controller.olds.length,
           itemBuilder: (BuildContext ctx, int idx) {
             return _buildOldCard(controller.olds[idx]);
@@ -188,7 +188,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
       ),
     );
   }
-  
+
   Widget _buildOldCard(TestUser user){
     return Center(
       child: Container(
@@ -205,7 +205,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
             Navigator.push(
                 context,
                 PageTransition(
-                    type: PageTransitionType.fade, child: (OldEditByYoungView())));
+                    type: PageTransitionType.fade, child: (OldEditByOldView())));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -267,11 +267,11 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
 
                 child: InkWell(
                     onTap: (){
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.fade,
-                              child: (EditYoungView())));
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         type: PageTransitionType.fade,
+                      //         child: (EditYoungView())));
                     },
                     child: Image.asset("assets/images/icon/next-icon.png", color: wGrey500Color,width: 6.w,height: 12.h,)),
               )

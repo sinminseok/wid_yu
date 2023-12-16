@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class EditPhoneNumberController extends GetxController {
+class PhoneNumberEditByController extends GetxController {
   //보호자 인증 관련 컨트롤러
   RxBool _canInputVertifyNumber = false.obs;
   TextEditingController _nameController = TextEditingController();

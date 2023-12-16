@@ -9,10 +9,10 @@ import 'package:wid_yu/young/account/join/controller/YoungJoinController.dart';
 import 'package:wid_yu/young/account/join/format/PhoneNumberFormat.dart';
 
 import '../../../../../../../common/utils/Color.dart';
-import '../controller/EditPhoneNumberController.dart';
+import '../controller/PhoneNumberEditByController.dart';
 
 class NameAndPhoneNumber extends StatefulWidget {
-  EditPhoneNumberController  controller;
+  PhoneNumberEditByController  controller;
 
   NameAndPhoneNumber({required this.controller});
 

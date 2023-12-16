@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../../common/model/disease/Disease.dart';
 
-class OldDiseaseEditByYoungController extends GetxController{
+class OldDiseaseEditByOldController extends GetxController{
   RxList<Disease> _disease = [Disease("감기1", "타이레놀1", "복용방법버버버ㅓㅂ1"),
     // Disease("감기2", "타이레놀2", "복용방2법버1버버ㅓㅂ1"),
     // Disease("감기3", "타이레놀3", "복용방법버3버버ㅓㅂ1"),
@@ -14,7 +14,7 @@ class OldDiseaseEditByYoungController extends GetxController{
   late List<TextEditingController> _drugNameControllers;
   late List<TextEditingController> _informationNameControllers;
 
-  OldDiseaseEditByYoungController(){
+  OldDiseaseEditByOldController(){
     _diseaseNameControllers = List.generate(
         _disease.length, (index) => TextEditingController());
     _drugNameControllers = List.generate(

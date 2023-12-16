@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:wid_yu/old/family-manager/family-information/view/OldFamilyManagerView.dart';
 import 'package:wid_yu/old/goal/controller/OldGoalController.dart';
 import 'package:wid_yu/old/goal/detail-view/OldMessageView.dart';
 import 'package:wid_yu/old/goal/widgets/FloatingButton.dart';
@@ -99,6 +102,7 @@ class _OldGoalView extends State<OldGoalView> {
                         height: 30.h,
                         child: InkWell(
                           onTap: (){
+                            Get.to(() => OldFamilyManagerView(), transition: Transition.fade);
 
                           },
                           child: Image.asset(

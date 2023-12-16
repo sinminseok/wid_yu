@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/text/CustomText.dart';
 import 'package:wid_yu/common/utils/SnackBar.dart';
-import 'package:wid_yu/young/family-manager/family-edit/young-edit/controller/YoungEditController.dart';
+import 'package:wid_yu/young/family-manager/family-edit/young-edit/controller/YoungEditByYoungController.dart';
 import 'package:wid_yu/young/family-manager/popup/ShowFamilyPopup.dart';
 import 'package:wid_yu/young/family-manager/family-edit/young-edit/widgets/YoungEditProfile.dart';
 
@@ -23,7 +23,7 @@ class EditYoungView extends StatefulWidget {
 }
 
 class _EditYoungView extends State<EditYoungView> {
-  YoungEditController controller = YoungEditController();
+  YoungEditByYoungController controller = YoungEditByYoungController();
   bool _switchValue = true;
 
   @override

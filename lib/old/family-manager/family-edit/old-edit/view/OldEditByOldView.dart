@@ -3,34 +3,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/old/family-manager/family-edit/old-edit/widget/OldEditDisease.dart';
+import 'package:wid_yu/old/family-manager/family-edit/old-edit/widget/OldEditInformation.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/widgets/OldEditDisease.dart';
-import 'package:wid_yu/young/family-manager/family-edit/old-edit/widgets/OldEditInformation.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/widgets/OldEditProfile.dart';
+import 'package:wid_yu/young/family-manager/family-edit/phone-number-edit/controller/PhoneNumberEditByController.dart';
 import '../../../../../common/text/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
 import '../../../../../common/utils/SnackBar.dart';
-import '../../../popup/ShowFamilyPopup.dart';
-import '../../phone-number-edit/view/EditPhoneNumberView.dart';
-import '../controller/OldDiseaseController.dart';
+import '../../../../../young/family-manager/popup/ShowFamilyPopup.dart';
+import '../controller/OldDiseaseEditByOldController.dart';
+import '../controller/OldEditByOldController.dart';
 
-class OldEditByYoungView extends StatefulWidget {
-  const OldEditByYoungView({Key? key}) : super(key: key);
+class OldEditByOldView extends StatefulWidget {
+  const OldEditByOldView({Key? key}) : super(key: key);
 
   @override
-  _OldEditByYoungViewState createState() => _OldEditByYoungViewState();
+  _OldEditByOldViewState createState() => _OldEditByOldViewState();
 }
 
-class _OldEditByYoungViewState extends State<OldEditByYoungView> {
-  OldEditByYoungController controller = OldEditByYoungController();
-  OldDiseaseEditByYoungController _diseaseController = OldDiseaseEditByYoungController();
+class _OldEditByOldViewState extends State<OldEditByOldView> {
+  OldEditByOldController controller = OldEditByOldController();
+  OldDiseaseEditByOldController _diseaseController = OldDiseaseEditByOldController();
   bool _switchValue = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: wPurpleBackGroundColor,
+      backgroundColor: wOrangeBackGroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -40,7 +42,7 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
             _buildUserInformation(),
             _buildFamilyRelationship(),
             OldEditInformation(controller),
-            OldEditDisease(_diseaseController)
+            OldEditByOldDisease(_diseaseController),
           ],
         ),
       ),
@@ -76,19 +78,19 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
           ),
           InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.fade,
-                        child: (EditPhoneNumberView())));
+                // Navigator.push(
+                //     context,
+                //     PageTransition(
+                //         type: PageTransitionType.fade,
+                //         child: (PhoneNumberEditByController())));
               },
               child: InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.fade,
-                          child: (EditPhoneNumberView())));
+                  // Navigator.push(
+                  //     context,
+                  //     PageTransition(
+                  //         type: PageTransitionType.fade,
+                  //         child: (EditPhoneNumberView())));
                 },
                 child: Container(
                   width: 150.w,
@@ -138,11 +140,11 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: (EditPhoneNumberView())));
+              // Navigator.push(
+              //     context,
+              //     PageTransition(
+              //         type: PageTransitionType.fade,
+              //         child: (EditPhoneNumberView())));
             },
             child: Container(
               width: 90.w,
@@ -202,11 +204,11 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: (EditPhoneNumberView())));
+              // Navigator.push(
+              //     context,
+              //     PageTransition(
+              //         type: PageTransitionType.fade,
+              //         child: (EditPhoneNumberView())));
             },
             child: Container(
               child:
@@ -222,7 +224,7 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
     return AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: wPurpleBackGroundColor,
+        backgroundColor: wOrangeBackGroundColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

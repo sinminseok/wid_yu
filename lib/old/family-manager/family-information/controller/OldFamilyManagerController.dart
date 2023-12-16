@@ -1,10 +1,11 @@
 
 
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/user/TestHealth.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
 
-class FamilyManagerByYoungController extends GetxController {
+import '../../../../common/model/user/TestHealth.dart';
+import '../../../../common/model/user/TestUser.dart';
+
+class OldFamilyManagerController extends GetxController {
   Rx<TestUser> _myUser = TestUser("보호자", TestHealth(1,2,3), true).obs;
   RxList<TestUser> _olds = [TestUser("부모님1", TestHealth(1,2,3), true),TestUser("부모님2", TestHealth(1,2,3), true),TestUser("부모님2", TestHealth(1,2,3), true)].obs;
 

@@ -7,9 +7,10 @@ import 'package:wid_yu/young/family-manager/family-edit/phone-number-edit/view/E
 
 import '../../../../../common/text/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
+import '../controller/OldEditByOldController.dart';
 
 class OldEditInformation extends StatelessWidget {
-  OldEditByYoungController controller;
+  OldEditByOldController controller;
 
   OldEditInformation(this.controller);
 
