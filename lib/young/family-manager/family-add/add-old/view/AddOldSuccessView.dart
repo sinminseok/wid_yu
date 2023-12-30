@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/common-widget/CommonAppbar.dart';
-import 'package:wid_yu/common/common-widget/OrangeButton.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
+import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/controller/AddOldController.dart';
 

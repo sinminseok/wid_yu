@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../../../common/model/account/AwsServices.dart';
 
 class YoungLoginController extends GetxController {
+  //자동로그인 체크 변수
   RxBool _isChecked = false.obs;
   RxBool _isWrongInformation = false.obs;
   RxBool _obscurePassword = false.obs;

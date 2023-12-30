@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../utils/Color.dart';
 
@@ -65,14 +65,14 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
         },
         child: Container(
 
-          height: 80.h,
+          height: 85.h,
           width: 120.w,
           child: Column(
             children: [
               Container(
-                width: 24.w,
+                width: 25.w,
                 height: 21.h,
-                margin: EdgeInsets.only(top: 17.5.h),
+                margin: EdgeInsets.only(top: 15.h),
                 child: Image.asset(
                   iconPath,
                   color:
@@ -82,7 +82,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
               Container(
                 margin: EdgeInsets.only(top: 7.h),
                 child: Center(
-                  child: Helper2Text(
+                  child: HelperText(
                     title,
                     index == _selectedIndex ? wGrey800Color : wGrey400Color,
                   ),

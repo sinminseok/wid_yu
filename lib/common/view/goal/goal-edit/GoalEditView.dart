@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionTypeWidget.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/controller/GoalEditController.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/widgets/EditMissionAddTime.dart';

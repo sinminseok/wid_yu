@@ -2,18 +2,18 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
-import 'package:wid_yu/young/account/find/find-id/FindIdView.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/young/account/find/find-id/view/FindIdView.dart';
 import 'package:wid_yu/young/account/find/find-password/FindPasswordSuccessView.dart';
 
-import '../../../../common/common-widget/CommonAppbar.dart';
-import '../../../../common/common-widget/OrangeButton.dart';
+import '../../../../common/common-widget/appbar/CommonAppbar.dart';
+import '../../../../common/common-widget/button/OrangeButton.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/FilePath.dart';
 import '../../join/login-information/IdAndPasswordView.dart';
 import '../../join/phone-vertify/VertifyPhoneView.dart';
-import '../../login/YoungLoginView.dart';
-import '../find-id/FindIdSuccessView.dart';
+import '../../login/view/YoungLoginView.dart';
+import '../find-id/view/FindIdSuccessView.dart';
 
 class FindPasswordView extends StatefulWidget {
   const FindPasswordView({Key? key}) : super(key: key);

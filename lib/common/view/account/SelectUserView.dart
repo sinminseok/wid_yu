@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
-import '../../../old/account/old_login_view.dart';
-import '../../../young/account/login/YoungLoginView.dart';
+import '../../../old/account/view/OldLoginView.dart';
+import '../../../young/account/login/view/YoungLoginView.dart';
 import '../../utils/Color.dart';
 import '../../utils/FilePath.dart';
 
@@ -43,13 +44,8 @@ class _SelectUserViewState extends State<SelectUserView> {
       margin: EdgeInsets.only(top: 20.h),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.fade,
-              child: OldLoginView(),
-            ),
-          );
+          Get.to(() => OldLoginView(), transition: Transition.fade);
+
         },
         child: Container(
             child: Stack(
@@ -91,7 +87,7 @@ class _SelectUserViewState extends State<SelectUserView> {
                           children: [
                             Title1Text("부모님", wTextBlackColor),
                             Container(
-                                margin: EdgeInsets.only(top: 4.h),
+                                margin: EdgeInsets.only(top: 12.h),
                                 child: Body2Text("부모님으로 로그인해요.\n회원가입은 보호자님이 해주세요.", wGrey700Color))
                           ],
                         ),
@@ -110,13 +106,8 @@ class _SelectUserViewState extends State<SelectUserView> {
       margin: EdgeInsets.only(top: 56.h),
       child: InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                child: YoungLoginView(),
-              ),
-            );
+            Get.to(() => YoungLoginView(), transition: Transition.fade);
+
           },
           child: Stack(
             children: [
@@ -153,7 +144,7 @@ class _SelectUserViewState extends State<SelectUserView> {
                   children: [
                     Title1Text("보호자", wTextBlackColor),
                     Container(
-                        margin: EdgeInsets.only(top: 4.h),
+                        margin: EdgeInsets.only(top: 12.h),
                         child: Body2Text("보호자로 회원가입, 로그인하여 \n부모님의 정보를 관리해요. ", wGrey700Color))
                   ],
                 ),
@@ -176,13 +167,15 @@ class _SelectUserViewState extends State<SelectUserView> {
 
   Widget _buildMainText() {
     return Container(
-      margin: EdgeInsets.only(top: 5.h),
+      width: 175.w,
+      margin: EdgeInsets.only(top: 15.h),
       child: Column(
         children: [
           Container(
             child: Body2Text("건강한 습관과 소통의 형성", wGrey800Color)
           ),
           Container(
+            margin: EdgeInsets.only(top: 5.h),
               child: Body2Text("가족과, 그리고 위듀와 함께해요.", wGrey800Color)
           ),
         ],

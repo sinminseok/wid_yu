@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/account/join/controller/YoungJoinController.dart';
 
 import '../../../../../common/utils/Color.dart';
@@ -13,7 +13,7 @@ import '../../../../../common/utils/PopUp.dart';
 import '../../../../../common/utils/exception/InvalidInformationException.dart';
 import '../../finish/JoinSuccessOnlyYoungView.dart';
 import '../../finish/JoinSuccessView.dart';
-import '../../old-information/OldInformationView.dart';
+import '../../old-information/view/OldInformationView.dart';
 
 class SelectButton extends StatelessWidget {
   final YoungJoinController controller;
@@ -24,9 +24,10 @@ class SelectButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 195.h,right: 20.w,left: 20.w,bottom: 60.h),
+      width: 335.w,
+        margin: EdgeInsets.only(right: 20.w,left: 20.w,top: 240.h),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
               onTap: () {
@@ -52,7 +53,7 @@ class SelectButton extends StatelessWidget {
                     transition: Transition.fadeIn);
               },
               child: Container(
-                width: 206.w,
+                width: 221.w,
                 height: 44.h,
                 decoration: BoxDecoration(
                     color: wOrangeColor,

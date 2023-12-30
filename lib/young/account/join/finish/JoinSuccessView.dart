@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/common-widget/OrangeButton.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
-import 'package:wid_yu/young/account/login/YoungLoginView.dart';
+import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/young/account/login/view/YoungLoginView.dart';
 import '../../../../common/utils/Color.dart';
-import '../../../../common/utils/widgets/RoundedButton.dart';
 import '../widgets/ProgressBar.dart';
 import '../widgets/SignupAppBar.dart';
 
@@ -41,7 +40,7 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
   Widget _buildMainText() {
     return Container(
       height: 30.h,
-      margin: EdgeInsets.only(left: 20.w, top: 28.h),
+      margin: EdgeInsets.only(left: 20.w, top: 32.h),
       child: Title2Text("환영해요, 보호자 님!", wGrey800Color),
     );
   }
@@ -67,8 +66,8 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
     return Center(
       child: Container(
         width: 335.w,
-        height: 263.h,
-        margin: EdgeInsets.only(top: 28.h, right: 20.w, left: 20.w),
+        height: 273.h,
+        margin: EdgeInsets.only(top: 32.h, right: 20.w, left: 20.w),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -129,7 +128,7 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: 21.w, top: 60.h),
+          margin: EdgeInsets.only(left: 21.w, top: 55.h),
           height: 60.h,
           child: Title2Text("아래 초대숫자로 부모님 계정에\n로그인해 주세요.", wGrey800Color),
         ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/common-widget/OrangeButton.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
-import 'package:wid_yu/young/account/login/YoungLoginView.dart';
+import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/young/account/login/view/YoungLoginView.dart';
 import '../../../../common/utils/Color.dart';
-import '../../../../common/utils/widgets/RoundedButton.dart';
 import '../widgets/ProgressBar.dart';
 import '../widgets/SignupAppBar.dart';
 

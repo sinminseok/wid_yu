@@ -63,6 +63,8 @@ dependencies:
   flutter_blue: ^0.8.0
   flutter_svg: ^2.0.5
   remedi_kopo: ^0.0.2
+  dots_indicator: ^3.0.0
+  blur: ^3.1.0
 
   webview_flutter: ^2.8.0
 
@@ -98,6 +100,7 @@ flutter:
     - assets/common/user/
     - assets/young/health-information/
     - assets/young/album/
+    - assets/images/old/reward/
     - assets/common/goal-conduct/
     - assets/common/alarm/
     - assets/common/health-information/graph/
@@ -108,6 +111,9 @@ flutter:
     - assets/images/user/
     - assets/images/common/mission/
     - assets/images/common/goal/
+    - assets/images/mission/
+    - assets/images/
+    - assets/images/icon/alarm/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

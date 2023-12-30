@@ -4,14 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:remedi_kopo/remedi_kopo.dart';
 import 'package:wid_yu/common/utils/Color.dart';
-import 'package:wid_yu/young/account/join/format/BrithFormat.dart';
 import 'package:wid_yu/young/account/join/format/PhoneNumberFormat.dart';
 import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 
-import '../../../../../common/text/CustomText.dart';
-import '../../../../../common/utils/widgets/TextFormWidget.dart';
+import '../../../../../common/utils/CustomText.dart';
 
 class OldInformationForm extends StatelessWidget {
   final OldInformationController controller;
@@ -231,14 +228,14 @@ class OldInformationForm extends StatelessWidget {
                 ),
               ),
               Positioned(
-                left: 280.w,
-                top: 20.h,
+                left: 300.w,
+                top: 18.h,
                 child: Container(
                   child: InkWell(
                       onTap: ()async{
                        controller.addressAPI(context);
                       },
-                      child: Icon(Icons.search, color: wGrey800Color,size: 24.sp,)),
+                      child: Icon(Icons.search, color: wGrey800Color,size: 29.sp,)),
                 ),
               )
             ],

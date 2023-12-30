@@ -11,7 +11,7 @@ import 'package:wid_yu/old/health-information/detail-view/OldTemperatureDetailVi
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../../../young/health-infroamtion/detail-view/TemperatureDetailView.dart';
+import '../../../young/health-infroamtion/temperature/view/TemperatureDetailView.dart';
 
 class TemperatureInformation extends StatelessWidget {
   OldHealthInformationController controller;

@@ -3,11 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 
 import '../../../../../common/utils/Color.dart';
-import '../../../../../common/utils/widgets/TextFormWidget.dart';
 
 class DiseaseForm extends StatelessWidget {
   final OldInformationController controller;

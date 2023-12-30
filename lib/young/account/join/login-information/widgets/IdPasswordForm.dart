@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../../common/utils/Color.dart';
 import '../../controller/YoungJoinController.dart';
@@ -16,7 +16,7 @@ class IdPasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Container(
-          margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 24.h),
+          margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 33.h),
           child: Column(
             children: [
               _buildIdForm(),
@@ -30,7 +30,9 @@ class IdPasswordForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(height: 21.h, child: SubTitle2Text("아이디", wGrey700Color)),
+        Container(
+            margin: EdgeInsets.only(top: 0.h),
+            height: 21.h, child: SubTitle2Text("아이디", wGrey700Color)),
         Stack(
           children: [
             Container(
@@ -74,8 +76,8 @@ class IdPasswordForm extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: 23.h,
-                left: 250.w,
+                top: 20.h,
+                left: 260.w,
                 child: controller.checkDuplicateId == 0
                     ? Container(
                         child: InkWell(
@@ -120,7 +122,7 @@ class IdPasswordForm extends StatelessWidget {
             Container(
               width: 335.w,
               height: 46.h,
-              margin: EdgeInsets.only(top: 6.h),
+              margin: EdgeInsets.only(top: 10.h),
               decoration: BoxDecoration(
                 border: Border.all(
                     color: controller.isRightPassword == -1

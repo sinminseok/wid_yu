@@ -10,7 +10,7 @@ import 'package:wid_yu/old/health-information/detail-view/OldHeartBitDetailView.
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../../../young/health-infroamtion/detail-view/HeartBitDetailView.dart';
+import '../../../young/health-infroamtion/heartbit/view/HeartBitDetailView.dart';
 
 class HeartBitInformation extends StatefulWidget {
   OldHealthInformationController controller;

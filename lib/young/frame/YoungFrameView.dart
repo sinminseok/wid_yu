@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
-import 'package:wid_yu/young/health-infroamtion/ble/BleConnectView.dart';
 
 import '../../common/view/frame/BottomNavigationWidget.dart';
-import '../album/YoungAlbumView.dart';
-import '../goal/YoungGoalView.dart';
-import '../health-infroamtion/BleHealthInformationView.dart';
-import '../health-infroamtion/YoungHealthInformationView.dart';
+import '../album/main/view/YoungAlbumView.dart';
+import '../goal/main/view/YoungGoalView.dart';
+import '../health-infroamtion/main/view/YoungHealthInformationView.dart';
 
 class YoungFrameView extends StatefulWidget {
   final int index;
@@ -33,8 +31,7 @@ class _FrameView extends State<YoungFrameView> {
   final admin_screens = [
     YoungGoalView(),
     YoungAlbumView(),
-    BleYoungHealthInformationView(),
-    //YoungHealthInformationView()
+    YoungHealthInformationView()
   ];
 
   @override
@@ -53,7 +50,7 @@ class _FrameView extends State<YoungFrameView> {
             commonImagePath + "icon/frame/album_icon.png",
             commonImagePath + "icon/frame/health_icon.png",
           ],
-          ["목표", "앨범 위듀", "응급 알림"],
+          ["목록", "앨범 위듀", "건강 정보"],
         ),
         body: admin_screens[admin_selectedItem]);
   }

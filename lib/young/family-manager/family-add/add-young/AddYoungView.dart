@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/common/common-widget/CommonAppbar.dart';
-import 'package:wid_yu/common/common-widget/OrangeButton.dart';
+import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
+import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-young/AddYoungController.dart';
 
-import '../../../../common/text/CustomText.dart';
+import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 
 class AddYoungView extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/old/frame/OldFrameView.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
-import '../../../../young/goal/YoungGoalView.dart';
+import '../../../../young/goal/main/view/YoungGoalView.dart';
 import '../../../utils/Color.dart';
 import '../goal-create/GoalCreateView.dart';
 

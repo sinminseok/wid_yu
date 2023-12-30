@@ -6,11 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/model/user/TestUser.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
-import '../../../common/common-widget/CommonAppbar.dart';
+import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthExplanationConstants.dart';
-import '../../../young/health-infroamtion/detail-view/widgets/YoungHealthGraph.dart';
+import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 
 class OldHeartBitDetailView extends StatefulWidget {
   final TestUser? user;

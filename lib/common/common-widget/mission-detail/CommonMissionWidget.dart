@@ -1,10 +1,8 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/model/mission/TimeType.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -16,13 +14,14 @@ class CommonMissionWidget extends StatelessWidget {
 
   CommonMissionWidget(this._mission);
 
-
   List<MissionTime> times = [MissionTime("12:00", TimeType.NONE)];
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 10.h, bottom: 10.h,right: 20.w,left: 20.w),
+        margin:
+            EdgeInsets.only(top: 26.h, bottom: 10.h, right: 20.w, left: 20.w),
         width: 335.w,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -33,7 +32,6 @@ class CommonMissionWidget extends StatelessWidget {
           children: [
             _buildMissionInfo(),
             _buildTime(context),
-
           ],
         ),
       ),
@@ -46,50 +44,27 @@ class CommonMissionWidget extends StatelessWidget {
         child: MissionTimeWidget(times, context));
   }
 
-  Widget _buildNotReady() {
-    return Container(
-      child: Center(
-        child: Container(
-            margin: EdgeInsets.only(top: 30.h),
-            child: Text("아직 기능 개발중 입니다..", style: TextStyle(color: Colors.grey),)),
-      ),
-    );
-  }
-
   Widget _buildMissionInfo() {
     return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 20.w),
+      margin: EdgeInsets.only(top: 20.h, left: 10.w),
       child: Row(
         children: [
           _buildMissionIcon(),
           _buildMissionDetails(),
-
         ],
       ),
     );
   }
 
   Widget _buildMissionIcon() {
-    return Container(
-      width: 40.w,
-      height: 40.h,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: Offset(0, 2),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Center(
-        child: Container(
-          width: 28.w,
-          height: 28.h,
-          child: Image.asset("assets/common/icon/mission/common.png"),
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 3.h),
+        child: Image.asset(
+          width: 55.w,
+          height: 55.h,
+          "assets/images/mission/common-mission-icon.png",
+          fit: BoxFit.fitHeight,
         ),
       ),
     );
@@ -100,22 +75,14 @@ class CommonMissionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: 20.w),
-          child: Title3Text(
-            _mission.title,
-              kTextBlackColor
-          ),
+          margin: EdgeInsets.only(left: 10.w),
+          child: Title3Text(_mission.title, kTextBlackColor),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20.w, top: 5.h),
-          child: Body2Text(
-            _mission.subtitle,
-           wGrey800Color
-          ),
+          margin: EdgeInsets.only(left: 10.w, top: 5.h),
+          child: Body2Text(_mission.subtitle, wGrey800Color),
         )
       ],
     );
   }
-
 }
-

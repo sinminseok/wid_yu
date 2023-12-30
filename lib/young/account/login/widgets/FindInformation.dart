@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../find/find-id/FindIdView.dart';
+import '../../find/find-id/view/FindIdView.dart';
 import '../../find/find-password/FindPasswordView.dart';
 
 Widget FindInformation() {

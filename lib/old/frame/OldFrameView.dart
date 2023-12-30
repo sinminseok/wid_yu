@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../common/utils/FilePath.dart';
 import '../../common/view/frame/BottomNavigationWidget.dart';
-import '../album/OldAlbumView.dart';
-import '../goal/OldGoalView.dart';
+import '../album/main/view/OldAlbumView.dart';
+import '../goal/main/view/OldGoalView.dart';
 import '../health-information/OldHealthInformationView.dart';
 
 class OldFrameView extends StatefulWidget {

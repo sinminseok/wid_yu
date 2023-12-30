@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../common/common-widget/CommonAppbar.dart';
+import '../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../common/utils/Color.dart';
 import 'GoalRegisterFinishView.dart';
 

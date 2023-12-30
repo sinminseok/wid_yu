@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../model/mission/MissionTime.dart';
 import '../../model/mission/TimeType.dart';
@@ -12,7 +12,7 @@ import 'YetMissionTimeWidget.dart';
 
 Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context) {
   return Container(
-    margin: EdgeInsets.only(left: 25.w, top: 0.h),
+    margin: EdgeInsets.only(left: 10.w, top: 0.h),
     width: 210.w,
     child: GridView.builder(
       shrinkWrap: true,
