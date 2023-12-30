@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../common/common-widget/OrangeButton.dart';
+import '../../../../common/common-widget/button/OrangeButton.dart';
 import '../../../frame/YoungFrameView.dart';
 import '../controller/YoungLoginController.dart';
 

@@ -3,13 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/account/join/controller/YoungJoinController.dart';
 
 import '../../../../../common/utils/Color.dart';
+import '../controller/VertifyPhoneController.dart';
 
 class AgreeJoin extends StatelessWidget {
-  YoungJoinController controller;
+  VerificationPhoneController controller;
 
 
   AgreeJoin(this.controller);
@@ -29,7 +30,9 @@ class AgreeJoin extends StatelessWidget {
                   width: 24.w,
                   height: 23.h,
                   child: Checkbox(
+
                       activeColor: wGrey500Color,
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(3.5))),
                       fillColor: const MaterialStatePropertyAll(wWhiteColor),
                       checkColor: wGrey500Color,
                       visualDensity: VisualDensity.standard,
@@ -47,6 +50,7 @@ class AgreeJoin extends StatelessWidget {
                       }),
                 ),
                 Container(
+                  margin: EdgeInsets.only(left: 10.w),
                   child: SubTitle2Text("(필수) 개인정보 수집 동의", wGrey800Color),
                 ),
               ],

@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/model/mission/TimeType.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
-import 'package:wid_yu/old/goal-conduct/OldCommonConductView.dart';
-import 'package:wid_yu/old/goal-conduct/OldDrugConductView.dart';
-import 'package:wid_yu/old/goal-conduct/OldRunningConductView.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -42,28 +38,12 @@ class MissionWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Container(
-                      width: 40.w,
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0, 2),
-                            blurRadius: 4,
-                            spreadRadius: 0,
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                          child: Container(
-                              width: 35.w,
-                              height: 35.h,
-                              child: _mission.missionType==MissionType.DRUG?Image.asset("assets/common/mission/drug-mission.png", fit: BoxFit.cover,): _mission.missionType==MissionType.WALK?Image.asset("assets/common/mission/walk-mission.png", fit: BoxFit.cover,):Image.asset("assets/common/mission/common-mission.png", )
-                          )
-                      ),
+                    Center(
+                        child: Container(
+                            width: 43.w,
+                            height: 50.h,
+                            child: _mission.missionType==MissionType.DRUG?Image.asset("assets/images/mission/drug-mission-icon.png", fit: BoxFit.cover,): _mission.missionType==MissionType.WALK?Image.asset("assets/images/mission/walk-mission-icon.png", fit: BoxFit.cover,):Image.asset("assets/images/mission/common-mission-icon.png", )
+                        )
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 5.h,left: 5.w),

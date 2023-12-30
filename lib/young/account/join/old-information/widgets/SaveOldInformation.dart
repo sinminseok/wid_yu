@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/model/user/Old.dart';
 
-import '../../../../../common/text/CustomText.dart';
+import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 
 class SaveOldInformation extends StatelessWidget {
@@ -27,8 +27,8 @@ class SaveOldInformation extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    spreadRadius: 5,
+                    color: Colors.black.withOpacity(0.08),
+                    spreadRadius: 3,
                     blurRadius: 9,
                     offset: Offset(1, 1), // changes position of shadow
                   ),

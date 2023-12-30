@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:wid_yu/common/model/mission/TimeType.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
+import 'package:wid_yu/common/view/goal/goal/DrugImageDetailView.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -26,8 +28,8 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
 
   List<Widget> datas = [
     _finishDrugWidget(),
-    _finishDrugWidget(),
-    _finishDrugWidget(),
+    _doNotDrugWidget(),
+    _willDrugWidget(),
     _finishDrugWidget(),
     _finishDrugWidget(),
   ];
@@ -39,7 +41,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
         Center(
           child: Container(
             width: 335.w,
-            height: 300.h,
+            height: 320.h,
             margin: EdgeInsets.only(left: 20.w, right: 20.w),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -56,13 +58,13 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
         ),
         Positioned(
           top: 180.h,
-          left: 320.w,
+          left: 335.w,
           child: Container(
             width: 35.w,
             height: 35.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: wWhiteColor,
+              color: Colors.white.withOpacity(0.7),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
@@ -83,8 +85,8 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
               },
               child: Center(
                 child: Container(
-                  width: 15.w,
-                    height: 15.h,
+                  width: 11.w,
+                    height: 11.h,
 
                     child: Image.asset("assets/images/icon/next-icon.png",width: 10.w,)),
               ),
@@ -100,34 +102,19 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
       margin: EdgeInsets.only(top: 15.h, left: 16.w),
       child: Row(
         children: [
-          Container(
-            width: 40.w,
-            height: 40.h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0, 2),
-                  blurRadius: 4,
-                  spreadRadius: 0,
-                ),
-              ],
-            ),
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.only(top: 3.h),
-                width: 38.w,
-                height: 38.h,
-                child: Image.asset(
-                  "assets/images/common/mission/drug.png",
-                ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 3.h),
+
+              child: Image.asset(
+                width: 55.w,
+                height: 55.h,
+                "assets/images/mission/drug-mission-icon.png",fit: BoxFit.fitHeight,
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 16.w),
+            margin: EdgeInsets.only(left: 5.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -198,14 +185,14 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
    */
 Widget _finishDrugWidget() {
   return Container(
-    margin: EdgeInsets.only(left: 5.w, top: 20.h),
+    margin: EdgeInsets.only(left: 7.w, top: 20.h),
     child: Stack(
       children: [
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 97.w,
-            height: 165.h,
+            width: 100.w,
+            height: 180.h,
             decoration: BoxDecoration(
               color: wWhiteColor,
               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -213,18 +200,24 @@ Widget _finishDrugWidget() {
             ),
             child: Column(
               children: [
-                Container(
-                    margin: EdgeInsets.only(top: 20.h),
-                    width: 80.w,
-                    height: 109.h,
-                    child: Center(
-                        child: Image.asset(
-                          "assets/images/common/goal/test.png",
-                          fit: BoxFit.contain,
-                        ))),
+                InkWell(
+                  onTap: (){
+                    print("dasda");
+                    Get.to(()=> DrugImageDetailView());
+                  },
+                  child: Container(
+                      margin: EdgeInsets.only(top: 20.h),
+                      width: 80.w,
+                      height: 109.h,
+                      child: Center(
+                          child: Image.asset(
+                            "assets/images/common/goal/test.png",
+                            fit: BoxFit.fitHeight,
+                          ))),
+                ),
                 Container(
                   height: 24.h,
-                  margin: EdgeInsets.only(top: 3.h),
+                  margin: EdgeInsets.only(top: 13.h),
                   child: Center(
                     child: ChipText("복용 완료", wOrange200Color),
                   ),
@@ -234,7 +227,7 @@ Widget _finishDrugWidget() {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 10.w, top: 5.h),
+          margin: EdgeInsets.only(left: 10.w, top: 0.h),
           width: 80.w,
           height: 30.h,
           decoration: BoxDecoration(
@@ -264,14 +257,14 @@ Widget _finishDrugWidget() {
    */
 Widget _doNotDrugWidget() {
   return Container(
-    margin: EdgeInsets.only(left: 5.w, top: 20.h),
+    margin: EdgeInsets.only(left: 7.w, top: 20.h),
     child: Stack(
       children: [
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 97.w,
-            height: 165.h,
+            width: 100.w,
+            height: 180.h,
             decoration: BoxDecoration(
               color: wGrey100Color,
               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -282,8 +275,8 @@ Widget _doNotDrugWidget() {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 50.h),
-                  width: 40.w,
-                  height: 40.h,
+                  width: 48.w,
+                  height: 48.h,
                   child: Center(
                       child: Image.asset(
                           commonImagePath + "icon/mission/no-drug.png")),
@@ -320,14 +313,14 @@ Widget _doNotDrugWidget() {
    */
 Widget _willDrugWidget() {
   return Container(
-    margin: EdgeInsets.only(left: 5.w, top: 20.h),
+    margin: EdgeInsets.only(left: 7.w, top: 20.h),
     child: Stack(
       children: [
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            width: 97.w,
-            height: 165.h,
+            width: 100.w,
+            height: 180.h,
             decoration: BoxDecoration(
               color: wGrey100Color,
               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -339,13 +332,12 @@ Widget _willDrugWidget() {
                 Center(
                   child: Container(
                     margin: EdgeInsets.only(top: 53.h),
-                    width: 37.w,
-                    height: 37.h,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: wWhiteColor),
+                    width: 48.w,
+                    height: 48.h,
+
                     child: Center(
                         child: Image.asset(
-                            "assets/common/icon/mission/drug.png")),
+                            "assets/images/mission/drug-mission-icon.png")),
                   ),
                 ),
                 Container(

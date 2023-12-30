@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/young/family-manager/family-edit/young-edit/controller/YoungEditByYoungController.dart';
 
-import '../../../../../common/text/CustomText.dart';
+import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../phone-number-edit/view/EditPhoneNumberView.dart';
 

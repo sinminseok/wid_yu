@@ -4,19 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../model/mission/Mission.dart';
-import '../../text/CustomText.dart';
+import '../../model/mission/MissionTime.dart';
+import '../../model/mission/TimeType.dart';
+import '../../utils/CustomText.dart';
 import '../../utils/Color.dart';
+import '../mission-time/MissionTimeWidget.dart';
 
 class WalkMissionWidget extends StatelessWidget {
   final Mission _mission;
 
   WalkMissionWidget(this._mission);
 
+  List<MissionTime> times = [MissionTime("12:00", TimeType.NONE)];
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 10.h,right: 20.w, left: 20.w),
+        margin: EdgeInsets.only(top: 26.h,right: 20.w, left: 20.w),
         width: 335.w,
         height: 150.h,
         decoration: BoxDecoration(
@@ -27,7 +32,7 @@ class WalkMissionWidget extends StatelessWidget {
         child: Column(
           children: [
             _buildMissionInfo(),
-            _buildNotReady()
+            _buildTime(context),
 
           ],
         ),
@@ -35,19 +40,15 @@ class WalkMissionWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildNotReady() {
+  Widget _buildTime(BuildContext context) {
     return Container(
-      child: Center(
-        child: Container(
-            margin: EdgeInsets.only(top: 30.h),
-            child: Text("아직 기능 개발중 입니다..", style: TextStyle(color: Colors.grey),)),
-      ),
-    );
+        margin: EdgeInsets.only(left: 50.w, top: 10.h, bottom: 20.h),
+        child: MissionTimeWidget(times, context));
   }
 
   Widget _buildMissionInfo() {
     return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 20.w),
+      margin: EdgeInsets.only(top: 20.h, left: 10.w),
       child: Row(
         children: [
           _buildMissionIcon(),
@@ -59,27 +60,14 @@ class WalkMissionWidget extends StatelessWidget {
   }
 
   Widget _buildMissionIcon() {
-    return Container(
-      width: 40.w,
-      height: 40.h,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: Offset(0, 2),
-            blurRadius: 4,
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: Center(
-        child: Container(
-          margin: EdgeInsets.only(top: 0.h),
-          width: 38.w,
-          height: 38.h,
-          child: Image.asset("assets/images/common/mission/walk.png"),
+    return   Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 3.h),
+
+        child: Image.asset(
+          width: 55.w,
+          height: 55.h,
+          "assets/images/mission/walk-mission-icon.png",fit: BoxFit.fitHeight,
         ),
       ),
     );
@@ -90,14 +78,14 @@ class WalkMissionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(left: 20.w),
+          margin: EdgeInsets.only(left: 10.w,top: 6.h),
           child: Title3Text(
             _mission.title,
               wTextBlackColor
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20.w, top: 5.h),
+          margin: EdgeInsets.only(left: 10.w, top: 5.h),
           child: Body2Text(
             _mission.subtitle,
               wGrey800Color

@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../common/model/user/Old.dart';
 import '../../../common/utils/Color.dart';
 import '../join/finish/JoinSuccessView.dart';
-import '../join/old-information/OtherOldInformationView.dart';
+import '../join/old-information/view/OtherOldInformationView.dart';
 
 class AccountPopup {
   void showDialog(BuildContext context, Old old) {
@@ -40,7 +40,7 @@ class AccountPopup {
                                 Navigator.pop(context);
                               },
                               child: Container(
-                                margin: EdgeInsets.only(left: 18.w, top: 18.h),
+                                margin: EdgeInsets.only(left: 10.w, top: 13.h),
                                 child: Icon(Icons.close, color: wGrey600Color,),
                               ),
                             ),
@@ -66,8 +66,8 @@ class AccountPopup {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 45.h,left: 16.w, right: 16.w),
-                          width: 325,
+                          margin: EdgeInsets.only(top: 35.h,left: 16.w, right: 16.w),
+
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -81,7 +81,7 @@ class AccountPopup {
                                               (OtherOldInformationView(old))));
                                 },
                                 child: Container(
-                                  width: 146.w,
+                                  width: 153.w,
                                   height: 44.h,
                                   decoration: BoxDecoration(
                                     border: Border.all(color: wOrange200Color),
@@ -104,7 +104,7 @@ class AccountPopup {
                                           child: (JoinSuccessView())));
                                 },
                                 child: Container(
-                                  width: 104.w,
+                                  width: 109.w,
                                   height: 44.h,
                                   decoration: BoxDecoration(
                                     border: Border.all(color: wGrey300Color),

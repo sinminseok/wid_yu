@@ -7,7 +7,7 @@ import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldE
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/widgets/OldEditDisease.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/widgets/OldEditInformation.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/widgets/OldEditProfile.dart';
-import '../../../../../common/text/CustomText.dart';
+import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
 import '../../../../../common/utils/SnackBar.dart';

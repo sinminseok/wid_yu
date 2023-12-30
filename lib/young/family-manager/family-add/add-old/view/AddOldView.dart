@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/controller/AddOldController.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/widgets/AddDiseaseForm.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/widgets/AddNextButton.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/widgets/AddOldInformationForm.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/widgets/AddSelectHaveDisease.dart';
 
-import '../../../../../common/common-widget/CommonAppbar.dart';
+import '../../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../../common/utils/Color.dart';
 
 class AddOldView extends StatefulWidget {

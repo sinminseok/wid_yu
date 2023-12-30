@@ -6,8 +6,8 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/controller/AddOldController.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/view/AddOldSuccessView.dart';
 
-import '../../../../../common/common-widget/OrangeButton.dart';
-import '../../../../../common/text/CustomText.dart';
+import '../../../../../common/common-widget/button/OrangeButton.dart';
+import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/PopUp.dart';
 import '../../../../account/join/old-information/controller/OldInformationController.dart';

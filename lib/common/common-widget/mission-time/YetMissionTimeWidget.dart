@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../utils/Color.dart';
 

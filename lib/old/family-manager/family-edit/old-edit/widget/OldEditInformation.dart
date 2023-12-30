@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/phone-number-edit/view/EditPhoneNumberView.dart';
 
-import '../../../../../common/text/CustomText.dart';
+import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../controller/OldEditByOldController.dart';
 

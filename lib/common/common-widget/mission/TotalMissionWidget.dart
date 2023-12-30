@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/mission-time/TotalMissionWidget.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/GoalEditView.dart';
-import 'package:wid_yu/young/goal/controller/YoungGoalController.dart';
+import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
 import '../../model/mission/Mission.dart';
 import '../../model/mission/MissionTime.dart';
@@ -38,100 +38,58 @@ class TotalMissionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 10.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(),
-                // times의 길이가 하나면 아래 코드를 사용하고 times의 길이가 2개 이상이면 gridview를 사용해 가로에 2열, 세로로 남은 요소들을 배치한다
-                Container(
-                    margin: EdgeInsets.only(top: 15.h, left: 50.w),
-                    child: TotalMissionTimeWidget(times, context)),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 5.w),
-            child: InkWell(
-              onTap: (){
-                Get.to(() => GoalEditView(), transition: Transition.fadeIn);
-              },
-              child: Icon(Icons.arrow_forward_ios_sharp, size: 14.sp, color: wGrey600Color,),
-            ),
-          )
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildHeader(context),
+        _buildNextIcon(),
+      ],
     );
   }
 
-  Widget _buildHeader() {
-    return Container(
-      width: 270.w,
+  Widget _buildHeader(BuildContext context) {
+    return  Container(
+      width: 275.w,
       margin: EdgeInsets.only(left: 20.w, top: 15.h),
       decoration: BoxDecoration(color: wWhiteColor),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 40.w,
-                height: 40.h,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(0, 2),
-                      blurRadius: 4,
-                      spreadRadius: 0,
-                    ),
-                  ],
-                ),
-                child: Center(
-                    child: Container(
-                        width: 35.w,
-                        height: 35.h,
-                        child: _mission.missionType == MissionType.DRUG
-                            ? Image.asset(
-                          "assets/common/mission/drug-mission.png",
-                          fit: BoxFit.cover,
-                        )
-                            : _mission.missionType == MissionType.WALK
-                            ? Image.asset(
-                          "assets/common/mission/walk-mission.png",
-                          fit: BoxFit.cover,
-                        )
-                            : Image.asset(
-                          "assets/common/mission/common-mission.png",
-                        ))),
+              Center(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 4.h),
+                      width: 43.w,
+                      height: 50.h,
+                      child: _mission.missionType==MissionType.DRUG?Image.asset("assets/images/mission/drug-mission-icon.png", fit: BoxFit.cover,): _mission.missionType==MissionType.WALK?Image.asset("assets/images/mission/walk-mission-icon.png", fit: BoxFit.cover,):Image.asset("assets/images/mission/common-mission-icon.png", )
+                  )
               ),
+
               Container(
-                margin: EdgeInsets.only(top: 5.h, left: 5.w),
+                margin: EdgeInsets.only(top: 5.h,left: 5.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Container(
-                      width: 220.w,
+                      width: 210.w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 27.h,
-                            width: 100.w,
+                            width: 75.w,
                             margin: EdgeInsets.only(left: 10.w),
-                            child: Text(
-                              _mission.title,overflow: TextOverflow.ellipsis,style: TextStyle(fontFamily: "title3", color: wTextBlackColor, fontSize: 18.sp, fontWeight: FontWeight.w600),
+                            child: Title3Text(
+                                _mission.title,
+                                kTextBlackColor
                             ),
                           ),
                           Container(
-                              width: 110.w,
-                              height: 30.h,
+                              width: 120.w,
+                              height: 25.h,
                               child: ListView.builder(
                                   reverse: true,
                                   scrollDirection: Axis.horizontal,
@@ -152,20 +110,39 @@ class TotalMissionWidget extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: 20.h,
                       margin: EdgeInsets.only(left: 10.w, top: 5.h),
                       child: Body2Text(
-                          "123123",
+                          _mission.subtitle,
                           wGrey800Color
                       ),
-                    )
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(top: 15.h, left: 0.w),
+                        child: TotalMissionTimeWidget(times, context)),
                   ],
                 ),
               )
             ],
           ),
+
         ],
       ),
     );
   }
+
+  Widget _buildNextIcon(){
+    return InkWell(
+      onTap: (){
+        Get.to(() => GoalEditView(), transition: Transition.fadeIn);
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 15.w),
+        width: 11.w,
+        height: 11.h,
+        child: Image.asset("assets/images/icon/next-icon.png"),
+      ),
+    );
+  }
+
+
 }

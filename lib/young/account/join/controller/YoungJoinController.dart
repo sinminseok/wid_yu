@@ -3,19 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class YoungJoinController extends GetxController {
-  //본인인증 관련 필드
-  RxBool _canInputVertifyNumber = false.obs;
-  RxBool _isCheckAgree = false.obs;
+
+  RxString _youngName = "".obs;
+  RxString _youngPhoneNumber = "".obs;
+
+
+  void saveNameAndPhoneNumber(String name, String phoneNumber){
+    this._youngName.value = name;
+    this._youngPhoneNumber.value = phoneNumber;
+  }
+
+
+
   RxBool _canSelectButton = false.obs;
 
   // 중복된아이다 == -1, 기본값 == 0, 검증 통과 ==1, 아이디 형식 안맞음 ==2
   RxInt _checkDuplicateId = 0.obs;
   RxString _passId = "".obs;
 
-  //보호자 인증 관련 컨트롤러
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneNumberController = TextEditingController();
-  TextEditingController _verifyNumberController = TextEditingController();
 
   //아이디 비번 컨트롤러
   TextEditingController _idController = TextEditingController();
@@ -26,9 +31,6 @@ class YoungJoinController extends GetxController {
   RxInt _isRightBrith = 0.obs;
   RxInt _isRightPassword = 0.obs;
 
-  void sendVertifyNumber(){
-    _canInputVertifyNumber.value = true;
-  }
 
   void checkReTryId(){
     if(_passId.value != _idController.text){
@@ -54,9 +56,6 @@ class YoungJoinController extends GetxController {
     return isValidId;
   }
 
-  void checkAgree(bool value){
-    _isCheckAgree.value = value;
-  }
 
   // 아이디 중복을 검증하는 메서드
   void checkDuplicateIdFunction(){
@@ -95,22 +94,12 @@ class YoungJoinController extends GetxController {
 
   TextEditingController get idController => _idController;
 
-  bool get canInputVertifyNumber => _canInputVertifyNumber.value;
-
-  bool get isCheckAgree => _isCheckAgree.value;
-
   bool get canSelectButton => _canSelectButton.value;
 
   int get checkDuplicateId => _checkDuplicateId.value;
 
 
   RxString get passId => _passId;
-
-  TextEditingController get nameController => _nameController;
-
-  TextEditingController get phoneNumberController => _phoneNumberController;
-
-  TextEditingController get verifyNumberController => _verifyNumberController;
 
   TextEditingController get passwordController => _passwordController;
 

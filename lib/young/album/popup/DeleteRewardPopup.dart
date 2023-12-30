@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/common-widget/PurpleButton.dart';
+import 'package:wid_yu/common/common-widget/button/PurpleButton.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/young/album/popup/DeleteSuccessPopup.dart';

@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../../common/common-widget/CommonAppbar.dart';
+import '../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../common/model/user/TestUser.dart';
-import '../../../../common/text/CustomText.dart';
+import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../../family-edit/old-edit/view/OldEditByOldView.dart';
+import '../../family-edit/young-edit/view/EditYoungByOld.dart';
 import '../controller/OldFamilyManagerController.dart';
 
 class OldFamilyManagerView extends StatefulWidget {
@@ -24,19 +25,7 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      // floatingActionButton: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.end,
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     Container(
-      //         margin: EdgeInsets.only(right: 10.w, bottom: 10.h),
-      //         child: _buildAddButton()),
-      //   ],
-      // ),
       backgroundColor: wOrangeBackGroundColor,
       appBar: CommonAppBar(canBack: true, title: '가족정보',color: wOrangeBackGroundColor, ),
       body: SingleChildScrollView(
@@ -53,32 +42,6 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
     );
   }
 
-  FloatingActionButton _buildAddButton(){
-    return FloatingActionButton.extended(
-      onPressed: () {
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.fade,
-        //     child: AddFamilyView(),
-        //   ),
-        // );
-      },
-      label: Container(
-        child: Text(
-          "가족 추가",
-          style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
-        ),
-      ),
-      icon: const Icon(
-        Icons.add,
-        size: 20,
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      foregroundColor: Colors.white,
-      backgroundColor: wPurpleColor,
-    );
-  }
 
   Widget _buildYoungsInformation() {
     return Center(
@@ -93,10 +56,10 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
         ),
         child: InkWell(
           onTap: (){
-            // Navigator.push(
-            //     context,
-            //     PageTransition(
-            //         type: PageTransitionType.fade, child: (EditYoungView())));
+            Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.fade, child: (YoungEditByOldView())));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +139,7 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
 
   Widget _buildOldsInformation() {
     return Container(
-      width: 360.w,
+      width: 380.w,
       height: 600.h,
       margin: EdgeInsets.only(top: 60.h),
       child: ListView.builder(
@@ -267,11 +230,11 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
 
                 child: InkWell(
                     onTap: (){
-                      // Navigator.push(
-                      //     context,
-                      //     PageTransition(
-                      //         type: PageTransitionType.fade,
-                      //         child: (EditYoungView())));
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.fade,
+                              child: (OldEditByOldView())));
                     },
                     child: Image.asset("assets/images/icon/next-icon.png", color: wGrey500Color,width: 6.w,height: 12.h,)),
               )

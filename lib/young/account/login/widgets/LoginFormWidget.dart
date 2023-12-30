@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/common-widget/OrangeButton.dart';
+import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 
 import '../../../../common/model/account/AwsServices.dart';
 import '../../../../common/utils/Color.dart';

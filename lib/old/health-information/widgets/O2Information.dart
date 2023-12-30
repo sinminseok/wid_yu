@@ -12,7 +12,7 @@ import 'package:wid_yu/old/health-information/detail-view/OldO2DetailView.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthInformation.dart';
-import '../../../young/health-infroamtion/detail-view/O2DetailView.dart';
+import '../../../young/health-infroamtion/o2/view/O2DetailView.dart';
 
 class O2Information extends StatelessWidget {
   OldHealthInformationController controller;

@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 
@@ -11,7 +11,7 @@ Widget LoginMainText() {
       children: [
         Container(
           height: 30.h,
-          margin: EdgeInsets.only(top: 28.h),
+          margin: EdgeInsets.only(top: 30.h),
           child: Title2Text("보호자 계정으로 로그인해요", wGrey800Color)
         ),
         Container(

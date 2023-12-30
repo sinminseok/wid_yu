@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../join/phone-vertify/VertifyPhoneView.dart';
@@ -13,7 +13,7 @@ Widget SignUpText(){
   return Center(
     child: Container(
       width: 160.w,
-      margin: EdgeInsets.only(top: 110.h),
+      margin: EdgeInsets.only(top: 166.h),
       child: InkWell(
           onTap: () {
             Get.to(() => VerificationPhoneView(), transition: Transition.fadeIn);

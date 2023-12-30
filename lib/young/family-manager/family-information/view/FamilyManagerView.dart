@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/model/user/TestUser.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/view/EditOldView.dart';
 import 'package:wid_yu/young/family-manager/family-information/controller/FamilyManagerController.dart';
 
-import '../../../../common/common-widget/CommonAppbar.dart';
+import '../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../common/utils/Color.dart';
 import '../../family-add/AddFamilyView.dart';
 import '../../family-edit/young-edit/view/EditYoungView.dart';
@@ -192,7 +192,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
   Widget _buildOldCard(TestUser user){
     return Center(
       child: Container(
-        margin: EdgeInsets.only(bottom: 10.h, left: 20.w,right: 20.w),
+        margin: EdgeInsets.only(bottom: 10.h, left: 10.w,right: 10.w),
         width: 335.w,
         height: 86.h,
         decoration: BoxDecoration(

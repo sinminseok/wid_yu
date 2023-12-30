@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../common/utils/Color.dart';
 
@@ -23,17 +24,17 @@ Widget PointWidget(){
             child: Image.asset("assets/common/album/point_hand.png"),
           ),
           Container(
-            margin: EdgeInsets.only(left: 30.w,top: 10.h),
+            margin: EdgeInsets.only(left: 25.w,top: 10.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   margin: EdgeInsets.only(),
-                  child: Text("사용할 수 있는 포인트", style: TextStyle(fontSize: 16.sp, color: kTextGreyColor),),
+                  child: SubTitle2Text("사용할 수 있는 포인트",kTextGreyColor),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 5.h),
-                  child: Text("200 P",style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: kTextBlackColor),),
+                  child: PercentageText("200 P",kTextBlackColor),
                 ),
               ],
             ),

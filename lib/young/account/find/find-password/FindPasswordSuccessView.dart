@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/young/account/find/find-id/FindIdView.dart';
+import 'package:wid_yu/young/account/find/find-id/view/FindIdView.dart';
 
-import '../../../../common/common-widget/OrangeButton.dart';
-import '../../../../common/text/CustomText.dart';
+import '../../../../common/common-widget/button/OrangeButton.dart';
+import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
-import '../../login/YoungLoginView.dart';
+import '../../login/view/YoungLoginView.dart';
 
 class FindPasswordSuccessView extends StatefulWidget {
   const FindPasswordSuccessView({Key? key}) : super(key: key);

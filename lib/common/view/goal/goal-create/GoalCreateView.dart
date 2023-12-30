@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/text/CustomText.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionAddTime.dart';
 import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionSelectPhoto.dart';
@@ -38,7 +38,7 @@ class _GoalCreateViewState extends State<GoalCreateView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MissionType(controller),
-            SelectUser(controller),
+            widget.isOld?SelectUser(controller):Container(),
             MissionText(controller),
             MissionTerm(controller),
             MissionSetTime(controller),
