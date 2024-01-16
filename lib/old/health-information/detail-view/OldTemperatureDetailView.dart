@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
-import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthExplanationConstants.dart';
-import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 
 class OldTemperatureDetailView extends StatefulWidget {
-  TestUser user;
+  OldUser user;
 
 
   OldTemperatureDetailView(this.user);
@@ -89,10 +87,11 @@ class _OldTemperatureDetailViewState extends State<OldTemperatureDetailView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          child: Text("93", style: TextStyle(color: wTextBlackColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
+                          child: Text("35.4", style: TextStyle(color: wTextBlackColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
                         ),
                         Container(
-                          child: Text("bpm", style: TextStyle(color: wGrey600Color, fontSize: 14.sp),),
+                          margin: EdgeInsets.only(left: 3.w,bottom: 15.h),
+                          child: Text("o", style: TextStyle(color: wGrey600Color, fontSize: 14.sp),),
                         )
                       ],
                     )
@@ -206,30 +205,30 @@ class _OldTemperatureDetailViewState extends State<OldTemperatureDetailView> {
 
   Widget _buildGraph() {
     return OldHealthGraph([
-      10,
-      20,
+      35,
+      36,
+      35,
+      35,
+      35,
+      34,
       30,
-      20,
-      50,
-      60,
-      30,
-      10,
-      20,
-      30,
-      20,
-      50,
-      60,
-      30,
-      10,
-      20,
-      30,
-      20,
-      50,
-      60,
-      30,
-      20,
-      50,
-      30
+      35,
+      36,
+      35,
+      35,
+      34,
+      35,
+      36,
+      34,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36
     ]);
   }
 }

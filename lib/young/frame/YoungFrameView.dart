@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 
 import '../../common/view/frame/BottomNavigationWidget.dart';
@@ -25,17 +26,20 @@ class _FrameView extends State<YoungFrameView> {
   @override
   void initState() {
     super.initState();
+
     admin_selectedItem = widget.index;
   }
 
-  final admin_screens = [
-    YoungGoalView(),
-    YoungAlbumView(),
-    YoungHealthInformationView()
-  ];
+
 
   @override
   Widget build(BuildContext context) {
+    final admin_screens = [
+      YoungGoalView(),
+      YoungAlbumView(),
+      YoungHealthInformationView()
+    ];
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: BottomNavigationWidget(

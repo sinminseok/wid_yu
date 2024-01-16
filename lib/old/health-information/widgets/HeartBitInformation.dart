@@ -47,7 +47,15 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
         onTap: (){
           Get.to(() => OldHeartBitDetailView(widget.controller.user.value), transition: Transition.fadeIn);
         },
-        child: _buildDangerous());
+        child: _buildHeartBitInformation());
+  }
+
+  Widget _buildHeartBitInformation(){
+    double? userHeartBit = widget.controller.getUserHeartBit()?.toDouble();
+    if(60 < userHeartBit! && 100 > userHeartBit!){
+      return _buildNormal();
+    }
+    return _buildDangerous();
   }
 
   Widget _buildNormal() {
@@ -128,7 +136,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
                       child: Image.asset(commonImagePath + "health-information/heart-icon.png"),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 5.h, left: 20.w),
+                      margin: EdgeInsets.only(top: 2.h, left: 20.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -138,6 +146,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
                                 child: Text(
                                   "${widget.controller.getUserHeartBit()}",
                                   style: TextStyle(
+                                    fontFamily: "percentage",
                                     fontSize: 22.sp,
                                     fontWeight: FontWeight.w900,
                                     color: iconColor,

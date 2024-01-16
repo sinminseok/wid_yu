@@ -7,7 +7,10 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 
 class EmptyGoal extends StatefulWidget {
-  const EmptyGoal({Key? key}) : super(key: key);
+  bool hasOld;
+
+
+  EmptyGoal(this.hasOld);
 
   @override
   _EmptyGoalState createState() => _EmptyGoalState();
@@ -61,7 +64,7 @@ class _EmptyGoalState extends State<EmptyGoal>     with SingleTickerProviderStat
             margin: EdgeInsets.only(top: 20.h),
             child: Helper2Text("새로운 목표를 생성해 보세요!", wGrey500Color),
           ),
-          AnimatedBuilder(
+          !widget.hasOld? AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
               return Transform.translate(
@@ -74,7 +77,7 @@ class _EmptyGoalState extends State<EmptyGoal>     with SingleTickerProviderStat
                 ),
               );
             },
-          )
+          ): Container()
         ],
       ),
     );

@@ -57,7 +57,7 @@ class _AddYoungViewState extends State<AddYoungView> {
   Widget _buildFindYoungForm() {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 15.h),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 30.h),
         width: 335.w,
         height: 46.h,
         decoration: BoxDecoration(
@@ -88,12 +88,12 @@ class _AddYoungViewState extends State<AddYoungView> {
             border: InputBorder.none,
             isDense: true,
             suffixIcon: Padding(
-              padding: EdgeInsets.only(right: 8.w), // 원하는 마진을 설정
+              padding: EdgeInsets.only(right: 3.w,bottom: 13.h), // 원하는 마진을 설정
               child: IconButton(
                 icon: Icon(
                   Icons.search,
                   color: wGrey800Color,
-                  size: 27.sp,
+                  size: 23.sp,
                 ),
                 // 원하는 아이콘을 사용하도록 변경
                 onPressed: () {
@@ -163,7 +163,7 @@ class _AddYoungViewState extends State<AddYoungView> {
 
   Widget _buildMainText() {
     return Container(
-      margin: EdgeInsets.only(top: 50.h, right: 30.w),
+      margin: EdgeInsets.only(top: 50.h, right: 80.w),
       width: 320.w,
       height: 105.h,
       child: InkWell(

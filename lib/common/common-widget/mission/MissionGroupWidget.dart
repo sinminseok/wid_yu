@@ -1,29 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
 
-import '../../model/mission/Mission.dart';
-import '../../model/mission/MissionType.dart';
 import '../../utils/Color.dart';
 import 'MissionWidget.dart';
 
 
-class MissionGroupWidget extends StatefulWidget {
-  final isOld;
+class MissionGroupWidget extends StatelessWidget {
+  final List<Goal> goals;
 
-  MissionGroupWidget(this.isOld);
 
-  @override
-  _MissionGroupWidgetState createState() => _MissionGroupWidgetState();
-}
+  MissionGroupWidget(this.goals);
 
-class _MissionGroupWidgetState extends State<MissionGroupWidget> {
-  final List<Mission> items = [
-    Mission("위염약", "~~복용하세요", MissionType.DRUG),
-    Mission("런닝", "~~복용하세요", MissionType.WALK),
-    Mission("독서", "~~복용하세요", MissionType.COMMON),
-  ];
-
+  // final List<Mission> items = [
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,10 +34,10 @@ class _MissionGroupWidgetState extends State<MissionGroupWidget> {
   List<Widget> _buildMissionWidgets() {
     List<Widget> missionWidgets = [];
 
-    for (int index = 0; index < items.length; index++) {
-      missionWidgets.add(MissionWidget(items[index]));
+    for (int index = 0; index < goals.length; index++) {
+      missionWidgets.add(MissionWidget(goals[index]));
 
-      if (index < items.length - 1) {
+      if (index < goals.length - 1) {
         missionWidgets.add(
           Container(
             margin: EdgeInsets.only(top: 15.h),

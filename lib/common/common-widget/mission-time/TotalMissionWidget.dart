@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
-import '../../model/mission/MissionTime.dart';
-import '../../model/mission/TimeType.dart';
 import '../../utils/Color.dart';
 import 'DoneMissionTimeWidget.dart';
 import 'NoneMissionTimeWidget.dart';
 import 'YetMissionTimeWidget.dart';
 
-Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context) {
+Widget TotalMissionTimeWidget(List<GoalTime> times, BuildContext context) {
   return Container(
     margin: EdgeInsets.only(left: 10.w, top: 0.h),
     width: 210.w,
@@ -31,7 +31,7 @@ Widget TotalMissionTimeWidget(List<MissionTime> times, BuildContext context) {
   );
 }
 
-Widget _buildTotalTime(MissionTime time) {
+Widget _buildTotalTime(GoalTime time) {
   return Container(
     width: 70.w,
     height: 30.h,
@@ -44,14 +44,14 @@ Widget _buildTotalTime(MissionTime time) {
   );
 }
 
-Widget _buildFilterTime(MissionTime missionTime) {
-  if (missionTime.timeType == TimeType.DONE) {
+Widget _buildFilterTime(GoalTime missionTime) {
+  if (missionTime.status == GoalTimeStatus.DONE) {
     return DoneMissionTimeWidget(missionTime.time);
   }
-  if (missionTime.timeType == TimeType.NONE) {
+  if (missionTime.status == GoalTimeStatus.NONE) {
     return NoneMissionTimeWidget(missionTime.time);
   }
-  if (missionTime.timeType == null) {
+  if (missionTime.status == null) {
     return Container();
   }
   return YetMissionTimeWidget(missionTime.time);

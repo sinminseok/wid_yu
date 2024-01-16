@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/young/account/join/finish/popup/SharePopup.dart';
 import 'package:wid_yu/young/account/login/view/YoungLoginView.dart';
 import '../../../../common/utils/Color.dart';
 import '../widgets/ProgressBar.dart';
@@ -27,6 +28,7 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProgressBar(3),
+
             _buildMainText(),
             _buildInfoCard("아이디", "sin1768@naver.com"),
             _buildInvitationCard(),
@@ -173,7 +175,9 @@ class _JoinSuccessViewState extends State<JoinSuccessView> {
                             width: 18.w,
                             height: 18.h,
                             child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  SharePopup().showDialog(context,"12341234","code");
+                                },
                                 child: Image.asset(
                                     "assets/images/icon/share-icon.png")),
                           )

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 
-import '../../../../../common/model/disease/Disease.dart';
-import '../../../../../common/model/user/Old.dart';
+import '../../../../../common/dto/disease/Disease.dart';
 import '../../../../../common/utils/exception/InvalidInformationException.dart';
 
 class OldInformationController extends GetxController {
@@ -87,9 +87,8 @@ class OldInformationController extends GetxController {
     introduceController.clear();
   }
 
-  Old createSenior() {
-    return Old(nameController.text, ageController.text,
-        phoneNumberController.text, _addressController.value, false);
+  OldUser createSenior() {
+    return OldUser.empty();
   }
 
   void removeDisease(int index) {

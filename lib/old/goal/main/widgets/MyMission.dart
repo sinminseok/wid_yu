@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/old/goal/main/controller/OldGoalController.dart';
 import 'package:wid_yu/old/goal/goal-detail/view/OldGoalDetailView.dart';
 
@@ -12,10 +13,12 @@ import '../../../../common/common-widget/mission/TotalMissionWidget.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../young/goal/goal-detail/view/YoungGoalDetailView.dart';
 
+/*
+부모님 목표 위젯
+ */
 class MyMission extends StatelessWidget {
 
   OldGoalController controller;
-
 
   MyMission(this.controller);
 
@@ -48,7 +51,7 @@ class MyMission extends StatelessWidget {
       },
       child: Container(
         width: 335.w,
-        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 60.h),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 60.h,top: 10.h),
         decoration: BoxDecoration(
           border: Border.all(color: wGrey100Color),
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -65,11 +68,9 @@ class MyMission extends StatelessWidget {
 
   List<Widget> _buildTotalMissionWidgets() {
     List<Widget> missionWidgets = [];
-
     for (int index = 0; index < controller.myMission.length; index++) {
       missionWidgets.add(
           TotalMissionWidget(controller.myMission[index]));
-
       if (index < controller.myMission.length - 1) {
         missionWidgets.add(
           Container(
@@ -85,15 +86,13 @@ class MyMission extends StatelessWidget {
         ));
       }
     }
-
     return missionWidgets;
   }
-
 
   List<Widget> _buildMissionWidgets() {
     List<Widget> missionWidgets = [];
 
-    for (int index = 0; index < controller.myMission.length; index++) {
+    for (int index = 0; index < 3; index++) {
       missionWidgets.add(MissionWidget(controller.myMission[index]));
 
       if (index < controller.myMission.length - 1) {
@@ -114,4 +113,5 @@ class MyMission extends StatelessWidget {
 
     return missionWidgets;
   }
+
 }

@@ -1,18 +1,17 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
 
-import '../../../../common/model/mission/Mission.dart';
-import '../../../../common/model/mission/MissionType.dart';
+import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/view/popup/AlarmOnPopup.dart';
 
 class OldGoalController extends GetxController {
-  List<Mission> myMission = [
-    Mission("위염약", "~~복용하세요", MissionType.DRUG),
-    Mission("런닝", "~~복용하세요", MissionType.WALK),
-    Mission("독서", "~~복용하세요", MissionType.COMMON),
+
+  List<Goal> myMission = [
+    Goal("위염약", "~~복용하세요", GoalType.DRUG,[],[]),
+    Goal("런닝", "~~복용하세요", GoalType.WALK,[],[]),
+    Goal("독서", "~~복용하세요", GoalType.COMMON,[],[]),
   ];
 
 

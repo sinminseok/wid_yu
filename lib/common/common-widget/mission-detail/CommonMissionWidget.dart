@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/model/mission/TimeType.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
-import '../../model/mission/Mission.dart';
-import '../../model/mission/MissionTime.dart';
 import '../../utils/Color.dart';
 import '../mission-time/MissionTimeWidget.dart';
 
 class CommonMissionWidget extends StatelessWidget {
-  final Mission _mission;
+  final Goal _mission;
 
   CommonMissionWidget(this._mission);
 
-  List<MissionTime> times = [MissionTime("12:00", TimeType.NONE)];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class CommonMissionWidget extends StatelessWidget {
   Widget _buildTime(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(left: 50.w, top: 10.h, bottom: 20.h),
-        child: MissionTimeWidget(times, context));
+        child: MissionTimeWidget(_mission.times, context));
   }
 
   Widget _buildMissionInfo() {
@@ -80,7 +78,7 @@ class CommonMissionWidget extends StatelessWidget {
         ),
         Container(
           margin: EdgeInsets.only(left: 10.w, top: 5.h),
-          child: Body2Text(_mission.subtitle, wGrey800Color),
+          child: Body2Text(_mission.title, wGrey800Color),
         )
       ],
     );

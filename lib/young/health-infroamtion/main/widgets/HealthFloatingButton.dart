@@ -24,7 +24,7 @@ class _HealthFloatingButtonState extends State<HealthFloatingButton> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              child: widget.controller.currentUser.value!.isConnect
+              child: widget.controller.currentUser.value!.isConnect!
                   ? Container()
                   : _buildNotConnectFloating(),
             ),
@@ -66,14 +66,14 @@ class _HealthFloatingButtonState extends State<HealthFloatingButton> {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 360.w,
+        width: 380.w,
         height: 120.h,
         margin: EdgeInsets.only(top: 20.h, bottom: 0.h),
         decoration: BoxDecoration(
           color: wWhiteColor,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
           ),
           boxShadow: [
             BoxShadow(

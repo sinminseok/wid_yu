@@ -17,7 +17,7 @@ class HealthInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.currentUser.value!.isConnect
+    return Obx(() => controller.currentUser.value!.isConnect!
         ? Container(
             margin: EdgeInsets.only(top: 10.h, left: 12.w),
             child: Column(

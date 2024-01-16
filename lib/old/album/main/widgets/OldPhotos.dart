@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 import 'package:wid_yu/old/album/main/widgets/OldEmptyPhoto.dart';
 
@@ -31,8 +32,8 @@ class OldPhotos extends StatelessWidget {
       child: Column(
         children: [
           OldPhotoWidget(),
-          OldPhotoWidget(),
-          OldPhotoWidget(),
+          // OldPhotoWidget(),
+          // OldPhotoWidget(),
         ],
       ),
     );

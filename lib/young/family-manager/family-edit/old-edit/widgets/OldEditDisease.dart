@@ -3,11 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/disease/Disease.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldDiseaseController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
+
+import '../../../../../common/dto/disease/Disease.dart';
 
 class OldEditDisease extends StatelessWidget {
   OldDiseaseEditByYoungController controller;

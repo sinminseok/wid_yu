@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
-import 'package:wid_yu/common/model/mission/Mission.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/young/goal/alarm/controller/YoungAlarmController.dart';

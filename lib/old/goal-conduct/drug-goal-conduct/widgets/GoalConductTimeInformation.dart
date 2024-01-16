@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/common-widget/mission-time/MissionTimeWidget.dart';
-import 'package:wid_yu/common/model/mission/MissionTime.dart';
-import 'package:wid_yu/common/model/mission/TimeType.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/old/goal-conduct/drug-goal-conduct/controller/OldDrugConductController.dart';
+
+import '../../../../common/dto/goal/GoalTimeStatus.dart';
+
 
 class GoalConductTimeInformation extends StatelessWidget {
   OldDrugConductController controller;
@@ -12,11 +14,11 @@ class GoalConductTimeInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<MissionTime> times = [
-      MissionTime("13:00", TimeType.DONE),
-      MissionTime("13:00", TimeType.DONE),
-      MissionTime("13:00", TimeType.NONE),
-      MissionTime("13:00", TimeType.YET),
+    List<GoalTime> times = [
+      GoalTime("13:00", GoalTimeStatus.DONE, null,null),
+      GoalTime("13:00", GoalTimeStatus.DONE, null,null),
+      GoalTime("13:00", GoalTimeStatus.NONE, null,null),
+      GoalTime("13:00", GoalTimeStatus.YET, null,null),
     ];
     return Column(
       children: [

@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/disease/Disease.dart';
-import 'package:wid_yu/common/model/user/User.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 
 class OldEditByYoungController extends GetxController {
-  Rx<User> _user = User("사용자", "010 1234 1234", "오목로11길 5", "2000.10.31").obs;
+  Rx<OldUser> _user = OldUser.empty().obs;
 
   late TextEditingController _addressController;
   late TextEditingController _brithController;
@@ -33,7 +32,7 @@ class OldEditByYoungController extends GetxController {
 
   TextEditingController get addressController => _addressController;
 
-  User get user => _user.value;
+  OldUser get user => _user.value;
 
   bool get canSave => _canSave.value;
 

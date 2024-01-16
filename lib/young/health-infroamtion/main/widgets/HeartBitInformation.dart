@@ -46,7 +46,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
         onTap: (){
           Get.to(() => HeartBitDetailView(widget.controller.currentUser.value), transition: Transition.fadeIn);
         },
-        child: _buildDangerous());
+        child: _buildNormal());
   }
 
   Widget _buildNormal() {

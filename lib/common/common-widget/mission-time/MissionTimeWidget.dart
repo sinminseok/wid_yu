@@ -5,15 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/common-widget/mission-time/DoneMissionTimeWidget.dart';
 import 'package:wid_yu/common/common-widget/mission-time/NoneMissionTimeWidget.dart';
 import 'package:wid_yu/common/common-widget/mission-time/YetMissionTimeWidget.dart';
-import 'package:wid_yu/common/model/mission/TimeType.dart';
-
-import '../../model/mission/MissionTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import '../../dto/goal/GoalTimeStatus.dart';
 import '../../utils/Color.dart';
 
 /*
 메인 화면에서 보여줄 미션 시간 위젯
  */
-Widget MissionTimeWidget(List<MissionTime> times, BuildContext context){
+Widget MissionTimeWidget(List<GoalTime> times, BuildContext context){
   return times.length == 1 ?Container(
       margin: EdgeInsets.only(top: 5.h),
       child: _buildOnlyOneTime(times[0])):
@@ -45,8 +44,8 @@ Widget MissionTimeWidget(List<MissionTime> times, BuildContext context){
 미션 시간이 하나일때 빌드하는 위젯이다.
 내부에 동작하는 위젯을 분리할지는 좀 더 고민해보자.
  */
-Widget _buildOnlyOneTime(MissionTime missionTime){
-  if(missionTime.timeType == TimeType.DONE){
+Widget _buildOnlyOneTime(GoalTime missionTime){
+  if(missionTime.status == GoalTimeStatus.DONE){
     return Container(
       width: 250.w,
       height: 34.h,
@@ -74,7 +73,7 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
       ),
     );
   }
-  if(missionTime.timeType == TimeType.NONE){
+  if(missionTime.status == GoalTimeStatus.NONE){
     return Container(
       width: 240.w,
       height: 30.h,
@@ -96,7 +95,7 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
       ),
     );
   }
-  if(missionTime.timeType == null){
+  if(missionTime.status == null){
     return Container();
   }
   return Container(
@@ -118,14 +117,14 @@ Widget _buildOnlyOneTime(MissionTime missionTime){
   );
 }
 
-Widget _buildFilterTime(MissionTime missionTime){
-  if(missionTime.timeType == TimeType.DONE){
+Widget _buildFilterTime(GoalTime missionTime){
+  if(missionTime.status == GoalTimeStatus.DONE){
     return DoneMissionTimeWidget(missionTime.time);
   }
-  if(missionTime.timeType == TimeType.NONE){
+  if(missionTime.status == GoalTimeStatus.NONE){
     return NoneMissionTimeWidget(missionTime.time);
   }
-  if(missionTime.timeType == null){
+  if(missionTime.status == null){
     return Container();
   }
   return YetMissionTimeWidget(missionTime.time);

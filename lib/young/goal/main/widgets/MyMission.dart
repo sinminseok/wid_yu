@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/mission/TotalMissionWidget.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 import 'package:wid_yu/young/goal/goal-detail/view/YoungGoalDetailView.dart';
 

@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:wid_yu/common/dto/user/User.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 
 class SelectUser extends StatelessWidget {
   GoalCreateController controller;
-
 
   SelectUser(this.controller);
 
@@ -34,11 +34,11 @@ class SelectUser extends StatelessWidget {
     );
   }
 
-  Widget _buildUser(TestUser user, int index){
+  Widget _buildUser(User user, int index){
     return Obx(() => controller.selectUser == user ? _buildSelectUser(user): _buildNotSelectUser(user, index));
   }
 
-  Widget _buildSelectUser(TestUser user){
+  Widget _buildSelectUser(User user){
     return Container(
       width: 88.w,
       height: 36.w,
@@ -49,12 +49,12 @@ class SelectUser extends StatelessWidget {
           color: wOrangeColor
       ),
       child: Center(
-        child: Title3Text(user.name, wWhiteColor),
+        child: Title3Text(user.name!, wWhiteColor),
       ),
     );
   }
 
-  Widget _buildNotSelectUser(TestUser user, int index){
+  Widget _buildNotSelectUser(User user, int index){
     return Container(
       width: 88.w,
       height: 36.w,
@@ -69,7 +69,7 @@ class SelectUser extends StatelessWidget {
           controller.pickUser(index);
         },
         child: Center(
-          child: Title3Text(user.name, wGrey300Color),
+          child: Title3Text(user.name!, wGrey300Color),
         ),
       ),
     );

@@ -1,0 +1,5 @@
+
+enum UserType{
+  YOUNG,
+  OLD
+}

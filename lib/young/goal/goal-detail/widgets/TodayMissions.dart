@@ -2,22 +2,24 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
+import 'package:wid_yu/common/dto/goal/GoalType.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/DrugMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/WalkMissionWidget.dart';
-import '../../../../common/model/mission/Mission.dart';
-import '../../../../common/model/mission/MissionType.dart';
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 
 class TodayMission extends StatelessWidget {
    TodayMission({Key? key}) : super(key: key);
 
-  final List<Mission> items = [
-    Mission("위염약", "~~복용하세요", MissionType.DRUG),
-    Mission("런닝", "~~복용하세요", MissionType.WALK),
-    Mission("독서", "~~복용하세요", MissionType.COMMON),
+  final List<Goal> items = [
+    Goal("위염약", "~~복용하세요", GoalType.DRUG,[GoalTime("12:00", GoalTimeStatus.DONE, null, null)],[1,1,1]),
+    Goal("위염약", "~~복용하세요", GoalType.DRUG,[GoalTime("12:00", GoalTimeStatus.DONE, null, null)],[1,1,1]),
+    Goal("위염약", "~~복용하세요", GoalType.DRUG,[GoalTime("12:00", GoalTimeStatus.DONE, null, null)],[1,1,1]),
   ];
 
 

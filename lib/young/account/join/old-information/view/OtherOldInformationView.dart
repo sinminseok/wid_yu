@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/DiseaseForm.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/OldInformationForm.dart';
@@ -12,13 +13,12 @@ import 'package:wid_yu/young/account/join/old-information/widgets/SelectHaveDise
 import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 import 'package:wid_yu/young/account/join/widgets/SignupAppBar.dart';
 
-import '../../../../../common/model/user/Old.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../finish/JoinSuccessView.dart';
 import '../controller/OldInformationController.dart';
 
 class OtherOldInformationView extends StatefulWidget {
-  final Old old;
+  final OldUser old;
 
   OtherOldInformationView(this.old);
 

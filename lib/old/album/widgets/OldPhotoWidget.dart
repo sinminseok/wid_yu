@@ -68,7 +68,7 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 9.w),
-                  child: SubTitle2Text("보호자2 님", wTextBlackColor),
+                  child: SubTitle2Text("이승철 님", wTextBlackColor),
                 )
               ],
             ),
@@ -106,7 +106,7 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
             width: 235.w,
             height: 55.h,
 
-            child: Text("오늘 서울숲으로 나들ㅇ이가기 전에 찍어ddd오늘 서울숲으로 나들이어ddasdasdasddasdasdasdasdasdadasdasdasdasdsadasddd",
+            child: Text("오늘 사진관에서 찍은 사진이야!",
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
 

@@ -1,13 +1,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/old/goal/goal-detail/controller/OldGoalDetailController.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/DrugMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/WalkMissionWidget.dart';
-import '../../../../common/model/mission/Mission.dart';
-import '../../../../common/model/mission/MissionType.dart';
+import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/utils/Color.dart';
 
 class TodayMissions extends StatelessWidget {
@@ -17,10 +17,10 @@ class TodayMissions extends StatelessWidget {
 
   TodayMissions(this.controller);
 
-  final List<Mission> items = [
-    Mission("위염약", "~~복용하세요", MissionType.DRUG),
-    Mission("런닝", "~~복용하세요", MissionType.WALK),
-    Mission("독서", "~~복용하세요", MissionType.COMMON),
+  final List<Goal> items = [
+    Goal("위염약", "~~복용하세요", GoalType.DRUG,[],[]),
+    Goal("런닝", "~~복용하세요", GoalType.WALK,[],[]),
+    Goal("독서", "~~복용하세요", GoalType.COMMON,[],[]),
   ];
 
   @override

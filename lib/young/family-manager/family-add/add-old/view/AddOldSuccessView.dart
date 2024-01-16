@@ -1,7 +1,9 @@
 
 
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
@@ -93,8 +95,15 @@ class AddOldSuccessView extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 10.w),
                   child: InkWell(
-                      onTap: (){
+                      onTap: ()async{
+                        Iterable<Contact> contacts = await ContactsService.getContacts();
 
+                        // 특정 문자를 보낼 연락처 선택 (예: 첫 번째 연락처)
+                        Contact contact = contacts.first;
+                        print(contact);
+
+                        // 문자 보내기
+                        //sendSMS(contact.phones.first.value, '안녕하세요, 여기에 내용을 입력하세요!');
                       },
                       child: Icon(Icons.share_outlined, color: wGrey600Color,size: 18.sp,)),
                 )

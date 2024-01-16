@@ -19,7 +19,7 @@ class OldHealthFloatingButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          child: controller.user.value!.isConnect
+          child: controller.user.value!.isConnect!
               ? Container()
               : _buildNotConnectFloating(),
         ),

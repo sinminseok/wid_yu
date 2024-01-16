@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../../common/model/disease/Disease.dart';
+import '../../../../../common/dto/disease/Disease.dart';
 
 class OldDiseaseEditByYoungController extends GetxController{
   RxList<Disease> _disease = [Disease("감기1", "타이레놀1", "복용방법버버버ㅓㅂ1"),
@@ -23,9 +23,9 @@ class OldDiseaseEditByYoungController extends GetxController{
         _disease.length, (index) => TextEditingController());
 
     for (int i = 0; i < _disease.length; i++) {
-      _diseaseNameControllers[i].text = _disease[i].getDiseaseName;
-      _drugNameControllers[i].text = _disease[i].getDrug!;
-      _informationNameControllers[i].text = _disease[i].getIntroduce!;
+      _diseaseNameControllers[i].text = _disease[i].name;
+      _drugNameControllers[i].text = _disease[i].medicline!;
+      _informationNameControllers[i].text = _disease[i].description!;
     }
   }
 

@@ -17,34 +17,34 @@ class HeaderInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => InkWell(
-          onTap: () {
-            Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
-          },
-          child: Container(
-            margin: EdgeInsets.only(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 30.w, top: 15.h),
-                  width: 210.w,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          height: 36.h,
-                          child: Title1Text("${controller.myUser.value.name}",
-                              kTextBlackColor)),
-                      _buildUserEmptyPercentageText(),
-                    ],
-                  ),
-                ),
-                _buildCircularProgress(),
-              ],
+    return InkWell(
+      onTap: () {
+        Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
+      },
+      child: Container(
+        margin: EdgeInsets.only(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 30.w, top: 15.h),
+              width: 210.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      height: 36.h,
+                      child: Title1Text("이승철",
+                          kTextBlackColor)),
+                  _buildUserEmptyPercentageText(),
+                ],
+              ),
             ),
-          ),
-        ));
+            _buildCircularProgress(),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildUserEmptyPercentageText( ){
@@ -57,7 +57,7 @@ class HeaderInformation extends StatelessWidget {
           child: Row(
             children: [
               Title3Text("오늘은 ", kTextBlackColor),
-              PercentageText("75%", wPurpleColor),
+              PercentageText("0%", wPurpleColor),
               Title3Text("를 달성 했어요.", kTextBlackColor),
 
             ],
@@ -107,7 +107,7 @@ class HeaderInformation extends StatelessWidget {
       child: CircularPercentIndicator(
         radius: 40.0.w,
         lineWidth: 6.0.sp,
-        percent: 0.7,
+        percent: 0,
         backgroundColor: wGrey200Color,
         circularStrokeCap: CircularStrokeCap.round,
         center: Container(

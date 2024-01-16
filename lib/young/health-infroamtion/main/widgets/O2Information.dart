@@ -24,8 +24,9 @@ class O2Information extends StatelessWidget {
         onTap: (){
           Get.to(() => O2DetailView(controller.currentUser.value), transition: Transition.fadeIn);
         },
-        child: _buildAttention());
+        child: _buildNomal());
   }
+
 
   Widget _buildNomal(){
     return Obx(() => Container(

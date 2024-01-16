@@ -3,12 +3,14 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/utils/Color.dart';
+import 'package:wid_yu/common/utils/constants/HealthType.dart';
 
 class YoungHealthGraph extends StatefulWidget {
   final List<double> data;
+  final HealthType healthType;
 
 
-  YoungHealthGraph(this.data);
+  YoungHealthGraph(this.data, this.healthType);
 
   @override
   State<YoungHealthGraph> createState() => _YoungHealthGraphState();
@@ -66,12 +68,18 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 10.h,left: 15.w),
+          margin: EdgeInsets.only(top: 15.h,left: 15.w),
           child: Row(
             children: [
-              Container(
+              widget.healthType == HealthType.SP02? Container(
+                child: Text("Spo2 %", style: TextStyle(color: wTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),),
+              ):Container(),
+              widget.healthType == HealthType.HEART_BIT? Container(
                 child: Text("PR bpm", style: TextStyle(color: wTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),),
-              ),
+              ):Container(),
+              widget.healthType == HealthType.TEMPERATURE? Container(
+                child: Text("Temperature", style: TextStyle(color: wTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),),
+              ):Container(),
               Container(
                 margin: EdgeInsets.only(left: 10.w
                 ),
@@ -172,7 +180,8 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
               ),
               Container(
                 width: 25.w,
-                height: 170.h,
+                //done
+                height: 190.h,
                 margin: EdgeInsets.only(right: 3.w, bottom: 30.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,7 +212,7 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
     return Container(
       margin: EdgeInsets.only(left: 20.w),
       width: 1350.w,
-      height: 40.h,
+      height: 60.h,
       child: Row(
         children: List.generate(
           24,
@@ -263,7 +272,7 @@ class DashedLinePainter extends CustomPainter {
     double dashWidth = 3.0; // Increase the dash width
     double dashSpace = 2.0; // No space between dashes
 
-    double startY = size.height / 1;
+    double startY = size.height / 0.8;
     double endX = 60.w;
 
     double currentX = 0;

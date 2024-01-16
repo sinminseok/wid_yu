@@ -2,19 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:wid_yu/common/common-widget/mission/MissionGroupWidget.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/common-widget/mission/MissionWidget.dart';
-import '../../../../common/model/mission/Mission.dart';
-import '../../../../common/model/mission/MissionType.dart';
+import '../../../../common/dto/goal/GoalTime.dart';
+import '../../../../common/dto/goal/GoalTimeStatus.dart';
+import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/utils/Color.dart';
 
 /*
  보호자가 목표 화면에서 볼 보호자 미션
  */
 class OldMissionWidget extends StatefulWidget {
-
+  // List<User> olds;
+  //
+  //
+  // OldMissionWidget(this.olds);
 
   @override
   _OldMissionWidgetState createState() => _OldMissionWidgetState();
@@ -22,10 +26,10 @@ class OldMissionWidget extends StatefulWidget {
 
 class _OldMissionWidgetState extends State<OldMissionWidget> {
   bool _isExpanded = true;
-  final List<Mission> items = [
-    Mission("위염약", "~~복용하세요", MissionType.DRUG),
-    Mission("런닝", "~~복용하세요", MissionType.WALK),
-    Mission("독서", "~~복용하세요", MissionType.COMMON),
+  final List<Goal> items = [
+    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
+    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
+    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
   ];
 
   @override
@@ -66,6 +70,8 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              //위염약
+              //한번에 2개씩 복용하세요
               margin: EdgeInsets.only(left: 10.w, top: 15.h),
               width: 70.0.w, // Container의 너비
                // Container의 높이
@@ -76,7 +82,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                   circularStrokeCap: CircularStrokeCap.round,
                   // 부모 컨테이너의 크기에 맞게 조절
                   lineWidth: 5.0.w,
-                  percent: 0.7,
+                  percent: 0.0,
                   center: Container(
                     height: 49.h,
                     width: 49.w,
@@ -98,7 +104,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                 children: [
                   Container(
                     child: Title2Text(
-                      "부모님2님",
+                      "김옥례",
                         kTextBlackColor
                     ),
                   ),
@@ -114,7 +120,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                         ),
                         Container(
                           child: Title3Text(
-                            "40%",
+                            "0%",
                               wPurpleColor
                           ),
                         ),
@@ -164,7 +170,9 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
     List<Widget> missionWidgets = [];
 
     for (int index = 0; index < items.length; index++) {
-      missionWidgets.add(MissionWidget(items[index]));
+      missionWidgets.add(MissionWidget(
+        items[index],
+      ));
 
       if (index < items.length - 1) {
         missionWidgets.add(

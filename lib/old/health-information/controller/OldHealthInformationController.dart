@@ -1,21 +1,24 @@
 
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/user/TestHealth.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/health/Health.dart';
+import 'package:wid_yu/common/dto/user/User.dart';
+import 'package:wid_yu/common/dto/user/UserType.dart';
+
+import '../../../common/dto/user/OldUser.dart';
 
 class OldHealthInformationController extends GetxController {
 
-  Rx<TestUser> user = TestUser("김옥순", TestHealth(90,80,40), true).obs;
+  Rx<OldUser> user = OldUser("김옥례", "010 1234 1234", "20001031","오목로",UserType.OLD,[],"1234",true,100,Health(50,60,70), true).obs;
 
   double? getUserO2(){
-    return user.value?.testHealth.o2;
+    return user.value.health?.spo2;
   }
 
   double? getUserTemperature(){
-    return user.value?.testHealth.temperature;
+    return user.value.health?.temperature;
   }
 
   double? getUserHeartBit(){
-    return user.value?.testHealth.healthBit;
+    return user.value.health?.heartBit;
   }
 }

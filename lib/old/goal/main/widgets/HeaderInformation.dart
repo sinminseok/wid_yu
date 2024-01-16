@@ -34,7 +34,7 @@ class HeaderInformation extends StatelessWidget {
                 children: [
                   Container(
                     height: 36.h,
-                    child: Title1Text("부모님 님", kTextBlackColor),
+                    child: Title1Text("김옥례 님", kTextBlackColor),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 13.h),
@@ -42,7 +42,7 @@ class HeaderInformation extends StatelessWidget {
                     child: Row(
                       children: [
                         Title3Text("오늘은", kTextBlackColor),
-                        PercentageText(" 75%", wPurpleColor),
+                        PercentageText(" 0%", wPurpleColor),
                         Title3Text("를 달성했어요.", kTextBlackColor),
                       ],
                     ),

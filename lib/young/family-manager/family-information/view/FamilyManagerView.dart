@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/view/EditOldView.dart';
 import 'package:wid_yu/young/family-manager/family-information/controller/FamilyManagerController.dart';
@@ -189,7 +189,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
     );
   }
   
-  Widget _buildOldCard(TestUser user){
+  Widget _buildOldCard(OldUser user){
     return Center(
       child: Container(
         margin: EdgeInsets.only(bottom: 10.h, left: 10.w,right: 10.w),
