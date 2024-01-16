@@ -1,10 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/user/User.dart';
+import 'package:wid_yu/common/dto/user/YoungUser.dart';
 
 class AddYoungController extends GetxController {
-  RxList<User> _findUsers = <User>[].obs;
+  RxList<YoungUser> _findUsers = <YoungUser>[].obs;
 
   TextEditingController _findIdController = TextEditingController();
 
@@ -12,8 +12,8 @@ class AddYoungController extends GetxController {
   
   void findYoungUser(){
     _findUsers.value.clear();
-    _findUsers.add(User("보호자2님", "@ID", "123", "123"));
+    _findUsers.add(YoungUser.empty());
   }
 
-  RxList<User> get findUsers => _findUsers;
+  RxList<YoungUser> get findUsers => _findUsers;
 }

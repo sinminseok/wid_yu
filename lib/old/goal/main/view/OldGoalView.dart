@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/old/family-manager/family-information/view/OldFamilyManagerView.dart';
 import 'package:wid_yu/old/goal-conduct/common-goal-conduct/view/OldCommonConductView.dart';
 import 'package:wid_yu/old/goal-conduct/drug-goal-conduct/view/OldDrugConductView.dart';
@@ -18,7 +19,6 @@ import '../../../../common/utils/Color.dart';
 import '../../../alarm/view/OldMessageView.dart';
 
 class OldGoalView extends StatefulWidget {
-  const OldGoalView({Key? key}) : super(key: key);
 
   @override
   _OldGoalView createState() => _OldGoalView();
@@ -54,36 +54,36 @@ class _OldGoalView extends State<OldGoalView> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              InkWell(
-                onTap: (){
-                  Get.to(() => OldDrugConductView());
-                },
-                child: Container(
-                  child: Text("약 수행 이동", style: TextStyle(color: wGrey700Color),),
-                ),
-              ),
-
-              InkWell(
-                onTap: (){
-                  Get.to(() => OldWalkConductView());
-                },
-                child: Container(
-                  child: Text("걷기 수행 이동", style: TextStyle(color: wGrey700Color),),
-                ),
-              ),
-
-              InkWell(
-                onTap: (){
-                  Get.to(() => OldCommonConductView());
-                },
-                child: Container(
-                  child: Text("일반 수행 이동", style: TextStyle(color: wGrey700Color),),
-                ),
-              ),
+              // InkWell(
+              //   onTap: (){
+              //     Get.to(() => OldDrugConductView());
+              //   },
+              //   child: Container(
+              //     child: Text("약 수행 이동", style: TextStyle(color: wGrey700Color),),
+              //   ),
+              // ),
+              //
+              // InkWell(
+              //   onTap: (){
+              //     Get.to(() => OldWalkConductView());
+              //   },
+              //   child: Container(
+              //     child: Text("걷기 수행 이동", style: TextStyle(color: wGrey700Color),),
+              //   ),
+              // ),
+              //
+              // InkWell(
+              //   onTap: (){
+              //     Get.to(() => OldCommonConductView());
+              //   },
+              //   child: Container(
+              //     child: Text("일반 수행 이동", style: TextStyle(color: wGrey700Color),),
+              //   ),
+              // ),
               HeaderInformation(controller),
               SwitchButton(controller),
-             // EmptyGoal(),
-              MyMission(controller),
+              // EmptyGoal(),
+         MyMission(controller),
             ],
           ),
         ),
@@ -114,31 +114,30 @@ class _OldGoalView extends State<OldGoalView> {
                     width: 24.w,
                     height: 24.h,
                     child: InkWell(
-                      onTap: (){
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            child: OldMessageView(),
-                          ),
-                        );
-                      },
-
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: OldMessageView(),
+                            ),
+                          );
+                        },
                         child: Image.asset("assets/common/icon/bell-icon.png")),
                   ),
-                 Container(
-                        margin: EdgeInsets.only(right: 10.w, top: 10.h),
-                        width: 30.w,
-                        height: 30.h,
-                        child: InkWell(
-                          onTap: (){
-                            Get.to(() => OldFamilyManagerView(), transition: Transition.fade);
-
-                          },
-                          child: Image.asset(
-                              "assets/common/icon/family-information-icon.png"),
-                        ),
-                      )
+                  Container(
+                    margin: EdgeInsets.only(right: 10.w, top: 10.h),
+                    width: 30.w,
+                    height: 30.h,
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => OldFamilyManagerView(),
+                            transition: Transition.fade);
+                      },
+                      child: Image.asset(
+                          "assets/common/icon/family-information-icon.png"),
+                    ),
+                  )
                 ],
               )
             ],

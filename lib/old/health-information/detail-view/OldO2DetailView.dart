@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
@@ -11,8 +12,7 @@ import '../../../common/utils/constants/HealthExplanationConstants.dart';
 import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 
 class OldO2DetailView extends StatefulWidget {
-  TestUser user;
-
+  OldUser user;
 
   OldO2DetailView(this.user);
 
@@ -26,10 +26,10 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: wYellow100Color,
+      backgroundColor: wWhiteColor,
       appBar: CommonAppBar(
         title: "산소포화도",
-        color: wYellow100Color,
+        color: wWhiteColor,
         canBack: true,
       ),
       body: SingleChildScrollView(
@@ -68,6 +68,36 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
           children: [
             Container(
               width: 150.w,
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10.h),
+                      child: Text("평소보다", style: TextStyle(color: wGrey400Color, fontSize: 14.sp, fontWeight: FontWeight.w600),),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 4.w),
+                          child: Title2Text("4", wOrange200Color),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 5.w),
+                          child: SubTitle2Text("% ", wOrange200Color),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 3.w),
+                          child: Title3Text("높아요 ", wOrange200Color),
+                        ),
+
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
             Container(
               width: 1,
@@ -114,34 +144,34 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              margin: EdgeInsets.only(left: 20.w, top: 20.h),
-              child: Text(
-                "심박수란?",
-                style: TextStyle(
-                    color: wTextBlackColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.sp),
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  isExpand = !isExpand;
-                });
-              },
-              child: Container(
-                margin: EdgeInsets.only(top: 5.h, left: 20.w, right: 20.w),
-                child: Text(
-                  overflow: isExpand ? null : TextOverflow.ellipsis,
-                  HealthExplanation.HEART_EXPLANATION,
-                  style: TextStyle(
-                      color: wGrey600Color,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.sp),
-                ),
-              ),
-            )
+            // Container(
+            //   margin: EdgeInsets.only(left: 20.w, top: 20.h),
+            //   child: Text(
+            //     "산소포화도란?",
+            //     style: TextStyle(
+            //         color: wTextBlackColor,
+            //         fontWeight: FontWeight.w600,
+            //         fontSize: 14.sp),
+            //   ),
+            // ),
+            // InkWell(
+            //   onTap: () {
+            //     setState(() {
+            //       isExpand = !isExpand;
+            //     });
+            //   },
+            //   child: Container(
+            //     margin: EdgeInsets.only(top: 5.h, left: 20.w, right: 20.w),
+            //     child: Text(
+            //       overflow: isExpand ? null : TextOverflow.ellipsis,
+            //       HealthExplanation.HEART_EXPLANATION,
+            //       style: TextStyle(
+            //           color: wGrey600Color,
+            //           fontWeight: FontWeight.w500,
+            //           fontSize: 14.sp),
+            //     ),
+            //   ),
+            // )
           ],
         ),
         Container(
@@ -151,9 +181,8 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
             child: Row(
               children: [
                 _buildNormalInformation(),
-                _buildNormalInformation(),
-                _buildNormalInformation(),
-                _buildNormalInformation(),
+                _buildNormalInformation2(),
+                _buildNormalInformation3(),
               ],
             ),
           ),
@@ -166,6 +195,9 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
     return Container(
       width: 145.w,
       height: 130.h,
+      decoration: BoxDecoration(
+        color: wWhiteColor,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -176,6 +208,103 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
               Container(
                 child: Text(
                   "100~95",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20.sp,
+                      color: wTextBlackColor),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 5.w, top: 3.h),
+                child: Text(
+                  "%",
+                  style: TextStyle(color: wGrey600Color),
+                ),
+              )
+            ],
+          ),
+          Center(
+            child: Container(
+              child: Text(
+                "정상범위",
+                style: TextStyle(color: wGrey600Color),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  Widget _buildNormalInformation2() {
+    return Container(
+      width: 145.w,
+      height: 130.h,
+      margin: EdgeInsets.only(top: 25.h),
+      decoration: BoxDecoration(
+        color: wWhiteColor,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Text(
+                  "95~90",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20.sp,
+                      color: wTextBlackColor),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 5.w, top: 3.h),
+                child: Text(
+                  "%",
+                  style: TextStyle(color: wGrey600Color),
+                ),
+              )
+            ],
+          ),
+          Center(
+            child: Container(
+              child: Text(
+                "수면중일 경우",
+                style: TextStyle(color: wGrey600Color),
+              ),
+            ),
+          ),
+          Center(
+            child: Container(
+              child: Text(
+                "저 산소증 주의 상태",
+                style: TextStyle(color: wGrey600Color),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildNormalInformation3() {
+    return Container(
+      width: 145.w,
+      height: 130.h,
+      decoration: BoxDecoration(
+        color: wWhiteColor,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Text(
+                  "95~95",
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 20.sp,
@@ -205,32 +334,33 @@ class _OldO2DetailViewState extends State<OldO2DetailView> {
   }
 
 
+
   Widget _buildGraph() {
     return OldHealthGraph([
-      10,
-      20,
-      30,
-      20,
-      50,
-      60,
-      30,
-      10,
-      20,
-      30,
-      20,
-      50,
-      60,
-      30,
-      10,
-      20,
-      30,
-      20,
-      50,
-      60,
-      30,
-      20,
-      50,
-      30
+      97,
+      92,
+      90,
+      93,
+      90,
+      85,
+      93,
+      95,
+      96,
+      98,
+      96,
+      93,
+      92,
+      91,
+      90,
+      88,
+      92,
+      95,
+      97,
+      94,
+      97,
+      93,
+      92,
+      91
     ]);
   }
 }

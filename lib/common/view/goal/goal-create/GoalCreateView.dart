@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionAddTime.dart';
@@ -17,7 +18,6 @@ import '../popup/GoalPopup.dart';
 class GoalCreateView extends StatefulWidget {
   final bool isOld;
 
-
   GoalCreateView(this.isOld);
 
   @override
@@ -26,7 +26,6 @@ class GoalCreateView extends StatefulWidget {
 
 class _GoalCreateViewState extends State<GoalCreateView> {
   GoalCreateController controller = GoalCreateController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +95,7 @@ class _GoalCreateViewState extends State<GoalCreateView> {
   Widget _buildCanSaveButton(){
     return InkWell(
       onTap: () {
+        var createGoal = controller.createGoal();
         GoalPopup().createGoalPopup(context, widget.isOld);
         //SaveFinishPopup().showDialog(context);
       },

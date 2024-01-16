@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/utils/Color.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
@@ -31,32 +32,29 @@ class DeleteSuccessPopup {
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 8.h),
+                          margin: EdgeInsets.only(top: 24.h),
                           width: 173.w,
                           height: 175.h,
                           child: Image.asset(
                               commonImagePath + "popup/delete_icon.png"),
                         ),
                         Container(
-                          child: Text(
+                          child: Title2Text(
                             "삭제 완료!",
-                            style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w800,
-                                color: wTextBlackColor),
+                              wTextBlackColor
                           ),
                         ),
 
                         Container(
                           margin: EdgeInsets.only(
-                              left: 10.w, right: 10.w, top: 60.h),
+                              left: 10.w, right: 10.w, top: 50.h),
                           child: InkWell(
                               onTap: () {
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            YoungFrameView(1)),
+                                            YoungFrameView(1,)),
                                         (route) => false);
                               },
                               child: Container(
@@ -66,7 +64,7 @@ class DeleteSuccessPopup {
                                     borderRadius: BorderRadius.all(Radius.circular(6)),
                                     color: wErrorColor
                                 ),
-                                child: Center(child: Text("삭제하기", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: wWhiteColor),)),
+                                child: Center(child: ButtonText("확인", wWhiteColor,)),
                               )),
                         ),
                       ],

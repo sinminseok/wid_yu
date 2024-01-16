@@ -2,20 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/mission/TimeType.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/common/view/goal/goal/DrugImageDetailView.dart';
 
-import '../../model/mission/Mission.dart';
-import '../../model/mission/MissionTime.dart';
 import '../../utils/Color.dart';
 
 /*
  목표 상세 페이지에 사용될 약 복용 미션 위젯
  */
 class DrugMissionWidget extends StatefulWidget {
-  final Mission _mission;
+  final Goal _mission;
 
   DrugMissionWidget(this._mission);
 
@@ -125,7 +123,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 0.w, top: 1.h),
-                  child: Body2Text(widget._mission.subtitle, wGrey800Color),
+                  child: Body2Text(widget._mission.description, wGrey800Color),
                 )
               ],
             ),

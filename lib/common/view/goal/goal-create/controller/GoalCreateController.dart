@@ -1,18 +1,22 @@
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/mission/MissionTime.dart';
-import 'package:wid_yu/common/model/mission/TimeType.dart';
-import 'package:wid_yu/common/model/user/TestHealth.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalType.dart';
+import 'package:wid_yu/common/dto/user/User.dart';
+import 'package:wid_yu/common/dto/user/UserType.dart';
 
-class GoalCreateController extends GetxController{
-  List<TestUser> users = [TestUser("부모님1", TestHealth(12,12,12), true),TestUser("부모님2", TestHealth(12,12,12), true),TestUser("부모님3", TestHealth(12,12,12), true),TestUser("부모님3", TestHealth(12,12,12), true),TestUser("부모님3", TestHealth(12,12,12), true),];
-  RxList<MissionTime> addTimes = <MissionTime>[].obs;
+import '../../../../dto/goal/GoalTimeStatus.dart';
+import '../../../../dto/user/OldUser.dart';
 
-  late Rx<TestUser> selectUser = users[0].obs;
+class GoalCreateController extends GetxController {
+  List<User> users = [
+    User("부모님1", null, null, null, null, null),
+  ];
+  RxList<GoalTime> addTimes = <GoalTime>[].obs;
+
+  late Rx<User> selectUser = users[0].obs;
+
   //카테코리 선택
   RxBool _drug = false.obs;
   RxBool _outing = false.obs;
@@ -30,6 +34,7 @@ class GoalCreateController extends GetxController{
   //복용 시간 오전, 오후 선택
   RxBool _morning = false.obs;
   RxBool _afternoon = false.obs;
+
   //기본==0, 통과==1, 통과x == -1
   RxInt _isRightTime = 0.obs;
 
@@ -37,24 +42,55 @@ class GoalCreateController extends GetxController{
 
   RxBool _canSaveMission = false.obs;
 
-  void validateCanSave(){
-    if(isRightSelectMissionType() && isRightMissionForm() && isRightPickDay() && addTimes.value.length > 0){
+  Goal createGoal() {
+    return Goal(_titleController.text, _contentController.text,
+        createGoalType(), addTimes, createDays());
+  }
+
+  GoalType createGoalType() {
+    if (_drug.value == true) {
+      return GoalType.DRUG;
+    }
+    if (_outing.value == true) {
+      return GoalType.WALK;
+    }
+    return GoalType.COMMON;
+  }
+
+  List<int> createDays() {
+    return [1, 1, 0, 0, 0, 0, 0];
+  }
+
+  void validateCanSave() {
+    if (isRightSelectMissionType() &&
+        isRightMissionForm() &&
+        isRightPickDay() &&
+        addTimes.value.length > 0) {
       _canSaveMission.value = true;
-    }else{
+    } else {
       _canSaveMission.value = false;
     }
   }
 
-  bool isRightSelectMissionType(){
-    return _drug.value == true || _common.value == true || _outing.value == true;
+  bool isRightSelectMissionType() {
+    return _drug.value == true ||
+        _common.value == true ||
+        _outing.value == true;
   }
 
   bool isRightMissionForm() {
-    return _titleController.text.isNotEmpty && _contentController.text.isNotEmpty;
+    return _titleController.text.isNotEmpty &&
+        _contentController.text.isNotEmpty;
   }
 
   bool isRightPickDay() {
-    return _monday.value == true || _tuesday.value == true || _wednesday.value == true || _thursday.value == true || _friday.value == true || _saturday.value == true || _sunday.value == true;
+    return _monday.value == true ||
+        _tuesday.value == true ||
+        _wednesday.value == true ||
+        _thursday.value == true ||
+        _friday.value == true ||
+        _saturday.value == true ||
+        _sunday.value == true;
   }
 
   //목표 텍스트 컨트롤러
@@ -68,13 +104,11 @@ class GoalCreateController extends GetxController{
   TextEditingController _hourController = TextEditingController(text: "1");
   TextEditingController _minuteController = TextEditingController(text: "1");
 
-  void pickUser(int index){
+  void pickUser(int index) {
     selectUser.value = users[index];
   }
 
-
-
-  void validateTime(){
+  void validateTime() {
     final int hour = int.tryParse(_hourController.text) ?? 0;
     final int minute = int.tryParse(_minuteController.text) ?? 0;
 
@@ -94,51 +128,56 @@ class GoalCreateController extends GetxController{
     }
   }
 
-  void addTime(){
-    var missionTime = MissionTime(_hourController.text + ":" +_minuteController.text, TimeType.YET);
+  void addTime() {
+    var missionTime = GoalTime(
+        _hourController.text + ":" + _minuteController.text,
+        GoalTimeStatus.YET,
+        0, []);
     addTimes.add(missionTime);
 
     _hourController.text = "1";
-    _minuteController.text ="1";
+    _minuteController.text = "1";
     _isRightTime.value = 0;
     _morning.value = false;
     _afternoon.value = false;
   }
 
-  void deleteTime(MissionTime missionTime){
+  void deleteTime(GoalTime missionTime) {
     // Create a new list excluding the specified missionTime
-    final List<MissionTime> updatedTimes = List.from(addTimes.value);
+    final List<GoalTime> updatedTimes = List.from(addTimes.value);
     updatedTimes.remove(missionTime);
 
     // Assign the updated list to addTimes
     addTimes.value = updatedTimes;
   }
 
-  bool canAddTime(){
-    return _isRightTime.value == 1 && _drugDountController.text.isNotEmpty && (_afternoon.value == true || _morning.value == true);
+  bool canAddTime() {
+    return _isRightTime.value == 1 &&
+        _drugDountController.text.isNotEmpty &&
+        (_afternoon.value == true || _morning.value == true);
   }
 
-  void onChangeTitleText(){
+  void onChangeTitleText() {
     titleTextLength?.value = _titleController.text.length;
   }
 
-  void onChangeContentText(){
+  void onChangeContentText() {
     contentTextLength?.value = _contentController.text.length;
   }
 
-  void selectDrugType(){
+  void selectDrugType() {
     _drug.value = true;
     _outing.value = false;
     _common.value = false;
   }
 
-  void selectWalkType(){
+  void selectWalkType() {
     _drug.value = false;
     _outing.value = true;
     _common.value = false;
   }
 
-  void selectCommonType(){
+  void selectCommonType() {
     _drug.value = false;
     _outing.value = false;
     _common.value = true;
@@ -182,10 +221,9 @@ class GoalCreateController extends GetxController{
     _afternoon.value = true;
   }
 
-  void clickSwitch(bool value){
+  void clickSwitch(bool value) {
     _switchValue.value = value;
   }
-
 
   int get isRightTime => _isRightTime.value;
 

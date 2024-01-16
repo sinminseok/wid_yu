@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/common-widget/button/PurpleButton.dart';
 import 'package:wid_yu/common/utils/Color.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/young/album/popup/DeleteSuccessPopup.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
@@ -29,7 +30,7 @@ class DeleteRewardPopup {
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
                     width: 335.w,
-                    height: 405.h,
+                    height: 415.h,
                     child: Column(
                       children: [
                         Row(
@@ -54,37 +55,28 @@ class DeleteRewardPopup {
                               commonImagePath + "popup/delete_icon.png"),
                         ),
                         Container(
-                          child: Text(
+                          child: Title2Text(
                             "삭제할까요?",
-                            style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w800,
-                                color: wTextBlackColor),
+                              wTextBlackColor
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 5.h),
-                          child: Text(
+                          margin: EdgeInsets.only(top: 10.h),
+                          child: Body1Text(
                             "한번 삭제하면 복구가 안돼요.",
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                color: wTextBlackColor),
+                              wTextBlackColor
                           ),
                         ),
                         Container(
                           margin: EdgeInsets.only(top: 3.h),
-                          child: Text(
+                          child: Body1Text(
                             "그래도 삭제할까요?",
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                color: kTextBlackColor),
+                              wTextBlackColor
                           ),
                         ),
                         Container(
                           margin: EdgeInsets.only(
-                              left: 10.w, right: 10.w, top: 30.h),
+                              left: 10.w, right: 10.w, top: 40.h),
                           child: InkWell(
                               onTap: () {
                                 Navigator.pop(context);
@@ -97,7 +89,7 @@ class DeleteRewardPopup {
                                     borderRadius: BorderRadius.all(Radius.circular(6)),
                                     color: wErrorColor
                                 ),
-                                child: Center(child: Text("삭제하기", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: wWhiteColor),)),
+                                child: Center(child: ButtonText("삭제하기", wWhiteColor)),
                               )),
                         ),
 

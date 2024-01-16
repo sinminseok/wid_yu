@@ -2,16 +2,17 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
+import 'package:wid_yu/common/dto/user/User.dart';
+import 'package:wid_yu/common/dto/user/UserType.dart';
+import 'package:wid_yu/common/dto/user/YoungUser.dart';
 
-import '../../../../model/mission/MissionTime.dart';
-import '../../../../model/mission/TimeType.dart';
-import '../../../../model/user/TestHealth.dart';
-import '../../../../model/user/TestUser.dart';
 
 class GoalEditController extends GetxController {
   //List<TestUser> users = [TestUser("부모님1", TestHealth(12,12,12), true),TestUser("부모님2", TestHealth(12,12,12), true),TestUser("부모님3", TestHealth(12,12,12), true),TestUser("부모님3", TestHealth(12,12,12), true),TestUser("부모님3", TestHealth(12,12,12), true),];
-  Rx<TestUser> user = TestUser("부모님1", TestHealth(12,12,12), true).obs;
-  RxList<MissionTime> addTimes = <MissionTime>[].obs;
+  Rx<User> user = YoungUser("부모님1","010","123","123",UserType.OLD,[]).obs;
+  RxList<GoalTime> addTimes = <GoalTime>[].obs;
 
   //카테코리 선택
   RxBool _drug = false.obs;
@@ -92,7 +93,7 @@ class GoalEditController extends GetxController {
   }
 
   void addTime(){
-    var missionTime = MissionTime(_hourController.text + ":" +_minuteController.text, TimeType.YET);
+    var missionTime = GoalTime(_hourController.text + ":" +_minuteController.text, GoalTimeStatus.YET,null,null);
     addTimes.add(missionTime);
 
     _hourController.text = "1";
@@ -102,9 +103,9 @@ class GoalEditController extends GetxController {
     _afternoon.value = false;
   }
 
-  void deleteTime(MissionTime missionTime){
+  void deleteTime(GoalTime missionTime){
     // Create a new list excluding the specified missionTime
-    final List<MissionTime> updatedTimes = List.from(addTimes.value);
+    final List<GoalTime> updatedTimes = List.from(addTimes.value);
     updatedTimes.remove(missionTime);
 
     // Assign the updated list to addTimes

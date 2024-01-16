@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/view/goal/goal-create/GoalCreateView.dart';
+import '../../goal-create/view/OldGoalCreateView.dart';
 
 Container OldGoalFloatingButton() {
   return Container(
@@ -16,7 +18,7 @@ Container OldGoalFloatingButton() {
       child:  FloatingActionButton(
 
         onPressed: () {
-          Get.to(() => GoalCreateView(false), transition: Transition.fadeIn);
+          Get.to(() => OldGoalCreateView(), transition: Transition.fadeIn);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

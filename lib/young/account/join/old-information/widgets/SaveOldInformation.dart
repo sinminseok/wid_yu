@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/model/user/Old.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 
 import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 
 class SaveOldInformation extends StatelessWidget {
-  Old old;
+  OldUser old;
 
   SaveOldInformation(this.old);
 
@@ -52,7 +52,7 @@ class SaveOldInformation extends StatelessWidget {
                   ),
                   children: [
                     _buildUserInformation(),
-                    old.diseases == null
+                    old.disease == null
                         ? Container()
                         : _buildDiseaseInformation(),
                   ],
@@ -277,7 +277,7 @@ class SaveOldInformation extends StatelessWidget {
                       Container(
                           margin: EdgeInsets.only(right: 10.w),
                           child: Body1Text(
-                            "${old.age}",
+                            "${old.brith}",
                             wTextBlackColor,
                           )),
                     ],

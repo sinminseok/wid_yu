@@ -1,12 +1,11 @@
 
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/user/TestHealth.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 
 class YoungHealthInformationController extends GetxController{
-  List<TestUser> users = [TestUser("부모님1", TestHealth(50, 60, 70), true)];
+  List<OldUser> users = [OldUser.empty(), OldUser.empty() ];
 
-  Rx<TestUser?> currentUser = Rx<TestUser?>(null);
+  Rx<OldUser?> currentUser = Rx<OldUser?>(null);
 
   void pickUser(int index){
     currentUser.value = users[index];
@@ -20,15 +19,15 @@ class YoungHealthInformationController extends GetxController{
 
 
   double? getUserO2(){
-    return currentUser.value?.testHealth.o2;
+    return currentUser.value?.health?.spo2;
   }
 
   double? getUserTemperature(){
-    return currentUser.value?.testHealth.temperature;
+    return currentUser.value?.health?.temperature;
   }
 
   double? getUserHeartBit(){
-    return currentUser.value?.testHealth.healthBit;
+    return currentUser.value?.health?.heartBit;
   }
 
 }

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-import '../../../../common/model/account/AwsServices.dart';
+import '../../../../common/api/AwsServices.dart';
 
 class YoungLoginController extends GetxController {
   //자동로그인 체크 변수

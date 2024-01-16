@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
-import '../../../common/model/user/Old.dart';
 import '../../../common/utils/Color.dart';
 import '../join/finish/JoinSuccessView.dart';
 import '../join/old-information/view/OtherOldInformationView.dart';
 
 class AccountPopup {
-  void showDialog(BuildContext context, Old old) {
+  void showDialog(BuildContext context, OldUser old) {
     showGeneralDialog(
         context: context,
         barrierDismissible: false,

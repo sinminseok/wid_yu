@@ -1,14 +1,18 @@
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 import 'package:wid_yu/young/goal/main/widgets/FloatingButton.dart';
 import 'package:wid_yu/young/goal/main/widgets/HeaderInformation.dart';
 import 'package:wid_yu/young/goal/main/widgets/MyMission.dart';
 import 'package:wid_yu/young/goal/main/widgets/OldMissionWidget.dart';
 import 'package:wid_yu/young/goal/main/widgets/SwitchButton.dart';
+import '../../../../common/common-widget/mission/EmptyGoal.dart';
 import '../../../../common/common-widget/mission/MissionGroupWidget.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../family-manager/family-information/view/FamilyManagerView.dart';
@@ -16,7 +20,8 @@ import '../../edit-order/view/ChangeOrderView.dart';
 import '../../alarm/view/YoungMessageView.dart';
 
 class YoungGoalView extends StatefulWidget {
-  const YoungGoalView({Key? key}) : super(key: key);
+
+
 
   @override
   _YoungGoalViewState createState() => _YoungGoalViewState();
@@ -38,6 +43,8 @@ class _YoungGoalViewState extends State<YoungGoalView> {
     controller.scrollController.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -48,7 +55,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
       child: Scaffold(
         // 부모님이 없을때 endDocked로 변경
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:  YoungGoalFloatinButton(controller: controller,),
+        floatingActionButton:  YoungGoalFloatinButton(controller: controller, ),
             //YoungGoalFloatinButton(controller: controller,),
         appBar: _buildAppBar(),
         backgroundColor: wPurpleBackGroundColor,
@@ -60,7 +67,8 @@ class _YoungGoalViewState extends State<YoungGoalView> {
               HeaderInformation(controller),
               SwitchButton(controller),
               //EmptyGoal(),
-              MyMission(controller: controller),
+              EmptyGoal(controller.hasOld()),
+              //MyMission(controller: controller, testController: widget.testController!,),
               Obx(() => controller.isBottomScroll.value ? OldMissionWidget() : Container()),
               _buildChangeOrderButton()
             ],
@@ -124,17 +132,9 @@ class _YoungGoalViewState extends State<YoungGoalView> {
   }
 
 
-
-
-  Widget _buildYoungMissions() {
-    //사용자의 미션이 없을 경우 EmptyMissionGroupWidget
-    //사용자의 미션이 있을 경우 MissionGroupWidget
-    return MissionGroupWidget(false);
-  }
-
   Widget _buildChangeOrderButton() {
     return Container(
-      margin: EdgeInsets.only(bottom: 40.h),
+      margin: EdgeInsets.only(bottom: 70.h,top: 20.h),
       width: 140.w,
       height: 50.h,
       decoration: BoxDecoration(

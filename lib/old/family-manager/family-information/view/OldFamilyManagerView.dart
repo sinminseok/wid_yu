@@ -4,9 +4,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/dto/user/User.dart';
 
 import '../../../../common/common-widget/appbar/CommonAppbar.dart';
-import '../../../../common/model/user/TestUser.dart';
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../../family-edit/old-edit/view/OldEditByOldView.dart';
@@ -152,7 +152,7 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
     );
   }
 
-  Widget _buildOldCard(TestUser user){
+  Widget _buildOldCard(User user){
     return Center(
       child: Container(
         margin: EdgeInsets.only(bottom: 10.h, left: 20.w,right: 20.w),

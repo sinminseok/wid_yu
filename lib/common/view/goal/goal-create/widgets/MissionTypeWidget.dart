@@ -13,7 +13,6 @@ import '../../../../utils/Color.dart';
 class MissionType extends StatelessWidget {
   GoalCreateController controller;
 
-
   MissionType(this.controller);
 
   @override

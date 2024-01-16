@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/album/collect-new-photo/controller/CollectPhotoController.dart';
@@ -17,7 +18,8 @@ import 'package:wid_yu/old/album/widgets/PointWidget.dart';
 import 'package:wid_yu/old/frame/OldFrameView.dart';
 
 class CollectPhotoView extends StatelessWidget {
-  const CollectPhotoView({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {

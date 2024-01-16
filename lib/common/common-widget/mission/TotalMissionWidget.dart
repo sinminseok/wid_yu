@@ -3,26 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/mission-time/TotalMissionWidget.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/GoalEditView.dart';
-import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
-import '../../model/mission/Mission.dart';
-import '../../model/mission/MissionTime.dart';
-import '../../model/mission/MissionType.dart';
-import '../../model/mission/TimeType.dart';
+import '../../dto/goal/GoalType.dart';
 import '../../utils/Color.dart';
-import '../mission-time/MissionTimeWidget.dart';
 
 class TotalMissionWidget extends StatelessWidget {
-  final Mission _mission;
+  final Goal _gola;
 
-  TotalMissionWidget(this._mission);
+  TotalMissionWidget(this._gola);
 
-  List<MissionTime> times = [
-    MissionTime("12:00", TimeType.DONE),
-    MissionTime("13:00", TimeType.NONE),
-    MissionTime("14:00", TimeType.YET),
+  List<GoalTime> times = [
+    GoalTime("12:00", GoalTimeStatus.DONE, null, null),
+    GoalTime("13:00", GoalTimeStatus.NONE, null, null),
+    GoalTime("14:00", GoalTimeStatus.YET, null, null),
     // MissionTime("15:00", TimeType.YET),
   ];
 
@@ -64,7 +62,7 @@ class TotalMissionWidget extends StatelessWidget {
                     margin: EdgeInsets.only(top: 4.h),
                       width: 43.w,
                       height: 50.h,
-                      child: _mission.missionType==MissionType.DRUG?Image.asset("assets/images/mission/drug-mission-icon.png", fit: BoxFit.cover,): _mission.missionType==MissionType.WALK?Image.asset("assets/images/mission/walk-mission-icon.png", fit: BoxFit.cover,):Image.asset("assets/images/mission/common-mission-icon.png", )
+                      child: _gola.goalType==GoalType.DRUG?Image.asset("assets/images/mission/drug-mission-icon.png", fit: BoxFit.cover,): _gola.goalType==GoalType.WALK?Image.asset("assets/images/mission/walk-mission-icon.png", fit: BoxFit.cover,):Image.asset("assets/images/mission/common-mission-icon.png", )
                   )
               ),
 
@@ -83,7 +81,7 @@ class TotalMissionWidget extends StatelessWidget {
                             width: 75.w,
                             margin: EdgeInsets.only(left: 10.w),
                             child: Title3Text(
-                                _mission.title,
+                                _gola.title,
                                 kTextBlackColor
                             ),
                           ),
@@ -112,7 +110,7 @@ class TotalMissionWidget extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(left: 10.w, top: 5.h),
                       child: Body2Text(
-                          _mission.subtitle,
+                          _gola.description,
                           wGrey800Color
                       ),
                     ),

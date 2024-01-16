@@ -76,7 +76,7 @@ class SideBarUsers extends StatelessWidget {
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: controller
-                                  .users[index].isConnect
+                                  .users[index].isConnect!
                                   ? wErrorColor
                                   : wGrey200Color,
                               width: 3.sp,
@@ -86,24 +86,25 @@ class SideBarUsers extends StatelessWidget {
                             "assets/images/user/small-old-man-circle.png",
                           ),
                         ),
-                        Positioned(
-                            left:37.w,
-                            top: 3.h,
-                            child: Container(
-                              height: 10.h,
-                              width: 3.w,
-                              child: Image.asset(
-                                "assets/images/icon/red-alarm.png",
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ))
+                        // Positioned(
+                        //     left:37.w,
+                        //     top: 3.h,
+                        //     child: Container(
+                        //       height: 10.h,
+                        //       width: 3.w,
+                        //       child: Image.asset(
+                        //         "assets/images/icon/red-alarm.png",
+                        //         fit: BoxFit.fitHeight,
+                        //       ),
+                        //     ))
                       ],
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 4.h),
                       height: 18.h,
                       child: HelperText(
-                          "${controller.users[index].name}",
+                        "김옥례 ",
+                          // "${controller.users[index].name}",
                           wGrey800Color),
                     )
                   ],
@@ -115,4 +116,7 @@ class SideBarUsers extends StatelessWidget {
       ),
     );
   }
+
+
+
 }

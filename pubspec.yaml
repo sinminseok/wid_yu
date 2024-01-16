@@ -65,6 +65,8 @@ dependencies:
   remedi_kopo: ^0.0.2
   dots_indicator: ^3.0.0
   blur: ^3.1.0
+  contacts_service: ^0.6.3
+  flutter_sms: ^2.3.3
 
   webview_flutter: ^2.8.0
 

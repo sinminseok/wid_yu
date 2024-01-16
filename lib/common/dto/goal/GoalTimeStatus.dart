@@ -1,4 +1,5 @@
-enum TimeType {
+
+enum GoalTimeStatus{
   DONE,
   YET,
   NONE

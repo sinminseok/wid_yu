@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/view/goal/goal-create/GoalCreateView.dart';
+import '../../goal-create/view/YoungGoalCreateView.dart';
 
 class YoungGoalFloatinButton extends StatefulWidget {
   final YoungGoalController controller;
@@ -46,7 +48,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
         child:  FloatingActionButton(
 
           onPressed: () {
-            Get.to(() => GoalCreateView(false), transition: Transition.fadeIn);
+            Get.to(() => YoungGoalCreateView(), transition: Transition.fadeIn);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +114,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                       backgroundColor: wGrey200Color,
                       circularStrokeCap: CircularStrokeCap.round,
                       lineWidth: 5.0,
-                      percent: 0.7,
+                      percent: 0.0,
                       center: Container(
                         height: 55.h,
                         width: 55.w,
@@ -133,7 +135,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                       Container(
                         height: 30.h,
                         child: Text(
-                          "부모님2님",
+                          "김옥례",
                           style: TextStyle(
                               color: kTextBlackColor,
                               fontWeight: FontWeight.bold,
@@ -154,7 +156,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                             ),
                             Container(
                               child: Text(
-                                "40%",
+                                "0%",
                                 style: TextStyle(
                                     color: wPurpleColor,
                                     fontWeight: FontWeight.w900,

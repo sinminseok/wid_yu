@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/model/mission/Mission.dart';
-import 'package:wid_yu/common/model/user/TestHealth.dart';
-import 'package:wid_yu/common/model/user/TestUser.dart';
-
-import '../../../../common/model/mission/MissionType.dart';
+import 'package:wid_yu/common/dto/goal/Goal.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
+import 'package:wid_yu/common/dto/goal/GoalType.dart';
+import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:wid_yu/common/dto/user/YoungUser.dart';
 import '../../../../common/view/popup/AlarmOnPopup.dart';
 
 class YoungGoalController extends GetxController {
-  Rx<TestUser> myUser = TestUser("보호자님", TestHealth(1,1,1), false).obs;
-  RxList<TestUser> olds = <TestUser>[TestUser("부모님1", TestHealth(1,1,1), false),TestUser("부모님2", TestHealth(1,1,1), false)].obs;
-  //RxList<TestUser> olds = <TestUser>[].obs;
+  Rx<YoungUser> myUser = YoungUser.empty().obs;
+  RxList<OldUser> olds = <OldUser>[OldUser.empty(), OldUser.empty()].obs;
 
   RxBool switchValue = false.obs;
   RxBool isBottomScroll = false.obs;
@@ -20,11 +20,17 @@ class YoungGoalController extends GetxController {
 
   ScrollController scrollController = ScrollController();
 
-  List<Mission> myMission = [
-    Mission("위염약", "~~복용하세요", MissionType.DRUG),
-    Mission("런닝", "~~복용하세요", MissionType.WALK),
-    Mission("독서", "~~복용하세요", MissionType.COMMON),
+  List<Goal> myMission = [
+    Goal("미션","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
+    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
   ];
+
+  bool hasOld(){
+    if(olds.length == 0){
+      return false;
+    }
+    return true;
+  }
 
   void updateCanEdit(){
     canEdit.value = !canEdit.value;
@@ -45,7 +51,6 @@ class YoungGoalController extends GetxController {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {
         // 스크롤이 끝까지 내려갔을 때
-        print("das");
         isBottomScroll.value = true;
       } else if (scrollController.position.pixels ==
           scrollController.position.minScrollExtent) {

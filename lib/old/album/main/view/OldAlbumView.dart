@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/album/like-photo/view/LikePhotoView.dart';
 import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
@@ -16,7 +17,8 @@ import '../../../../young/album/main/widgets/PointWidget.dart';
 import '../../collect-new-photo/view/CollectPhotoView.dart';
 
 class OldAlbumView extends StatefulWidget {
-  const OldAlbumView({Key? key}) : super(key: key);
+
+
 
   @override
   _OldAlbumViewState createState() => _OldAlbumViewState();

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/young/account/login/widgets/AutoLoginCheckBox.dart';
 import 'package:wid_yu/young/account/login/widgets/FindInformation.dart';
 import 'package:wid_yu/young/account/login/widgets/LoginButton.dart';
@@ -12,7 +13,8 @@ import '../../../../common/utils/Color.dart';
 import '../controller/YoungLoginController.dart';
 
 class YoungLoginView extends StatelessWidget {
-  const YoungLoginView({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {

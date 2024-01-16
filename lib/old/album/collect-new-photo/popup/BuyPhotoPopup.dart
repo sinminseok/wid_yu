@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/old/frame/OldFrameView.dart';
 
@@ -13,7 +14,7 @@ import 'BuyPhotoFinishPopup.dart';
 
 
 class BuyPhotoPopup {
-  void showDialog( BuildContext context) {
+  void showDialog(BuildContext context) {
     showGeneralDialog(
         context: context,
         barrierDismissible: false,

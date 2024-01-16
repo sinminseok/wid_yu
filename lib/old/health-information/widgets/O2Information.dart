@@ -28,7 +28,14 @@ class O2Information extends StatelessWidget {
         },
         child: Container(
             margin: EdgeInsets.only(top: 15.h),
-            child: _buildNomal()));
+            child: _buildFilter()));
+  }
+
+  Widget _buildFilter(){
+    if(95 <= controller.getUserO2()! && 99 >= controller.getUserO2()!){
+      return _buildNomal();
+    }
+    return _buildDangerous();
   }
 
 

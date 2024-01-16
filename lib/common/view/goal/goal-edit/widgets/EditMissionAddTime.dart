@@ -3,9 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/mission/MissionTime.dart';
+import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 import 'package:wid_yu/common/view/goal/goal-edit/controller/GoalEditController.dart';
 
 import '../../../../utils/Color.dart';
@@ -33,7 +32,7 @@ class EditMissionAddTime extends StatelessWidget {
     ));
   }
 
-  Widget _buildDrugTimeWidget(MissionTime missionTime) {
+  Widget _buildDrugTimeWidget(GoalTime goalTime) {
     return Container(
       width: 125.w,
       height: 36.h,
@@ -46,7 +45,7 @@ class EditMissionAddTime extends StatelessWidget {
         children: [
           Container(
             child: ChipText(
-              "${missionTime.time}",
+              "${goalTime.time}",
                 wTextBlackColor
             ),
           ),
@@ -65,7 +64,7 @@ class EditMissionAddTime extends StatelessWidget {
                 height: 15.sp,
                 child: InkWell(
                   onTap: (){
-                    controller.deleteTime(missionTime);
+                    controller.deleteTime(goalTime);
                     controller.validateCanSave();
                   },
                   child: Icon(

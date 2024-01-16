@@ -1,10 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/model/user/User.dart';
+
+import '../../../../../common/dto/user/User.dart';
 
 class YoungEditByOldController extends GetxController {
-  Rx<User> _user = User("사용자", "010 1234 1234", "오목로11길 5", "2000.10.31").obs;
+  Rx<User> _user = User("사용자", "010 1234 1234", "오목로11길 5", "2000.10.31",null,null).obs;
 
   late TextEditingController _addressController;
   late TextEditingController _brithController;

@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
+import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/account/controller/OldLoginController.dart';
 import 'package:wid_yu/old/account/widgets/CodeForm.dart';
@@ -14,7 +15,8 @@ import '../../../common/utils/Color.dart';
 import '../../frame/OldFrameView.dart';
 
 class OldLoginView extends StatefulWidget {
-  const OldLoginView({Key? key}) : super(key: key);
+
+
 
   @override
   State<OldLoginView> createState() => _OldLoginViewState();
