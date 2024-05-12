@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../like-photo/view/LikePhotoView.dart';
 
-AppBar OldAlbumAppBar() {
+AppBar OldAlbumAppBar(OldAlbumController _controller) {
   return AppBar(
       backgroundColor: wOrangeBackGroundColor,
       automaticallyImplyLeading: false,
@@ -25,7 +26,7 @@ AppBar OldAlbumAppBar() {
             ),
             InkWell(
                 onTap: () {
-                  Get.to(() => LikePhotoView());
+                  Get.to(() => LikePhotoView(_controller));
                 },
                 child: Container(
                     margin: EdgeInsets.only(right: 10.w, top: 10.h),

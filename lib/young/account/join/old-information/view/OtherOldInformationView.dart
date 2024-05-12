@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/common/utils/PopUp.dart';
+import 'package:wid_yu/young/account/join/old-information/api/OldInformationApi.dart';
+import 'package:wid_yu/young/account/join/old-information/dto/OldLoginDto.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/DiseaseForm.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/OldInformationForm.dart';
 import 'package:wid_yu/young/account/join/old-information/widgets/SaveOldInformation.dart';
@@ -14,27 +18,32 @@ import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 import 'package:wid_yu/young/account/join/widgets/SignupAppBar.dart';
 
 import '../../../../../common/utils/Color.dart';
+import '../../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../controller/YoungJoinTotalController.dart';
 import '../../finish/JoinSuccessView.dart';
 import '../controller/OldInformationController.dart';
 
 class OtherOldInformationView extends StatefulWidget {
-  final OldUser old;
+  OldGeneratorRequest old;
+  YoungJoinTotalController controller;
 
-  OtherOldInformationView(this.old);
+  OtherOldInformationView(this.old, this.controller);
 
   @override
   _OtherOldInformationView createState() => _OtherOldInformationView();
 }
 
 class _OtherOldInformationView extends State<OtherOldInformationView> {
-  final OldInformationController controller = OldInformationController();
+  //final OldInformationController controller = OldInformationController();
 
   @override
   void initState() {
-    controller.nameController.addListener(controller.updateNextStepState);
-    controller.ageController.addListener(controller.updateNextStepState);
-    controller.phoneNumberController
-        .addListener(controller.updateNextStepState);
+    widget.controller.oldNameController
+        .addListener(widget.controller.updateNextStepState);
+    widget.controller.ageController
+        .addListener(widget.controller.updateNextStepState);
+    widget.controller.oldPhoneNumberController
+        .addListener(widget.controller.updateNextStepState);
     //controller.addressController.addListener(controller.updateNextStepState);
     super.initState();
   }
@@ -55,9 +64,9 @@ class _OtherOldInformationView extends State<OtherOldInformationView> {
               ProgressBar(2),
               SaveOldInformation(widget.old),
               _buildMainText(),
-              OldInformationForm(controller: controller),
-              SelectHaveDisease(controller: controller),
-              DiseaseForm(controller: controller),
+              OldInformationForm(controller: widget.controller),
+              SelectHaveDisease(controller: widget.controller),
+              DiseaseForm(controller: widget.controller),
               _buildButton(),
             ],
           ),
@@ -74,15 +83,35 @@ class _OtherOldInformationView extends State<OtherOldInformationView> {
   }
 
   Widget _buildButton() {
-    return Obx(() => controller.canNextStep.value
+    return Obx(() => widget.controller.canOldNextStep.value
         ? Center(
             child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.fade,
-                        child: (JoinSuccessView())));
+              onTap: () async {
+                OldGeneratorRequest newOld = widget.controller.createOld();
+                List<OldLoginDto> olds = [];
+
+                OldLoginDto? joinOld = await widget.controller.joinOld(newOld);
+                OldLoginDto? joinOld2 =
+                    await widget.controller.joinOld(widget.old);
+
+                olds.add(joinOld!);
+                olds.add(joinOld2!);
+
+
+                if(joinOld == null || joinOld2 == null){
+                  ToastMessage().showtoast("다시 시도해주세요.");
+                }else{
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          child: (JoinSuccessView(
+                              widget.controller.nameController.text,
+                              widget.controller.phoneNumberController.text!,
+                              widget.controller.idController.text!,
+                              olds))));
+                }
+
               },
               child: Container(
                   margin: EdgeInsets.only(top: 30.h, bottom: 60.h),

@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
+import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
+
+import '../../../../../common/dto/health/Health.dart';
 
 class OldEditByYoungController extends GetxController {
-  Rx<OldUser> _user = OldUser.empty().obs;
+  Rx<UserProfileResponse> _user = UserProfileResponse("an", "123", "add", "123").obs;
 
   late TextEditingController _addressController;
   late TextEditingController _brithController;
@@ -32,7 +36,7 @@ class OldEditByYoungController extends GetxController {
 
   TextEditingController get addressController => _addressController;
 
-  OldUser get user => _user.value;
+  UserProfileResponse get user => _user.value;
 
   bool get canSave => _canSave.value;
 

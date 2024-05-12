@@ -68,18 +68,19 @@ class AddSelectHaveDisease extends StatelessWidget {
                           height: 44.h,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  color: controller.isDisease == -1
+                                  color: controller.isDisease == 0
                                       ? wPurple200Color
                                       : wGrey200Color),
                               borderRadius: BorderRadius.all(Radius.circular(5)),
-                              color: controller.isDisease == -1
+                              color: controller.isDisease == 0
                                   ? wPurpleColor
                                   : wGrey100Color
                           ),
                           child: Center(
                               child: ButtonText(
                                   "없음",
-                                  controller.isDisease == -1
+
+                                  controller.isDisease == 0
                                       ? wWhiteColor
                                       : wGrey400Color)),
                         ),

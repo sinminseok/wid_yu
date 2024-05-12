@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/young/account/join/controller/YoungJoinController.dart';
 
 import '../../../../../common/utils/Color.dart';
-import '../controller/VertifyPhoneController.dart';
+import '../../controller/YoungJoinTotalController.dart';
 
 class AgreeJoin extends StatelessWidget {
-  VerificationPhoneController controller;
+  YoungJoinTotalController controller;
 
 
   AgreeJoin(this.controller);

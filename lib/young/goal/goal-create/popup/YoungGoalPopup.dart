@@ -2,13 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
-import 'package:wid_yu/old/frame/OldFrameView.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../../../young/goal/main/view/YoungGoalView.dart';
 
 class YoungGoalPopup {
   void createGoalPopup(BuildContext context) {
@@ -29,6 +25,7 @@ class YoungGoalPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
+                    color: wWhiteBackGroundColor,
                     width: 335.w,
                     height: 379.h,
                     child: Column(

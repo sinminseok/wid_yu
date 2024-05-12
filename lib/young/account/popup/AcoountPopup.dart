@@ -2,15 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/common/utils/PopUp.dart';
+import 'package:wid_yu/young/account/join/old-information/api/OldInformationApi.dart';
+import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
+import 'package:wid_yu/young/account/join/old-information/dto/OldLoginDto.dart';
 
 import '../../../common/utils/Color.dart';
+import '../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../join/controller/YoungJoinTotalController.dart';
 import '../join/finish/JoinSuccessView.dart';
 import '../join/old-information/view/OtherOldInformationView.dart';
 
 class AccountPopup {
-  void showDialog(BuildContext context, OldUser old) {
+  void showDialog(YoungJoinTotalController controller,BuildContext context, OldGeneratorRequest old) {
     showGeneralDialog(
         context: context,
         barrierDismissible: false,
@@ -28,6 +35,7 @@ class AccountPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
+                    color: wWhiteBackGroundColor,
                     width: 335.w,
                     height: 224.h,
                     child: Column(
@@ -78,7 +86,7 @@ class AccountPopup {
                                       PageTransition(
                                           type: PageTransitionType.fade,
                                           child:
-                                              (OtherOldInformationView(old))));
+                                              (OtherOldInformationView(old, controller))));
                                 },
                                 child: Container(
                                   width: 153.w,
@@ -96,12 +104,35 @@ class AccountPopup {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType.fade,
-                                          child: (JoinSuccessView())));
+                                onTap: () async{
+                                  //todo
+
+                                  /**
+                                   * 1. 부모님 계정 생성
+                                   * 2. 정보 넘기기
+                                   */
+
+                                  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                                  String? id = await prefs.getString("young_join_id");
+                                  String? name =await prefs.getString("young_join_name");
+                                  String? phoneNumber =await prefs.getString("young_join_phone_number");
+
+                                  OldLoginDto? createOldAccount =await controller.joinOld(old);
+
+                                  print("object");
+                                  print(createOldAccount);
+
+                                  if(createOldAccount == null){
+                                    ToastMessage().showtoast("다시 시도해주세요.");
+                                  }else{
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: (JoinSuccessView(id!,name!, phoneNumber!,[createOldAccount]))));
+                                  }
+
                                 },
                                 child: Container(
                                   width: 109.w,

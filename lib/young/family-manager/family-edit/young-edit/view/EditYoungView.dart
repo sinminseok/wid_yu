@@ -12,22 +12,28 @@ import 'package:wid_yu/young/family-manager/family-edit/young-edit/widgets/Young
 
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
+import '../../../dto/YoungInformationResponseDto.dart';
 import '../../phone-number-edit/view/EditPhoneNumberView.dart';
 import '../widgets/YoungEditInformation.dart';
 
 class EditYoungView extends StatefulWidget {
-  const EditYoungView({Key? key}) : super(key: key);
+  YoungInformationResponseDto _young;
+
+
+  EditYoungView(this._young);
 
   @override
   _EditYoungView createState() => _EditYoungView();
 }
 
 class _EditYoungView extends State<EditYoungView> {
-  YoungEditByYoungController controller = YoungEditByYoungController();
   bool _switchValue = true;
 
   @override
   Widget build(BuildContext context) {
+    YoungEditByYoungController controller = YoungEditByYoungController(widget._young);
+
+
     return Theme(
       data: ThemeData(
         splashColor: Colors.transparent,
@@ -35,14 +41,14 @@ class _EditYoungView extends State<EditYoungView> {
       ),
       child: Scaffold(
         backgroundColor: wPurpleBackGroundColor,
-        appBar: _buildAppBar(),
+        appBar: _buildAppBar(controller),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              YoungEditProfile(),
+              YoungEditProfile(controller),
               _buildUserInformation(),
               _buildFamilyRelationship(),
-              YoungEditInformation(controller),
+              YoungEditInformation(controller, widget._young),
             ],
           ),
         ),
@@ -54,7 +60,7 @@ class _EditYoungView extends State<EditYoungView> {
 
 
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(YoungEditByYoungController controller) {
     return AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -73,18 +79,16 @@ class _EditYoungView extends State<EditYoungView> {
                     height: 19.h,fit: BoxFit.contain,)
               ),
             ),
-            Obx(() => controller.canSave?InkWell(
+            InkWell(
               onTap: (){
-                CustomSnackBar().show(context, "서버 연동 후 구현");
+                controller.updateInformation();
+                //CustomSnackBar().show(context, "서버 연동 후 구현");
               },
               child: Container(
                 margin: EdgeInsets.only(top: 0.h, right: 10.w),
                 child: SubTitle2Text("저장", wGrey800Color),
               ),
-            ):Container(
-              margin: EdgeInsets.only(top: 0.h, right: 10.w),
-              child: SubTitle2Text("저장", wGrey500Color),
-            ))
+            )
           ],
         ));
   }
@@ -96,12 +100,12 @@ class _EditYoungView extends State<EditYoungView> {
         Container(
           height: 27.h,
           margin: EdgeInsets.only(top: 0.h),
-          child: Title3Text("보호자 님", wGrey800Color),
+          child: Title3Text("${widget._young.name} 님", wGrey800Color),
         ),
         Container(
           margin: EdgeInsets.only(top: 2.h),
           height: 27.h,
-          child: Body2Text("@ID", wGrey600Color),
+          child: Body2Text("@${widget._young.id}", wGrey600Color),
         ),
       ],
     );

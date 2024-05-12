@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/account/controller/OldLoginController.dart';
 import 'package:wid_yu/old/account/widgets/CodeForm.dart';
@@ -23,7 +20,7 @@ class OldLoginView extends StatefulWidget {
 }
 
 class _OldLoginViewState extends State<OldLoginView> {
-  OldLoginController controller = OldLoginController();
+
 
   @override
   void dispose() {
@@ -33,7 +30,9 @@ class _OldLoginViewState extends State<OldLoginView> {
 
   @override
   Widget build(BuildContext context) {
+    OldLoginController controller = OldLoginController();
     return Scaffold(
+
       appBar: CommonAppBar(canBack: true, title: "", color: wWhiteColor,),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -46,7 +45,7 @@ class _OldLoginViewState extends State<OldLoginView> {
                   CodeForm(controller),
                 ],
               ),
-              _buildLoginButton(),
+              //_buildLoginButton(),
             ],
           )),
     );
@@ -70,22 +69,5 @@ class _OldLoginViewState extends State<OldLoginView> {
   }
   
 
-  Widget _buildLoginButton() {
-    return Center(
-      child: Container(
-          padding: EdgeInsets.only(top: 320.h),
-          child: InkWell(
-              onTap: () {
-                //controller.validateNextStep();
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    child: OldFrameView(0),
-                  ),
-                );
-              },
-              child: OrangeButton("로그인"))),
-    );
-  }
+
 }

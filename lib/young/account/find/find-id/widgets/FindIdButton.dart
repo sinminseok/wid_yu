@@ -10,7 +10,7 @@ import 'package:wid_yu/young/account/find/find-id/controller/FindIdController.da
 import '../../../../../common/common-widget/button/OrangeButton.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/CustomText.dart';
-import '../../../join/phone-vertify/VertifyPhoneView.dart';
+import '../../../join/phone-vertify/view/VertifyPhoneView.dart';
 import '../view/FindIdSuccessView.dart';
 
 class FindIdButton extends StatelessWidget {
@@ -59,7 +59,7 @@ class FindIdButton extends StatelessWidget {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => FindIdSuccessView());
+                controller.findId();
               },
               child: Container(
                   margin: EdgeInsets.only(bottom: 20.h),

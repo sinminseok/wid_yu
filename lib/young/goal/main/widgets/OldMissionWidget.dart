@@ -4,21 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart';
+import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
 import '../../../../common/common-widget/mission/MissionWidget.dart';
 import '../../../../common/dto/goal/GoalTime.dart';
 import '../../../../common/dto/goal/GoalTimeStatus.dart';
 import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/utils/Color.dart';
+import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
 
 /*
  보호자가 목표 화면에서 볼 보호자 미션
  */
 class OldMissionWidget extends StatefulWidget {
-  // List<User> olds;
-  //
-  //
-  // OldMissionWidget(this.olds);
+  OldResponseByYoung old;
+
+  OldMissionWidget(this.old);
 
   @override
   _OldMissionWidgetState createState() => _OldMissionWidgetState();
@@ -26,11 +28,6 @@ class OldMissionWidget extends StatefulWidget {
 
 class _OldMissionWidgetState extends State<OldMissionWidget> {
   bool _isExpanded = true;
-  final List<Goal> items = [
-    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
-    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
-    Goal("미션2","설명",GoalType.DRUG,[GoalTime("12:0", GoalTimeStatus.DONE, 1, [])],[1,2],),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +71,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
               //한번에 2개씩 복용하세요
               margin: EdgeInsets.only(left: 10.w, top: 15.h),
               width: 70.0.w, // Container의 너비
-               // Container의 높이
+              // Container의 높이
               child: Container(
                 child: CircularPercentIndicator(
                   radius: 28.0.w,
@@ -82,17 +79,17 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                   circularStrokeCap: CircularStrokeCap.round,
                   // 부모 컨테이너의 크기에 맞게 조절
                   lineWidth: 5.0.w,
-                  percent: 0.0,
+                  percent: widget.old.percentage!,
                   center: Container(
-                    height: 49.h,
-                    width: 49.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: wGrey100Color,
-
-                    ),
-                    child: Image.asset("assets/common/user/old-man-circle.png"),
-                  ),
+                      height: 49.h,
+                      width: 49.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: wGrey100Color,
+                      ),
+                      child: widget.old.profile == null
+                          ? Image.asset("assets/common/user/old-man-circle.png")
+                          : Image.network(widget.old.profile!)),
                   progressColor: wOrangeColor,
                 ),
               ),
@@ -103,32 +100,21 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Title2Text(
-                      "김옥례",
-                        kTextBlackColor
-                    ),
+                    child: Title2Text("${widget.old.name}", kTextBlackColor),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 5.h),
                     child: Row(
                       children: [
                         Container(
-                          child: Title3Text(
-                            "오늘은 ",
-                              kTextBlackColor
-                          ),
+                          child: Title3Text("오늘은 ", kTextBlackColor),
                         ),
                         Container(
                           child: Title3Text(
-                            "0%",
-                              wPurpleColor
-                          ),
+                              "${widget.old.percentage!}%", wPurpleColor),
                         ),
                         Container(
-                          child: Title3Text(
-                            " 를 달성했어요.",
-                              kTextBlackColor
-                          ),
+                          child: Title3Text(" 를 달성했어요.", kTextBlackColor),
                         ),
                       ],
                     ),
@@ -169,12 +155,11 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
   List<Widget> _buildMissionWidgets() {
     List<Widget> missionWidgets = [];
 
-    for (int index = 0; index < items.length; index++) {
-      missionWidgets.add(MissionWidget(
-        items[index],
-      ));
+    for (int index = 0; index < widget.old.goalsAndStatus!.length; index++) {
+      missionWidgets
+          .add(MissionWidget(false, widget.old.goalsAndStatus![index]));
 
-      if (index < items.length - 1) {
+      if (index < widget.old.goalsAndStatus!.length - 1) {
         missionWidgets.add(
           Container(
             margin: EdgeInsets.only(top: 15.h),

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/album/collect-new-photo/view/CollectPhotoView.dart';
+import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 
 import '../../../../common/utils/Color.dart';
 
-Container OldAlbumFloatingButton() {
+Container OldAlbumFloatingButton(OldAlbumController _controller) {
   return Container(
     margin: EdgeInsets.only(right: 0.w),
     child: ConstrainedBox(
@@ -18,7 +18,7 @@ Container OldAlbumFloatingButton() {
       child:  FloatingActionButton(
 
         onPressed: () {
-          Get.to(() => CollectPhotoView(), transition: Transition.fadeIn);
+          Get.to(() => CollectPhotoView(_controller), transition: Transition.fadeIn);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

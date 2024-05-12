@@ -8,29 +8,37 @@ import '../../../../common/utils/Color.dart';
 import '../widgets/ProgressBar.dart';
 import '../widgets/SignupAppBar.dart';
 
-class JoinSuccessOnlyYoungView extends StatefulWidget {
-  const JoinSuccessOnlyYoungView({Key? key}) : super(key: key);
+class JoinSuccessOnlyYoungView extends StatelessWidget {
+  String name;
+  String phoneNumber;
+  String id;
 
-  @override
-  State<JoinSuccessOnlyYoungView> createState() => _JoinSuccessViewState();
-}
 
-class _JoinSuccessViewState extends State<JoinSuccessOnlyYoungView> {
+  JoinSuccessOnlyYoungView(this.name, this.phoneNumber, this.id);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: wWhiteColor,
-      appBar: SignUpAppBar(canBack: false),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildProgressBar(),
-            _buildMainText(),
-            _buildInfoCard("아이디", "sin1768@naver.com"),
-            _buildNextButton(),
-          ],
+    return WillPopScope(
+      onWillPop: (){
+        return Future(() => false);
+      },
+      child: Scaffold(
+        backgroundColor: wWhiteColor,
+        appBar: SignUpAppBar(canBack: false),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildProgressBar(),
+              _buildMainText(),
+              _buildInfoCard(),
+              Container(
+                height: 95.h,
+              ),
+              _buildNextButton(context),
+            ],
+          ),
         ),
       ),
     );
@@ -129,7 +137,7 @@ class _JoinSuccessViewState extends State<JoinSuccessOnlyYoungView> {
     );
   }
 
-  Widget _buildNextButton() {
+  Widget _buildNextButton(BuildContext context) {
     return Container(
           margin: EdgeInsets.only(top: 155.h, bottom: 60.h),
           child: InkWell(
@@ -146,11 +154,11 @@ class _JoinSuccessViewState extends State<JoinSuccessOnlyYoungView> {
     );
   }
 
-  Widget _buildInfoCard(String label, String value) {
+  Widget _buildInfoCard() {
     return Center(
       child: Container(
         width: 335.w,
-        height: 263.h,
+        height: 273.h,
         margin: EdgeInsets.only(top: 28.h, right: 20.w, left: 20.w),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -166,11 +174,11 @@ class _JoinSuccessViewState extends State<JoinSuccessOnlyYoungView> {
         ),
         child: Column(
           children: [
-            _buildInfoRow("이름", "보호자 님"),
+            _buildInfoRow("이름", "$name 님"),
             _buildDivider(),
-            _buildInfoRow("연락처", "010 1234 1234"),
+            _buildInfoRow("연락처", "$phoneNumber"),
             _buildDivider(),
-            _buildInfoRow("아이디", "sin1768"),
+            _buildInfoRow("아이디", "$id"),
             _buildDivider(),
             Container(
               margin: EdgeInsets.only(top: 12.h),

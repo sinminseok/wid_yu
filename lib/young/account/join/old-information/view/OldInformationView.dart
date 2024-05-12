@@ -11,23 +11,26 @@ import 'package:wid_yu/young/account/join/widgets/ProgressBar.dart';
 
 import '../../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../../common/utils/Color.dart';
+import '../../controller/YoungJoinTotalController.dart';
 
 class OldInformationView extends StatefulWidget {
-  const OldInformationView({Key? key}) : super(key: key);
+  YoungJoinTotalController controller;
+
+
+  OldInformationView(this.controller);
 
   @override
   _OldInformationView createState() => _OldInformationView();
 }
 
 class _OldInformationView extends State<OldInformationView> {
-  final OldInformationController controller = OldInformationController();
 
   @override
   void initState() {
-    controller.nameController.addListener(controller.updateNextStepState);
-    controller.ageController.addListener(controller.updateNextStepState);
-    controller.phoneNumberController
-        .addListener(controller.updateNextStepState);
+    widget.controller.oldNameController.addListener(widget.controller.updateNextStepState);
+    widget.controller.ageController.addListener(widget.controller.updateNextStepState);
+    widget.controller.oldPhoneNumberController
+        .addListener(widget.controller.updateNextStepState);
     super.initState();
   }
 
@@ -45,10 +48,10 @@ class _OldInformationView extends State<OldInformationView> {
               children: [
                 ProgressBar(2),
                 _buildMainText(),
-                OldInformationForm(controller: controller),
-                SelectHaveDisease(controller: controller),
-                DiseaseForm(controller: controller),
-                NextButton(controller, context)
+                OldInformationForm(controller: widget.controller),
+                SelectHaveDisease(controller: widget.controller),
+                DiseaseForm(controller: widget.controller),
+                NextButton(widget.controller, context)
               ],
             ),
           ),

@@ -7,19 +7,22 @@ import 'package:wid_yu/young/family-manager/family-edit/young-edit/controller/Yo
 
 import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
+import '../../../dto/YoungInformationResponseDto.dart';
 import '../../phone-number-edit/view/EditPhoneNumberView.dart';
 
 class YoungEditInformation extends StatelessWidget {
-  YoungEditByYoungController controller;
 
-  YoungEditInformation(this.controller);
+  YoungEditByYoungController controller;
+  YoungInformationResponseDto _young;
+
+  YoungEditInformation(this.controller, this._young);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w),
       width: 335.w,
-      height: 168.h,
+      height: 208.h,
       decoration: BoxDecoration(
         color: wWhiteColor,
         border: Border.all(color: wGrey100Color),

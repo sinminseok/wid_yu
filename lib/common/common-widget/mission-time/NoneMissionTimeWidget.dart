@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/Color.dart';
 
-Widget NoneMissionTimeWidget(String time) {
+Widget NoneMissionTimeWidget(String? time) {
   return Container(
     width: 122.w,
     height: 30.h,

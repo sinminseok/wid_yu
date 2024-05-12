@@ -5,9 +5,11 @@ import 'package:wid_yu/common/dto/user/OldUser.dart';
 
 import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
+import '../../../../../dto/old-dto/request/OldDiseaseRequest.dart';
+import '../../../../../dto/old-dto/request/OldGeneratorRequest.dart';
 
 class SaveOldInformation extends StatelessWidget {
-  OldUser old;
+  OldGeneratorRequest old;
 
   SaveOldInformation(this.old);
 
@@ -43,7 +45,7 @@ class SaveOldInformation extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.only(left: 10.w),
-                        child: Title3Text(
+                        child: Body1Text(
                           "${old.name} 님의 정보",
                           wGrey800Color,
                         ),
@@ -52,9 +54,9 @@ class SaveOldInformation extends StatelessWidget {
                   ),
                   children: [
                     _buildUserInformation(),
-                    old.disease == null
+                    old.diseases?.length == 0
                         ? Container()
-                        : _buildDiseaseInformation(),
+                        : _buildDiseaseInformation(old.diseases![0]),
                   ],
                 ),
               ),
@@ -63,7 +65,7 @@ class SaveOldInformation extends StatelessWidget {
         ));
   }
 
-  Widget _buildDiseaseInformation() {
+  Widget _buildDiseaseInformation(OldDiseaseRequest diseaseRequest) {
     return Column(
       children: [
         Container(
@@ -84,7 +86,7 @@ class SaveOldInformation extends StatelessWidget {
                   Container(
                       margin: EdgeInsets.only(right: 10.w),
                       child: Body1Text(
-                        "질병 이름",
+                        "${diseaseRequest.name}",
                         wTextBlackColor,
                       )),
                 ],
@@ -116,7 +118,7 @@ class SaveOldInformation extends StatelessWidget {
                       Container(
                           margin: EdgeInsets.only(right: 10.w),
                           child: Body1Text(
-                            "약이름",
+                            "${diseaseRequest.drugName}",
                             wTextBlackColor,
                           )),
                     ],
@@ -152,7 +154,7 @@ class SaveOldInformation extends StatelessWidget {
                     margin:
                         EdgeInsets.only(right: 30.w, left: 30.w, bottom: 20.h),
                     child: Body1Text(
-                      "설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~설명~ㅍ",
+                      "${diseaseRequest.explanation}",
                       wTextBlackColor,
                     )),
               ],
@@ -243,8 +245,9 @@ class SaveOldInformation extends StatelessWidget {
                         wGrey600Color,
                       )),
                   Container(
-                      margin: EdgeInsets.only(right: 10.w),
-                      child: Body1Text(
+                    width: 200.w,
+                      margin: EdgeInsets.only(right: 2.w),
+                      child: Body2Text(
                         "${old.address}",
                         wTextBlackColor,
                       )),
@@ -277,7 +280,7 @@ class SaveOldInformation extends StatelessWidget {
                       Container(
                           margin: EdgeInsets.only(right: 10.w),
                           child: Body1Text(
-                            "${old.brith}",
+                            "${old.birth}",
                             wTextBlackColor,
                           )),
                     ],

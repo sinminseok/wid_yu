@@ -3,8 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/common/utils/PopUp.dart';
+import 'package:wid_yu/final-dto/young-dto/request/reward/YoungRewardGeneratorRequest.dart';
+import 'package:wid_yu/young/album/add-photo/api/AddPhotoApi.dart';
 
 import '../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../common/common-widget/button/PurpleButton.dart';
@@ -18,6 +22,7 @@ class AddPhotoView extends StatefulWidget {
   @override
   _AddPhotoViewState createState() => _AddPhotoViewState();
 }
+
 
 class _AddPhotoViewState extends State<AddPhotoView> {
   XFile? image_picked; //이미지를 담을 변수 선언
@@ -36,6 +41,17 @@ class _AddPhotoViewState extends State<AddPhotoView> {
     }
   }
 
+  Future<bool> test() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+
+    var userIdx = await prefs.getInt("user_idx");
+    var youngRewardGeneratorRequest = YoungRewardGeneratorRequest(userIdx: userIdx, url: image_picked?.path, description: _textController.text);
+    AddPhotoApi().createPhotoReward(youngRewardGeneratorRequest);
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +65,7 @@ class _AddPhotoViewState extends State<AddPhotoView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+
             _buildPhotoInformation(),
             _buildSaveButton(),
           ],
@@ -187,8 +204,17 @@ class _AddPhotoViewState extends State<AddPhotoView> {
     return Container(
         margin: EdgeInsets.only(top: 150.h,right: 20.w,left: 20.w),
         child: InkWell(
-            onTap: (){
-              SaveRewardPopup().showDialog(context);
+            onTap: ()async{
+              if(image_picked == null || _textController.text == ""){
+                ToastMessage().showtoast("정보를 모두 입력해주세요.");
+              }else{
+                var bool = await test();
+                if(bool){
+                  SaveRewardPopup().showDialog(context);
+                }
+
+              }
+
             },
             child: PurpleButton("저장하기")));
   }

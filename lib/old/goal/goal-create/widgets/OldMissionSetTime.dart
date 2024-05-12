@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/common/utils/PopUp.dart';
-import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../controller/OldGoalCreateController.dart';
@@ -59,6 +57,7 @@ class OldMissionSetTime extends StatelessWidget {
           margin: EdgeInsets.only(top: 15.h),
           child: InkWell(
             onTap: () {
+              print("dasd");
               if(controller.canAddTime()){
                 controller.addTime();
               }else{

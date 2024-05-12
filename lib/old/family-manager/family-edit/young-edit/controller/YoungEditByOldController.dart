@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../../common/dto/user/User.dart';
+import '../../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
 
 class YoungEditByOldController extends GetxController {
-  Rx<User> _user = User("사용자", "010 1234 1234", "오목로11길 5", "2000.10.31",null,null).obs;
+  Rx<UserProfileResponse> _user = UserProfileResponse("사용자", "010 1234 1234", "오목로11길 5", "2000.10.31").obs;
 
   late TextEditingController _addressController;
   late TextEditingController _brithController;
@@ -42,7 +43,7 @@ class YoungEditByOldController extends GetxController {
 
   TextEditingController get addressController => _addressController;
 
-  User get user => _user.value;
+  UserProfileResponse get user => _user.value;
 
   bool get canSave => _canSave.value;
 

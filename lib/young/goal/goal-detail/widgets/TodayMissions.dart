@@ -6,6 +6,7 @@ import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/common/dto/goal/GoalType.dart';
+import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/DrugMissionWidget.dart';
@@ -16,10 +17,10 @@ import '../../../../common/utils/Color.dart';
 class TodayMission extends StatelessWidget {
    TodayMission({Key? key}) : super(key: key);
 
-  final List<Goal> items = [
-    Goal("위염약", "~~복용하세요", GoalType.DRUG,[GoalTime("12:00", GoalTimeStatus.DONE, null, null)],[1,1,1]),
-    Goal("위염약", "~~복용하세요", GoalType.DRUG,[GoalTime("12:00", GoalTimeStatus.DONE, null, null)],[1,1,1]),
-    Goal("위염약", "~~복용하세요", GoalType.DRUG,[GoalTime("12:00", GoalTimeStatus.DONE, null, null)],[1,1,1]),
+  final List<GoalResponse> items = [
+    GoalResponse(goalIdx: 1, title: "12", description: "312", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
+    GoalResponse(goalIdx: 1,  title: "12", description: "312", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
+    GoalResponse(goalIdx: 1,  title: "12", description: "312", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
   ];
 
 

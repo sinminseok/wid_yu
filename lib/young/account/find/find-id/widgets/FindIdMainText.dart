@@ -10,9 +10,7 @@ import 'package:wid_yu/young/account/find/find-id/controller/FindIdController.da
 import '../../../../../common/utils/FilePath.dart';
 
 class FindIdMainText extends StatelessWidget {
-
   FindIdController controller;
-
 
   FindIdMainText(this.controller);
 

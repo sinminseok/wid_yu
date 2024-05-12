@@ -1,18 +1,31 @@
+import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wid_yu/common/utils/PopUp.dart';
+import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
+import 'package:wid_yu/young/goal/goal-create/api/YoungGoalCreateApi.dart';
+import 'package:wid_yu/young/goal/main/api/YoungGoalApi.dart';
 
-import '../../../../common/dto/goal/GoalTimeStatus.dart';
-import '../../../../common/dto/goal/GoalType.dart';
+import '../../../../dto/young-dto/request/goal/GoalStatusRequest.dart';
+import '../../../../final-dto/common-dto/request/goal/GoalGeneratorRequest.dart';
+import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';
+import '../popup/YoungGoalPopup.dart';
 
 class YoungGoalCreateController {
-  List<OldUser> users = [OldUser.empty(),OldUser.empty()];
-  RxList<GoalTime> addTimes = <GoalTime>[].obs;
+  YoungGoalCreateApi api = YoungGoalCreateApi();
 
-  late Rx<OldUser> selectUser = users[0].obs;
+  // 사용자 목록
+  List<UserProfileResponse> users = [
+    UserProfileResponse("name", "12", "add", "21"),
+    UserProfileResponse("name", "12", "add", "21")
+  ];
+
+  // 선택된 사용자
+  RxList<GoalTimeGeneratorRequest> addTimes = <GoalTimeGeneratorRequest>[].obs;
+
+  late Rx<UserProfileResponse> selectUser = users[0].obs;
 
   //카테코리 선택
   RxBool _drug = false.obs;
@@ -31,6 +44,7 @@ class YoungGoalCreateController {
   //복용 시간 오전, 오후 선택
   RxBool _morning = false.obs;
   RxBool _afternoon = false.obs;
+
   //기본==0, 통과==1, 통과x == -1
   RxInt _isRightTime = 0.obs;
 
@@ -38,43 +52,85 @@ class YoungGoalCreateController {
 
   RxBool _canSaveMission = false.obs;
 
-  Goal createGoal() {
-    return Goal(_titleController.text, _contentController.text,
-        createGoalType(), addTimes, createDays());
+  void loadAllUser() async {
+    await api.loadAllUsers();
   }
 
-  List<int> createDays() {
-    return [1, 1, 0, 0, 0, 0, 0];
-  }
+  void createGoal(BuildContext context) async{
+    //todo useridx 선택
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  GoalType createGoalType(){
-    if(_drug.value == true){
-      return GoalType.DRUG;
-    }
-    if(_outing.value == true){
-      return GoalType.WALK;
-    }
-    return GoalType.COMMON;
-  }
+    GoalGeneratorRequest goalGeneratorRequest = GoalGeneratorRequest(
+        userIdx: prefs.getInt("user_idx"),
+        title: _titleController.text,
+        description: _contentController.text,
+        type: createGoalType().toString(),
+        day: createDays(),
+        goalStatusList: addTimes.value);
 
-  void validateCanSave(){
-    if(isRightSelectMissionType() && isRightMissionForm() && isRightPickDay() && addTimes.value.length > 0){
-      _canSaveMission.value = true;
+    var createGoalApi =await YoungGoalCreateApi().createGoalApi(goalGeneratorRequest);
+
+    if(createGoalApi == true) {
+      YoungGoalPopup().createGoalPopup(context);
     }else{
+      ToastMessage().showtoast("네트워크 오류");
+    }
+
+
+  }
+
+  String createDays() {
+    String result = '';
+    result += _monday.value ? '1' : '0';
+    result += _tuesday.value ? '1' : '0';
+    result += _wednesday.value ? '1' : '0';
+    result += _thursday.value ? '1' : '0';
+    result += _friday.value ? '1' : '0';
+    result += _saturday.value ? '1' : '0';
+    result += _sunday.value ? '1' : '0';
+    return result;
+  }
+
+  String createGoalType() {
+    if (_drug.value == true) {
+      return "MEDICATION";
+    }
+    if (_outing.value == true) {
+      return "WALKING";
+    }
+    return "GENERAL";
+  }
+
+  void validateCanSave() {
+    if (isRightSelectMissionType() &&
+        isRightMissionForm() &&
+        isRightPickDay() &&
+        addTimes.value.length > 0) {
+      _canSaveMission.value = true;
+    } else {
       _canSaveMission.value = false;
     }
   }
 
-  bool isRightSelectMissionType(){
-    return _drug.value == true || _common.value == true || _outing.value == true;
+  bool isRightSelectMissionType() {
+    return _drug.value == true ||
+        _common.value == true ||
+        _outing.value == true;
   }
 
   bool isRightMissionForm() {
-    return _titleController.text.isNotEmpty && _contentController.text.isNotEmpty;
+    return _titleController.text.isNotEmpty &&
+        _contentController.text.isNotEmpty;
   }
 
   bool isRightPickDay() {
-    return _monday.value == true || _tuesday.value == true || _wednesday.value == true || _thursday.value == true || _friday.value == true || _saturday.value == true || _sunday.value == true;
+    return _monday.value == true ||
+        _tuesday.value == true ||
+        _wednesday.value == true ||
+        _thursday.value == true ||
+        _friday.value == true ||
+        _saturday.value == true ||
+        _sunday.value == true;
   }
 
   //목표 텍스트 컨트롤러
@@ -88,12 +144,11 @@ class YoungGoalCreateController {
   TextEditingController _hourController = TextEditingController(text: "1");
   TextEditingController _minuteController = TextEditingController(text: "1");
 
-  void pickUser(int index){
+  void pickUser(int index) {
     selectUser.value = users[index];
   }
 
-
-  void validateTime(){
+  void validateTime() {
     final int hour = int.tryParse(_hourController.text) ?? 0;
     final int minute = int.tryParse(_minuteController.text) ?? 0;
 
@@ -114,12 +169,28 @@ class YoungGoalCreateController {
   }
 
   void addTime() {
-    var missionTime = GoalTime(
-        _hourController.text + ":" + _minuteController.text,
-        GoalTimeStatus.YET,
-        0, []);
-    addTimes.add(missionTime);
+    final int hour = int.parse(_hourController.text);
+    final int minute = int.parse(_minuteController.text);
 
+    // 오후 선택 시 시간을 조정
+    if (_afternoon.value) {
+      // 오후인 경우 시간을 12시간 더하여 변환
+      var adjustedHour = (hour == 12) ? 12 : hour + 12;
+      var missionTime = GoalTimeGeneratorRequest(
+          '$adjustedHour:${_minuteController.text}:00',
+          _drugDountController.text == "" ? null : int.parse(_drugDountController.text)
+      );
+      addTimes.add(missionTime);
+    } else {
+      // 오전인 경우 시간을 그대로 사용
+      var missionTime = GoalTimeGeneratorRequest(
+          '${hour.toString().padLeft(2, '0')}:${_minuteController.text}:00',
+          _drugDountController.text == "" ? null : int.parse(_drugDountController.text)
+      );
+      addTimes.add(missionTime);
+    }
+
+    _drugDountController.text = "";
     _hourController.text = "1";
     _minuteController.text = "1";
     _isRightTime.value = 0;
@@ -127,40 +198,42 @@ class YoungGoalCreateController {
     _afternoon.value = false;
   }
 
-  void deleteTime(GoalTime missionTime) {
-    // Create a new list excluding the specified missionTime
-    final List<GoalTime> updatedTimes = List.from(addTimes.value);
-    updatedTimes.remove(missionTime);
 
-    // Assign the updated list to addTimes
+  // 추가된 복용 시간 삭제
+  void deleteTime(GoalTimeGeneratorRequest missionTime) {
+    final List<GoalTimeGeneratorRequest> updatedTimes =
+        List.from(addTimes.value);
+    updatedTimes.remove(missionTime);
     addTimes.value = updatedTimes;
   }
 
-  bool canAddTime(){
-    return _isRightTime.value == 1 && _drugDountController.text.isNotEmpty && (_afternoon.value == true || _morning.value == true);
+  // 복용 시간 추가 가능 여부 검증
+  bool canAddTime() {
+    return _isRightTime.value == 1 &&
+        (_afternoon.value == true || _morning.value == true);
   }
 
-  void onChangeTitleText(){
+  void onChangeTitleText() {
     titleTextLength?.value = _titleController.text.length;
   }
 
-  void onChangeContentText(){
+  void onChangeContentText() {
     contentTextLength?.value = _contentController.text.length;
   }
 
-  void selectDrugType(){
+  void selectDrugType() {
     _drug.value = true;
     _outing.value = false;
     _common.value = false;
   }
 
-  void selectWalkType(){
+  void selectWalkType() {
     _drug.value = false;
     _outing.value = true;
     _common.value = false;
   }
 
-  void selectCommonType(){
+  void selectCommonType() {
     _drug.value = false;
     _outing.value = false;
     _common.value = true;
@@ -204,10 +277,9 @@ class YoungGoalCreateController {
     _afternoon.value = true;
   }
 
-  void clickSwitch(bool value){
+  void clickSwitch(bool value) {
     _switchValue.value = value;
   }
-
 
   int get isRightTime => _isRightTime.value;
 

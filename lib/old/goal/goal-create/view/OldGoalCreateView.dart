@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionAddTime.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionSelectPhoto.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionTermWidget.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionTextWidget.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionTimeWidget.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/MissionTypeWidget.dart';
-import 'package:wid_yu/common/view/goal/goal-create/widgets/SelectUser.dart';
 import 'package:wid_yu/old/goal/goal-create/controller/OldGoalCreateController.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../../../common/view/goal/popup/GoalPopup.dart';
 import '../popup/OldGoalPopup.dart';
 import '../widgets/OldMissionAddTime.dart';
 import '../widgets/OldMissionSelectPhoto.dart';
@@ -101,9 +91,9 @@ class _OldGoalCreateViewState extends State<OldGoalCreateView> {
   Widget _buildCanSaveButton(){
     return InkWell(
       onTap: () {
-        var createGoal = controller.createGoal();
+         controller.createGoal(context);
 
-        OldGoalPopup().createGoalPopup(context);
+        //OldGoalPopup().createGoalPopup(context);
         //SaveFinishPopup().showDialog(context);
       },
       child: Center(

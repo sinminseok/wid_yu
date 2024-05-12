@@ -3,9 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
-import 'package:wid_yu/common/utils/FilePath.dart';
-import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 
 import '../../../../common/common-widget/button/OrangeButton.dart';
 import '../../../../common/utils/Color.dart';
@@ -14,7 +12,7 @@ import 'BuyPhotoFinishPopup.dart';
 
 
 class BuyPhotoPopup {
-  void showDialog(BuildContext context) {
+  void showDialog(BuildContext context, YoungRewardReadResponse reward, int currentPoint) {
     showGeneralDialog(
         context: context,
         barrierDismissible: false,
@@ -73,7 +71,7 @@ class BuyPhotoPopup {
                                         borderRadius: BorderRadius.all(Radius.circular(50))
                                     ),
                                     child: Center(
-                                      child: PercentageText("50p", wWhiteColor),
+                                      child: PercentageText("${reward.point}p", wWhiteColor),
                                     ),
                                   ),
                                   Container(
@@ -87,7 +85,7 @@ class BuyPhotoPopup {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 5.h),
-                                child: PercentageText("150p", wGrey800Color),
+                                child: PercentageText("${currentPoint - reward.point}p", wGrey800Color),
                               )
                             ],
                           ),

@@ -34,20 +34,21 @@ class HeaderInformation extends StatelessWidget {
                 children: [
                   Container(
                       height: 36.h,
-                      child: Title1Text("이승철",
+                      child: Title1Text("${controller.totalInformation.name}",
                           kTextBlackColor)),
                   _buildUserEmptyPercentageText(),
                 ],
               ),
             ),
             _buildCircularProgress(),
+
           ],
         ),
       ),
     );
   }
 
-  Widget _buildUserEmptyPercentageText( ){
+  Widget _buildUserEmptyPercentageText() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,9 +58,9 @@ class HeaderInformation extends StatelessWidget {
           child: Row(
             children: [
               Title3Text("오늘은 ", kTextBlackColor),
-              PercentageText("0%", wPurpleColor),
+              PercentageText(
+                  "${controller.totalInformation.percentage}%", wPurpleColor),
               Title3Text("를 달성 했어요.", kTextBlackColor),
-
             ],
           ),
         ),
@@ -107,7 +108,7 @@ class HeaderInformation extends StatelessWidget {
       child: CircularPercentIndicator(
         radius: 40.0.w,
         lineWidth: 6.0.sp,
-        percent: 0,
+        percent: controller.totalInformation.percentage!,
         backgroundColor: wGrey200Color,
         circularStrokeCap: CircularStrokeCap.round,
         center: Container(
@@ -118,7 +119,9 @@ class HeaderInformation extends StatelessWidget {
             color: wWhiteColor,
           ),
           height: 83.h,
-          child: Image.asset("assets/common/user/youngMan.png"),
+          child: controller.totalInformation.profileImageUrl == null
+              ? Image.asset("assets/common/user/youngMan.png")
+              : Image.network("https://widyu-bucket.s3.ap-northeast-2.amazonaws.com${controller.totalInformation.profileImageUrl}"),
         ),
         progressColor: wOrangeColor,
       ),

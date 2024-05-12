@@ -7,9 +7,14 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
+import '../controller/YoungEditByYoungController.dart';
 
 class YoungEditProfile extends StatefulWidget {
-  const YoungEditProfile({Key? key}) : super(key: key);
+
+  YoungEditByYoungController _controller;
+
+
+  YoungEditProfile(this._controller);
 
   @override
   State<YoungEditProfile> createState() => _EditProfileState();
@@ -27,6 +32,7 @@ class _EditProfileState extends State<YoungEditProfile> {
     if (pickedFile != null) {
       setState(() {
         image_picked = pickedFile;
+        widget._controller.updateProfileUrl(image_picked!);
       });
     }
   }

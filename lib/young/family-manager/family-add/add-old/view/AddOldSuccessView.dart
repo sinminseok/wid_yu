@@ -11,11 +11,13 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-old/controller/AddOldController.dart';
 
+import '../../../../account/join/old-information/dto/OldLoginDto.dart';
+
 class AddOldSuccessView extends StatelessWidget {
-  AddOldController controller;
+  OldLoginDto loginDto;
 
 
-  AddOldSuccessView(this.controller);
+  AddOldSuccessView(this.loginDto);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +80,7 @@ class AddOldSuccessView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  child: Title3Text("부모님 3", wPurpleColor),
+                  child: Title3Text("${loginDto.name}", wPurpleColor),
                 ),
                 Container(
                   child: Title3Text("님 로그인용 초대 숫자", wGrey800Color),
@@ -91,7 +93,7 @@ class AddOldSuccessView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Title2Text("1234567", wTextBlackColor),
+                Title2Text("${loginDto.invitedCode}", wTextBlackColor),
                 Container(
                   margin: EdgeInsets.only(left: 10.w),
                   child: InkWell(

@@ -7,9 +7,10 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 
 import '../../../../../common/utils/Color.dart';
+import '../../controller/YoungJoinTotalController.dart';
 
 class DiseaseForm extends StatelessWidget {
-  final OldInformationController controller;
+  final YoungJoinTotalController controller;
 
 
   DiseaseForm({required this.controller});

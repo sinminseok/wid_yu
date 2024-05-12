@@ -7,9 +7,10 @@ import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/constants/HealthExplanationConstants.dart';
+import '../../../final-dto/common-dto/response/user/UserResponse.dart';
 
 class OldTemperatureDetailView extends StatefulWidget {
-  OldUser user;
+  UserResponse user;
 
 
   OldTemperatureDetailView(this.user);

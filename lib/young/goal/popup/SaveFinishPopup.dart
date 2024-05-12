@@ -3,7 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 
 import '../../../common/utils/Color.dart';
 import '../main/view/YoungGoalView.dart';

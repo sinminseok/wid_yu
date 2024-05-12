@@ -26,6 +26,10 @@ class SaveRewardPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: wWhiteBackGroundColor,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
                     width: 335.w,
                     height: 380.h,
                     child: Column(

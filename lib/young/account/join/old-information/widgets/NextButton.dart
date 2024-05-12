@@ -9,37 +9,40 @@ import 'package:wid_yu/young/account/join/old-information/controller/OldInformat
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/PopUp.dart';
 import '../../../popup/AcoountPopup.dart';
+import '../../controller/YoungJoinTotalController.dart';
 
-Widget NextButton(OldInformationController controller, BuildContext context) {
-  return Obx(() => controller.canNextStep.value
+Widget NextButton(YoungJoinTotalController controller, BuildContext context) {
+  return Obx(() => controller.canOldNextStep.value
       ? Center(
-    child: InkWell(
-      onTap: () {
-        var old = controller.createSenior();
-        AccountPopup().showDialog(context, old);
-      },
-      child: Container(
-          margin: EdgeInsets.only(bottom: 60.h),
-          child: OrangeButton("다음"))
-    ),
-  )
+          child: InkWell(
+              onTap: () {
+
+                var old = controller.createOld();
+
+                AccountPopup().showDialog(controller, context, old);
+              },
+              child: Container(
+                  margin: EdgeInsets.only(bottom: 60.h),
+                  child: OrangeButton("다음"))),
+        )
       : Center(
-    child: InkWell(
-      onTap: () {
-        ToastMessage().showtoast("모든 문항을 입력해주세요.");
-      },
-      child: Container(
-        width: 335.w,
-        height: 50.h,
-        margin: EdgeInsets.only(top: 30.h, bottom: 60.h,left: 20.w, right: 20.w),
-        decoration: BoxDecoration(
-          border: Border.all(color: wGrey200Color),
-            color: wGrey100Color,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        child: Center(
-          child: ButtonText("다음", wGrey400Color),
-        ),
-      ),
-    ),
-  ));
+          child: InkWell(
+            onTap: () {
+              ToastMessage().showtoast("모든 문항을 입력해주세요.");
+            },
+            child: Container(
+              width: 335.w,
+              height: 50.h,
+              margin: EdgeInsets.only(
+                  top: 30.h, bottom: 60.h, left: 20.w, right: 20.w),
+              decoration: BoxDecoration(
+                  border: Border.all(color: wGrey200Color),
+                  color: wGrey100Color,
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: Center(
+                child: ButtonText("다음", wGrey400Color),
+              ),
+            ),
+          ),
+        ));
 }
