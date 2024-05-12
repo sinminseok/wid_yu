@@ -9,12 +9,17 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../controller/YoungLoginController.dart';
 
-class AutoLoginCheckBox extends StatelessWidget {
+class AutoLoginCheckBox extends StatefulWidget {
   final YoungLoginController controller;
 
   const AutoLoginCheckBox({Key? key, required this.controller})
       : super(key: key);
 
+  @override
+  State<AutoLoginCheckBox> createState() => _AutoLoginCheckBoxState();
+}
+
+class _AutoLoginCheckBoxState extends State<AutoLoginCheckBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,11 +35,11 @@ class AutoLoginCheckBox extends StatelessWidget {
                   width: 24.w,
                   height: 23.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6))
+                      borderRadius: BorderRadius.all(Radius.circular(6))
                   ),
                   child: Checkbox(
                       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(3.5))),
-                    activeColor: wGrey700Color,
+                      activeColor: wGrey700Color,
                       fillColor: const MaterialStatePropertyAll(wWhiteColor),
                       checkColor: wGrey700Color,
                       visualDensity: VisualDensity.comfortable,
@@ -46,15 +51,15 @@ class AutoLoginCheckBox extends StatelessWidget {
                           return const BorderSide(color: wGrey700Color, width: 2);
                         },
                       ),
-                      value: controller.isChecked,
+                      value: widget.controller.isChecked,
                       onChanged: (bool? newValue) {
-                        controller.updateIsCheck(newValue);
+                        widget.controller.updateIsCheck(newValue);
                       }),
                 )
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 8.w),
-                  child: ButtonText("자동로그인", wGrey700Color)
+                    margin: EdgeInsets.only(left: 8.w),
+                    child: ButtonText("자동로그인", wGrey700Color)
                 ),
               ],
             ),

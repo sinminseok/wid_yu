@@ -1,15 +1,12 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
-import 'package:wid_yu/old/family-manager/family-information/view/OldFamilyManagerView.dart';
-import 'package:wid_yu/old/goal-conduct/common-goal-conduct/view/OldCommonConductView.dart';
-import 'package:wid_yu/old/goal-conduct/drug-goal-conduct/view/OldDrugConductView.dart';
-import 'package:wid_yu/old/goal-conduct/walk-goal-conduct/view/OldWalkConductView.dart';
-import 'package:wid_yu/old/goal/main/controller/OldGoalController.dart';
 import 'package:wid_yu/common/common-widget/mission/EmptyGoal.dart';
+import 'package:wid_yu/old/family-manager/family-information/view/OldFamilyManagerView.dart';
+import 'package:wid_yu/old/goal/main/controller/OldGoalController.dart';
 import 'package:wid_yu/old/goal/main/widgets/FloatingButton.dart';
 import 'package:wid_yu/old/goal/main/widgets/HeaderInformation.dart';
 import 'package:wid_yu/old/goal/main/widgets/MyMission.dart';
@@ -38,6 +35,8 @@ class _OldGoalView extends State<OldGoalView> {
     super.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -46,48 +45,30 @@ class _OldGoalView extends State<OldGoalView> {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      child: Scaffold(
-        floatingActionButton: OldGoalFloatingButton(),
-        appBar: _buildAppBar(),
-        backgroundColor: wOrangeBackGroundColor,
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              // InkWell(
-              //   onTap: (){
-              //     Get.to(() => OldDrugConductView());
-              //   },
-              //   child: Container(
-              //     child: Text("약 수행 이동", style: TextStyle(color: wGrey700Color),),
-              //   ),
-              // ),
-              //
-              // InkWell(
-              //   onTap: (){
-              //     Get.to(() => OldWalkConductView());
-              //   },
-              //   child: Container(
-              //     child: Text("걷기 수행 이동", style: TextStyle(color: wGrey700Color),),
-              //   ),
-              // ),
-              //
-              // InkWell(
-              //   onTap: (){
-              //     Get.to(() => OldCommonConductView());
-              //   },
-              //   child: Container(
-              //     child: Text("일반 수행 이동", style: TextStyle(color: wGrey700Color),),
-              //   ),
-              // ),
-              HeaderInformation(controller),
-              SwitchButton(controller),
-              // EmptyGoal(),
-         MyMission(controller),
-            ],
-          ),
-        ),
-      ),
+      child: FutureBuilder(future: controller.loadInit(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return Center(child: CircularProgressIndicator(),);
+        }else if (snapshot.hasError){
+          return Text("ERROR");
+        }else{
+          return Scaffold(
+            floatingActionButton: OldGoalFloatingButton(),
+            appBar: _buildAppBar(),
+            backgroundColor: wOrangeBackGroundColor,
+            body: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  HeaderInformation(controller),
+                  SwitchButton(controller),
+                  // EmptyGoal(),
+                   MyMission(controller),
+                ],
+              ),
+            ),
+          );
+        }
+      },)
     );
   }
 

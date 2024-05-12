@@ -27,6 +27,10 @@ class DeleteSuccessPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: wWhiteBackGroundColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6))
+                    ),
                     width: 335.w,
                     height: 337.h,
                     child: Column(

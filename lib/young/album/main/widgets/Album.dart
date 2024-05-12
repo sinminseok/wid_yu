@@ -1,9 +1,12 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 import 'package:wid_yu/young/album/main/controller/YoungAlbumController.dart';
+import 'package:wid_yu/young/album/photo-detail/view/PhotoDetailView.dart';
 
 import 'YoungPhotoWidget.dart';
 import 'YoungVideoWidget.dart';
@@ -43,7 +46,7 @@ class Album extends StatelessWidget {
           ),
           itemCount: 5,
           itemBuilder: (context, index) {
-            return YoungVideoWidget();
+            return YoungVideoWidget(controller.photos[1]);
           },
         ),
       ),
@@ -52,14 +55,10 @@ class Album extends StatelessWidget {
 
   //크게보기
   Widget _buildBigPhotos(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          YoungPhotoWidget(),
-          YoungPhotoWidget(),
-          YoungPhotoWidget(),
-        ],
-      ),
+    return Column(
+      children: controller.photos.map((photo) {
+        return YoungPhotoWidget(photo);
+      }).toList(),
     );
   }
 
@@ -70,7 +69,7 @@ class Album extends StatelessWidget {
         width: 320.w,
         child: GridView.builder(
           shrinkWrap: true,
-          itemCount: 10,
+          itemCount: controller.photos.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3, //1 개의 행에 보여줄 item 개수
             childAspectRatio: 1.3 / 1, //item 의 가로 1, 세로 1 의 비율
@@ -79,14 +78,19 @@ class Album extends StatelessWidget {
           ),
           itemBuilder: (BuildContext context, int index) {
             // return Text(index.toString());
-            return Container(
-              width: 116.w,
-              height: 75.h,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-                child: Image.asset(
-                  "assets/common/album/family_photo.png",
-                  fit: BoxFit.cover,
+            return InkWell(
+              onTap: (){
+                Get.to(() => PhotoDetailView(controller.photos[index]));
+              },
+              child: Container(
+                width: 116.w,
+                height: 75.h,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                  child: Image.asset(
+                    "assets/common/album/family_photo.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             );

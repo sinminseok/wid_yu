@@ -4,24 +4,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 
 import '../../utils/Color.dart';
 import 'DoneMissionTimeWidget.dart';
 import 'NoneMissionTimeWidget.dart';
 import 'YetMissionTimeWidget.dart';
 
-Widget TotalMissionTimeWidget(List<GoalTime> times, BuildContext context) {
+Widget TotalMissionTimeWidget(List<GoalTimeResponse> times, BuildContext context) {
   return Container(
     margin: EdgeInsets.only(left: 10.w, top: 0.h),
-    width: 210.w,
+    width: 200.w,
     child: GridView.builder(
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: (0.8.sp / 0.4.sp),
+        childAspectRatio: (1.4.sp / 0.6.sp),
 
         crossAxisCount: 3, // 가로에 2개의 열을 배치합니다
         mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
-        crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
+        crossAxisSpacing: 7.0, // 열 사이의 간격을 설정합니다
       ),
       itemCount: times.length,
       itemBuilder: (context, index) {
@@ -31,7 +32,7 @@ Widget TotalMissionTimeWidget(List<GoalTime> times, BuildContext context) {
   );
 }
 
-Widget _buildTotalTime(GoalTime time) {
+Widget _buildTotalTime(GoalTimeResponse time) {
   return Container(
     width: 70.w,
     height: 30.h,
@@ -44,7 +45,7 @@ Widget _buildTotalTime(GoalTime time) {
   );
 }
 
-Widget _buildFilterTime(GoalTime missionTime) {
+Widget _buildFilterTime(GoalTimeResponse missionTime) {
   if (missionTime.status == GoalTimeStatus.DONE) {
     return DoneMissionTimeWidget(missionTime.time);
   }

@@ -117,17 +117,17 @@ class IdPhoneNumberForm extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-                top: 20.h,
-                right: 10.w,
-                child: InkWell(
-                  onTap: () {
-                    controller.sendNumber();
-                  },
-                  child: Container(
-                      child: ButtonText("인증 번호 전송", wPurpleColor)
-                  ),
-                ))
+            // Positioned(
+            //     top: 20.h,
+            //     right: 10.w,
+            //     child: InkWell(
+            //       onTap: () {
+            //         controller.sendNumber();
+            //       },
+            //       child: Container(
+            //           child: ButtonText("인증 번호 전송", wPurpleColor)
+            //       ),
+            //     ))
           ],
         )
       ],

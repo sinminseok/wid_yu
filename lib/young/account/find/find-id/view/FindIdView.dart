@@ -12,11 +12,6 @@ import 'package:wid_yu/young/account/find/find-id/widgets/VerityNumberForm.dart'
 import '../../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../../common/common-widget/button/OrangeButton.dart';
 import '../../../../../common/utils/Color.dart';
-import '../../../../../common/utils/FilePath.dart';
-import '../../../join/login-information/IdAndPasswordView.dart';
-import '../../../join/phone-vertify/VertifyPhoneView.dart';
-import '../../../login/view/YoungLoginView.dart';
-import 'FindIdSuccessView.dart';
 
 class FindIdView extends StatefulWidget {
   const FindIdView({Key? key}) : super(key: key);

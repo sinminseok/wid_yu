@@ -117,15 +117,24 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
   }
 
   Widget _buildHealthInformation() {
-    return Obx(() => controller.user.value.isConnect!
-        ? Column(
-            children: [
-              O2Information(controller),
-              HeartBitInformation(controller),
-              TemperatureInformation(controller),
-            ],
-          )
-        : OldNotConnect());
+    return Column(
+                children: [
+                  O2Information(controller),
+                  HeartBitInformation(controller),
+                  TemperatureInformation(controller),
+                ],
+              );
+        //todo
+
+    // return Obx(() => controller.user.value.isConnect!
+    //     ? Column(
+    //         children: [
+    //           O2Information(controller),
+    //           HeartBitInformation(controller),
+    //           TemperatureInformation(controller),
+    //         ],
+    //       )
+    //     : OldNotConnect());
   }
 
   AppBar _buildAppBar() {

@@ -43,6 +43,12 @@ class _EmptyGoalState extends State<EmptyGoal>     with SingleTickerProviderStat
   }
 
   @override
+  void dispose() {
+    _controller.dispose(); // AnimationController 해제
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 335.w,

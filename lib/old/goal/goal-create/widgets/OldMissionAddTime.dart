@@ -3,11 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 
 import '../../../../common/utils/Color.dart';
+import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';
 import '../controller/OldGoalCreateController.dart';
 
 class OldMissionAddTime extends StatelessWidget {
@@ -33,9 +32,9 @@ class OldMissionAddTime extends StatelessWidget {
     ));
   }
 
-  Widget _buildDrugTimeWidget(GoalTime missionTime) {
+  Widget _buildDrugTimeWidget(GoalTimeGeneratorRequest missionTime) {
     return Container(
-      width: 125.w,
+      width: 135.w,
       height: 36.h,
       margin: EdgeInsets.only(right: 15.w),
       decoration: BoxDecoration(
@@ -52,10 +51,10 @@ class OldMissionAddTime extends StatelessWidget {
           ),
           Row(
             children: [
-              Container(
+              missionTime.pullNum == null?Container():Container(
                 margin: EdgeInsets.only(bottom: 2.h),
                 child: ChipText(
-                    "3개",
+                    "${missionTime.pullNum}개",
                     wGrey500Color
                 ),
               ),

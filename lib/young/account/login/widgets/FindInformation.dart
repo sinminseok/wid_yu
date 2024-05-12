@@ -7,7 +7,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../find/find-id/view/FindIdView.dart';
-import '../../find/find-password/FindPasswordView.dart';
+import '../../find/find-password/view/FindPasswordView.dart';
 
 Widget FindInformation() {
   return Center(

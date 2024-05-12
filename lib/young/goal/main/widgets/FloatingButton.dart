@@ -5,12 +5,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../../../common/view/goal/goal-create/GoalCreateView.dart';
 import '../../goal-create/view/YoungGoalCreateView.dart';
 
 class YoungGoalFloatinButton extends StatefulWidget {
@@ -30,10 +29,10 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             _buildExtendButton(),
-            widget.controller.olds.value.length == 0
+            widget.controller.totalInformation.seniorsGoalList?.length == 0
                 ? Container()
                 : widget.controller.isBottomScroll == false
-                    ? Container(child: _buildFloatingOldInformation())
+                    ? Container(child: _buildFloatingOldInformation(widget.controller.totalInformation.seniorsGoalList![0]))
                     : Container()
           ],
         ));
@@ -74,7 +73,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
     );
   }
 
-  Widget _buildFloatingOldInformation() {
+  Widget _buildFloatingOldInformation(OldResponseByYoung old) {
     return InkWell(
       onTap: () {
         widget.controller.goDetailYoungMissions();
@@ -114,14 +113,14 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                       backgroundColor: wGrey200Color,
                       circularStrokeCap: CircularStrokeCap.round,
                       lineWidth: 5.0,
-                      percent: 0.0,
+                      percent: old.percentage!,
                       center: Container(
                         height: 55.h,
                         width: 55.w,
                         decoration: BoxDecoration(
                             color: wGrey100Color, shape: BoxShape.circle),
-                        child: Image.asset(
-                            "assets/common/user/old-man-circle.png"),
+                        child: old.profile == null?Image.asset(
+                            "assets/common/user/old-man-circle.png"): Image.network(old.profile!)
                       ),
                       progressColor: wOrangeColor,
                     ),
@@ -135,7 +134,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                       Container(
                         height: 30.h,
                         child: Text(
-                          "김옥례",
+                          "${old.name}",
                           style: TextStyle(
                               color: kTextBlackColor,
                               fontWeight: FontWeight.bold,
@@ -156,7 +155,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                             ),
                             Container(
                               child: Text(
-                                "0%",
+                                "${old.percentage}%",
                                 style: TextStyle(
                                     color: wPurpleColor,
                                     fontWeight: FontWeight.w900,

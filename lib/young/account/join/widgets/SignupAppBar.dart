@@ -18,7 +18,7 @@ class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false, // 이전 화면으로 자동으로 이동하지 않도록 설정
       leading: PreferredSize(
         preferredSize: Size.fromHeight(40.h), // 아이콘의 높이 설정
-        child: Container(
+        child: canBack==false?Container(): Container(
           margin: EdgeInsets.only(top: 20.h,),
           child: IconButton(
             icon: Icon(

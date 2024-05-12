@@ -17,18 +17,19 @@ class HealthInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.currentUser.value!.isConnect!
-        ? Container(
-            margin: EdgeInsets.only(top: 10.h, left: 12.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                O2Information(controller),
-                HeartBitInformation(controller),
-                TemperatureInformation(controller),
-              ],
-            ),
-          )
-        : NotConnect());
+    return NotConnect();
+    // return Obx(() => controller.currentUser.value!.isConnect!
+    //     ? Container(
+    //         margin: EdgeInsets.only(top: 10.h, left: 12.w),
+    //         child: Column(
+    //           crossAxisAlignment: CrossAxisAlignment.center,
+    //           children: [
+    //             O2Information(controller),
+    //             HeartBitInformation(controller),
+    //             TemperatureInformation(controller),
+    //           ],
+    //         ),
+    //       )
+    //     : NotConnect());
   }
 }

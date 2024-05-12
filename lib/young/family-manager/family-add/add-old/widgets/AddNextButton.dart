@@ -13,12 +13,17 @@ import '../../../../../common/utils/PopUp.dart';
 import '../../../../account/join/old-information/controller/OldInformationController.dart';
 
 Widget AddNextButton(AddOldController controller, BuildContext context) {
-  return Obx(() => controller.canNextStep.value
+  return Obx(() => controller.canOldNextStep.value
       ? Center(
     child: InkWell(
-        onTap: () {
-          var old = controller.createSenior();
-          Get.to(() => AddOldSuccessView(controller), transition: Transition.fade);
+        onTap: () async{
+          var old = await controller.joinOld();
+          if(old != null) {
+            Get.to(() => AddOldSuccessView(old), transition: Transition.fade);
+          }else{
+            ToastMessage().showtoast("네트워크 오류");
+          }
+
         },
         child: Container(
             margin: EdgeInsets.only(bottom: 60.h),

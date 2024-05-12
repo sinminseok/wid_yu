@@ -1,11 +1,8 @@
-import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_sms/flutter_sms.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 import 'package:wid_yu/young/goal/main/widgets/FloatingButton.dart';
 import 'package:wid_yu/young/goal/main/widgets/HeaderInformation.dart';
@@ -13,16 +10,12 @@ import 'package:wid_yu/young/goal/main/widgets/MyMission.dart';
 import 'package:wid_yu/young/goal/main/widgets/OldMissionWidget.dart';
 import 'package:wid_yu/young/goal/main/widgets/SwitchButton.dart';
 import '../../../../common/common-widget/mission/EmptyGoal.dart';
-import '../../../../common/common-widget/mission/MissionGroupWidget.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../family-manager/family-information/view/FamilyManagerView.dart';
 import '../../edit-order/view/ChangeOrderView.dart';
 import '../../alarm/view/YoungMessageView.dart';
 
 class YoungGoalView extends StatefulWidget {
-
-
-
   @override
   _YoungGoalViewState createState() => _YoungGoalViewState();
 }
@@ -34,16 +27,15 @@ class _YoungGoalViewState extends State<YoungGoalView> {
   void initState() {
     controller.checkAlarm(context);
     controller.controllScroll();
+    controller.loadInit();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
-    controller.scrollController.dispose();
+    //controller.scrollController.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,32 +44,61 @@ class _YoungGoalViewState extends State<YoungGoalView> {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      child: Scaffold(
-        // 부모님이 없을때 endDocked로 변경
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:  YoungGoalFloatinButton(controller: controller, ),
+      child: FutureBuilder(future: controller.loadInit(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return Center(child: CircularProgressIndicator());
+        }else if (snapshot.hasError){
+          return Text("ERROR");
+        }else{
+          return Scaffold(
+            // 부모님이 없을때 endDocked로 변경
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: YoungGoalFloatinButton(
+              controller: controller,
+            ),
             //YoungGoalFloatinButton(controller: controller,),
-        appBar: _buildAppBar(),
-        backgroundColor: wPurpleBackGroundColor,
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          controller: controller.scrollController,
-          child: Column(
-            children: [
-              HeaderInformation(controller),
-              SwitchButton(controller),
-              //EmptyGoal(),
-              EmptyGoal(controller.hasOld()),
-              //MyMission(controller: controller, testController: widget.testController!,),
-              Obx(() => controller.isBottomScroll.value ? OldMissionWidget() : Container()),
-              _buildChangeOrderButton()
-            ],
-          ),
-        ),
-      ),
+            appBar: _buildAppBar(),
+            backgroundColor: wPurpleBackGroundColor,
+            body: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              controller: controller.scrollController,
+              child: Column(
+                children: [
+
+                  HeaderInformation(controller),
+                  SwitchButton(controller),
+                  controller.totalMyGoal.length == 0?EmptyGoal(false): YoungMyMission(
+                    controller: controller,
+                  ),
+                  //OldMissionWidget(controller)
+                  // Container(
+                  //   child: Text("${controller.totalInformation.seniorsGoalList?[0].name}", style: TextStyle(color: wTextBlackColor),),
+                  //
+                  // ),
+                  Obx(() => controller.isBottomScroll.value
+                      ? Container(
+                    width: 340.w,
+                    child: Column(
+                      children: controller.totalInformation.seniorsGoalList!
+                          .map((item) {
+                        return OldMissionWidget(item);
+                      }).toList(),
+                    ),
+                  )
+                      : Container()),
+
+                  Container(
+                    height: 120.h,
+                  )
+                  //_buildChangeOrderButton()
+                ],
+              ),
+            ),
+          );
+        }
+      },)
     );
   }
-
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -121,6 +142,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                     margin: EdgeInsets.only(right: 10.w, top: 10.h),
                     width: 30.w,
                     height: 30.h,
+
                     child: Image.asset(
                         "assets/common/icon/family-information-icon.png"),
                   )),
@@ -131,10 +153,9 @@ class _YoungGoalViewState extends State<YoungGoalView> {
     );
   }
 
-
   Widget _buildChangeOrderButton() {
     return Container(
-      margin: EdgeInsets.only(bottom: 70.h,top: 20.h),
+      margin: EdgeInsets.only(bottom: 70.h, top: 20.h),
       width: 140.w,
       height: 50.h,
       decoration: BoxDecoration(

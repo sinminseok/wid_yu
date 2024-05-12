@@ -6,8 +6,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/young/account/find/find-password/FindPasswordSuccessView.dart';
-import 'package:wid_yu/young/account/find/find-password/FindPasswordView.dart';
+import 'package:wid_yu/young/account/find/find-password/view/FindPasswordSuccessView.dart';
+import 'package:wid_yu/young/account/find/find-password/view/FindPasswordView.dart';
 
 import '../../../../../common/utils/Color.dart';
 import '../../../login/view/YoungLoginView.dart';

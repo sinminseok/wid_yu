@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/common/view/goal/goal-create/controller/GoalCreateController.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../controller/OldGoalCreateController.dart';
@@ -138,7 +137,7 @@ class OldMissionTerm extends StatelessWidget {
                 BorderRadius.all(Radius.circular(5))),
             child: InkWell(
               onTap: (){
-                controller.selectTuesday();
+                controller.selectThursday();
                 controller.validateCanSave();
               },
               child: Center(

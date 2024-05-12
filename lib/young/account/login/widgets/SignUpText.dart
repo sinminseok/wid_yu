@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../join/phone-vertify/VertifyPhoneView.dart';
+import '../../join/phone-vertify/view/VertifyPhoneView.dart';
 
 Widget SignUpText(){
   return Center(

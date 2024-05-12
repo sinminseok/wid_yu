@@ -8,9 +8,15 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
+import '../../../dto/OldInformationResponseDto.dart';
+import '../controller/OldEditController.dart';
 
 class OldEditProfile extends StatefulWidget {
-  const OldEditProfile({Key? key}) : super(key: key);
+  OldInformationResponseDto _old;
+  OldEditByYoungController _controller;
+
+
+  OldEditProfile(this._old, this._controller);
 
   @override
   _OldEditProfileState createState() => _OldEditProfileState();

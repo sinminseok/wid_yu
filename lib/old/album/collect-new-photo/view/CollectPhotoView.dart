@@ -3,27 +3,32 @@ import 'dart:ui';
 import 'package:blur/blur.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
-import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/common/utils/PopUp.dart';
+import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 import 'package:wid_yu/old/album/collect-new-photo/controller/CollectPhotoController.dart';
 import 'package:wid_yu/old/album/collect-new-photo/popup/BuyPhotoPopup.dart';
-import 'package:wid_yu/old/album/collect-new-photo/widgets/EmptyNewPhoto.dart';
+import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 import 'package:wid_yu/old/album/widgets/OldPhotoWidget.dart';
 import 'package:wid_yu/old/album/widgets/PointWidget.dart';
-import 'package:wid_yu/old/frame/OldFrameView.dart';
+
+import '../../../../common/utils/FilePath.dart';
 
 class CollectPhotoView extends StatelessWidget {
+  OldAlbumController _controller;
 
 
+
+  CollectPhotoView(this._controller);
 
   @override
   Widget build(BuildContext context) {
-    CollectPhotoController controller = CollectPhotoController();
+
 
     return Scaffold(
       backgroundColor: wOrangeBackGroundColor,
@@ -35,30 +40,140 @@ class CollectPhotoView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
-            PointWidget(),
+            PointWidget(_controller.point!),
             // EmptyNewPhoto()
-            _buildItemList(context),
+          Column(
+            children: _controller.lockRewards.map((photo) {
+              return _buildItem(context, photo);
+            }).toList(),
+          )
           ],
         ),
       ),
     );
   }
 
-  Widget _buildItemList(BuildContext context) {
-    return OldPhotoWidget().blurred(
+  Widget _buildItem(BuildContext context, YoungRewardReadResponse reward) {
+    return _buildBlurContainer().blurred(
         colorOpacity: 0.1,
         borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
-        overlay: _overlayIcon(context));
+        overlay: _overlayIcon(context , reward));
   }
 
-  Widget _overlayIcon(BuildContext context) {
+  Widget _buildBlurContainer() {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 15.h, bottom: 10.h),
+        width: 375.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          color: wWhiteColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.18),
+              spreadRadius: 5,
+              blurRadius: 4,
+              offset: Offset(0, 1),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 13.h, left: 21.w),
+              child: Row(
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: wGrey200Color),
+                          child: Image.asset(
+                              commonImagePath + "user/youngMan.png"),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 9.w),
+                          child: SubTitle2Text("이승철 님", wTextBlackColor),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 15.h, left: 20.w, right: 20.w),
+              width: 335.w,
+              height: 210.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(3)),
+                  child: Image.asset(
+                    "assets/common/album/family_photo.png",
+                    fit: BoxFit.fitWidth,
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 15.h, bottom: 20.h),
+              width: 310.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 235.w,
+                    height: 55.h,
+                    child: Text(
+                      "dasd!",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                          height: 1.8.h,
+                          fontFamily: "body2",
+                          color: kTextBlackColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<int?> getPoint()async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return await prefs.getInt("point");
+  }
+
+  Widget _overlayIcon(BuildContext context, YoungRewardReadResponse reward) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () {
-            BuyPhotoPopup().showDialog(context);
+          onTap: () async{
+            int? point  = await getPoint();
+
+            BuyPhotoPopup().showDialog(context, reward, point!);
+
+            //todo 변경
+            // if(point! - reward.point >=0){
+            //   BuyPhotoPopup().showDialog(context, reward, point!);
+            // }else{
+            //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //     content: Text('포인트가 부족합니다.'),
+            //     duration: Duration(seconds: 3),
+            //     action: SnackBarAction(
+            //       label: '확인',
+            //       onPressed: () {},
+            //     ),
+            //   ));
+            // }
+
           },
           child: Container(
             width: 60.w,
@@ -81,7 +196,7 @@ class CollectPhotoView extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(50)),
               color: wOrangeColor),
           child: Center(
-            child: PercentageText("50p", wWhiteColor),
+            child: PercentageText("${reward.point}p", wWhiteColor),
           ),
         )
       ],

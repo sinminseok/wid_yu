@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 import 'package:wid_yu/old/album/main/widgets/OldEmptyPhoto.dart';
 
@@ -20,22 +19,18 @@ class OldPhotos extends StatelessWidget {
   }
 
   Widget _buildFilterEmpty() {
-    return true ? OldEmptyPhoto() : _buildPhotos();
+    return controller.buyPhotos.length == 0 ? OldEmptyPhoto() : _buildBigPhotos();
   }
 
   Widget _buildPhotos() {
-    return controller.isBigShow ? _buildBigPhotos() : _buildSmallPhotos();
+    return _buildSmallPhotos();
   }
 
   Widget _buildBigPhotos() {
-    return Container(
-      child: Column(
-        children: [
-          OldPhotoWidget(),
-          // OldPhotoWidget(),
-          // OldPhotoWidget(),
-        ],
-      ),
+    return Column(
+      children: controller.buyPhotos.map((photo) {
+        return OldPhotoWidget(photo);
+      }).toList(),
     );
   }
 

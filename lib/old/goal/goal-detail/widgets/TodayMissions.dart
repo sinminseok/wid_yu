@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/dto/goal/Goal.dart';
+import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 import 'package:wid_yu/old/goal/goal-detail/controller/OldGoalDetailController.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
@@ -17,10 +18,10 @@ class TodayMissions extends StatelessWidget {
 
   TodayMissions(this.controller);
 
-  final List<Goal> items = [
-    Goal("위염약", "~~복용하세요", GoalType.DRUG,[],[]),
-    Goal("런닝", "~~복용하세요", GoalType.WALK,[],[]),
-    Goal("독서", "~~복용하세요", GoalType.COMMON,[],[]),
+  final List<GoalResponse> items = [
+    GoalResponse(goalIdx: 1, title: "title", description: "asd", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
+    GoalResponse(goalIdx: 1,  title: "title", description: "asd", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
+    GoalResponse(goalIdx: 1,title: "title", description: "asd", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
   ];
 
   @override

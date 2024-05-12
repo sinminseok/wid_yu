@@ -8,12 +8,13 @@ import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/constants/HealthType.dart';
+import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
 import 'package:wid_yu/young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 
 import '../../../../common/utils/FilePath.dart';
 
 class O2DetailView extends StatelessWidget {
-  final OldUser? user;
+  final UserResponse? user;
 
   O2DetailView(this.user);
 

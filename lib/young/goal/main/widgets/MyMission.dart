@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/mission/TotalMissionWidget.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 import 'package:wid_yu/young/goal/goal-detail/view/YoungGoalDetailView.dart';
 
 import '../../../../common/common-widget/mission/MissionWidget.dart';
 import '../../../../common/utils/Color.dart';
 
-class MyMission extends StatelessWidget {
+class YoungMyMission extends StatelessWidget {
   final YoungGoalController controller;
 
-  MyMission({required this.controller});
+  YoungMyMission({required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +47,10 @@ class MyMission extends StatelessWidget {
   List<Widget> _buildMissionWidgets() {
     List<Widget> missionWidgets = [];
 
-    for (int index = 0; index < controller.myMission.length; index++) {
-      missionWidgets.add(MissionWidget(controller.myMission[index]));
+    for (int index = 0; index < controller.todayMyGoal.length; index++) {
+      missionWidgets.add(MissionWidget( false,controller.todayMyGoal[index]));
 
-      if (index < controller.myMission.length - 1) {
+      if (index < controller.todayMyGoal.length - 1) {
         missionWidgets.add(
           Container(
             margin: EdgeInsets.only(top: 15.h),
@@ -90,11 +89,11 @@ class MyMission extends StatelessWidget {
   List<Widget> _buildTotalMissionWidgets() {
     List<Widget> missionWidgets = [];
 
-    for (int index = 0; index < controller.myMission.length; index++) {
+    for (int index = 0; index < controller.totalMyGoal.length; index++) {
       missionWidgets.add(
-          TotalMissionWidget(controller.myMission[index]));
+          TotalMissionWidget(controller.totalMyGoal[index]));
 
-      if (index < controller.myMission.length - 1) {
+      if (index < controller.totalMyGoal.length - 1) {
         missionWidgets.add(
           Container(
             margin: EdgeInsets.only(top: 15.h),

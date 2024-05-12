@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 
-Widget DoneMissionTimeWidget(String time){
+Widget DoneMissionTimeWidget(String? time){
   return Container(
     width: 122.w,
     height: 30.h,

@@ -67,8 +67,12 @@ dependencies:
   blur: ^3.1.0
   contacts_service: ^0.6.3
   flutter_sms: ^2.3.3
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
 
   webview_flutter: ^2.8.0
+  dio: ^5.4.3+1
+  video_thumbnail: ^0.5.3
 
 dev_dependencies:
   flutter_test:

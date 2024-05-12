@@ -1,5 +1,5 @@
-
-enum UserType{
-  YOUNG,
-  OLD
-}
+//
+// enum UserType{
+//   YOUNG,
+//   OLD
+// }

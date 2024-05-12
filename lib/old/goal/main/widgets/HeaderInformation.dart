@@ -34,7 +34,7 @@ class HeaderInformation extends StatelessWidget {
                 children: [
                   Container(
                     height: 36.h,
-                    child: Title1Text("김옥례 님", kTextBlackColor),
+                    child: Title1Text("${controller.user!.name} 님", kTextBlackColor),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 13.h),
@@ -42,7 +42,7 @@ class HeaderInformation extends StatelessWidget {
                     child: Row(
                       children: [
                         Title3Text("오늘은", kTextBlackColor),
-                        PercentageText(" 0%", wPurpleColor),
+                        PercentageText(" ${controller.user!.percentage}%", wPurpleColor),
                         Title3Text("를 달성했어요.", kTextBlackColor),
                       ],
                     ),
@@ -70,7 +70,7 @@ class HeaderInformation extends StatelessWidget {
       child: CircularPercentIndicator(
         radius: 40.0.w,
         lineWidth: 6.0.sp,
-        percent: 0.7,
+        percent: controller.user!.percentage,
         circularStrokeCap: CircularStrokeCap.round,
         backgroundColor: wGrey200Color,
         center: _buildCircularProgressCenter(),
@@ -82,7 +82,7 @@ class HeaderInformation extends StatelessWidget {
   Widget _buildCircularProgressCenter() {
     return Stack(
       children: [
-        Container(
+        controller.user!.profileImageUrl == null? Container(
           width: 83.h,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -91,7 +91,16 @@ class HeaderInformation extends StatelessWidget {
           child: Center(
             child: Image.asset("assets/images/user/old-man-goal.png"),
           ),
-        ),
+        ):Container(
+          width: 83.h,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: wWhiteColor,
+              border: Border.all(color: wGrey200Color)),
+          child: Center(
+            child: Image.network("${controller.user!.profileImageUrl}"),
+          ),
+        )
       ],
     );
   }

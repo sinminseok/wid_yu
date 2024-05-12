@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   }
 
    Widget Body2Text(String text, Color color){
-    return Text("${text}", style: TextStyle(color : color, fontSize: 14.sp, fontFamily:  "Body2", fontWeight: FontWeight.w500),);
+    return Text("${text}", style: TextStyle(color : color, fontSize: 13.sp, fontFamily:  "Body2", fontWeight: FontWeight.w500),);
   }
 
    Widget LargeTitleText(String text, Color color){
@@ -15,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   }
 
    Widget PercentageText(String text, Color color){
-    return Text("${text}", style: TextStyle(color : color, fontSize: 20.sp, fontFamily: "Percentage", fontWeight: FontWeight.w900),);
+    return Text("${text}", style: TextStyle(color : color, fontSize: 18.sp, fontFamily: "Percentage", fontWeight: FontWeight.w900),);
   }
 
   Widget PretandardText(String text, Color color){
@@ -31,7 +31,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   }
 
    Widget Title3Text(String text, Color color){
-    return Text("${text}",overflow: TextOverflow.ellipsis, style: TextStyle(color : color, fontSize: 18.sp, fontFamily: "Title3", fontWeight: FontWeight.w600),);
+    return Text("${text}",overflow: TextOverflow.ellipsis, style: TextStyle(color : color, fontSize: 16.sp, fontFamily: "Title3", fontWeight: FontWeight.w600),);
   }
 
    Widget SubTitle1Text(String text, Color color){

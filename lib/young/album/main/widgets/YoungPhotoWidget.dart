@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 import 'package:wid_yu/young/album/edit-photo/view/EditPhotoView.dart';
 import 'package:wid_yu/young/album/photo-detail/view/PhotoDetailView.dart';
 import 'package:wid_yu/young/album/popup/DeleteRewardPopup.dart';
@@ -15,7 +16,10 @@ import '../../../../common/utils/FilePath.dart';
 
 
 class YoungPhotoWidget extends StatelessWidget {
-  const YoungPhotoWidget({Key? key}) : super(key: key);
+  YoungRewardReadResponse rewardReadResponse;
+
+
+  YoungPhotoWidget(this.rewardReadResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class YoungPhotoWidget extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(top: 15.h,bottom: 10.h),
         width: 370.w,
-        height: 350.h,
+        height: 370.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           color: wWhiteColor,
@@ -38,6 +42,7 @@ class YoungPhotoWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
+
             _buildHeader(context),
             _buildPhoto(),
             _buildPhotoInformation(),
@@ -58,7 +63,7 @@ class YoungPhotoWidget extends StatelessWidget {
             margin: EdgeInsets.only(left: 10.w),
             width: 210.w,
             height: 45.h,
-            child: Text("오늘 서울숲으로 나들이가기 전에 찍어봤어.다음에 같이 가보자!",overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily: "Body2",color: kTextBlackColor, fontWeight: FontWeight.w500,fontSize: 14.sp),),
+            child: Text(rewardReadResponse.description,overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily: "Body2",color: kTextBlackColor, fontWeight: FontWeight.w500,fontSize: 14.sp),),
 
           ),
 
@@ -77,7 +82,7 @@ class YoungPhotoWidget extends StatelessWidget {
           // ),
 
           //읽었을때
-          Container(
+          rewardReadResponse.status == 1? Container(
             margin: EdgeInsets.only(right: 7.w),
             width: 94.w,
             height: 36.h,
@@ -89,6 +94,18 @@ class YoungPhotoWidget extends StatelessWidget {
             child: Center(
               child: Title3Text("읽음", wWhiteColor),
             ),
+          ):       Container(
+            margin: EdgeInsets.only(right: 7.w),
+            width: 94.w,
+            height: 36.h,
+            decoration: BoxDecoration(
+              color: wGrey200Color,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                border: Border.all(color: wGrey300Color)
+            ),
+            child: Center(
+              child: Title3Text("안읽음", wWhiteBackGroundColor),
+            ),
           ),
         ],
       ),
@@ -98,7 +115,7 @@ class YoungPhotoWidget extends StatelessWidget {
   Widget _buildPhoto(){
     return InkWell(
       onTap: (){
-        Get.to(() => PhotoDetailView());
+        Get.to(() => PhotoDetailView(rewardReadResponse));
       },
       child: Container(
         margin: EdgeInsets.only(top: 10.h,left: 20.w, right: 20.w),
@@ -106,7 +123,7 @@ class YoungPhotoWidget extends StatelessWidget {
         height: 210.h,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(3.0),
-            child: Image.asset("assets/common/album/family_photo.png",fit: BoxFit.fitWidth,)),
+            child: Image.network(rewardReadResponse.url,fit: BoxFit.fitWidth,)),
       ),
     );
   }
@@ -155,7 +172,7 @@ class YoungPhotoWidget extends StatelessWidget {
                   );
 
                 } else if (value == 'option2') {
-                  DeleteRewardPopup().showDialog(context);
+                  DeleteRewardPopup().showDialog(context, rewardReadResponse.rewardIdx);
                 }
               },
               itemBuilder: (BuildContext context) => [

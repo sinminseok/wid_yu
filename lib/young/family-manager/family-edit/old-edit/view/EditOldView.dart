@@ -11,12 +11,17 @@ import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
 import '../../../../../common/utils/SnackBar.dart';
+import '../../../dto/OldInformationResponseDto.dart';
 import '../../../popup/ShowFamilyPopup.dart';
 import '../../phone-number-edit/view/EditPhoneNumberView.dart';
 import '../controller/OldDiseaseController.dart';
 
 class OldEditByYoungView extends StatefulWidget {
-  const OldEditByYoungView({Key? key}) : super(key: key);
+
+  OldInformationResponseDto _old;
+
+
+  OldEditByYoungView(this._old);
 
   @override
   _OldEditByYoungViewState createState() => _OldEditByYoungViewState();
@@ -36,9 +41,9 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
         physics: BouncingScrollPhysics(),
         child: Column(
           children: [
-            OldEditProfile(),
+            OldEditProfile(widget._old, controller),
             _buildUserInformation(),
-            _buildFamilyRelationship(),
+            //_buildFamilyRelationship(),
             OldEditInformation(controller),
             OldEditDisease(_diseaseController)
           ],
@@ -260,13 +265,13 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
         Container(
           height: 27.h,
           margin: EdgeInsets.only(top: 0.h),
-          child: Title3Text("보호자 님", wGrey800Color),
+          child: Title3Text("${widget._old.name} 님", wGrey800Color),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 2.h),
-          height: 27.h,
-          child: Body2Text("@ID", wGrey600Color),
-        ),
+        // Container(
+        //   margin: EdgeInsets.only(top: 2.h),
+        //   height: 27.h,
+        //   child: Body2Text("@${widget._old}", wGrey600Color),
+        // ),
       ],
     );
   }

@@ -5,6 +5,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/view/goal/popup/GoalPopup.dart';
 import '../../../../old/goal/goal-create/popup/OldGoalPopup.dart';
+import '../../popup/SaveFinishPopup.dart';
 import '../controller/YoungGoalCreateController.dart';
 import '../popup/YoungGoalPopup.dart';
 import '../widgets/YoungMissionAddTime.dart';
@@ -41,7 +42,7 @@ class _YoungGoalCreateView extends State<YoungGoalCreateView> {
             YoungMissionTerm(controller),
             YoungMissionSetTime(controller),
             YoungMissionAddTime(controller),
-            YoungMissionSelectPhoto(controller),
+         //   YoungMissionSelectPhoto(controller),
             _buildSaveButton()
           ],
         ),
@@ -60,12 +61,17 @@ class _YoungGoalCreateView extends State<YoungGoalCreateView> {
           },
           color: kTextBlackColor,
           icon: Icon(Icons.close)),
-      title:  Container(
-          margin: EdgeInsets.only(left: 0.w),
-          child: Title3Text(
-              "목표생성",
-              kTextBlackColor
-          )),
+      title:  InkWell(
+        onTap: (){
+          controller.loadAllUser();
+        },
+        child: Container(
+            margin: EdgeInsets.only(left: 0.w),
+            child: Title3Text(
+                "목표생성",
+                kTextBlackColor
+            )),
+      ),
     );
   }
 
@@ -94,9 +100,9 @@ class _YoungGoalCreateView extends State<YoungGoalCreateView> {
   Widget _buildCanSaveButton(){
     return InkWell(
       onTap: () {
-        var createGoal = controller.createGoal();
-        YoungGoalPopup().createGoalPopup(context);
-        //SaveFinishPopup().showDialog(context);
+        controller.createGoal(context);
+
+
       },
       child: Center(
         child: Container(

@@ -6,6 +6,7 @@ import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/common/view/goal/goal/DrugImageDetailView.dart';
+import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 
 import '../../utils/Color.dart';
 
@@ -13,7 +14,7 @@ import '../../utils/Color.dart';
  목표 상세 페이지에 사용될 약 복용 미션 위젯
  */
 class DrugMissionWidget extends StatefulWidget {
-  final Goal _mission;
+  final GoalResponse _mission;
 
   DrugMissionWidget(this._mission);
 

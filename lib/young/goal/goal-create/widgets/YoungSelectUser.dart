@@ -9,6 +9,7 @@ import 'package:wid_yu/young/goal/goal-create/controller/YoungGoalCreateControll
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/CustomText.dart';
+import '../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
 
 class YoungSelectUser extends StatelessWidget {
   YoungGoalCreateController controller;
@@ -35,11 +36,11 @@ class YoungSelectUser extends StatelessWidget {
     );
   }
 
-  Widget _buildUser(OldUser user, int index){
+  Widget _buildUser(UserProfileResponse user, int index){
     return Obx(() => controller.selectUser == user ? _buildSelectUser(user): _buildNotSelectUser(user, index));
   }
 
-  Widget _buildSelectUser(OldUser user){
+  Widget _buildSelectUser(UserProfileResponse user){
     return Container(
       width: 88.w,
       height: 36.w,
@@ -55,7 +56,7 @@ class YoungSelectUser extends StatelessWidget {
     );
   }
 
-  Widget _buildNotSelectUser(OldUser user, int index){
+  Widget _buildNotSelectUser(UserProfileResponse user, int index){
     return Container(
       width: 88.w,
       height: 36.w,

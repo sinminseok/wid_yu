@@ -4,7 +4,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../common/utils/Color.dart';
 
-Widget PointWidget(){
+Widget PointWidget(int point){
   return Center(
     child: Container(
       margin: EdgeInsets.only(top: 20.h),
@@ -34,8 +34,9 @@ Widget PointWidget(){
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 5.h),
-                  child: PercentageText("200 P",kTextBlackColor),
+                  child: PercentageText("${point} P",kTextBlackColor),
                 ),
+
               ],
             ),
           )

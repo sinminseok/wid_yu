@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wid_yu/common/test-controller/TestController.dart';
-
-import '../../common/utils/FilePath.dart';
 import '../../common/view/frame/BottomNavigationWidget.dart';
 import '../album/main/view/OldAlbumView.dart';
 import '../goal/main/view/OldGoalView.dart';

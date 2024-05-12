@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/old/family-manager/family-edit/old-edit/widget/OldEditDisease.dart';
@@ -38,7 +39,7 @@ class _OldEditByOldViewState extends State<OldEditByOldView> {
         physics: BouncingScrollPhysics(),
         child: Column(
           children: [
-            OldEditProfile(),
+            //OldEditProfile(widget.),
             _buildUserInformation(),
             _buildFamilyRelationship(),
             OldEditInformation(controller),

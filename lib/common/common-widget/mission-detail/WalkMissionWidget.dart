@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/dto/goal/GoalTime.dart';
+import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 
 import '../../utils/CustomText.dart';
 import '../../utils/Color.dart';
 import '../mission-time/MissionTimeWidget.dart';
 
 class WalkMissionWidget extends StatelessWidget {
-  final Goal _goal;
+  final GoalResponse _goal;
 
   WalkMissionWidget(this._goal);
 

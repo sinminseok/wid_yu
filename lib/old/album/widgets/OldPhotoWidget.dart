@@ -8,9 +8,13 @@ import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/old/album/photo-detail/view/OldPhotoDetailView.dart';
 
 import '../../../common/utils/Color.dart';
+import '../../../final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 
 class OldPhotoWidget extends StatefulWidget {
-  const OldPhotoWidget({Key? key}) : super(key: key);
+  YoungRewardReadResponse reward;
+
+
+  OldPhotoWidget(this.reward);
 
   @override
   _OldPhotoWidgetState createState() => _OldPhotoWidgetState();
@@ -106,7 +110,7 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
             width: 235.w,
             height: 55.h,
 
-            child: Text("오늘 사진관에서 찍은 사진이야!",
+            child: Text("${widget.reward.description}!",
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
 

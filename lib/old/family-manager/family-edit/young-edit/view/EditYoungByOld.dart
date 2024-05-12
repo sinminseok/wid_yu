@@ -39,7 +39,7 @@ class _EditYoungByOldView extends State<YoungEditByOldView> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              YoungEditProfile(),
+              //YoungEditProfile(controller),
               _buildUserInformation(),
               _buildFamilyRelationship(),
               YoungEditInformation(controller),

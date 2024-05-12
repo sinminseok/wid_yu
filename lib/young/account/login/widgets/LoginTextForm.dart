@@ -18,6 +18,7 @@ class LoginTextForm extends StatelessWidget {
     return Obx(() => Column(
       children: [
         _buildIdTextForm(),
+
         _buildPasswordForm(),
       ],
     ));

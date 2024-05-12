@@ -6,12 +6,15 @@ import 'package:wid_yu/common/common-widget/button/PurpleButton.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
+import 'package:wid_yu/common/utils/PopUp.dart';
 import 'package:wid_yu/young/album/popup/DeleteSuccessPopup.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
+import '../main/api/YoungAlbumApi.dart';
+
 
 class DeleteRewardPopup {
-  void showDialog(BuildContext context) {
+  void showDialog(BuildContext context, int rewardIdx) {
     showGeneralDialog(
         context: context,
         barrierDismissible: false,
@@ -29,6 +32,11 @@ class DeleteRewardPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
+                    
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      color: wWhiteBackGroundColor,  
+                    ),
                     width: 335.w,
                     height: 415.h,
                     child: Column(
@@ -78,9 +86,16 @@ class DeleteRewardPopup {
                           margin: EdgeInsets.only(
                               left: 10.w, right: 10.w, top: 40.h),
                           child: InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                                DeleteSuccessPopup().showDialog(context);
+                              onTap: () async{
+                                var bool = await YoungAlbumApi().deleteReward(rewardIdx);
+                                if(bool){
+                                  Navigator.pop(context);
+                                  DeleteSuccessPopup().showDialog(context);
+                                }else{
+                                  Navigator.pop(context);
+                                  ToastMessage().showtoast("삭제 실패");
+                                }
+
                               },
                               child: Container(
                                 width: 335.w,

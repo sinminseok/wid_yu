@@ -9,9 +9,10 @@ import 'package:wid_yu/young/account/join/format/PhoneNumberFormat.dart';
 import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 
 import '../../../../../common/utils/CustomText.dart';
+import '../../controller/YoungJoinTotalController.dart';
 
 class OldInformationForm extends StatelessWidget {
-  final OldInformationController controller;
+  final YoungJoinTotalController controller;
 
 
   OldInformationForm({required this.controller});
@@ -64,7 +65,7 @@ class OldInformationForm extends StatelessWidget {
                 },
 
                 keyboardType: TextInputType.name,
-                controller: controller.nameController,
+                controller: controller.oldNameController,
                 style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
                 textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
                 cursorColor: kTextBlackColor,
@@ -84,7 +85,7 @@ class OldInformationForm extends StatelessWidget {
   }
 
   Widget _buildBirthForm(){
-    return Obx(() => Container(
+    return Container(
       margin: EdgeInsets.only(left: 0.w, top: 10.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,12 +105,18 @@ class OldInformationForm extends StatelessWidget {
               margin: EdgeInsets.only(top: 5.h, left: 10.w),
               child: TextFormField(
                 onChanged: (text) {
-
                   // 현재 텍스트필드의 텍스트를 출력
                   // controller.validateRightBirthFormat();
                   controller.updateNextStepState();
+                  // 입력값이 6자리보다 길면 자르기
+                  if (text.length > 6) {
+                    controller.ageController.text = text.substring(0, 6);
+                    controller.ageController.selection = TextSelection.fromPosition(
+                      TextPosition(offset: controller.ageController.text.length),
+                    );
+                  }
                 },
-               // inputFormatters: [BirthDateInputFormatter()],
+                // inputFormatters: [BirthDateInputFormatter()],
                 keyboardType: TextInputType.number,
                 controller: controller.ageController,
                 style: TextStyle(color: Colors.black),
@@ -118,7 +125,7 @@ class OldInformationForm extends StatelessWidget {
                 // 텍스트를 왼쪽으로 정렬
                 cursorColor: kTextBlackColor,
                 decoration: InputDecoration(
-                  hintText: "1990.00.00",
+                  hintText: "주민등록번호 앞6자리",
                   contentPadding: EdgeInsets.only(top: 5.h),
                   hintStyle: TextStyle(
                       fontSize: 13.sp,
@@ -130,14 +137,15 @@ class OldInformationForm extends StatelessWidget {
               ),
             ),
           ),
-          controller.isRightBirthFormat == -1? Container(
-            margin: EdgeInsets.only(top: 6.h),
-            child: HelperText("올바른 출생 연도 형식이 아닙니다.", wErrorColor),
-          ): Container()
+          // controller.isRightBirthFormat == -1? Container(
+          //   margin: EdgeInsets.only(top: 6.h),
+          //   child: HelperText("올바른 출생 연도 형식이 아닙니다.", wErrorColor),
+          // ): Container()
         ],
       ),
-    ));
+    );
   }
+
 
   Widget _buildPhoneNumberForm(){
     return Obx(() => Container(
@@ -169,7 +177,7 @@ class OldInformationForm extends StatelessWidget {
                 },
                 inputFormatters: [PhoneNumberFormatter()],
                 keyboardType: TextInputType.number,
-                controller: controller.phoneNumberController,
+                controller: controller.oldPhoneNumberController,
                 style: TextStyle(color: Colors.black), // 텍스트 색상을 검정색으로 설정
                 textAlign: TextAlign.left, // 텍스트를 왼쪽으로 정렬
                 cursorColor: kTextBlackColor,

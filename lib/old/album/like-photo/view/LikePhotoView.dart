@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/old/album/like-photo/controller/LikePhotoController.dart';
+import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 import 'package:wid_yu/old/album/widgets/OldPhotoWidget.dart';
 
 class LikePhotoView extends StatelessWidget {
-  const LikePhotoView({Key? key}) : super(key: key);
+  OldAlbumController _controller;
+
+
+  LikePhotoView(this._controller);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class LikePhotoView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            OldPhotoWidget()
+            //OldPhotoWidget()
 
           ],
         ),

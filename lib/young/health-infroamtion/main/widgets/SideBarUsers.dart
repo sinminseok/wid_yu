@@ -75,10 +75,12 @@ class SideBarUsers extends StatelessWidget {
                             color: wWhiteColor,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: controller
-                                  .users[index].isConnect!
-                                  ? wErrorColor
-                                  : wGrey200Color,
+                              //todo
+                              color: wGrey200Color,
+                              // color: controller
+                              //     .users[index].isConnect!
+                              //     ? wErrorColor
+                              //     : wGrey200Color,
                               width: 3.sp,
                             ),
                           ),

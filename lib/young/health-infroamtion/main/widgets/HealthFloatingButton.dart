@@ -23,11 +23,11 @@ class _HealthFloatingButtonState extends State<HealthFloatingButton> {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Container(
-              child: widget.controller.currentUser.value!.isConnect!
-                  ? Container()
-                  : _buildNotConnectFloating(),
-            ),
+            // Container(
+            //   child: widget.controller.currentUser.value!.isConnect!
+            //       ? Container()
+            //       : _buildNotConnectFloating(),
+            // ),
           ],
         ));
   }

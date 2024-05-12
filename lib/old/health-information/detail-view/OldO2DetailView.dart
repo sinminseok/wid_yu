@@ -9,10 +9,11 @@ import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthExplanationConstants.dart';
+import '../../../final-dto/common-dto/response/user/UserResponse.dart';
 import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 
 class OldO2DetailView extends StatefulWidget {
-  OldUser user;
+  UserResponse user;
 
   OldO2DetailView(this.user);
 

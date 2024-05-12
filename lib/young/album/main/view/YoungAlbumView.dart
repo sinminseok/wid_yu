@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:wid_yu/old/album/main/widgets/OldEmptyPhoto.dart';
+import 'package:wid_yu/young/album/main/api/YoungAlbumApi.dart';
 import 'package:wid_yu/young/album/main/controller/YoungAlbumController.dart';
 import 'package:wid_yu/young/album/main/widgets/Album.dart';
 import 'package:wid_yu/young/album/main/widgets/AllRead.dart';
@@ -35,20 +37,33 @@ class _YoungAlbumViewState extends State<YoungAlbumView> {
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: YoungAlbumFloatingButton(controller: controller),
         backgroundColor: wPurpleBackGroundColor,
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SelectAlbumType(controller),
-              //AllRead(controller),
-              Album(controller),
-              Container(
-                height: 60.h,
-              )
-            ],
-          ),
-        ),
+        body: FutureBuilder(future: controller.loadInit(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
+          }else if(snapshot.hasError){
+            return Container();
+          }else{
+            return SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // InkWell(
+                  //     onTap: (){
+                  //       print(controller.photos.length);
+                  //     },
+                  //     child: Text("dasdasd")),
+                  SelectAlbumType(controller),
+                  //AllRead(controller),
+                  controller.photos.length == 0?OldEmptyPhoto(): Album(controller),
+                  Container(
+                    height: 60.h,
+                  )
+                ],
+              ),
+            );
+          }
+        },)
       ),
     );
   }

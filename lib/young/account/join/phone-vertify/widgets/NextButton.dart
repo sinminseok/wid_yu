@@ -6,7 +6,7 @@
 // import 'package:wid_yu/young/account/join/phone-vertify/controller/VertifyPhoneController.dart';
 //
 // import '../../../../../common/common-widget/OrangeButton.dart';
-// import '../../login-information/IdAndPasswordView.dart';
+// import '../../login-information/YoungJoinView.dart';
 //
 // Widget NextButton() {
 //   return Center(

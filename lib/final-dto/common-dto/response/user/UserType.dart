@@ -1,0 +1,8 @@
+
+enum UserType{
+  GUARDIAN,
+  SENIOR;
+
+
+
+}

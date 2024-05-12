@@ -5,7 +5,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../utils/Color.dart';
 
-Widget YetMissionTimeWidget(String time){
+Widget YetMissionTimeWidget(String? time){
   return Container(
     width: 122.w,
     height: 30.h,
