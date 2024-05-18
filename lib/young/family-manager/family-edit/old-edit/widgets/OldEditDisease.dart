@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,34 +8,50 @@ import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldD
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
 
 import '../../../../../common/dto/disease/Disease.dart';
+import '../dto/OldEditDiseaseRequest.dart';
 
-class OldEditDisease extends StatelessWidget {
-  OldDiseaseEditByYoungController controller;
+class OldEditDisease extends StatefulWidget {
+  OldEditByYoungController controller;
 
   OldEditDisease(this.controller);
 
   @override
+  State<OldEditDisease> createState() => _OldEditDiseaseState();
+}
+
+class _OldEditDiseaseState extends State<OldEditDisease> {
+  @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
-      children: [
-        _buildDiseases(),
-        _buildAddButton()
-      ],
-    ));
+    return Column(
+          children: [
+            InkWell(
+              onTap: (){
+                widget.controller.editInformation();
+              },
+              child: Container(
+                child: Body2Text("dasdasd", kTextBlackColor),
+              ),
+            ),
+            _buildDiseases(),
+            _buildAddButton()],
+        );
   }
 
-  Widget _buildDiseases(){
-    if(controller.disease.length == 0){
+
+  Widget _buildDiseases() {
+    if (widget.controller.diseases.length == 0) {
       return Container();
+
     }
     List<Widget> diseaseCards = [];
 
-    for (int i = 0; i < controller.disease.length; i++) {
+    for (int i = 0; i < widget.controller.diseases.length; i++) {
       Widget diseaseCard = _buildDiseaseCard(
-        controller.disease[i],
-        controller.diseaseNameControllers[i],
-        controller.drugNameControllers[i],
-        controller.informationNameControllers[i],
+        i,
+        widget.controller.diseases[i],
+        widget.controller.diseaseControllers[i],
+        widget.controller.drugNameControllers[i],
+        widget.controller.explainControllers[i],
       );
 
       diseaseCards.add(diseaseCard);
@@ -48,33 +63,40 @@ class OldEditDisease extends StatelessWidget {
     );
   }
 
-
-  Widget _buildDiseaseCard(Disease disease, TextEditingController _nameController, TextEditingController _drugController, TextEditingController _informationController) {
+  Widget _buildDiseaseCard(
+      int index,
+      OldEditDiseaseRequest diseaseRequest,
+      TextEditingController _nameController,
+      TextEditingController _drugController,
+      TextEditingController _informationController) {
     return Container(
       width: 335.w,
       margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 16.h),
       decoration: BoxDecoration(
-        border: Border.all(color: wGrey100Color),
-        color: wWhiteColor,
-        borderRadius: BorderRadius.all(Radius.circular(10))
-      ),
+          border: Border.all(color: wGrey100Color),
+          color: wWhiteColor,
+          borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Container(),
               Container(
-
-              ),
-              Container(
-                margin: EdgeInsets.only(right: 15.w,top: 10.h,bottom: 5.h),
+                margin: EdgeInsets.only(right: 15.w, top: 10.h, bottom: 5.h),
                 width: 18.w,
                 height: 18.h,
                 child: InkWell(
-                    onTap: (){
-                      controller.deleteDisease(disease);
+                    onTap: () {
+                      widget.controller.deleteDeisease(index, diseaseRequest);
+                      setState(() {
+
+                      });
                     },
-                    child: Icon(Icons.cancel, color: wGrey600Color,)),
+                    child: Icon(
+                      Icons.cancel,
+                      color: wGrey600Color,
+                    )),
               )
             ],
           ),
@@ -83,16 +105,12 @@ class OldEditDisease extends StatelessWidget {
           _buildDrugForm(_drugController),
           _buildDivider(),
           _buildInformationForm(_informationController)
-
-
         ],
       ),
     );
   }
 
-
-
-  Widget _buildDiseaseNameForm(TextEditingController _controller){
+  Widget _buildDiseaseNameForm(TextEditingController _controller) {
     return Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
       width: 310.w,
@@ -106,9 +124,7 @@ class OldEditDisease extends StatelessWidget {
           Container(
             width: 90.w,
             child: TextFormField(
-              onChanged: (value) {
-
-              },
+              onChanged: (value) {},
               controller: _controller,
               style: TextStyle(color: Colors.black),
               // 텍스트 색상을 검정색으로 설정
@@ -125,13 +141,12 @@ class OldEditDisease extends StatelessWidget {
               ),
             ),
           ),
-
         ],
       ),
     );
   }
 
-  Widget _buildDrugForm(TextEditingController _controller){
+  Widget _buildDrugForm(TextEditingController _controller) {
     return Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
       width: 310.w,
@@ -145,9 +160,7 @@ class OldEditDisease extends StatelessWidget {
           Container(
             width: 90.w,
             child: TextFormField(
-              onChanged: (value) {
-
-              },
+              onChanged: (value) {},
               controller: _controller,
               style: TextStyle(color: Colors.black),
               // 텍스트 색상을 검정색으로 설정
@@ -164,13 +177,12 @@ class OldEditDisease extends StatelessWidget {
               ),
             ),
           ),
-
         ],
       ),
     );
   }
 
-  Widget _buildInformationForm(TextEditingController _controller){
+  Widget _buildInformationForm(TextEditingController _controller) {
     return Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
       width: 310.w,
@@ -185,16 +197,14 @@ class OldEditDisease extends StatelessWidget {
             margin: EdgeInsets.only(top: 10.h),
             width: 330.w,
             child: TextFormField(
-              onChanged: (value) {
-
-              },
+              onChanged: (value) {},
               controller: _controller,
               style: TextStyle(color: Colors.black),
               // 텍스트 색상을 검정색으로 설정
               textAlign: TextAlign.left,
               // 텍스트를 왼쪽으로 정렬
               cursorColor: kTextBlackColor,
-                maxLines : null,
+              maxLines: null,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(bottom: 3.h),
                 hintText: "설명",
@@ -205,35 +215,35 @@ class OldEditDisease extends StatelessWidget {
               ),
             ),
           ),
-
         ],
       ),
     );
   }
 
-  Widget _buildAddButton(){
+  Widget _buildAddButton() {
     return Container(
       margin: EdgeInsets.only(right: 20.w, left: 20.w, top: 16.h),
       width: 335.w,
       height: 52.h,
       decoration: BoxDecoration(
-        color: wWhiteColor,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        border: Border.all(color: wGrey100Color)
-      ),
+          color: wWhiteColor,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          border: Border.all(color: wGrey100Color)),
       child: InkWell(
-        onTap: (){
+        onTap: () {
+          widget.controller.addDisease();
+          setState(() {
 
+          });
         },
         child: Container(
           margin: EdgeInsets.only(left: 16.w),
           child: Row(
             children: [
               Container(
-                width: 15.w,
-                height: 15.h,
-                child: Image.asset("assets/images/icon/add-icon.png")
-              ),
+                  width: 15.w,
+                  height: 15.h,
+                  child: Image.asset("assets/images/icon/add-icon.png")),
               Container(
                 margin: EdgeInsets.only(left: 10.w, top: 5.h),
                 width: 70.w,

@@ -25,7 +25,7 @@ class YoungMyMission extends StatelessWidget {
   Widget _buildTodayMission() {
     return InkWell(
       onTap: () {
-        Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
+        //Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
       },
       child: Container(
         width: 335.w,

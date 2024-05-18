@@ -29,7 +29,7 @@ class TemperatureInformation extends StatelessWidget {
   }
 
   Widget _buildNomal(){
-    return Obx(() => Container(
+    return Container(
       width: 315.w,
       margin: EdgeInsets.only(top: 10.h),
       child: Column(
@@ -91,11 +91,11 @@ class TemperatureInformation extends StatelessWidget {
           )
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildDangerous(){
-    return Obx(() => Container(
+    return  Container(
       margin: EdgeInsets.only(top: 10.h),
       width: 315.w,
       child: Column(
@@ -157,11 +157,11 @@ class TemperatureInformation extends StatelessWidget {
           )
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildAttention(){
-    return Obx(() => Container(
+    return  Container(
       margin: EdgeInsets.only(top: 10.h),
       width: 315.w,
       child: Column(
@@ -223,7 +223,7 @@ class TemperatureInformation extends StatelessWidget {
           )
         ],
       ),
-    ));
+    );
   }
 
 

@@ -33,7 +33,7 @@ class MissionWidget extends StatelessWidget {
         if(_isOld){
           Get.to(() => OldGoalDetailView());
         }else{
-          Get.to(() => YoungGoalDetailView());
+          //Get.to(() => YoungGoalDetailView());
         }
         // if(_goal.type == "MEDICATION"){
         //   Get.to(() => DrugConductView(_goal));

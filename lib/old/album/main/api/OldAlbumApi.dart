@@ -20,7 +20,7 @@ class OldAlbumApi with ChangeNotifier {
     var response = await http.get(
       Uri.parse(OLD_ALBUM_LOAD_API),
       headers: {
-        'Cookie': 'JSESSIONID=36C271D9511C0C5AB43CCB6154A9BEEF',
+        'Cookie': 'JSESSIONID=EB487E1AEFD9CC737CB4769F06F9BD33',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },

@@ -26,17 +26,6 @@ class _CodeFormState extends State<CodeForm> {
     return Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InkWell(
-              onTap: () {
-                print(_testController.text.length);
-              },
-              child: Container(
-                child: Text(
-                  "fasfasff",
-                  style: TextStyle(color: kTextBlackColor),
-                ),
-              ),
-            ),
             Container(
               margin: EdgeInsets.only(left: 20.w, right: 20.w),
               child: PinCodeTextField(

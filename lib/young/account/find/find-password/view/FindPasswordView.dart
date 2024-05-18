@@ -65,7 +65,7 @@ class _PasswordFindView extends State<FindPasswordView> {
               _controller.isSendNumber == true?VertifyNumberForm(_controller):Container()
             ],
           ),
-          _controller.isVertify == true?_buildFindIdButton():Container()
+         _buildFindIdButton()
         ],
       ),
     );
@@ -73,12 +73,12 @@ class _PasswordFindView extends State<FindPasswordView> {
 
   Widget _buildFindIdButton() {
     return Container(
-        margin: EdgeInsets.only(top: 150.h),
+        margin: EdgeInsets.only(top: 230.h),
         child: InkWell(
             onTap: () {
-              _controller.clickFindPw();
+              _controller.resetPassword(context);
             },
-            child: OrangeButton("비밀번호 찾기")));
+            child: OrangeButton("비밀번호 변경")));
   }
 
   Widget _buildFaliFind() {
@@ -122,6 +122,7 @@ class _PasswordFindView extends State<FindPasswordView> {
                     child: ButtonText("회원 가입하러 가기 ", wPurpleColor)
                 ),
                 Container(
+
                   child: Icon(Icons.arrow_forward_ios_outlined, color: wPurpleColor,size: 15.sp,),
                 )
               ],
@@ -129,15 +130,11 @@ class _PasswordFindView extends State<FindPasswordView> {
           ),
           InkWell(
               onTap: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => FindPasswordSuccessView()),
-                        (route) => false);
+               _controller.resetPassword(context);
               },
               child: Container(
                   margin: EdgeInsets.only(bottom: 20.h),
-                  child: OrangeButton("다시찾기")))
+                  child: OrangeButton("다시 설정하기")))
         ],
       ),
     );

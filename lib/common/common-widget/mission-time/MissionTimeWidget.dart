@@ -118,7 +118,7 @@ Widget _buildOnlyOneTime(GoalTimeResponse missionTime) {
 }
 
 Widget _buildFilterTime(GoalTimeResponse missionTime) {
-  if (missionTime.status == false) {
+  if (missionTime.status == true) {
     // 성공
     return DoneMissionTimeWidget(missionTime.time);
   }

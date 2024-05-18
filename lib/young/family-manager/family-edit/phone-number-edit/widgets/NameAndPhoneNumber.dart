@@ -180,10 +180,10 @@ class _NameAndPhoneNumberState extends State<NameAndPhoneNumber> {
                   ),
                   Positioned(
                       top: 22.h,
-                      left: 290.w,
+                      left: 310.w,
                       child: InkWell(
                         onTap: () {
-                          print("dasd");
+                          widget.controller.checkCode();
                         },
                         child: Container(
                             child: ButtonText("확인", wPurpleColor)

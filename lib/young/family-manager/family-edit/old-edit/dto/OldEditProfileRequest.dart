@@ -40,4 +40,16 @@ class OldEditProfileRequest {
           : null,
     };
   }
+
+  List<OldEditDiseaseRequest>? get diseases => _diseases;
+
+  String? get birth => _birth;
+
+  String? get address => _address;
+
+  String? get phoneNumber => _phoneNumber;
+
+  String? get profileImageUrl => _profileImageUrl;
+
+  String? get name => _name;
 }

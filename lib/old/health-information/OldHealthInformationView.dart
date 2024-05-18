@@ -31,21 +31,21 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   void dispose() {
     remove();
     super.dispose();
   }
 
-  void remove()async{
+  void remove() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var object = prefs.get("health");
     if (object == null) {
       prefs.setBool("health", true);
-    }else{
+    } else {
       prefs.remove("health");
     }
-
   }
 
   Future<bool> loadHealthData() async {
@@ -62,7 +62,7 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
     return Scaffold(
       appBar: _buildAppBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: OldHealthFloatingButton(controller),
+      //floatingActionButton: OldHealthFloatingButton(controller),
       backgroundColor: wYellow100Color,
       body: SingleChildScrollView(
         child: Column(
@@ -77,34 +77,12 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
                 ),
                 child: Column(
                   children: [
-                    FutureBuilder(
-                        future: loadHealthData(),
-                        builder: (BuildContext context, AsyncSnapshot snapshot) {
-                          //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
-                          if (snapshot.hasData == false) {
-                            return CircularProgressIndicator();
-                          }
-                          //error가 발생하게 될 경우 반환하게 되는 부분
-                          else if (snapshot.hasError) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Error: ${snapshot.error}',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            );
-                          }
-                          // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.
-                          else {
-                            return snapshot.data == false
-                                ? OldNotConnect()
-                                : Column(
-                                    children: [
-                                      _buildHealthInformation(),
-                                    ],
-                                  );
-                          }
-                        }),
+                    //OldNotConnect(),
+                    Column(
+                      children: [
+                        _buildHealthInformation(),
+                      ],
+                    ),
                     OldCurrentPosition()
                   ],
                 ),
@@ -118,13 +96,13 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
 
   Widget _buildHealthInformation() {
     return Column(
-                children: [
-                  O2Information(controller),
-                  HeartBitInformation(controller),
-                  TemperatureInformation(controller),
-                ],
-              );
-        //todo
+      children: [
+        O2Information(controller),
+        HeartBitInformation(controller),
+        TemperatureInformation(controller),
+      ],
+    );
+    //todo
 
     // return Obx(() => controller.user.value.isConnect!
     //     ? Column(

@@ -40,7 +40,7 @@ class O2Information extends StatelessWidget {
 
 
   Widget _buildNomal(){
-    return Obx(() => Container(
+    return Container(
       width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,11 +101,11 @@ class O2Information extends StatelessWidget {
           )
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildDangerous(){
-    return Obx(() => Container(
+    return Container(
       width: 315.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +166,7 @@ class O2Information extends StatelessWidget {
           )
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildAttention(){

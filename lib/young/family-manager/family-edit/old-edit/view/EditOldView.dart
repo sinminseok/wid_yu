@@ -28,9 +28,15 @@ class OldEditByYoungView extends StatefulWidget {
 }
 
 class _OldEditByYoungViewState extends State<OldEditByYoungView> {
-  OldEditByYoungController controller = OldEditByYoungController();
+  late OldEditByYoungController controller;
   OldDiseaseEditByYoungController _diseaseController = OldDiseaseEditByYoungController();
   bool _switchValue = true;
+
+
+  @override
+  void initState() {
+    controller  = OldEditByYoungController(widget._old);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,183 +51,15 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
             _buildUserInformation(),
             //_buildFamilyRelationship(),
             OldEditInformation(controller),
-            OldEditDisease(_diseaseController)
+            OldEditDisease(controller)
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDiseaseInformation(){
-    return Container(
-      width: 335.w,
-      height: 280.h,
-      margin: EdgeInsets.only(left: 20.w, right:20.w,top: 16.h),
-      child: Column(
-        children: [
-
-        ],
-      ),
-    );
-  }
 
 
-
-
-  Widget _buildAddress() {
-    return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 21.h,
-            child: SubTitle2Text("집주소", wGrey600Color),
-          ),
-          InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.fade,
-                        child: (EditPhoneNumberView())));
-              },
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.fade,
-                          child: (EditPhoneNumberView())));
-                },
-                child: Container(
-                  width: 150.w,
-
-                  child: TextFormField(
-                    onChanged: (value) {
-                      controller.validateCanSave();
-                    },
-                    controller: controller.addressController,
-                    style: TextStyle(color: Colors.black),
-                    // 텍스트 색상을 검정색으로 설정
-                    textAlign: TextAlign.right,
-                    // 텍스트를 왼쪽으로 정렬
-                    cursorColor: kTextBlackColor,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(bottom: 3.h),
-                      hintText: "주소",
-                      hintStyle: TextStyle(
-                          color: wGrey300Color,
-                          fontSize: 14.sp,
-                          fontFamily: "Body1"),
-                      border: InputBorder.none,
-                      isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                    ),
-                  ),
-                  // child: Body1Text(
-                  //     "${controller.user.brith}",
-                  //     kTextBlackColor
-                  // ),
-                ),
-              ))
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBrith() {
-    return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 0.h, left: 16.w, right: 16.w),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 21.h,
-            child: SubTitle2Text("출생연도", wGrey600Color),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: (EditPhoneNumberView())));
-            },
-            child: Container(
-              width: 90.w,
-
-              child: TextFormField(
-                onChanged: (value) {
-                  controller.validateCanSave();
-                },
-                controller: controller.brithController,
-                style: TextStyle(color: Colors.black),
-                // 텍스트 색상을 검정색으로 설정
-                textAlign: TextAlign.right,
-                // 텍스트를 왼쪽으로 정렬
-                cursorColor: kTextBlackColor,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(bottom: 3.h),
-                  hintText: "1900.00.00",
-                  hintStyle: TextStyle(
-                      color: wGrey300Color,
-                      fontSize: 14.sp,
-                      fontFamily: "Body1"),
-                  border: InputBorder.none,
-                  isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                ),
-              ),
-              // child: Body1Text(
-              //     "${controller.user.brith}",
-              //     kTextBlackColor
-              // ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-
-  Widget _buildDivider() {
-    return Container(
-      margin: EdgeInsets.only(left: 15.w, right: 15.w),
-      width: 308.w,
-      height: 1.h,
-      color: wGrey300Color,
-    );
-  }
-
-  Widget _buildPhoneNumber() {
-    return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: 21.h,
-            child: SubTitle2Text("연락처", wGrey600Color),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.fade,
-                      child: (EditPhoneNumberView())));
-            },
-            child: Container(
-              child:
-              Body1Text("${controller.user.phoneNumber}", kTextBlackColor),
-            ),
-          )
-        ],
-      ),
-    );
-  }
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -267,11 +105,11 @@ class _OldEditByYoungViewState extends State<OldEditByYoungView> {
           margin: EdgeInsets.only(top: 0.h),
           child: Title3Text("${widget._old.name} 님", wGrey800Color),
         ),
-        // Container(
-        //   margin: EdgeInsets.only(top: 2.h),
-        //   height: 27.h,
-        //   child: Body2Text("@${widget._old}", wGrey600Color),
-        // ),
+        Container(
+          margin: EdgeInsets.only(top: 2.h),
+          height: 27.h,
+          child: Body2Text("@${widget._old.inviteCode}", wGrey600Color),
+        ),
       ],
     );
   }
