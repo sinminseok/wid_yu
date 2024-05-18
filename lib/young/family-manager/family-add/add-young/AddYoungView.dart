@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/young/family-manager/family-add/add-young/AddYoungController.dart';
+import 'package:wid_yu/young/family-manager/family-add/api/FamilyManagerApi.dart';
 
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
@@ -46,9 +47,31 @@ class _AddYoungViewState extends State<AddYoungView> {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       child: InkWell(
-          onTap: (){
-            Navigator.pop(context);
-            Navigator.pop(context);
+          onTap: ()async{
+            bool response = await FamilyManagerApi().addYoungAccount(132);
+            if(response){
+              Navigator.pop(context);
+              Navigator.pop(context);
+
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('계정이 추가 됐습니다.'),
+                duration: Duration(seconds: 3),
+                action: SnackBarAction(
+                  label: '확인',
+                  onPressed: () {},
+                ),
+              ));
+            }else{
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('네트워크 오류.'),
+                duration: Duration(seconds: 3),
+                action: SnackBarAction(
+                  label: '확인',
+                  onPressed: () {},
+                ),
+              ));
+            }
+
           },
           child: OrangeButton("추가하기")),
     );

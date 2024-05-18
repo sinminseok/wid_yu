@@ -38,9 +38,9 @@ class TodayMissions extends StatelessWidget {
   Widget _buildTodayMission() {
     return Column(
       children: [
-        DrugMissionWidget(items[1]),
-        WalkMissionWidget(items[2]),
-        CommonMissionWidget(items[2]),
+        //DrugMissionWidget(items[1]),
+        //WalkMissionWidget(items[2]),
+        //CommonMissionWidget(items[2]),
       ],
     );
   }

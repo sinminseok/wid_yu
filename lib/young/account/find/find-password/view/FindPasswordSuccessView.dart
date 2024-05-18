@@ -11,7 +11,13 @@ import '../../../../../common/utils/Color.dart';
 import '../../../login/view/YoungLoginView.dart';
 
 class FindPasswordSuccessView extends StatefulWidget {
-  const FindPasswordSuccessView({Key? key}) : super(key: key);
+  String _name;
+  String _phoneNumber;
+  String _id;
+  String _newPw;
+
+
+  FindPasswordSuccessView(this._name, this._phoneNumber, this._id, this._newPw);
 
   @override
   State<FindPasswordSuccessView> createState() => _FindPasswordSuccessViewState();

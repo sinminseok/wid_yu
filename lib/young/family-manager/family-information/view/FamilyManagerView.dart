@@ -116,7 +116,8 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
             Navigator.push(
                 context,
                 PageTransition(
-                    type: PageTransitionType.fade, child: (EditYoungView(young))));
+                    type: PageTransitionType.fade,
+                    child: (EditYoungView(young))));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,7 +144,8 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                             : Container(
                                 width: 68.w,
                                 height: 68.h,
-                                child: Image.network(young.profileImageUrl!),
+                                child: Image.asset(
+                                    "assets/common/user/youngMan.png"),
                               )
                       ],
                     ),
@@ -250,16 +252,18 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                           decoration: BoxDecoration(
                               color: wGrey200Color, shape: BoxShape.circle),
                         ),
-                        user.profileImageUrl == null?Container(
-                          width: 68.w,
-                          height: 68.h,
-                          child: Image.asset(
-                              "assets/common/user/old-man-circle.png"),
-                        ):Container(
-                          width: 68.w,
-                          height: 68.h,
-                          child: Image.network(user.profileImageUrl!),
-                        )
+                        user.profileImageUrl == null
+                            ? Container(
+                                width: 68.w,
+                                height: 68.h,
+                                child: Image.asset(
+                                    "assets/common/user/old-man-circle.png"),
+                              )
+                            : Container(
+                                width: 68.w,
+                                height: 68.h,
+                                child: Image.network(user.profileImageUrl!),
+                              )
                       ],
                     ),
                   ),
@@ -285,7 +289,8 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                         Container(
                           height: 24.h,
                           margin: EdgeInsets.only(top: 3.h),
-                          child: Body1Text("${user.phoneNumber}", wGrey800Color),
+                          child:
+                              Body1Text("${user.phoneNumber}", wGrey800Color),
                         ),
                       ],
                     ),

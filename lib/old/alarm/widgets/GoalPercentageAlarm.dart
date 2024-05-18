@@ -65,7 +65,7 @@ class GoalPercentageAlarm extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: (){
-                        Get.to(() => YoungGoalDetailView());
+                        //Get.to(() => YoungGoalDetailView());
                       },
                       child: Container(
                           width: 14.w,

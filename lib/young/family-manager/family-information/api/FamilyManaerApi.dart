@@ -55,6 +55,8 @@ class FamilyManagerApi with ChangeNotifier {
     );
 
     //young
+    print("gsdfsdsdf");
+    print(json.decode(utf8.decode(response.bodyBytes))["data"]["seniorDetailResponseDtos"]);
 
     if(response.statusCode == 200){
       List<OldInformationResponseDto> answer = [];

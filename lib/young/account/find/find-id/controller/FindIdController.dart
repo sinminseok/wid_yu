@@ -8,6 +8,7 @@ import 'package:wid_yu/young/account/login/controller/YoungLoginController.dart'
 
 import '../../../../../common/utils/SnackBar.dart';
 import '../api/YoungIdFindApi.dart';
+import '../dto/FindIdResponse.dart';
 import '../view/FindIdSuccessView.dart';
 
 class FindIdController extends GetxController{
@@ -25,9 +26,9 @@ class FindIdController extends GetxController{
   void findId()async{
 
     if(validateEmpty()) {
-      var response = await api.findId(_nameController.text, _phoneNumberController.text);
-      if(response){
-        Get.to(() => FindIdSuccessView());
+      FindIdResponseDto? response = await api.findId(_nameController.text, _phoneNumberController.text);
+      if(response != null){
+        Get.to(() => FindIdSuccessView(response));
         _isSuccessFind.value = 1;
       }else{
         _isSuccessFind.value = -1;

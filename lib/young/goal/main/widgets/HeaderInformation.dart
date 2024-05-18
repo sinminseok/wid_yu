@@ -19,7 +19,7 @@ class HeaderInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
+        Get.to(() => YoungGoalDetailView(controller.totalMyGoal), transition: Transition.fadeIn);
       },
       child: Container(
         margin: EdgeInsets.only(),
@@ -121,7 +121,7 @@ class HeaderInformation extends StatelessWidget {
           height: 83.h,
           child: controller.totalInformation.profileImageUrl == null
               ? Image.asset("assets/common/user/youngMan.png")
-              : Image.network("https://widyu-bucket.s3.ap-northeast-2.amazonaws.com${controller.totalInformation.profileImageUrl}"),
+              : Image.asset("assets/common/user/youngMan.png"),
         ),
         progressColor: wOrangeColor,
       ),

@@ -6,20 +6,19 @@ import 'package:page_transition/page_transition.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/common-widget/button/OrangeButton.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/young/account/find/find-id/dto/FindIdResponse.dart';
 import 'package:wid_yu/young/account/find/find-password/view/FindPasswordSuccessView.dart';
 import 'package:wid_yu/young/account/find/find-password/view/FindPasswordView.dart';
 
 import '../../../../../common/utils/Color.dart';
 import '../../../login/view/YoungLoginView.dart';
 
-class FindIdSuccessView extends StatefulWidget {
-  const FindIdSuccessView({Key? key}) : super(key: key);
+class FindIdSuccessView extends StatelessWidget {
+  FindIdResponseDto findIdResponseDto;
 
-  @override
-  State<FindIdSuccessView> createState() => _FindIdSuccessViewState();
-}
 
-class _FindIdSuccessViewState extends State<FindIdSuccessView> {
+  FindIdSuccessView(this.findIdResponseDto);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +103,7 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
                   child: SubTitle2Text("이름", wGrey600Color)
                 ),
                 Container(
-                  child: Body1Text("보호자 님", wTextBlackColor)
+                  child: Body1Text("${findIdResponseDto.name} 님", wTextBlackColor)
                 ),
               ],
             ),
@@ -125,7 +124,7 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
                     child: SubTitle2Text("연락처", wGrey600Color)
                 ),
                 Container(
-                    child: Body1Text("보호자 님", wTextBlackColor)
+                    child: Body1Text("${findIdResponseDto.phoneNumber} 님", wTextBlackColor)
                 ),
               ],
             ),
@@ -133,6 +132,7 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
           Container(
             margin: EdgeInsets.only(left: 15.w, right: 15.w,top: 13.h),
             width: 308.w,
+
             height: 0.3,
             color: wGrey300Color,
           ),
@@ -146,7 +146,7 @@ class _FindIdSuccessViewState extends State<FindIdSuccessView> {
                     child: SubTitle2Text("아이디", wGrey600Color)
                 ),
                 Container(
-                    child: Title2Text("SIN1762", wTextBlackColor)
+                    child: Title2Text("${findIdResponseDto.id}", wTextBlackColor)
                 ),
               ],
             ),

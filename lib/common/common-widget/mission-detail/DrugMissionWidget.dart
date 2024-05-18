@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/dto/goal/Goal.dart';
@@ -14,9 +15,9 @@ import '../../utils/Color.dart';
  목표 상세 페이지에 사용될 약 복용 미션 위젯
  */
 class DrugMissionWidget extends StatefulWidget {
-  final GoalResponse _mission;
+  final List<GoalResponse> _goals;
 
-  DrugMissionWidget(this._mission);
+  DrugMissionWidget(this._goals);
 
   @override
   State<DrugMissionWidget> createState() => _DrugMissionWidget();
@@ -35,6 +36,12 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
 
   @override
   Widget build(BuildContext context) {
+    return Column(
+      children: widget._goals.map((e) => _buildCard(e)).toList(),
+    );
+  }
+
+  Widget _buildCard(GoalResponse goal){
     return Stack(
       children: [
         Center(
@@ -48,8 +55,9 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             child: Column(
+
               children: [
-                _buildMissionHeadInfo(),
+                _buildMissionHeadInfo(goal),
                 _buildDrugMissions(),
               ],
             ),
@@ -64,14 +72,14 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white.withOpacity(0.7),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 3,
-                    offset: Offset(1, 1),
-                  ),
-                ],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 3,
+                  offset: Offset(1, 1),
+                ),
+              ],
             ),
             child: InkWell(
               onTap: (){
@@ -84,7 +92,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
               },
               child: Center(
                 child: Container(
-                  width: 11.w,
+                    width: 11.w,
                     height: 11.h,
 
                     child: Image.asset("assets/images/icon/next-icon.png",width: 10.w,)),
@@ -96,7 +104,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
     );
   }
 
-  Widget _buildMissionHeadInfo() {
+  Widget _buildMissionHeadInfo(GoalResponse goal) {
     return Container(
       margin: EdgeInsets.only(top: 15.h, left: 16.w),
       child: Row(
@@ -120,11 +128,11 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
                 Container(
                   height: 27.h,
                   margin: EdgeInsets.only(left: 0.w, top: 10.h),
-                  child: Title3Text(widget._mission.title, wTextBlackColor),
+                  child: Title3Text(goal.title, wTextBlackColor),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 0.w, top: 1.h),
-                  child: Body2Text(widget._mission.description, wGrey800Color),
+                  child: Body2Text(goal.description, wGrey800Color),
                 )
               ],
             ),

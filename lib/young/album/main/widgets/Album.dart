@@ -44,7 +44,7 @@ class Album extends StatelessWidget {
             mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
             crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
           ),
-          itemCount: 5,
+          itemCount: 1,
           itemBuilder: (context, index) {
             return YoungVideoWidget(controller.photos[1]);
           },

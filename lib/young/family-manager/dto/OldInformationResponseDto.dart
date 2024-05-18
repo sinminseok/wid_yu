@@ -6,6 +6,7 @@ class OldInformationResponseDto {
   String? _profileImageUrl;
   String? _userType;
   String? _id;
+  String? _inviteCode;
   String? _phoneNumber;
   String? _address;
   String? _birth;
@@ -18,6 +19,7 @@ class OldInformationResponseDto {
     required String? profileImageUrl,
     required String? userType,
     required String? id,
+    required String? inviteCode,
     required String? phoneNumber,
     required String? address,
     required String? birth,
@@ -25,6 +27,7 @@ class OldInformationResponseDto {
     required List<OldDiseaseResponse>? diseases,
   })  : _userIdx = userIdx,
         _name = name,
+        _inviteCode = inviteCode,
         _profileImageUrl = profileImageUrl,
         _userType = userType,
         _id = id,
@@ -47,7 +50,7 @@ class OldInformationResponseDto {
       isDisease: json['isDisease'] as int?,
       diseases: (json['diseases'] as List<dynamic>?)
           ?.map((e) => OldDiseaseResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+          .toList(), inviteCode: json['inviteCode'],
     );
   }
 
@@ -66,6 +69,9 @@ class OldInformationResponseDto {
   String? get userType => _userType;
 
   String? get profileImageUrl => _profileImageUrl;
+
+
+  String? get inviteCode => _inviteCode;
 
   String? get name => _name;
 

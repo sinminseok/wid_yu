@@ -2,17 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/phone-number-edit/view/EditPhoneNumberView.dart';
-
+import 'package:flutter/services.dart';
 import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 
-class OldEditInformation extends StatelessWidget {
+class OldEditInformation extends StatefulWidget {
   OldEditByYoungController controller;
 
   OldEditInformation(this.controller);
 
+  @override
+  State<OldEditInformation> createState() => _OldEditInformationState();
+}
+
+class _OldEditInformationState extends State<OldEditInformation> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +32,7 @@ class OldEditInformation extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildPhoneNumber(),
+          _buildPhoneNumber(context),
           _buildDivider(),
           _buildAddress(),
           _buildDivider(),
@@ -47,17 +53,12 @@ class OldEditInformation extends StatelessWidget {
             height: 21.h,
             child: SubTitle2Text("집주소", wGrey600Color),
           ),
-          InkWell(
-              onTap: () {
-                Get.to(() => EditPhoneNumberView());
-              },
-              child: Container(
+          Container(
                 width: 150.w,
                 child: TextFormField(
                   onChanged: (value) {
-                    controller.validateCanSave();
                   },
-                  controller: controller.addressController,
+                  controller: widget.controller.addressController,
                   style: TextStyle(color: Colors.black),
                   // 텍스트 색상을 검정색으로 설정
                   textAlign: TextAlign.right,
@@ -75,13 +76,16 @@ class OldEditInformation extends StatelessWidget {
                   ),
 
                 ),
-              ))
+              )
         ],
       ),
     );
   }
 
   Widget _buildBrith() {
+    // MaskTextInputFormatter를 사용하여 포맷 지정
+    var birthDateFormatter = MaskTextInputFormatter(mask: '##-##-##', filter: {"#": RegExp(r'[0-9]')});
+
     return Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 0.h, left: 16.w, right: 16.w),
       width: 310.w,
@@ -95,22 +99,22 @@ class OldEditInformation extends StatelessWidget {
           Container(
             width: 90.w,
             child: TextFormField(
-              onChanged: (value) {
-                controller.validateCanSave();
-              },
-              controller: controller.brithController,
+              onChanged: (value) {},
+              controller: widget.controller.brithController,
+              inputFormatters: [birthDateFormatter], // 포맷 적용
               style: TextStyle(color: Colors.black),
-              // 텍스트 색상을 검정색으로 설정
               textAlign: TextAlign.right,
-              // 텍스트를 왼쪽으로 정렬
               cursorColor: kTextBlackColor,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(bottom: 3.h),
-                hintText: "1900.00.00",
+                hintText: "ex)72-09-27",
                 hintStyle: TextStyle(
-                    color: wGrey300Color, fontSize: 14.sp, fontFamily: "Body1"),
+                  color: wGrey300Color,
+                  fontSize: 14.sp,
+                  fontFamily: "Body1",
+                ),
                 border: InputBorder.none,
-                isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
+                isDense: true,
               ),
             ),
           ),
@@ -128,7 +132,7 @@ class OldEditInformation extends StatelessWidget {
     );
   }
 
-  Widget _buildPhoneNumber() {
+  Widget _buildPhoneNumber(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
       width: 310.w,
@@ -140,12 +144,19 @@ class OldEditInformation extends StatelessWidget {
             child: SubTitle2Text("연락처", wGrey600Color),
           ),
           InkWell(
-            onTap: () {
-              Get.to(() => EditPhoneNumberView());
+            onTap: () async{
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditPhoneNumberView("")),
+              );
+              widget.controller.updatePhoneNumber(result);
+              setState(() {
+              });
+              //Get.to(() => EditPhoneNumberView());
             },
             child: Container(
               child:
-                  Body1Text("${controller.user.phoneNumber}", kTextBlackColor),
+                  Body1Text("${widget.controller.phoneNumberController.text}", kTextBlackColor),
             ),
           )
         ],

@@ -1,9 +1,9 @@
 
 class OldEditDiseaseRequest {
   final int? diseaseIdx;
-  final String? name;
-  final String? drugName;
-  final String? explanation;
+  String? name;
+  String? drugName;
+  String? explanation;
 
   OldEditDiseaseRequest({
     required this.diseaseIdx,
@@ -19,5 +19,11 @@ class OldEditDiseaseRequest {
       'drugName': drugName,
       'explanation': explanation,
     };
+  }
+
+  void update(String name, String drugName, String explanation){
+    this.name = name;
+    this.drugName = drugName;
+    this.explanation = explanation;
   }
 }

@@ -99,7 +99,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     required String message,
     required Widget graph,
   }) {
-    return Obx(() => Container(
+    return Container(
       width: 315.w,
       margin: EdgeInsets.only(top: 10.h),
       child: Column(
@@ -187,7 +187,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
           )
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildGraph(int purpleCount, int yellowCount, int errorCount) {

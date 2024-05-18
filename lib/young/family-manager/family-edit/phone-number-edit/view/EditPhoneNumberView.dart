@@ -9,9 +9,14 @@ import 'package:wid_yu/young/family-manager/family-edit/phone-number-edit/widget
 import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/SnackBar.dart';
+import '../../old-edit/controller/OldEditController.dart';
 
 class EditPhoneNumberView extends StatefulWidget {
-  const EditPhoneNumberView({Key? key}) : super(key: key);
+
+  final pn;
+
+
+  EditPhoneNumberView(this.pn);
 
   @override
   _EditPhoneNumberViewState createState() => _EditPhoneNumberViewState();
@@ -40,26 +45,28 @@ class _EditPhoneNumberViewState extends State<EditPhoneNumberView> {
       ),
     );
   }
-  
+
   Widget _buildButton() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 30.h),
-      child: InkWell(
-          onTap: (){
-            PhoneNumberChangePopup().showDialog(context);
-          },
-          child: OrangeButton("바꾸기")),
-    );
+    return Obx(() => controller.canChange
+        ? Container(
+            margin: EdgeInsets.only(bottom: 30.h),
+            child: InkWell(
+                onTap: () {
+                  String pn = controller.phoneNumberController.text;
+                  Navigator.pop(context, pn);
+                  //PhoneNumberChangePopup().showDialog(context);
+                },
+                child: OrangeButton("바꾸기")),
+          )
+        : Container());
   }
 
-  Widget _buildMainText(){
+  Widget _buildMainText() {
     return Container(
-      margin: EdgeInsets.only(top: 28.h,left: 20.w),
+      margin: EdgeInsets.only(top: 28.h, left: 20.w),
       child: Title2Text("보호자님의 본인인증을 해주세요.", wGrey800Color),
     );
   }
-
-
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -70,15 +77,18 @@ class _EditPhoneNumberViewState extends State<EditPhoneNumberView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               child: Container(
                   width: 11.w,
                   height: 19.h,
-                  child: Image.asset("assets/images/icon/back-icon.png",   width: 11.w,
-                    height: 19.h,fit: BoxFit.contain,)
-              ),
+                  child: Image.asset(
+                    "assets/images/icon/back-icon.png",
+                    width: 11.w,
+                    height: 19.h,
+                    fit: BoxFit.contain,
+                  )),
             ),
             Container(
               child: Title3Text("연락처 변경하기", wGrey800Color),

@@ -53,7 +53,7 @@ class YoungEditInformation extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => EditPhoneNumberView());
+              //Get.to(() => EditPhoneNumberView());
             },
             child: Container(
               child:
@@ -123,7 +123,7 @@ class YoungEditInformation extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => EditPhoneNumberView(), transition: Transition.fade);
+              //Get.to(() => EditPhoneNumberView(), transition: Transition.fade);
             },
             child: Container(
               width: 90.w,

@@ -2,13 +2,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
+import '../controller/YoungGoalDetailController.dart';
 
 class YoungGoalCalendar extends StatefulWidget {
-  const YoungGoalCalendar({Key? key}) : super(key: key);
+
+  YoungGoalDetailController _controller;
+
+
+  YoungGoalCalendar(this._controller);
 
   @override
   _YoungGoalCalendarState createState() => _YoungGoalCalendarState();
@@ -182,7 +188,7 @@ class _YoungGoalCalendarState extends State<YoungGoalCalendar> {
                   childAspectRatio: 1 / 1.5,
                   crossAxisCount: 7, // 7 columns for 7 days in a week
                 ),
-                itemCount: totalDaysInMonth,
+                itemCount: widget._controller.monthPercentage.length,
                 itemBuilder: (BuildContext context, int index) {
                   DateTime currentDate = DateTime(year, month, index + 1);
                   bool isToday = currentDate.day == now.day &&
@@ -201,7 +207,7 @@ class _YoungGoalCalendarState extends State<YoungGoalCalendar> {
                               lineWidth: 5.5.sp,
                               backgroundColor: wGrey200Color,
                               circularStrokeCap: CircularStrokeCap.round,
-                              percent: 0.7, // Set your percentage here
+                              percent: widget._controller.monthPercentage[index].percentage!, // Set your percentage here
 
                               progressColor:wPurpleColor
                           ),
