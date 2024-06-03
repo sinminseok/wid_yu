@@ -25,7 +25,6 @@ class OldGoalController extends GetxController {
 
   Future<bool> loadInit() async {
     _user = await OldGoalMainApi().loadMainPage();
-
     filterTodayMyGoal(_user!);
     _totalGoals = _user?.goalsAndStatus;
     //_todayGoals = _user?.goalsAndStatus;
@@ -36,11 +35,20 @@ class OldGoalController extends GetxController {
   }
 
   void filterTodayMyGoal(OldMainGoalResponse information) {
-    int currentDayIndex = DateTime.now().weekday - 1;
+    // 현재 요일의 인덱스를 구합니다. (1=월요일, 7=일요일)
+    int currentDayIndex = DateTime.now().weekday;
 
-    _todayGoals = information.goalsAndStatus!
-        .where((goal) => goal.day[currentDayIndex] == '1')
-        .toList();
+    // 일요일부터 시작하는 인덱스로 변환합니다.
+    // 예: 월요일(1) -> 1, 화요일(2) -> 2, ..., 일요일(7) -> 0
+    currentDayIndex = (currentDayIndex % 7);
+
+
+    if(information.goalsAndStatus![0].day != null){
+      _todayGoals = information.goalsAndStatus!
+          .where((goal) => goal.day![currentDayIndex] == '1')
+          .toList();
+    }
+
   }
 
   void checkAlarm(BuildContext context) async {

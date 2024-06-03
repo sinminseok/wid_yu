@@ -12,6 +12,7 @@ class OldGoalMainApi extends ChangeNotifier {
 
   //보호자 메인페이지
   Future<OldMainGoalResponse?>? loadMainPage() async {
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var session =await prefs.getString("session");
@@ -25,6 +26,8 @@ class OldGoalMainApi extends ChangeNotifier {
         'Accept': 'application/json',
       },
     );
+
+
 
     print(json.decode(utf8.decode(response.bodyBytes)));
 

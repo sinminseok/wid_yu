@@ -16,7 +16,7 @@ class YoungGoalDetailController extends GetxController{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     int? uerIdx = await prefs.getInt("user_idx");
-    //YoungGoalApi().loadPercentage(uerIdx!);
+     YoungGoalApi().loadPercentage(uerIdx!);
     _monthPercentage = await YoungGoalApi().loadMonthPercentage(uerIdx!);
 
     return true;

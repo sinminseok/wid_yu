@@ -64,7 +64,7 @@ class OldNotSuccessGoalAlarm extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: (){
-                        Get.to(() => OldGoalDetailView());
+                        //Get.to(() => OldGoalDetailView());
                       },
                       child: Container(
                           width: 14.w,

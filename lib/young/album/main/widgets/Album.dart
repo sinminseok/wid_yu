@@ -44,9 +44,9 @@ class Album extends StatelessWidget {
             mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
             crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
           ),
-          itemCount: 1,
+          itemCount: controller.videos.length,
           itemBuilder: (context, index) {
-            return YoungVideoWidget(controller.photos[1]);
+            return YoungVideoWidget(controller.videos[index]);
           },
         ),
       ),
@@ -87,8 +87,8 @@ class Album extends StatelessWidget {
                 height: 75.h,
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(6)),
-                  child: Image.asset(
-                    "assets/common/album/family_photo.png",
+                  child: Image.network(
+                    controller.photos[index].url!,
                     fit: BoxFit.cover,
                   ),
                 ),

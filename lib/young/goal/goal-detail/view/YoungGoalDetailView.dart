@@ -6,14 +6,16 @@ import 'package:wid_yu/young/goal/goal-detail/widgets/YoungGoalCalendar.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
+import '../../../../final-dto/young-dto/response/user/YoungMainGoalResponse.dart';
 import '../widgets/GoalDetailHeader.dart';
 import '../widgets/TodayMissions.dart';
 
 class YoungGoalDetailView extends StatefulWidget {
+  YoungMainGoalResponse _youngInformation;
   List<GoalResponse> _goals;
 
 
-  YoungGoalDetailView(this._goals);
+  YoungGoalDetailView(this._youngInformation, this._goals);
 
   @override
   _GoalDetailView createState() => _GoalDetailView();
@@ -26,7 +28,7 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
   Widget build(BuildContext context) {
     YoungGoalDetailController _controller = YoungGoalDetailController(widget._goals);
     return Scaffold(
-      appBar: CommonAppBar(canBack: true, title: "보호자님",color: wPurpleBackGroundColor,),
+      appBar: CommonAppBar(canBack: true, title: "",color: wPurpleBackGroundColor,),
       backgroundColor: wPurpleBackGroundColor,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -42,7 +44,7 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
                 InkWell(
                     onTap: (){
                     },
-                    child: GoalDetailHeader()),
+                    child: GoalDetailHeader(widget._youngInformation.name!, widget._youngInformation.percentage!)),
                 TodayMission(_controller),
                 YoungGoalCalendar(_controller)
               ],

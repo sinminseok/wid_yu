@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
@@ -61,6 +62,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
+                      //f20202f2
                       children: controller.myUser.map((old) {
                         return _buildYoungsInformation(old);
                       }).toList(),
@@ -142,11 +144,26 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                                     "assets/common/user/youngMan.png"),
                               )
                             : Container(
-                                width: 68.w,
-                                height: 68.h,
-                                child: Image.asset(
-                                    "assets/common/user/youngMan.png"),
-                              )
+                                margin: EdgeInsets.only(top: 0.h),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: wGrey100Color),
+                                  shape: BoxShape.circle,
+                                  color: wWhiteColor,
+                                ),
+                                height: 83.h,
+                                width: 83.h,
+                                // 원형을 만들기 위해 width와 height를 동일하게 설정
+                                clipBehavior: Clip.hardEdge,
+                                // 내용이 Container의 경계를 넘지 않도록 설정
+                                child: ClipOval(
+                                  child: Image.network(
+                                    young.profileImageUrl!,
+                                    fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                                    width: 83.h,
+                                    height: 83.h,
+                                  ),
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -235,7 +252,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                 context,
                 PageTransition(
                     type: PageTransitionType.fade,
-                    child: (OldEditByYoungView(user))));
+                    child: (OldEditByYoungView(false,user))));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -260,10 +277,26 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                                     "assets/common/user/old-man-circle.png"),
                               )
                             : Container(
-                                width: 68.w,
-                                height: 68.h,
-                                child: Image.network(user.profileImageUrl!),
-                              )
+                                margin: EdgeInsets.only(top: 0.h),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: wGrey100Color),
+                                  shape: BoxShape.circle,
+                                  color: wWhiteColor,
+                                ),
+                                height: 83.h,
+                                width: 83.h,
+                                // 원형을 만들기 위해 width와 height를 동일하게 설정
+                                clipBehavior: Clip.hardEdge,
+                                // 내용이 Container의 경계를 넘지 않도록 설정
+                                child: ClipOval(
+                                  child: Image.network(
+                                    user.profileImageUrl!,
+                                    fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                                    width: 83.h,
+                                    height: 83.h,
+                                  ),
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -305,7 +338,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
                           context,
                           PageTransition(
                               type: PageTransitionType.fade,
-                              child: (OldEditByYoungView(user))));
+                              child: (OldEditByYoungView(false, user))));
                     },
                     child: Image.asset(
                       "assets/images/icon/next-icon.png",

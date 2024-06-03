@@ -9,7 +9,7 @@ import '../../../../final-dto/young-dto/request/reward/YoungRewardGeneratorReque
 class AddPhotoApi {
   String get CREATE_PHOTO_REWARD => ROOT_API + "reward/insert";
 
-  Future<bool> createPhotoReward(YoungRewardGeneratorRequest reward) async {
+  Future<bool> createPhotoReward(YoungRewardGeneratorRequest reward, String type) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var session = prefs.getString("session");
 
@@ -27,8 +27,11 @@ class AddPhotoApi {
     var formData =
         http.MultipartRequest('POST', Uri.parse(CREATE_PHOTO_REWARD));
     formData.fields.addAll({
-      'userIdx': reward.userIdx.toString(),
+
+      //'userIdx': reward.userIdx.toString(),
       'description': reward.description!,
+      'type' : '${type}'
+
     });
     formData.files.add(file);
 
@@ -39,6 +42,11 @@ class AddPhotoApi {
 
     // 요청 보내기
     var response = await http.Response.fromStream(await formData.send());
+
+
+    print(utf8.decode(response.bodyBytes));
+
+    //{"success":true,"message":"리워드 추가 완료","data":[{"rewardIdx":0,"userIdx":160,"uploaderIdx":159,"description":"asd","type":"IMAGE","url":"https://widyu-bucket.s3.ap-northeast-2.amazonaws.com/IMG_20240519_004730.jpg","status":0,"point":30,"profileImageUrl":null}]}
 
     if (response.statusCode == 200) {
       return true;

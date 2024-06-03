@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:wid_yu/old/health-information/api/OldHealthApi.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
@@ -12,11 +13,10 @@ import '../../../common/utils/FilePath.dart';
 import '../../../common/utils/constants/HealthExplanationConstants.dart';
 import '../../../final-dto/common-dto/response/user/UserResponse.dart';
 import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
+import '../dto/OldHealthDetailResponse.dart';
 
 class OldHeartBitDetailView extends StatefulWidget {
-  final UserResponse? user;
 
-  OldHeartBitDetailView(this.user);
 
   @override
   State<OldHeartBitDetailView> createState() => _OldHeartBitDetailViewState();
@@ -24,6 +24,16 @@ class OldHeartBitDetailView extends StatefulWidget {
 
 class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
   bool isExpand = false;
+  OldHealthDetailResponse? oldHealthDetailResponse;
+
+  Future<bool> loadDeatilData() async{
+    oldHealthDetailResponse = await OldHealthApi().loadDetailPage();
+    if(oldHealthDetailResponse != null){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,27 +45,35 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
         canBack: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 15.h),
-              width: 330.w,
-              height: 420.h,
-              decoration: BoxDecoration(
-                  color: wWhiteColor,
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
-              child: Column(
-                children: [
-                  _buildGraph(),
-                  _buildAvaeage(),
-                ],
-              ),
-            ),
-            _buildInformation(),
-          ],
-        ),
+        child: FutureBuilder(future: loadDeatilData(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
+          }else if(snapshot.hasError){
+            return Text("ERROR");
+          }else{
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 15.h),
+                  width: 330.w,
+                  height: 420.h,
+                  decoration: BoxDecoration(
+                      color: wWhiteColor,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  child: Column(
+                    children: [
+                      _buildGraph(),
+                      _buildAvaeage(),
+                    ],
+                  ),
+                ),
+                _buildInformation(),
+              ],
+            );
+          }
+        },)
       ),
     );
   }

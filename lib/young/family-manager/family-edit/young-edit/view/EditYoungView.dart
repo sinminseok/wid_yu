@@ -47,7 +47,7 @@ class _EditYoungView extends State<EditYoungView> {
             children: [
               YoungEditProfile(controller),
               _buildUserInformation(),
-              _buildFamilyRelationship(),
+              //_buildFamilyRelationship(),
               YoungEditInformation(controller, widget._young),
             ],
           ),
@@ -80,9 +80,11 @@ class _EditYoungView extends State<EditYoungView> {
               ),
             ),
             InkWell(
+
               onTap: (){
-                controller.updateInformation();
-                //CustomSnackBar().show(context, "서버 연동 후 구현");
+                controller.updateInformation(context);
+
+
               },
               child: Container(
                 margin: EdgeInsets.only(top: 0.h, right: 10.w),

@@ -32,20 +32,20 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
             widget.controller.totalInformation.seniorsGoalList?.length == 0
                 ? Container()
                 : widget.controller.isBottomScroll == false
-                    ? Container(child: _buildFloatingOldInformation(widget.controller.totalInformation.seniorsGoalList![0]))
+                    ? Container(
+                        child: _buildFloatingOldInformation(widget
+                            .controller.totalInformation.seniorsGoalList![0]))
                     : Container()
           ],
         ));
   }
 
   Container _buildExtendButton() {
-    return  Container(
+    return Container(
       margin: EdgeInsets.only(right: 22.w),
       child: ConstrainedBox(
-
         constraints: BoxConstraints.tightFor(width: 110, height: 44),
-        child:  FloatingActionButton(
-
+        child: FloatingActionButton(
           onPressed: () {
             Get.to(() => YoungGoalCreateView(), transition: Transition.fadeIn);
           },
@@ -53,19 +53,19 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: Icon(Icons.add,size: 17.sp,),
+                child: Icon(
+                  Icons.add,
+                  size: 17.sp,
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(right: 0.w),
-                child: ButtonText(
-                    " 목표생성",
-                    wWhiteColor
-                ),
+                child: ButtonText(" 목표생성", wWhiteColor),
               ),
             ],
           ),
-
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           foregroundColor: Colors.white,
           backgroundColor: wPurpleColor,
         ),
@@ -81,7 +81,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
       child: Container(
         width: 375.w,
         height: 115.h,
-        margin: EdgeInsets.only(top:20.h, bottom: 0.h),
+        margin: EdgeInsets.only(top: 20.h, bottom: 0.h),
         decoration: BoxDecoration(
           color: wWhiteColor,
           borderRadius: BorderRadius.only(
@@ -104,7 +104,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
               children: [
                 Container(
                   margin: EdgeInsets.only(left: 15.w, top: 0.h, bottom: 10.h),
-                  width: 70.0.w, // Container의 너비
+                  width: 85.0.h, // Container의 너비
                   height: 85.0.h, // Container의 높이
                   child: Container(
                     margin: EdgeInsets.only(left: 5.w, top: 5.h),
@@ -116,11 +116,20 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                       percent: old.percentage!,
                       center: Container(
                         height: 55.h,
-                        width: 55.w,
+                        width: 55.h,
                         decoration: BoxDecoration(
                             color: wGrey100Color, shape: BoxShape.circle),
-                        child: old.profile == null?Image.asset(
-                            "assets/common/user/old-man-circle.png"): Image.network(old.profile!)
+                        child: old.profile == null
+                            ? Image.asset(
+                                "assets/common/user/old-man-circle.png")
+                            : ClipOval(
+                                child: Image.network(
+                                  old.profile!,
+                                  fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                                  width: 55.h,
+                                  height: 55.h,
+                                ),
+                              ),
                       ),
                       progressColor: wOrangeColor,
                     ),

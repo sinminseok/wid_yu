@@ -23,25 +23,13 @@ class _OldEditDiseaseState extends State<OldEditDisease> {
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: [
-            InkWell(
-              onTap: (){
-                widget.controller.editInformation();
-              },
-              child: Container(
-                child: Body2Text("dasdasd", kTextBlackColor),
-              ),
-            ),
-            _buildDiseases(),
-            _buildAddButton()],
-        );
+      children: [_buildDiseases(), _buildAddButton()],
+    );
   }
-
 
   Widget _buildDiseases() {
     if (widget.controller.diseases.length == 0) {
       return Container();
-
     }
     List<Widget> diseaseCards = [];
 
@@ -49,6 +37,7 @@ class _OldEditDiseaseState extends State<OldEditDisease> {
       Widget diseaseCard = _buildDiseaseCard(
         i,
         widget.controller.diseases[i],
+        //WLFQU
         widget.controller.diseaseControllers[i],
         widget.controller.drugNameControllers[i],
         widget.controller.explainControllers[i],
@@ -89,9 +78,7 @@ class _OldEditDiseaseState extends State<OldEditDisease> {
                 child: InkWell(
                     onTap: () {
                       widget.controller.deleteDeisease(index, diseaseRequest);
-                      setState(() {
-
-                      });
+                      setState(() {});
                     },
                     child: Icon(
                       Icons.cancel,
@@ -232,9 +219,7 @@ class _OldEditDiseaseState extends State<OldEditDisease> {
       child: InkWell(
         onTap: () {
           widget.controller.addDisease();
-          setState(() {
-
-          });
+          setState(() {});
         },
         child: Container(
           margin: EdgeInsets.only(left: 16.w),

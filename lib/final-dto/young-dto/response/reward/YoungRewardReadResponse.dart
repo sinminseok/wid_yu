@@ -1,54 +1,56 @@
-import 'package:image_picker/image_picker.dart';
-
 class YoungRewardReadResponse {
-  final int _rewardIdx;
-  final int _userIdx;
-  final int _status;
-  final String _type;
-  final String _description;
-  final String _url;
-  final int _point;
+  int? _rewardIdx;
+  int? _userIdx;
+  String? _uploaderName;
+  String? _uploaderImageUrl;
+  int? _status;
+  String? _type;
+  String? _description;
+  String? _url;
+  int? _point;
 
   YoungRewardReadResponse({
     required int rewardIdx,
     required int userIdx,
-    required String description,
+    required String uploaderName,
+    required String? uploaderImageUrl, // nullable
     required int status,
     required String type,
-    required String url,
+    required String description,
+    required String? url, // nullable로 변경
     required int point,
   })  : _rewardIdx = rewardIdx,
         _userIdx = userIdx,
+        _uploaderName = uploaderName,
+        _uploaderImageUrl = uploaderImageUrl,
         _status = status,
-  _description = description,
         _type = type,
+        _description = description,
         _url = url,
         _point = point;
 
-  // JSON 데이터를 이용하여 객체 생성
   factory YoungRewardReadResponse.fromJson(Map<String, dynamic> json) {
+    print("Parsing JSON: $json");
     return YoungRewardReadResponse(
       rewardIdx: json['rewardIdx'] as int,
-      userIdx: json['userIdx'] as int,
+      userIdx: json['uploaderIdx'] as int,  // 여기서 uploaderIdx 키를 사용
+      uploaderName: json['uploaderName'] as String,
+      uploaderImageUrl: json['uploaderImageUrl'] as String?, // nullable
       status: json['status'] as int,
-      url: json['url'] as String,
+      type: json['type'] as String,
+      description: json['description'] as String,
+      url: json['url'] as String?, // nullable로 변경
       point: json['point'] as int,
-      type: json['type'], description: json['description'],
     );
   }
 
-  int get point => _point;
-
-  String get url => _url;
-
-  int get status => _status;
-
-  int get userIdx => _userIdx;
-
-
-  String get description => _description;
-
-  String get type => _type;
-
-  int get rewardIdx => _rewardIdx;
+  int? get rewardIdx => _rewardIdx;
+  int? get userIdx => _userIdx;
+  String? get uploaderName => _uploaderName;
+  String? get uploaderImageUrl => _uploaderImageUrl;
+  int? get status => _status;
+  String? get type => _type;
+  String? get description => _description;
+  String? get url => _url;
+  int? get point => _point;
 }

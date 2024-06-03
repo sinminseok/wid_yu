@@ -11,17 +11,34 @@ import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/CustomText.dart';
 import '../../../old/frame/OldFrameView.dart';
 import '../../FinishConductView.dart';
+import '../controller/WalkConductController.dart';
 
-class WalkConductView extends StatelessWidget {
+class WalkConductView extends StatefulWidget {
   GoalResponse goalResponse;
+  bool isOld;
 
 
-  WalkConductView(this.goalResponse);
+  WalkConductView(this.goalResponse, this.isOld);
+
+  @override
+  State<WalkConductView> createState() => _WalkConductViewState();
+}
+
+class _WalkConductViewState extends State<WalkConductView> {
+
+  late WalkConductController _controller;
+
+
+  @override
+  void initState() {
+    _controller = WalkConductController(widget.goalResponse);
+    _controller.selectTodoTime();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(context),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -75,8 +92,23 @@ class WalkConductView extends StatelessWidget {
                       border: Border.all(color: wOrange200Color)
                   ),
                   child: InkWell(
-                    onTap: (){
-                      Get.offAll(() => FinishConductView());
+                    onTap: () async{
+                      var response = await _controller.conductGoal();
+                      Get.offAll(() => FinishConductView(widget.isOld));
+                      // if(response){
+                      //   Get.offAll(() => FinishConductView(widget.isOld));
+                      // }else{
+                      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      //     content: Text('네트워크 오류.'),
+                      //     duration: Duration(seconds: 3),
+                      //     action: SnackBarAction(
+                      //       label: '확인',
+                      //       onPressed: () {},
+                      //     ),
+                      //   ));
+                      //
+                      // }
+
                     },
                     child: Center(
                       child: ButtonText("수행하기", wWhiteColor),
@@ -98,12 +130,12 @@ class WalkConductView extends StatelessWidget {
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 50.h),
-            child: LargeTitleText("20:00", wGrey800Color),
+            child: LargeTitleText("${_controller.todoTime?.time}", wGrey800Color),
           ),
         ),
         Container(
           margin: EdgeInsets.only(top: 10.h),
-          child: SubTitle2Text("외출할 시간이에요!", wGrey800Color),
+          child: SubTitle2Text("${_controller.goal.description}", wGrey800Color),
         )
       ],
     );
@@ -118,7 +150,7 @@ class WalkConductView extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar(){
+  AppBar _buildAppBar(BuildContext context){
     return AppBar(
       elevation: 0,
       centerTitle: true,
@@ -132,8 +164,8 @@ class WalkConductView extends StatelessWidget {
             InkWell(
               onTap: (){
                 //여기에 코드 구현
-
-                Get.to(() => OldFrameView(0), transition: Transition.upToDown);
+                Navigator.pop(context);
+                //Get.to(() => OldFrameView(0), transition: Transition.upToDown);
 
               },
               child: Container(
@@ -157,5 +189,4 @@ class WalkConductView extends StatelessWidget {
 
     );
   }
-
 }

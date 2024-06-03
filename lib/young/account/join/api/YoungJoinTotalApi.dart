@@ -89,8 +89,8 @@ class YoungJoinTotalApi with ChangeNotifier {
       Map<String, dynamic> data = responseData['data'];
       int idx = data['userIdx'];
 
-      prefs.setString("young_join_id", id);
-      prefs.setInt("user_idx", idx);
+      await prefs.setString("young_join_id", id);
+      await prefs.setInt("user_idx", idx);
       return true;
     }
     return false;
@@ -136,6 +136,7 @@ class YoungJoinTotalApi with ChangeNotifier {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
+
       body: json.encode(oldGeneratorRequest.toJson()), // OldGeneratorRequest를 JSON으로 인코딩하여 전송
     );
 
@@ -144,7 +145,8 @@ class YoungJoinTotalApi with ChangeNotifier {
     Map<String, dynamic> responseData = json.decode(response.body);
     String? data = responseData['data'];
 
-    print(response.body);
+    print(utf8.decode(response.bodyBytes));
+    print(response.statusCode);
 
     if (response.statusCode == 201) {
       Map<String, dynamic> responseData = json.decode(response.body);

@@ -13,11 +13,11 @@ import '../controller/DrugConductController.dart';
 import '../view/DrugTakePhotoView.dart';
 
 class DrugGoalConductButton extends StatefulWidget {
-
   DrugConductController controller;
+  bool isOld;
 
 
-  DrugGoalConductButton(this.controller);
+  DrugGoalConductButton(this.controller, this.isOld);
 
   @override
   State<DrugGoalConductButton> createState() => _DrugGoalConductButtonState();
@@ -89,7 +89,7 @@ class _DrugGoalConductButtonState extends State<DrugGoalConductButton> {
                       onTap: ()async{
                         var response = await getImage();
                         if(response){
-                          Get.to(() => DrugTakePhoto(image_picked!,widget.controller.goal.times[0], widget.controller));
+                          Get.to(() => DrugTakePhoto(image_picked!,widget.controller.todoTime!, widget.controller, widget.isOld));
                         }else{
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('약 사진을 찍어주세요.'),

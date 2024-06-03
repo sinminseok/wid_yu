@@ -54,7 +54,7 @@ class _VideoPreviewState extends State<VideoPreview> {
 
     //YoungRewardGeneratorRequest
     bool response =
-    await AddPhotoApi().createPhotoReward(youngRewardGeneratorRequest);
+    await AddPhotoApi().createPhotoReward(youngRewardGeneratorRequest, "VIDEO");
     if(response == true){
       setState(() {
         _isLoading = false; // 로딩 상태를 false로 변경하여 화면에 로딩을 숨김

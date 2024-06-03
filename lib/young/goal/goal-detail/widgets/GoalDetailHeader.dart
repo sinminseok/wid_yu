@@ -8,7 +8,11 @@ import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 
 class GoalDetailHeader extends StatelessWidget {
+  String _name;
+  double _percentage;
 
+
+  GoalDetailHeader(this._name, this._percentage);
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +32,13 @@ class GoalDetailHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Title1Text(
-                          "보호자 님,",
+                          "${_name} 님,",
                           wGrey800Color
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 8.h),
                         child: Title1Text(
-                            "오늘 75% 달성!",
+                            "오늘 ${_percentage}% 달성!",
                             wGrey800Color
                         ),
                       ),
@@ -66,7 +70,7 @@ class GoalDetailHeader extends StatelessWidget {
         backgroundColor: wGrey200Color,
         radius: 60.0.sp,
         lineWidth: 10.0,
-        percent: 0.7,
+        percent: _percentage,
         center: _buildCircularProgressCenter(),
         circularStrokeCap: CircularStrokeCap.round,
 

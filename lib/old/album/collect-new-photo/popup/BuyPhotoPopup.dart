@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
+import 'package:wid_yu/old/album/main/api/OldAlbumApi.dart';
 
 import '../../../../common/common-widget/button/OrangeButton.dart';
 import '../../../../common/utils/Color.dart';
@@ -85,7 +86,7 @@ class BuyPhotoPopup {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 5.h),
-                                child: PercentageText("${currentPoint - reward.point}p", wGrey800Color),
+                                child: PercentageText("${currentPoint - reward.point!}p", wGrey800Color),
                               )
                             ],
                           ),
@@ -101,9 +102,18 @@ class BuyPhotoPopup {
                     Container(
                       margin: EdgeInsets.only(top: 21.h),
                       child: InkWell(
-                          onTap: (){
-                            Navigator.pop(context);
-                            BuyPhotoFinishPopup().showDialog(context);
+                          onTap: ()async{
+                            bool response = await OldAlbumApi().buyReward(reward.rewardIdx!);
+
+                            if(response) {
+                              Navigator.pop(context);
+                              BuyPhotoFinishPopup().showDialog(context);
+                            }else{
+                              Navigator.pop(context);
+
+                            }
+
+
                           },
                           child: OrangeButton("구매하기")),
                     )

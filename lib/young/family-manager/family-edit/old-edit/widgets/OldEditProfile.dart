@@ -34,6 +34,7 @@ class _OldEditProfileState extends State<OldEditProfile> {
     if (pickedFile != null) {
       setState(() {
         image_picked = pickedFile;
+        widget._controller.updateProfileUrl(image_picked!);
       });
     }
   }
@@ -104,16 +105,39 @@ class _OldEditProfileState extends State<OldEditProfile> {
           child: Stack(
             children: [
               Container(
-                  width: 100.w,
-                  height: 100.w,
+                width: 100.w,
+                height: 100.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: widget._controller.user.profileImageUrl == null?  Image.asset("assets/images/user/blur-old.png",
+                    width: 100.w, height: 100.h, fit: BoxFit.fitWidth):Container(
+                  margin: EdgeInsets.only(top: 0.h),
                   decoration: BoxDecoration(
+                    border: Border.all(color: wGrey100Color),
                     shape: BoxShape.circle,
+                    color: wWhiteColor,
                   ),
-                  child: Image.asset("assets/images/user/blur-old.png",
-                      width: 100.w, height: 100.h, fit: BoxFit.fitWidth)),
+                  height: 83.h,
+                  width: 83.h,
+                  // 원형을 만들기 위해 width와 height를 동일하게 설정
+                  clipBehavior: Clip.hardEdge,
+                  // 내용이 Container의 경계를 넘지 않도록 설정
+                  child: ClipOval(
+                    child: Image.network(
+                      widget._controller.user.profileImageUrl!,
+                      fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                      width: 83.h,
+                      height: 83.h,
+                    ),
+                  ),
+                ),
+
+
+              ),
 
               Positioned(
-                top: 59.h,
+                top: 80.h,
                 left: 63.w,
                 child: Stack(
                   children: [

@@ -14,8 +14,7 @@ import '../../utils/Color.dart';
  */
 Widget MissionTimeWidget(List<GoalTimeResponse> times, BuildContext context) {
   return times.length == 0
-      ? Container(
-          margin: EdgeInsets.only(top: 5.h), child: _buildOnlyOneTime(times[0]))
+      ? Container()
       : Container(
           margin: EdgeInsets.only(left: 0.w, top: 10.h),
           width: 240.w,
@@ -118,17 +117,16 @@ Widget _buildOnlyOneTime(GoalTimeResponse missionTime) {
 }
 
 Widget _buildFilterTime(GoalTimeResponse missionTime) {
-  if (missionTime.status == true) {
-    // 성공
+  // if (missionTime.status == true) {
+  //   // 성공
+  //   return DoneMissionTimeWidget(missionTime.time);
+  // }
+  if(missionTime.status == -1){
+    //실패
+    return NoneMissionTimeWidget(missionTime.time);
+  }
+  if(missionTime.status == 1){
     return DoneMissionTimeWidget(missionTime.time);
   }
-  // if(missionTime.status == 0){
-  //   //실패
-  //   return NoneMissionTimeWidget(missionTime.time);
-  // }
-  // if(missionTime.status == null){
-  //   return Container();
-  // }
-  //대기
   return YetMissionTimeWidget(missionTime.time);
 }

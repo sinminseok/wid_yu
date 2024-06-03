@@ -11,7 +11,8 @@ import '../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../young/family-manager/dto/OldInformationResponseDto.dart';
-import '../../family-edit/old-edit/view/OldEditByOldView.dart';
+import '../../../../young/family-manager/dto/YoungInformationResponseDto.dart';
+import '../../../../young/family-manager/family-edit/old-edit/view/EditOldView.dart';
 import '../../family-edit/young-edit/view/EditYoungByOld.dart';
 import '../controller/OldFamilyManagerController.dart';
 
@@ -43,8 +44,15 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildYoungsInformation(),
                 _buildOldsInformation(),
+                Container(
+                    margin: EdgeInsets.only(top: 20.h),
+                  child: Column(
+                    children: controller.myUser.map((young) {
+                      return _buildYoungsInformation(young);
+                    }).toList(),
+                  ),
+                ),
               ],
             ),
           );
@@ -55,7 +63,7 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
   }
 
 
-  Widget _buildYoungsInformation() {
+  Widget _buildYoungsInformation(YoungInformationResponseDto young) {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 24.h, left: 20.w,right: 20.w),
@@ -71,7 +79,7 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
             Navigator.push(
                 context,
                 PageTransition(
-                    type: PageTransitionType.fade, child: (YoungEditByOldView())));
+                    type: PageTransitionType.fade, child: (YoungEditByOldView(young))));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,11 +100,31 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
                               shape: BoxShape.circle
                           ),
                         ),
-                        Container(
+                        young.profileImageUrl==null? Container(
                           width: 68.w,
                           height: 68.h,
                           child: Image.asset("assets/common/user/youngMan.png"),
-                        )
+                        ): Container(
+                          margin: EdgeInsets.only(top: 0.h),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: wGrey100Color),
+                            shape: BoxShape.circle,
+                            color: wWhiteColor,
+                          ),
+                          height: 83.h,
+                          width: 83.h,
+                          // 원형을 만들기 위해 width와 height를 동일하게 설정
+                          clipBehavior: Clip.hardEdge,
+                          // 내용이 Container의 경계를 넘지 않도록 설정
+                          child: ClipOval(
+                            child: Image.network(
+                              young.profileImageUrl!,
+                              fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                              width: 83.h,
+                              height: 83.h,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -109,12 +137,12 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
                           children: [
                             Container(
                               height: 27.h,
-                              child: Title3Text("보호자 님",wGrey800Color),
+                              child: Title3Text("${young.name} 님",wGrey800Color),
                             ),
                             Container(
                               height: 21.h,
                               margin: EdgeInsets.only(left: 10.w),
-                              child: Body2Text("@Dkdud12", wGrey500Color),
+                              child: Body2Text("@${young.id}", wGrey500Color),
                             )
                           ],
                         ),
@@ -152,7 +180,7 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
   Widget _buildOldsInformation() {
     return Container(
       width: 360.w,
-      margin: EdgeInsets.only(top: 60.h),
+      margin: EdgeInsets.only(top: 20.h),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -176,11 +204,11 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
             borderRadius: BorderRadius.all(Radius.circular(5))),
         child: InkWell(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     PageTransition(
-            //         type: PageTransitionType.fade,
-            //         child: (OldEditByYoungView(user))));
+            Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.fade,
+                    child: (OldEditByYoungView(true, user))));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,10 +231,26 @@ class _OldFamilyManagerView extends State<OldFamilyManagerView> {
                           child: Image.asset(
                               "assets/common/user/old-man-circle.png"),
                         ):Container(
-                          width: 68.w,
-                          height: 68.h,
-                          child: Image.network(user.profileImageUrl!),
-                        )
+                          margin: EdgeInsets.only(top: 0.h),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: wGrey100Color),
+                            shape: BoxShape.circle,
+                            color: wWhiteColor,
+                          ),
+                          height: 83.h,
+                          width: 83.h,
+                          // 원형을 만들기 위해 width와 height를 동일하게 설정
+                          clipBehavior: Clip.hardEdge,
+                          // 내용이 Container의 경계를 넘지 않도록 설정
+                          child: ClipOval(
+                            child: Image.network(
+                              user.profileImageUrl!,
+                              fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                              width: 83.h,
+                              height: 83.h,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

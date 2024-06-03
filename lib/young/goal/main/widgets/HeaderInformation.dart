@@ -19,7 +19,10 @@ class HeaderInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => YoungGoalDetailView(controller.totalMyGoal), transition: Transition.fadeIn);
+        Get.to(
+            () => YoungGoalDetailView(
+                controller.totalInformation, controller.todayMyGoal),
+            transition: Transition.fadeIn);
       },
       child: Container(
         margin: EdgeInsets.only(),
@@ -41,7 +44,6 @@ class HeaderInformation extends StatelessWidget {
               ),
             ),
             _buildCircularProgress(),
-
           ],
         ),
       ),
@@ -119,12 +121,25 @@ class HeaderInformation extends StatelessWidget {
             color: wWhiteColor,
           ),
           height: 83.h,
+          width: 83.h, // 원형을 만들기 위해 width와 height를 동일하게 설정
+          clipBehavior: Clip.hardEdge, // 내용이 Container의 경계를 넘지 않도록 설정
           child: controller.totalInformation.profileImageUrl == null
-              ? Image.asset("assets/common/user/youngMan.png")
-              : Image.asset("assets/common/user/youngMan.png"),
+              ? Image.asset(
+            "assets/common/user/youngMan.png",
+            fit: BoxFit.cover, // 이미지를 Container에 맞게 조정
+          )
+              : ClipOval(
+            child: Image.network(
+              controller.totalInformation.profileImageUrl!,
+              fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+              width: 83.h,
+              height: 83.h,
+            ),
+          ),
         ),
         progressColor: wOrangeColor,
       ),
     );
   }
+
 }

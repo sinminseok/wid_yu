@@ -77,3 +77,5 @@ class OldInformationResponseDto {
 
   int? get userIdx => _userIdx;
 }
+
+final OldInformationResponseDto dubbyOld = OldInformationResponseDto(userIdx: 1, name: "12", profileImageUrl: "profileImageUrl", userType: "userType", id: "dsa", phoneNumber: "phoneNumber", address: "address", birth: "birth", inviteCode: '', isDisease: null, diseases: []);

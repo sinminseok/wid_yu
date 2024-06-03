@@ -8,9 +8,13 @@ import 'package:wid_yu/common/common-widget/button/PurpleButton.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
 class FinishConductView extends StatelessWidget {
-  const FinishConductView({Key? key}) : super(key: key);
+  bool isOld;
+
+
+  FinishConductView(this.isOld);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,12 @@ class FinishConductView extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 60.h),
             child: InkWell(
                 onTap: (){
-                  Get.to(() => OldFrameView(0));
+                  if(isOld){
+                    Get.offAll(() => OldFrameView(0));
+                  }else{
+                    Get.offAll(() => YoungFrameView(0));
+                  }
+
                 },
                 child: PurpleButton("확인")),
           )

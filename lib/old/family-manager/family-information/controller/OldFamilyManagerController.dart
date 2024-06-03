@@ -7,6 +7,7 @@ import '../../../../final-dto/common-dto/response/user/UserProfileResponse.dart'
 import '../../../../young/family-manager/dto/OldInformationResponseDto.dart';
 import '../../../../young/family-manager/dto/YoungInformationResponseDto.dart';
 import '../../../../young/family-manager/family-information/api/FamilyManaerApi.dart';
+import '../api/OldFamilyManagerApi.dart';
 
 
 class OldFamilyManagerController extends GetxController {
@@ -15,9 +16,9 @@ class OldFamilyManagerController extends GetxController {
 
 
   Future<bool> loadInit()async{
-    _myUser = await FamilyManagerApi().searchYoungs();
+    _myUser = await OldFamilyManagerApi().searchYoungs();
 
-    _olds = await FamilyManagerApi().searchOlds();
+    _olds = await OldFamilyManagerApi().searchOlds();
 
     return true;
   }

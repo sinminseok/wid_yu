@@ -67,11 +67,12 @@ class MyMission extends StatelessWidget {
     );
   }
 
+
   List<Widget> _buildTotalMissionWidgets() {
     List<Widget> missionWidgets = [];
     for (int index = 0; index < controller.totalGoals!.length; index++) {
       missionWidgets.add(
-          TotalMissionWidget(controller.totalGoals![index]));
+          TotalMissionWidget(true,controller.totalGoals![index]));
       if (index < controller.totalGoals!.length - 1) {
         missionWidgets.add(
           Container(

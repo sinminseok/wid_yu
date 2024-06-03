@@ -23,7 +23,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   }
 
    Widget Title1Text(String text, Color color){
-    return Text("${text}", style: TextStyle(color : color, fontSize: 24.sp , fontFamily: "Title1", fontWeight: FontWeight.w900),);
+    return Text("${text}", style: TextStyle(color : color, fontSize: 23.sp , fontFamily: "Title1", fontWeight: FontWeight.w900),);
   }
 
    Widget Title2Text(String text, Color color){

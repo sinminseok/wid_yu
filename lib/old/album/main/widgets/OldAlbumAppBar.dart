@@ -24,16 +24,16 @@ AppBar OldAlbumAppBar(OldAlbumController _controller) {
               margin: EdgeInsets.only(top: 10.h, left: 10.w),
               child: Image.asset("assets/common/common/appbar_logo.png"),
             ),
-            InkWell(
-                onTap: () {
-                  Get.to(() => LikePhotoView(_controller));
-                },
-                child: Container(
-                    margin: EdgeInsets.only(right: 10.w, top: 10.h),
-                    width: 30.w,
-                    height: 30.h,
-                    child: Icon(Icons.favorite_outline, color: wGrey800Color,)
-                )),
+            // InkWell(
+            //     onTap: () {
+            //       Get.to(() => LikePhotoView(_controller));
+            //     },
+            //     child: Container(
+            //         margin: EdgeInsets.only(right: 10.w, top: 10.h),
+            //         width: 30.w,
+            //         height: 30.h,
+            //         child: Icon(Icons.favorite_outline, color: wGrey800Color,)
+            //     )),
           ],
         ),
       )

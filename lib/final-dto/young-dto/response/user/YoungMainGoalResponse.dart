@@ -32,14 +32,16 @@ class YoungMainGoalResponse {
 
   factory YoungMainGoalResponse.fromJson(Map<String, dynamic> json) {
     List<GoalResponse>? goalsAndStatus = [];
-    if (json['goalsAndStatus'] != null) {
-      goalsAndStatus = List<GoalResponse>.from(json['goalsAndStatus'].map((x) => GoalResponse.fromJson(x)));
+    if (json['goals'] != null) {
+      goalsAndStatus = List<GoalResponse>.from(json['goals'].map((x) => GoalResponse.fromJson(x)));
     }
+
 
     List<OldResponseByYoung>? seniorsGoalList = [];
     if (json['seniorsGoalList'] != null) {
       seniorsGoalList = List<OldResponseByYoung>.from(json['seniorsGoalList'].map((x) => OldResponseByYoung.fromJson(x)));
     }
+
 
     return YoungMainGoalResponse(
       userIdx: json['userIdx'],
@@ -75,7 +77,7 @@ YoungMainGoalResponse currentUser = YoungMainGoalResponse(
     profileImageUrl: null,
     userType: null,
     percentage: 0.5,
-    goalsAndStatus: [goal1,goal1], seniorsGoalList: []);
+    goalsAndStatus: [], seniorsGoalList: []);
 
 
 YoungMainGoalResponse initCurrent = YoungMainGoalResponse(
@@ -85,4 +87,4 @@ YoungMainGoalResponse initCurrent = YoungMainGoalResponse(
     profileImageUrl: null,
     userType: null,
     percentage: 0.0,
-    goalsAndStatus: [goal1,goal1], seniorsGoalList: []);
+    goalsAndStatus: [], seniorsGoalList: []);

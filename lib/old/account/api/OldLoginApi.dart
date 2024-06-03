@@ -22,6 +22,7 @@ class OldLoginApi with ChangeNotifier {
       var extractJSessionId2 = await extractJSessionId(response);
       print(extractJSessionId2);
       prefs.setString("session", extractJSessionId2!);
+      //prefs.setString("fcmToken", fcmToken);
       return true;
     } else {
       return false;

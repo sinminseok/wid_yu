@@ -22,7 +22,6 @@ class OldGoalCreateController {
   // 선택된 사용자
   RxList<GoalTimeGeneratorRequest> addTimes = <GoalTimeGeneratorRequest>[].obs;
 
-
   //카테코리 선택
   RxBool _drug = false.obs;
   RxBool _outing = false.obs;
@@ -48,9 +47,7 @@ class OldGoalCreateController {
 
   RxBool _canSaveMission = false.obs;
 
-
-
-  void createGoal(BuildContext context) async{
+  void createGoal(BuildContext context) async {
     //todo useridx 선택
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -62,26 +59,26 @@ class OldGoalCreateController {
         day: createDays(),
         goalStatusList: addTimes.value);
 
-    var createGoalApi =await YoungGoalCreateApi().createGoalApi(goalGeneratorRequest);
+    var createGoalApi =
+        await YoungGoalCreateApi().createGoalApi(goalGeneratorRequest);
 
-    if(createGoalApi == true) {
+    if (createGoalApi == true) {
       OldGoalPopup().createGoalPopup(context);
-    }else{
+    } else {
       ToastMessage().showtoast("네트워크 오류");
     }
-
-
   }
 
   String createDays() {
     String result = '';
+    result += _sunday.value ? '1' : '0';
     result += _monday.value ? '1' : '0';
     result += _tuesday.value ? '1' : '0';
     result += _wednesday.value ? '1' : '0';
     result += _thursday.value ? '1' : '0';
     result += _friday.value ? '1' : '0';
     result += _saturday.value ? '1' : '0';
-    result += _sunday.value ? '1' : '0';
+
     return result;
   }
 
@@ -138,8 +135,6 @@ class OldGoalCreateController {
   TextEditingController _hourController = TextEditingController(text: "1");
   TextEditingController _minuteController = TextEditingController(text: "1");
 
-
-
   void validateTime() {
     final int hour = int.tryParse(_hourController.text) ?? 0;
     final int minute = int.tryParse(_minuteController.text) ?? 0;
@@ -164,21 +159,26 @@ class OldGoalCreateController {
     final int hour = int.parse(_hourController.text);
     final int minute = int.parse(_minuteController.text);
 
+    // 분이 한 자리 수일 경우 두 자리로 맞추기 위해 padLeft 사용
+    String minuteString = minute.toString().padLeft(2, '0');
+
     // 오후 선택 시 시간을 조정
     if (_afternoon.value) {
       // 오후인 경우 시간을 12시간 더하여 변환
       var adjustedHour = (hour == 12) ? 12 : hour + 12;
       var missionTime = GoalTimeGeneratorRequest(
-          '$adjustedHour:${_minuteController.text}:00',
-          _drugDountController.text == "" ? null : int.parse(_drugDountController.text)
-      );
+          '$adjustedHour:$minuteString:00',
+          _drugDountController.text == ""
+              ? null
+              : int.parse(_drugDountController.text));
       addTimes.add(missionTime);
     } else {
       // 오전인 경우 시간을 그대로 사용
       var missionTime = GoalTimeGeneratorRequest(
-          '${hour.toString().padLeft(2, '0')}:${_minuteController.text}:00',
-          _drugDountController.text == "" ? null : int.parse(_drugDountController.text)
-      );
+          '${hour.toString().padLeft(2, '0')}:$minuteString:00',
+          _drugDountController.text == ""
+              ? null
+              : int.parse(_drugDountController.text));
       addTimes.add(missionTime);
     }
 
@@ -190,11 +190,10 @@ class OldGoalCreateController {
     _afternoon.value = false;
   }
 
-
   // 추가된 복용 시간 삭제
   void deleteTime(GoalTimeGeneratorRequest missionTime) {
     final List<GoalTimeGeneratorRequest> updatedTimes =
-    List.from(addTimes.value);
+        List.from(addTimes.value);
     updatedTimes.remove(missionTime);
     addTimes.value = updatedTimes;
   }

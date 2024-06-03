@@ -63,7 +63,7 @@ class YoungPhotoWidget extends StatelessWidget {
             margin: EdgeInsets.only(left: 10.w),
             width: 210.w,
             height: 45.h,
-            child: Text(rewardReadResponse.description,overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily: "Body2",color: kTextBlackColor, fontWeight: FontWeight.w500,fontSize: 14.sp),),
+            child: Text(rewardReadResponse.description!,overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily: "Body2",color: kTextBlackColor, fontWeight: FontWeight.w500,fontSize: 14.sp),),
 
           ),
 
@@ -123,7 +123,7 @@ class YoungPhotoWidget extends StatelessWidget {
         height: 210.h,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(3.0),
-            child: Image.network(rewardReadResponse.url,fit: BoxFit.fitWidth,)),
+            child: Image.network(rewardReadResponse.url!,fit: BoxFit.fitWidth,)),
       ),
     );
   }
@@ -139,18 +139,34 @@ class YoungPhotoWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: 33.w,
-                  height: 33.h,
+                  margin: EdgeInsets.only(top: 0.h),
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: wGrey200Color
+                    border: Border.all(color: wGrey100Color),
+                    shape: BoxShape.circle,
+                    color: wWhiteColor,
                   ),
-                  child: Image.asset(commonImagePath + "user/youngMan.png"),
+                  height: 33.h,
+                  width: 33.h, // 원형을 만들기 위해 width와 height를 동일하게 설정
+                  clipBehavior: Clip.hardEdge, // 내용이 Container의 경계를 넘지 않도록 설정
+                  child: rewardReadResponse.uploaderImageUrl == null
+                      ? Image.asset(
+                    "assets/common/user/youngMan.png",
+                    fit: BoxFit.cover, // 이미지를 Container에 맞게 조정
+                  )
+                      : ClipOval(
+                    child: Image.network(
+                      rewardReadResponse.uploaderImageUrl!,
+                      fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                      width: 33.h,
+                      height: 33.h,
+                    ),
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 5.w),
-                  child: SubTitle2Text("보호자2 님",wTextBlackColor),
+                  child: SubTitle2Text("${rewardReadResponse.uploaderName} 님",wTextBlackColor),
                 ),
+
               ],
             ),
           ),
@@ -167,12 +183,12 @@ class YoungPhotoWidget extends StatelessWidget {
                     PageTransition(
                       type: PageTransitionType.fade,
                       //AddPhotoView
-                      child: EditPhotoView(),
+                      child: EditPhotoView(rewardReadResponse),
                     ),
                   );
 
                 } else if (value == 'option2') {
-                  DeleteRewardPopup().showDialog(context, rewardReadResponse.rewardIdx);
+                  DeleteRewardPopup().showDialog(context, rewardReadResponse.rewardIdx!);
                 }
               },
               itemBuilder: (BuildContext context) => [

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/constants/HealthType.dart';
 import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
+import 'package:wid_yu/young/health-infroamtion/heartbit/api/HeadtBitDetailApi.dart';
 import 'package:wid_yu/young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 
 import '../../../../common/common-widget/appbar/CommonAppbar.dart';
@@ -11,9 +12,10 @@ import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/FilePath.dart';
 
 class HeartBitDetailView extends StatefulWidget {
-  final UserResponse? user;
+  int userIdx;
 
-  HeartBitDetailView(this.user);
+
+  HeartBitDetailView(this.userIdx);
 
   @override
   State<HeartBitDetailView> createState() => _HeartBitDetailViewState();
@@ -64,9 +66,14 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              margin: EdgeInsets.only(left: 20.w, top: 20.h),
-              child: SubTitle2Text("심박수란?", wTextBlackColor),
+            InkWell(
+              onTap: (){
+                HeartBitDetailApi().loadHeartBitData(widget.userIdx, "HEARTBIT");
+              },
+              child: Container(
+                margin: EdgeInsets.only(left: 20.w, top: 20.h),
+                child: SubTitle2Text("심박수란?", wTextBlackColor),
+              ),
             ),
             Container(
               margin: EdgeInsets.only(top: 10.h, left: 20.w, right: 20.w),
@@ -138,7 +145,7 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
               Container(
                 margin: EdgeInsets.only(left: 5.w),
                 child: SubTitle1Text(
-                    "${widget.user?.name}",
+                    "이름ㅁ",
                     wTextBlackColor
                 ),
               )

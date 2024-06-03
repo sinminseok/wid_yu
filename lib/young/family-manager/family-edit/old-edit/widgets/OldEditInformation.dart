@@ -24,7 +24,7 @@ class _OldEditInformationState extends State<OldEditInformation> {
     return Container(
       margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w),
       width: 335.w,
-      height: 168.h,
+      height: 198.h,
       decoration: BoxDecoration(
         color: wWhiteColor,
         border: Border.all(color: wGrey100Color),
@@ -32,9 +32,10 @@ class _OldEditInformationState extends State<OldEditInformation> {
       ),
       child: Column(
         children: [
+
           _buildPhoneNumber(context),
           _buildDivider(),
-          _buildAddress(),
+          _buildAddress(context),
           _buildDivider(),
           _buildBrith()
         ],
@@ -42,8 +43,8 @@ class _OldEditInformationState extends State<OldEditInformation> {
     );
   }
 
-  Widget _buildAddress() {
-    return Container(
+  Widget _buildAddress(BuildContext context) {
+    return Obx(() => Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
       width: 310.w,
       child: Row(
@@ -53,33 +54,29 @@ class _OldEditInformationState extends State<OldEditInformation> {
             height: 21.h,
             child: SubTitle2Text("집주소", wGrey600Color),
           ),
-          Container(
-                width: 150.w,
-                child: TextFormField(
-                  onChanged: (value) {
-                  },
-                  controller: widget.controller.addressController,
-                  style: TextStyle(color: Colors.black),
-                  // 텍스트 색상을 검정색으로 설정
-                  textAlign: TextAlign.right,
-                  // 텍스트를 왼쪽으로 정렬
-                  cursorColor: kTextBlackColor,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 3.h),
-                    hintText: "주소",
-                    hintStyle: TextStyle(
-                        color: wGrey300Color,
-                        fontSize: 14.sp,
-                        fontFamily: "Body1"),
-                    border: InputBorder.none,
-                    isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                  ),
-
+          Row(
+            children: [
+              widget.controller.addressController == ""?Container(
+                  margin: EdgeInsets.only(right: 5.w),
+                  child: Body2Text("집주소 검색", wGrey300Color)
+              ):Container(
+                  width: 150.w,
+                  margin: EdgeInsets.only(right: 5.w),
+                  child: Body2Text("${widget.controller.addressController}", wTextBlackColor)
+              ),
+              InkWell(
+                onTap: (){
+                  widget.controller.addressAPI(context);
+                },
+                child: Container(
+                  child: Icon(Icons.search),
                 ),
               )
+            ],
+          )
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildBrith() {
@@ -133,34 +130,49 @@ class _OldEditInformationState extends State<OldEditInformation> {
   }
 
   Widget _buildPhoneNumber(BuildContext context) {
+    var phoneNumberFormatter = MaskTextInputFormatter(
+      mask: '###########', // Define the format mask as 11 digits
+      filter: {"#": RegExp(r'[0-9]')}, // Allow only numeric input
+    );
+
     return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
+      margin: EdgeInsets.only(top: 16.h, bottom: 15.h, left: 16.w, right: 16.w),
       width: 310.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             height: 21.h,
-            child: SubTitle2Text("연락처", wGrey600Color),
+            child: SubTitle2Text("전화번호", wGrey600Color),
           ),
-          InkWell(
-            onTap: () async{
-              final result = await Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => EditPhoneNumberView("")),
-              );
-              widget.controller.updatePhoneNumber(result);
-              setState(() {
-              });
-              //Get.to(() => EditPhoneNumberView());
-            },
-            child: Container(
-              child:
-                  Body1Text("${widget.controller.phoneNumberController.text}", kTextBlackColor),
+          Container(
+            width: 130.w,
+            child: TextFormField(
+              onChanged: (value) {},
+              controller: widget.controller.phoneNumberController,
+              inputFormatters : [
+                phoneNumberFormatter,
+                LengthLimitingTextInputFormatter(11),
+              ],
+              style: TextStyle(color: Colors.black),
+              textAlign: TextAlign.right,
+              cursorColor: kTextBlackColor,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(bottom: 3.h),
+                hintText: "ex)01012341234",
+                hintStyle: TextStyle(
+                  color: wGrey300Color,
+                  fontSize: 14.sp,
+                  fontFamily: "Body1",
+                ),
+                border: InputBorder.none,
+                isDense: true,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
+
 }

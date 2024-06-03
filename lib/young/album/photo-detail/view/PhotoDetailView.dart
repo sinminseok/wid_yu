@@ -18,20 +18,22 @@ class PhotoDetailView extends StatelessWidget {
     return Scaffold(
       backgroundColor: wPurpleBackGroundColor,
       appBar: CommonAppBar(canBack: true,title: "", color: wPurpleBackGroundColor,),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 376.w,
-            height: 244.h,
-          child: Image.asset("assets/common/album/family_photo.png",fit: BoxFit.fitWidth,)
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 15.h,left: 20.w),
-            child: Body2Text(reward.description, kTextBlackColor),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 376.w,
+              height: 624.h,
+            child: Image.network(reward.url!,fit: BoxFit.fill,)
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 15.h,left: 20.w),
+              child: Body2Text(reward.description!, kTextBlackColor),
+            )
+          ],
+        ),
       ),
     );
   }

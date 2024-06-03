@@ -121,16 +121,21 @@ class AccountPopup {
                                   OldLoginDto? createOldAccount =await controller.joinOld(old);
 
                                   print("object");
-                                  print(createOldAccount);
+                                  print(id);
+                                  print(name);
+                                  print(phoneNumber);
+
 
                                   if(createOldAccount == null){
                                     ToastMessage().showtoast("다시 시도해주세요.");
                                   }else{
-                                    Navigator.push(
+
+
+                                     Navigator.push(
                                         context,
                                         PageTransition(
                                             type: PageTransitionType.fade,
-                                            child: (JoinSuccessView(id!,name!, phoneNumber!,[createOldAccount]))));
+                                            child: (JoinSuccessView(name, phoneNumber, id,[createOldAccount]))));
                                   }
 
                                 },

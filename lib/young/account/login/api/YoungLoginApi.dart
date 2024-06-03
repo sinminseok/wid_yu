@@ -21,8 +21,6 @@ class YoungLoginApi extends ChangeNotifier {
         body: json.encode({'id': id, 'password': pw, 'fcmToken': fcmToken}));
 
 
-    print(jsonDecode(utf8.decode(response.bodyBytes)));
-    print(response.statusCode);
 
     //쿠키 저장
     if (response.statusCode == 200) {
@@ -30,6 +28,7 @@ class YoungLoginApi extends ChangeNotifier {
       var extractJSessionId2 = await extractJSessionId(response);
       print(extractJSessionId2);
       prefs.setString("session", extractJSessionId2!);
+      prefs.setString("fcmToken", fcmToken);
       return true;
     }
     return false;

@@ -9,7 +9,7 @@ import '../../../../common/api/CommonApiUrl.dart';
 import '../../dto/YoungInformationResponseDto.dart';
 
 class FamilyManagerApi with ChangeNotifier {
-  final String SEARCH_ALL_USER  = ROOT_API + "guardian/info/seniors";
+  final String SEARCH_ALL_USER  = ROOT_API + "guardian/info/with-seniors";
 
   Future<List<YoungInformationResponseDto>> searchYoungs() async{
     List<YoungInformationResponseDto> answer = [];
@@ -27,13 +27,23 @@ class FamilyManagerApi with ChangeNotifier {
       },
     );
 
-    //young
+
+    print(utf8.decode(response.bodyBytes));
+    print("ASFASFAS");
+    print(json.decode(utf8.decode(response.bodyBytes))["data"]["apiUserResponseDto"]);
 
     if(response.statusCode == 200){
       List<YoungInformationResponseDto> answer = [];
-      answer =  List<YoungInformationResponseDto>.from(json.decode(utf8.decode(response.bodyBytes))["data"]["guardianDetailResponseDtos"].map((x) => YoungInformationResponseDto.fromJson(x)));
+
+      if(json.decode(utf8.decode(response.bodyBytes))["data"]["guardianDetailResponseDtos"].length != 0){
+        answer =  List<YoungInformationResponseDto>.from(json.decode(utf8.decode(response.bodyBytes))["data"]["guardianDetailResponseDtos"].map((x) => YoungInformationResponseDto.fromJson(x)));
+      }
+
+      answer.add(YoungInformationResponseDto.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]["apiUserResponseDto"]));
+
       return answer;
     }
+
 
     return answer;
   }
@@ -55,7 +65,6 @@ class FamilyManagerApi with ChangeNotifier {
     );
 
     //young
-    print("gsdfsdsdf");
     print(json.decode(utf8.decode(response.bodyBytes))["data"]["seniorDetailResponseDtos"]);
 
     if(response.statusCode == 200){

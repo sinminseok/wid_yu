@@ -1,25 +1,21 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
-import 'package:wid_yu/common/dto/user/User.dart';
-import 'package:wid_yu/common/dto/user/YoungUser.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
 import 'package:wid_yu/young/goal/goal-edit/api/GoalEditApi.dart';
+import 'package:wid_yu/young/goal/goal-edit/dto/GoalEditRequest.dart';
+import 'package:wid_yu/young/goal/goal-edit/dto/GoalTimeEditRequest.dart';
 
-import '../../../../common/utils/PopUp.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalGeneratorRequest.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';
-import '../../../../final-dto/common-dto/response/user/UserType.dart';
-import '../../../../old/goal/goal-create/popup/OldGoalPopup.dart';
-import '../../goal-create/api/YoungGoalCreateApi.dart';
+import '../../popup/SaveFinishPopup.dart';
 
 class GoalEditController extends GetxController {
   // 선택된 사용자
-  RxList<GoalTimeGeneratorRequest> addTimes = <GoalTimeGeneratorRequest>[].obs;
+  RxList<GoalTimeEditRequest> addTimes = <GoalTimeEditRequest>[].obs;
+  late GoalResponse goalResponse;
 
   //목표 텍스트 컨트롤러
   TextEditingController _titleController = TextEditingController();
@@ -58,17 +54,20 @@ class GoalEditController extends GetxController {
   RxBool _canSaveMission = false.obs;
 
   GoalEditController(GoalResponse _currentGoal) {
-    initType(_currentGoal.type);
-    initDay(_currentGoal.day);
-    initTimes(_currentGoal.times);
-    _titleController.text = _currentGoal.title;
-    _contentController.text = _currentGoal.description;
+    goalResponse = _currentGoal;
+    initType(_currentGoal.type!);
+    initDay(_currentGoal.day!);
+    initTimes(_currentGoal.times!);
+    _titleController.text = _currentGoal.title!;
+    _contentController.text = _currentGoal.description!;
   }
 
   void initTimes(List<GoalTimeResponse> times) {
     for (int i = 0; i < times.length; i++) {
-
-      GoalTimeGeneratorRequest initTime = GoalTimeGeneratorRequest(times[i].time!, times[i].pillNum);
+      GoalTimeEditRequest initTime = GoalTimeEditRequest(
+          goalStatusIdx: times[i].goalStatusIdx!,
+          time: times[i].time!,
+          pullNum: times[i].pillNum);
       addTimes.add(initTime);
     }
   }
@@ -84,44 +83,71 @@ class GoalEditController extends GetxController {
   }
 
   void initDay(String day) {
-    _monday.value = (day[0] == '1');
-    _tuesday.value = (day[1] == '1');
-    _wednesday.value = (day[2] == '1');
-    _thursday.value = (day[3] == '1');
-    _friday.value = (day[4] == '1');
-    _saturday.value = (day[5] == '1');
-    _sunday.value = (day[6] == '1');
+    _monday.value = (day[1] == '1');
+    _tuesday.value = (day[2] == '1');
+    _wednesday.value = (day[3] == '1');
+    _thursday.value = (day[4] == '1');
+    _friday.value = (day[5] == '1');
+    _saturday.value = (day[6] == '1');
+    _sunday.value = (day[0] == '1');
   }
-
 
   void updateGoal(BuildContext context) async {
     //todo useridx 선택
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    GoalGeneratorRequest goalGeneratorRequest = GoalGeneratorRequest(
-        userIdx: prefs.getInt("user_idx"),
+    GoalEditRequest goalEditRequest = GoalEditRequest(
+        goalIdx: goalResponse.goalIdx,
+        userIdx: goalResponse.userIdx,
         title: _titleController.text,
         description: _contentController.text,
         type: createGoalType().toString(),
         day: createDays(),
-        goalStatusList: addTimes.value);
+        goalStatusList: parseTime());
 
-    GoalEditApi().editGoalApi(goalGeneratorRequest);
+    bool response = await GoalEditApi().editGoalApi(goalEditRequest);
+
+    if(response){
+      SaveFinishPopup().showDialog(context, false);
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('네트워크 오류'),
+        duration: Duration(seconds: 3),
+        action: SnackBarAction(
+          label: '확인',
+          onPressed: () {},
+        ),
+      ));
+    }
   }
 
-  Future<bool> deleteGoal(int goalIdx)async{
+  List<GoalTimeEditRequest> parseTime() {
+    List<GoalTimeEditRequest> updatedTimes = addTimes.map((timeEditRequest) {
+      // time 값이 "HH:mm" 형식인 경우 "HH:mm:00" 형식으로 변환
+      if (timeEditRequest.time.length == 5) {
+        timeEditRequest.time = "${timeEditRequest.time}:00";
+      }
+      return timeEditRequest;
+    }).toList();
+
+    return updatedTimes;
+  }
+
+
+  Future<bool> deleteGoal(int goalIdx) async {
     return await GoalEditApi().deleteGoalApi(goalIdx);
   }
 
   String createDays() {
     String result = '';
+    result += _sunday.value ? '1' : '0';
     result += _monday.value ? '1' : '0';
     result += _tuesday.value ? '1' : '0';
     result += _wednesday.value ? '1' : '0';
     result += _thursday.value ? '1' : '0';
     result += _friday.value ? '1' : '0';
     result += _saturday.value ? '1' : '0';
-    result += _sunday.value ? '1' : '0';
+
     return result;
   }
 
@@ -195,17 +221,20 @@ class GoalEditController extends GetxController {
     if (_afternoon.value) {
       // 오후인 경우 시간을 12시간 더하여 변환
       var adjustedHour = (hour == 12) ? 12 : hour + 12;
-      var missionTime = GoalTimeGeneratorRequest(
-          '$adjustedHour:${_minuteController.text}:00',
-          _drugDountController.text == ""
+      var missionTime = GoalTimeEditRequest(
+          goalStatusIdx: null,
+          time: '$adjustedHour:${_minuteController.text}:00',
+          pullNum: _drugDountController.text == ""
               ? null
               : int.parse(_drugDountController.text));
       addTimes.add(missionTime);
     } else {
       // 오전인 경우 시간을 그대로 사용
-      var missionTime = GoalTimeGeneratorRequest(
-          '${hour.toString().padLeft(2, '0')}:${_minuteController.text}:00',
-          _drugDountController.text == ""
+      var missionTime = GoalTimeEditRequest(
+          time:
+              '${hour.toString().padLeft(2, '0')}:${_minuteController.text}:00',
+          goalStatusIdx: null,
+          pullNum: _drugDountController.text == ""
               ? null
               : int.parse(_drugDountController.text));
       addTimes.add(missionTime);
@@ -220,9 +249,8 @@ class GoalEditController extends GetxController {
   }
 
   // 추가된 복용 시간 삭제
-  void deleteTime(GoalTimeGeneratorRequest missionTime) {
-    final List<GoalTimeGeneratorRequest> updatedTimes =
-        List.from(addTimes.value);
+  void deleteTime(GoalTimeEditRequest missionTime) {
+    final List<GoalTimeEditRequest> updatedTimes = List.from(addTimes.value);
     updatedTimes.remove(missionTime);
     addTimes.value = updatedTimes;
   }

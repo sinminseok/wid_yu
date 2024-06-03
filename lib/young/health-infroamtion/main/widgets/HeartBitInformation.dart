@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:wid_yu/old/health-information/dto/OldHealthResponse.dart';
 import 'package:wid_yu/young/health-infroamtion/heartbit/view/HeartBitDetailView.dart';
 
 import '../../../../common/utils/Color.dart';
@@ -13,9 +14,10 @@ import '../controller/YoungHealthInformationController.dart';
 import '../../o2/view/O2DetailView.dart';
 
 class HeartBitInformation extends StatefulWidget {
-  final YoungHealthInformationController controller;
+  OldHealthResponse user;
 
-  HeartBitInformation(this.controller);
+
+  HeartBitInformation(this.user);
 
   @override
   State<HeartBitInformation> createState() => _HeartBitInformationState();
@@ -44,10 +46,21 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     return InkWell(
 
         onTap: (){
-          Get.to(() => HeartBitDetailView(widget.controller.currentUser.value), transition: Transition.fadeIn);
+          Get.to(() => HeartBitDetailView(widget.user.userIdx), transition: Transition.fadeIn);
         },
-        child: _buildNormal());
+        child: _buildHeartBitInformation());
   }
+
+  Widget _buildHeartBitInformation(){
+    double hb = widget.user.heartBit;
+    if(60 < hb! && 100 > hb!){
+      return _buildNormal();
+    }else if((100 <= hb && hb < 120) || 30 <= hb && hb < 60){
+      return _buildAttention();
+    }
+    return _buildDangerous();
+  }
+
 
   Widget _buildNormal() {
     return _buildContainer(
@@ -90,7 +103,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     required String message,
     required Widget graph,
   }) {
-    return Obx(() => Container(
+    return Container(
       width: 275.w,
 
       margin: EdgeInsets.only(left: 3.w, right: 12.w, top: 10.h),
@@ -140,7 +153,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
                             children: [
                               Container(
                                 child: Text(
-                                  "${widget.controller.getUserHeartBit()}",
+                                  "${widget.user.heartBit}",
                                   style: TextStyle(
                                     fontSize: 22.sp,
                                     fontWeight: FontWeight.w900,
@@ -182,7 +195,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
           )
         ],
       ),
-    ));
+    );
   }
 
   Widget _buildGraph(int purpleCount, int yellowCount, int errorCount) {

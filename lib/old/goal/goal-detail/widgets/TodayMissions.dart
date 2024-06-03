@@ -18,11 +18,7 @@ class TodayMissions extends StatelessWidget {
 
   TodayMissions(this.controller);
 
-  final List<GoalResponse> items = [
-    GoalResponse(goalIdx: 1, title: "title", description: "asd", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
-    GoalResponse(goalIdx: 1,  title: "title", description: "asd", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
-    GoalResponse(goalIdx: 1,title: "title", description: "asd", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +34,9 @@ class TodayMissions extends StatelessWidget {
   Widget _buildTodayMission() {
     return Column(
       children: [
-        //DrugMissionWidget(items[1]),
-        //WalkMissionWidget(items[2]),
-        //CommonMissionWidget(items[2]),
+        DrugMissionWidget(controller.toDrugGoals()),
+        WalkMissionWidget(controller.toWaolGoals()),
+        CommonMissionWidget(controller.toCommonGoals()),
       ],
     );
   }

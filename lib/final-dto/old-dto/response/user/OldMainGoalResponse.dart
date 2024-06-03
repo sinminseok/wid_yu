@@ -26,32 +26,26 @@ class OldMainGoalResponse {
         _goalsAndStatus = goalsAndStatus;
 
   factory OldMainGoalResponse.fromJson(Map<String, dynamic> json) {
-    // JSON 데이터에서 필요한 값을 추출하여 객체 생성
     return OldMainGoalResponse(
-      userIdx: json['oldIndex'],
-      name: json['name'],
-      profileImageUrl: json['profileImageUrl'],
-      userType: json['userType'],
-      percentage: json['percentage'],
-      point: json['point'],
-      goalsAndStatus: (json['goalsAndStatus'] as List).map((goal) {
-        // GoalResponse 객체 생성
-        return GoalResponse.fromJson(goal);
-      }).toList(),
+      userIdx: json['userIdx'] as int?,
+      name: json['name'] as String?,
+      profileImageUrl: json['profileImageUrl'] as String?,
+      userType: json['userType'] as String?,
+      percentage: (json['percentage'] as num).toDouble(),
+      point: json['point'] as int?,
+      goalsAndStatus: (json['goals'] as List)
+          .map((goal) => GoalResponse.fromJson(goal as Map<String, dynamic>))
+          .toList(),
+
+
     );
   }
 
-  List<GoalResponse>? get goalsAndStatus => _goalsAndStatus;
-
-  int? get point => _point;
-
-  double get percentage => _percentage;
-
-  String? get userType => _userType;
-
-  String? get profileImageUrl => _profileImageUrl;
-
-  String? get name => _name;
-
   int? get userIdx => _userIdx;
+  String? get name => _name;
+  String? get profileImageUrl => _profileImageUrl;
+  String? get userType => _userType;
+  double get percentage => _percentage;
+  int? get point => _point;
+  List<GoalResponse>? get goalsAndStatus => _goalsAndStatus;
 }

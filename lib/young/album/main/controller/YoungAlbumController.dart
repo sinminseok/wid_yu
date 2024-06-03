@@ -16,11 +16,13 @@ class YoungAlbumController extends GetxController {
     videos = [];
     List<YoungRewardReadResponse> response =
         await YoungAlbumApi().loadAllReward();
+    print(response.length);
 
     for (int i = 0; i < response.length; i++) {
       if (response[i].type == "IMAGE") {
         photos.add(response[i]);
       } else {
+
         videos.add(response[i]);
       }
     }

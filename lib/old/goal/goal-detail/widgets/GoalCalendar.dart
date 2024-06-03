@@ -98,6 +98,7 @@ class _GoalCalendarState extends State<GoalCalendar> {
                     child: Column(
                       children: [
                         Container(
+
                           height: 30.h,
                           child: PercentageText(
                               "13%",
@@ -191,7 +192,7 @@ class _GoalCalendarState extends State<GoalCalendar> {
                   childAspectRatio: 1 / 1.5,
                   crossAxisCount: 7, // 7 columns for 7 days in a week
                 ),
-                itemCount: totalDaysInMonth,
+                itemCount: widget.controller.monthPercentage.length,
                 itemBuilder: (BuildContext context, int index) {
                   DateTime currentDate = DateTime(year, month, index + 1);
                   bool isToday = currentDate.day == now.day &&
@@ -208,11 +209,11 @@ class _GoalCalendarState extends State<GoalCalendar> {
                           child: CircularPercentIndicator(
                               radius: 14.0.sp,
                               lineWidth: 5.5.sp,
-                              backgroundColor: wGrey100Color,
+                              backgroundColor: wGrey200Color,
                               circularStrokeCap: CircularStrokeCap.round,
-                              percent: 0.7, // Set your percentage here
+                              percent: widget.controller.monthPercentage[index].percentage!, // Set your percentage here
 
-                              progressColor:wOrangeColor
+                              progressColor:wPurpleColor
                           ),
                         ),
                       ],

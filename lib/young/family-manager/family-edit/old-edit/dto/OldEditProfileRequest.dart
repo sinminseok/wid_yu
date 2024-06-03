@@ -8,7 +8,6 @@ import 'OldEditDiseaseRequest.dart';
 
 class OldEditProfileRequest {
   String? _name;
-  String? _profileImageUrl;
   String? _phoneNumber;
   String? _address;
   String? _birth;
@@ -16,13 +15,11 @@ class OldEditProfileRequest {
 
   OldEditProfileRequest({
     required String? name,
-    required String? profileImageUrl,
     required String? phoneNumber,
     required String? address,
     required String? birth,
     required List<OldEditDiseaseRequest>? diseases,
   })  : _name = name,
-        _profileImageUrl = profileImageUrl,
         _phoneNumber = phoneNumber,
         _address = address,
         _birth = birth,
@@ -31,7 +28,6 @@ class OldEditProfileRequest {
   Map<String, dynamic> toJson() {
     return {
       'name': _name,
-      'profileImageUrl': _profileImageUrl,
       'phoneNumber': _phoneNumber,
       'address': _address,
       'birth': _birth,
@@ -49,7 +45,6 @@ class OldEditProfileRequest {
 
   String? get phoneNumber => _phoneNumber;
 
-  String? get profileImageUrl => _profileImageUrl;
 
   String? get name => _name;
 }

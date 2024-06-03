@@ -36,7 +36,6 @@ class YoungMissionAddTime extends StatelessWidget {
 
   Widget _buildDrugTimeWidget(GoalTimeGeneratorRequest missionTime) {
     return Container(
-      width: 142.w,
       height: 36.h,
       margin: EdgeInsets.only(right: 15.w),
       decoration: BoxDecoration(
@@ -57,7 +56,7 @@ class YoungMissionAddTime extends StatelessWidget {
             children: [
               missionTime.pullNum == null?
                   Container():Container(
-                margin: EdgeInsets.only(bottom: 2.h,right: 3.w),
+                margin: EdgeInsets.only(bottom: 2.h,right: 3.w,left: 10.w),
                 child: ChipText(
                     "${missionTime.pullNum}개",
                     wGrey500Color

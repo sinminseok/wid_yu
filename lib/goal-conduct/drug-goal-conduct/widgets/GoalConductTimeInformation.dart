@@ -21,7 +21,7 @@ class GoalConductTimeInformation extends StatelessWidget {
       children: [
         Container(
             margin: EdgeInsets.only(top: 30.h),
-            child: MissionTimeWidget(controller.goal.times, context)),
+            child: MissionTimeWidget(controller.goal.times!, context)),
         Container(
           margin: EdgeInsets.only(top: 35.h),
           width: 200.w,

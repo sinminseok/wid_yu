@@ -57,8 +57,8 @@ class YoungJoinTotalController extends GetxController {
           _verifyNumberController.text, _phoneNumberController.text);
       if (response) {
         _canNextStep.value = true;
-        prefs.setString("young_join_name", _nameController.text);
-        prefs.setString("young_join_phone_number", _phoneNumberController.text);
+        await prefs.setString("young_join_name", _nameController.text);
+        await prefs.setString("young_join_phone_number", _phoneNumberController.text);
       } else {
         ToastMessage().showtoast("인증 번호가 다릅니다.");
       }
@@ -277,8 +277,6 @@ class YoungJoinTotalController extends GetxController {
 
   Future<OldLoginDto?> joinOld(OldGeneratorRequest old) async {
     OldLoginDto? oldLoginDto = await api.createOldAccount(old);
-    print("ggggg");
-    print(oldLoginDto);
     return oldLoginDto;
   }
 

@@ -19,17 +19,17 @@ class HealthFloatingButton extends StatefulWidget {
 class _HealthFloatingButtonState extends State<HealthFloatingButton> {
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            // Container(
-            //   child: widget.controller.currentUser.value!.isConnect!
-            //       ? Container()
-            //       : _buildNotConnectFloating(),
-            // ),
-          ],
-        ));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Container(
+          child: false!
+              ? Container()
+              : _buildNotConnectFloating(),
+        ),
+      ],
+    );
   }
 
   FloatingActionButton _buildDangerousFloating() {

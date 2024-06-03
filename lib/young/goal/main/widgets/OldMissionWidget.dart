@@ -72,25 +72,37 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
               margin: EdgeInsets.only(left: 10.w, top: 15.h),
               width: 70.0.w, // Container의 너비
               // Container의 높이
-              child: Container(
-                child: CircularPercentIndicator(
-                  radius: 28.0.w,
-                  backgroundColor: wGrey200Color,
-                  circularStrokeCap: CircularStrokeCap.round,
-                  // 부모 컨테이너의 크기에 맞게 조절
-                  lineWidth: 5.0.w,
-                  percent: widget.old.percentage!,
-                  center: Container(
-                      height: 49.h,
-                      width: 49.w,
+              child:       Container(
+                margin: EdgeInsets.only(left: 15.w, top: 0.h, bottom: 10.h),
+                width: 85.0.h, // Container의 너비
+                height: 85.0.h, // Container의 높이
+                child: Container(
+                  margin: EdgeInsets.only(left: 5.w, top: 5.h),
+                  child: CircularPercentIndicator(
+                    radius: 28.0.w,
+                    backgroundColor: wGrey200Color,
+                    circularStrokeCap: CircularStrokeCap.round,
+                    lineWidth: 5.0,
+                    percent: widget.old.percentage!,
+                    center: Container(
+                      height: 55.h,
+                      width: 55.h,
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: wGrey100Color,
-                      ),
+                          color: wGrey100Color, shape: BoxShape.circle),
                       child: widget.old.profile == null
-                          ? Image.asset("assets/common/user/old-man-circle.png")
-                          : Image.network(widget.old.profile!)),
-                  progressColor: wOrangeColor,
+                          ? Image.asset(
+                          "assets/common/user/old-man-circle.png")
+                          : ClipOval(
+                        child: Image.network(
+                          widget.old.profile!,
+                          fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                          width: 55.h,
+                          height: 55.h,
+                        ),
+                      ),
+                    ),
+                    progressColor: wOrangeColor,
+                  ),
                 ),
               ),
             ),
@@ -156,23 +168,26 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
     List<Widget> missionWidgets = [];
 
     for (int index = 0; index < widget.old.goalsAndStatus!.length; index++) {
-      missionWidgets
-          .add(MissionWidget(false, widget.old.goalsAndStatus![index]));
+      if(widget.old.goalsAndStatus![0].goalIdx != 0) {
+        missionWidgets
+            .add(MissionWidget(false, widget.old.goalsAndStatus![index]));
 
-      if (index < widget.old.goalsAndStatus!.length - 1) {
-        missionWidgets.add(
-          Container(
-            margin: EdgeInsets.only(top: 15.h),
-            width: 340,
-            height: 1,
-            color: kLightGreyColor,
-          ),
-        );
-      } else {
-        missionWidgets.add(Container(
-          height: 15.h,
-        ));
+        if (index < widget.old.goalsAndStatus!.length - 1) {
+          missionWidgets.add(
+            Container(
+              margin: EdgeInsets.only(top: 15.h),
+              width: 340,
+              height: 1,
+              color: kLightGreyColor,
+            ),
+          );
+        } else {
+          missionWidgets.add(Container(
+            height: 15.h,
+          ));
+        }
       }
+
     }
 
     return missionWidgets;

@@ -40,8 +40,6 @@ class GoalConductApi {
     // 요청 보내기
     var response = await http.Response.fromStream(await formData.send());
 
-    print("object");
-    print(response.statusCode);
     print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {

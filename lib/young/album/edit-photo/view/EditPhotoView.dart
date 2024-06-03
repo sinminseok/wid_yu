@@ -10,10 +10,15 @@ import '../../../../common/common-widget/button/PurpleButton.dart';
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/FilePath.dart';
+import '../../../../final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 import '../../popup/SaveRewardPopup.dart';
+import '../controller/EditPhotoController.dart';
 
 class EditPhotoView extends StatefulWidget {
-  const EditPhotoView({Key? key}) : super(key: key);
+  YoungRewardReadResponse reward;
+
+
+  EditPhotoView(this.reward);
 
   @override
   _EditPhotoViewState createState() => _EditPhotoViewState();
@@ -22,7 +27,9 @@ class EditPhotoView extends StatefulWidget {
 class _EditPhotoViewState extends State<EditPhotoView> {
   XFile? image_picked; //이미지를 담을 변수 선언
   final ImagePicker picker = ImagePicker(); //ImagePicker 초기화
-  TextEditingController _textController = TextEditingController();
+
+  EditPhotoController _controller = EditPhotoController();
+
 
   //이미지를 가져오는 함수
   Future getImage() async {
@@ -32,12 +39,20 @@ class _EditPhotoViewState extends State<EditPhotoView> {
     if (pickedFile != null) {
       setState(() {
         image_picked = pickedFile;
+        _controller.updateImage(image_picked!);
       });
     }
   }
 
+
+  @override
+  void initState() {
+    _controller.loadInit(widget.reward);
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: wPurpleBackGroundColor,
@@ -49,7 +64,7 @@ class _EditPhotoViewState extends State<EditPhotoView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildPhotoInformation(),
+            _buildPhotoInformation(_controller.textController),
             _buildSaveButton(),
           ],
         ),
@@ -57,7 +72,7 @@ class _EditPhotoViewState extends State<EditPhotoView> {
     );
   }
 
-  Widget _buildPhotoInformation() {
+  Widget _buildPhotoInformation(TextEditingController _textController) {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 50.h,left: 12.w, right: 12.w),
@@ -145,24 +160,8 @@ class _EditPhotoViewState extends State<EditPhotoView> {
         decoration: BoxDecoration(
             color: wGrey300Color,
             borderRadius: BorderRadius.all(Radius.circular(6))),
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  width: 18.w,
-                  height: 18.h,
-                  child: Image.asset("assets/images/icon/gallery-icon.png")
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10.h),
-                child: Helper2Text(
-                    "사진 선택",
-                    wGrey600Color
-                ),
-              )
-            ],
-          ),
+        child:  Container(
+            child: Image.network(widget.reward.url!, fit: BoxFit.fitWidth,)
         ),
       ),
     );
@@ -170,15 +169,19 @@ class _EditPhotoViewState extends State<EditPhotoView> {
 
   Widget _buildDoneSelectPhoto() {
     return Container(
-        width: 310.w,
-        height: 210.w,
-        decoration: BoxDecoration(
-            color: wGrey300Color,
-            borderRadius: BorderRadius.all(Radius.circular(6))),
-        child: Image.file(
-          File(image_picked!.path),
-          fit: BoxFit.fitWidth,
-        ));
+
+      child: Container(
+          margin: EdgeInsets.only(top: 40.h,left: 13.w, right: 13.w),
+          width: 324.w,
+          height: 210.w,
+          decoration: BoxDecoration(
+              color: wGrey300Color,
+              borderRadius: BorderRadius.all(Radius.circular(6))),
+          child: Image.file(
+            File(image_picked!.path),
+            fit: BoxFit.fitWidth,
+          )),
+    );
   }
 
 
@@ -187,7 +190,8 @@ class _EditPhotoViewState extends State<EditPhotoView> {
         margin: EdgeInsets.only(top: 100.h,right: 20.w,left: 20.w),
         child: InkWell(
             onTap: (){
-              EditRewardPopup().showDialog(context);
+              _controller.editReward(context);
+              //EditRewardPopup().showDialog(context);
             },
             child: PurpleButton("수정 완료하기")));
   }

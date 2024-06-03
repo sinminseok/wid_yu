@@ -16,7 +16,7 @@ class YoungGoalApi with ChangeNotifier {
   Future<YoungMainGoalResponse?> loadMainPage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var session =await prefs.getString("session");
+    var session = await prefs.getString("session");
 
 
     var response = await http.get(
@@ -28,23 +28,35 @@ class YoungGoalApi with ChangeNotifier {
       },
     );
 
-    print("dasdasd");
-    print(json.decode(utf8.decode(response.bodyBytes)));
+    print((json
+       .decode(utf8.decode(response.bodyBytes))["data"]));
+
+    print("------");
+
 
     if (response.statusCode == 200) {
-      int userIdx= json.decode(utf8.decode(response.bodyBytes))["data"]["guardianGoalList"]["userIdx"];
+      //todo 변경
+
+      int userIdx =  json.decode(utf8.decode(response.bodyBytes))["data"]
+      ["guardianGoalList"]["userIdx"];
+
       prefs.setInt("user_idx", userIdx);
-      // 시니어 정보 세팅
       List<OldResponseByYoung>? seniorsGoalList = [];
-      if (json.decode(utf8.decode(response.bodyBytes))["data"]["seniorsGoalList"] != null) {
-        seniorsGoalList = List<OldResponseByYoung>.from(json.decode(utf8.decode(response.bodyBytes))["data"]["seniorsGoalList"].map((x) => OldResponseByYoung.fromJson(x)));
+      if (json.decode(utf8.decode(response.bodyBytes))["data"]
+              ["seniorsGoalList"] !=
+          null) {
+        seniorsGoalList = List<OldResponseByYoung>.from(json
+            .decode(utf8.decode(response.bodyBytes))["data"]["seniorsGoalList"]
+            .map((x) => OldResponseByYoung.fromJson(x)));
       }
 
 
-      YoungMainGoalResponse youngMainGoalResponse = YoungMainGoalResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]["guardianGoalList"]);
+      YoungMainGoalResponse youngMainGoalResponse =
+          YoungMainGoalResponse.fromJson(
+              json.decode(utf8.decode(response.bodyBytes))["data"]
+                  ["guardianGoalList"]);
 
       youngMainGoalResponse.setSeniorsGoalList(seniorsGoalList);
-
 
       return youngMainGoalResponse;
     }

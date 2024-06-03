@@ -21,6 +21,7 @@ class GoalGeneratorRequest {
   Map<String, dynamic> toJson() {
 
     return {
+
       'userIdx': userIdx,
       'title': title,
       'description': description,

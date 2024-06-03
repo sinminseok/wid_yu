@@ -8,7 +8,7 @@ class GoalTimeGeneratorRequest{
   Map<String, dynamic> toJson() {
     return {
       'time': time,
-      'pullNum': pullNum,
+      'pillNum': pullNum,
     };
   }
 }

@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/utils/PopUp.dart';
 import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
 import 'package:wid_yu/young/goal/goal-create/api/YoungGoalCreateApi.dart';
+import 'package:wid_yu/young/goal/goal-create/dto/UserSelectResponse.dart';
 import 'package:wid_yu/young/goal/main/api/YoungGoalApi.dart';
 
 import '../../../../dto/young-dto/request/goal/GoalStatusRequest.dart';
@@ -17,15 +18,11 @@ class YoungGoalCreateController {
   YoungGoalCreateApi api = YoungGoalCreateApi();
 
   // 사용자 목록
-  List<UserProfileResponse> users = [
-    UserProfileResponse("name", "12", "add", "21"),
-    UserProfileResponse("name", "12", "add", "21")
-  ];
-
+  List<UserSelectResponse> users = [];
   // 선택된 사용자
   RxList<GoalTimeGeneratorRequest> addTimes = <GoalTimeGeneratorRequest>[].obs;
 
-  late Rx<UserProfileResponse> selectUser = users[0].obs;
+  late Rx<UserSelectResponse> selectUser = users[0].obs;
 
   //카테코리 선택
   RxBool _drug = false.obs;
@@ -52,8 +49,10 @@ class YoungGoalCreateController {
 
   RxBool _canSaveMission = false.obs;
 
-  void loadAllUser() async {
-    await api.loadAllUsers();
+  Future<bool> loadAllUser() async {
+    users = (await api.loadAllUsers())!;
+
+    return true;
   }
 
   void createGoal(BuildContext context) async{
@@ -61,12 +60,14 @@ class YoungGoalCreateController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     GoalGeneratorRequest goalGeneratorRequest = GoalGeneratorRequest(
-        userIdx: prefs.getInt("user_idx"),
+        userIdx: selectUser.value.userIdx,
         title: _titleController.text,
+        //todo _contentController.text,
         description: _contentController.text,
         type: createGoalType().toString(),
         day: createDays(),
         goalStatusList: addTimes.value);
+
 
     var createGoalApi =await YoungGoalCreateApi().createGoalApi(goalGeneratorRequest);
 
@@ -77,17 +78,20 @@ class YoungGoalCreateController {
     }
 
 
+
   }
 
   String createDays() {
     String result = '';
+
+    result += _sunday.value ? '1' : '0';
     result += _monday.value ? '1' : '0';
     result += _tuesday.value ? '1' : '0';
     result += _wednesday.value ? '1' : '0';
     result += _thursday.value ? '1' : '0';
     result += _friday.value ? '1' : '0';
     result += _saturday.value ? '1' : '0';
-    result += _sunday.value ? '1' : '0';
+
     return result;
   }
 
@@ -172,24 +176,26 @@ class YoungGoalCreateController {
     final int hour = int.parse(_hourController.text);
     final int minute = int.parse(_minuteController.text);
 
-    // 오후 선택 시 시간을 조정
+    // Format the minute to ensure it has two digits
+    String formattedMinute = minute.toString().padLeft(2, '0');
+
+    // Adjust hour for PM
     if (_afternoon.value) {
-      // 오후인 경우 시간을 12시간 더하여 변환
       var adjustedHour = (hour == 12) ? 12 : hour + 12;
       var missionTime = GoalTimeGeneratorRequest(
-          '$adjustedHour:${_minuteController.text}:00',
-          _drugDountController.text == "" ? null : int.parse(_drugDountController.text)
+        '$adjustedHour:$formattedMinute:00',
+        _drugDountController.text.isEmpty ? null : int.parse(_drugDountController.text),
       );
       addTimes.add(missionTime);
     } else {
-      // 오전인 경우 시간을 그대로 사용
       var missionTime = GoalTimeGeneratorRequest(
-          '${hour.toString().padLeft(2, '0')}:${_minuteController.text}:00',
-          _drugDountController.text == "" ? null : int.parse(_drugDountController.text)
+        '${hour.toString().padLeft(2, '0')}:$formattedMinute:00',
+        _drugDountController.text.isEmpty ? null : int.parse(_drugDountController.text),
       );
       addTimes.add(missionTime);
     }
 
+    // Reset controllers
     _drugDountController.text = "";
     _hourController.text = "1";
     _minuteController.text = "1";
@@ -197,6 +203,7 @@ class YoungGoalCreateController {
     _morning.value = false;
     _afternoon.value = false;
   }
+
 
 
   // 추가된 복용 시간 삭제

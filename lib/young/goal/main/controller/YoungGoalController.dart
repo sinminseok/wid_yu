@@ -38,15 +38,26 @@ class YoungGoalController extends GetxController {
 
   Future<bool> loadInit()async {
     _totalInformation.value = (await YoungGoalApi().loadMainPage())!;
-    filterTodayMyGoal(_totalInformation.value);
-    filterTotalMyGoal(_totalInformation.value);
+    if(_totalInformation.value.goalsAndStatus!.length != 0 && _totalInformation.value.goalsAndStatus![0].goalIdx != 0){
+      filterTodayMyGoal(_totalInformation.value);
+      filterTotalMyGoal(_totalInformation.value);
+    }else{
+
+    }
     return true;
   }
 
   void filterTodayMyGoal(YoungMainGoalResponse information) {
-    int currentDayIndex = DateTime.now().weekday - 1;
+    // 현재 요일의 인덱스를 구합니다. (1=월요일, 7=일요일)
+    int currentDayIndex = DateTime.now().weekday;
+
+    // 일요일부터 시작하는 인덱스로 변환합니다.
+    // 예: 월요일(1) -> 1, 화요일(2) -> 2, ..., 일요일(7) -> 0
+    currentDayIndex = (currentDayIndex % 7);
+
+
     _todayMyGoal = information.goalsAndStatus!
-        .where((goal) => goal.day[currentDayIndex] == '1')
+        .where((goal) => goal.day![currentDayIndex] == '1')
         .toList();
   }
 
@@ -54,8 +65,6 @@ class YoungGoalController extends GetxController {
   void filterTotalMyGoal(YoungMainGoalResponse information){
     _totalMyGoal = information.goalsAndStatus!;
   }
-
-
 
 
   void checkAlarm(BuildContext context) async {

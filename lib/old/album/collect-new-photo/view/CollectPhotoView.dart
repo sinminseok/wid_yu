@@ -22,8 +22,6 @@ import '../../../../common/utils/FilePath.dart';
 class CollectPhotoView extends StatelessWidget {
   OldAlbumController _controller;
 
-
-
   CollectPhotoView(this._controller);
 
   @override
