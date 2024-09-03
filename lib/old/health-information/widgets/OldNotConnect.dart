@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/young/health-infroamtion/main/widgets/NotConnectMap.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
@@ -15,8 +16,7 @@ class OldNotConnect extends StatelessWidget {
       child: Column(
         children: [
           _buildO2(),
-          _buildHeartBit(),
-          _buildTemperature()
+          NotConnectMap2()
         ],
       ),
     );
@@ -220,6 +220,45 @@ class OldNotConnect extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+
+  Widget NotConnectMap2(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 20.h),
+          child: Text("위치", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+        ),
+        Container(
+          width: 315.w,
+          height: 300.h,
+          margin: EdgeInsets.only(top: 10.h, bottom: 140.h),
+          decoration: BoxDecoration(
+              border: Border.all(color: wGrey200Color),
+              borderRadius: BorderRadius.all(Radius.circular(6))
+          ),
+          child: Center(
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 16.w,
+                  height: 16.h,
+                  child: Image.asset(commonImagePath + "icon/location-not-icon.png"),
+                ),
+                Container(
+                  child: Text("위치 정보를 가져올 수 없어요.", style: TextStyle(color: wGrey500Color, fontSize: 12.sp, fontWeight: FontWeight.w500),),
+                )
+              ],
+            ),
+          ),
+        )
+      ],
     );
   }
 }

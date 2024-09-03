@@ -34,7 +34,6 @@ class EditPhotoController extends GetxController{
       bool response = await EditPhotoApi().editFile(_responseReward.rewardIdx!, updateURL);
     }
 
-
     bool response = await EditPhotoApi().editInformation(editRewardRequest);
 
 

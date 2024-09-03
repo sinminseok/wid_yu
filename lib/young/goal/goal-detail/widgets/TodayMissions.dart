@@ -29,7 +29,7 @@ class TodayMission extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildMissionDate(),
+        //_buildMissionDate(),
         _buildTodayMission(),
       ],
     );
@@ -38,6 +38,7 @@ class TodayMission extends StatelessWidget {
   Widget _buildTodayMission() {
     return Column(
       children: [
+        SizedBox(height: 30.h,),
         DrugMissionWidget(_controller.toDrugGoals()),
         WalkMissionWidget(_controller.toWaolGoals()),
         CommonMissionWidget(_controller.toCommonGoals()),

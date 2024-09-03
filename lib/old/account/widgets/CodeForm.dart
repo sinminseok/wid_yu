@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -89,8 +90,11 @@ class _CodeFormState extends State<CodeForm> {
               child: Container(
                   padding: EdgeInsets.only(top: 320.h),
                   child: InkWell(
-                      onTap: () {
-                        OldLoginController().loginOld(_testController.text);
+                      onTap: () async{
+                        String? _fcmToken = await FirebaseMessaging.instance.getToken();
+                        print("object");
+                        print(_fcmToken);
+                        OldLoginController().loginOld(_testController.text, _fcmToken!);
                       },
                       child: OrangeButton("로그인"))),
             )

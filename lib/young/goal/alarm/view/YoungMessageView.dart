@@ -49,11 +49,11 @@ class _YoungMessageViewState extends State<YoungMessageView> {
         width: 360.w,
         child: Column(
           children: [
-            AllReadPhotoAlarm(controller),
-            AllReadVideoAlarm(controller),
+            //AllReadPhotoAlarm(controller),
+            //AllReadVideoAlarm(controller),
             DangerousOldAlarm(controller),
             GoalPercentageAlarm(controller),
-            OldGoalPercentageAlarm(controller),
+            //OldGoalPercentageAlarm(controller),
             OldNotSuccessGoalAlarm(controller),
             Container(
               height: 400.h,

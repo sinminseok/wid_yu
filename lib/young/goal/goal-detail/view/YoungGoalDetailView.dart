@@ -44,7 +44,7 @@ class _GoalDetailView extends State<YoungGoalDetailView> {
                 InkWell(
                     onTap: (){
                     },
-                    child: GoalDetailHeader(widget._youngInformation.name!, widget._youngInformation.percentage!)),
+                    child: GoalDetailHeader(widget._youngInformation.name!, _controller.todayPercentage.value)),
                 TodayMission(_controller),
                 YoungGoalCalendar(_controller)
               ],

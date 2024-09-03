@@ -41,7 +41,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
           child: Container(
             width: 335.w,
             height: 320.h,
-            margin: EdgeInsets.only(left: 20.w, right: 20.w),
+            margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: kLightGreyColor),

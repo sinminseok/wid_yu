@@ -12,6 +12,7 @@ import 'package:wid_yu/old/health-information/controller/OldHealthInformationCon
 import 'package:wid_yu/old/health-information/popup/HealthInformationPopup.dart';
 import 'package:wid_yu/old/health-information/widgets/HeartBitInformation.dart';
 import 'package:wid_yu/old/health-information/widgets/OldCurrentPosition.dart';
+import 'package:wid_yu/old/health-information/widgets/OldNotConnect.dart';
 import 'package:wid_yu/young/family-manager/dto/YoungInformationResponseDto.dart';
 
 import '../../common/utils/Color.dart';
@@ -27,7 +28,6 @@ class OldHealthInformationView extends StatefulWidget {
 
 class _OldHealthInformationViewState extends State<OldHealthInformationView> {
   OldHealthInformationController controller = OldHealthInformationController();
-
 
   @override
   void initState() {
@@ -69,49 +69,54 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
       backgroundColor: wYellow100Color,
 
       body: SingleChildScrollView(
-          child: FutureBuilder(future: controller.loadInit(context), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }else if(snapshot.hasError){
-              return Container();
-            }else{
-              return Column(
-                children: [
-                  Center(
-                    child: Container(
-                      width: 341.w,
-                      margin: EdgeInsets.only(top: 10.h),
-                      decoration: BoxDecoration(
-                        color: wWhiteColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                      ),
-                      child: Column(
-                        children: [
-                          //OldNotConnect(),
-                          Column(
-                            children: [
-                              _buildHealthInformation(),
-                            ],
-                          ),
-                          InkWell(
-                              onTap: (){
-//                                HealthInformationPopup().createGoalPopup(olds, youngs, context);
-                                //OldHealthApi().loadMainPage();
-                              },
-                              child: OldCurrentPosition())
-                        ],
-                      ),
+          child: FutureBuilder(
+        future: controller.loadInit(context),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Container();
+          } else {
+            return Column(
+              children: [
+                Center(
+                  child: Container(
+                    width: 341.w,
+                    margin: EdgeInsets.only(top: 10.h),
+                    decoration: BoxDecoration(
+                      color: wWhiteColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
-                  )
-                ],
-              );
-            }
-          },)
-      ),
-
-
+                    child: Column(
+                      children: [
+                        controller.healthResponse.state == 0
+                            ? OldNotConnect()
+                            : Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      _buildHealthInformation(),
+                                    ],
+                                  ),
+                                  InkWell(
+                                      onTap: () {
+//                                HealthInformationPopup().createGoalPopup(olds, youngs, context);
+                                        //OldHealthApi().loadMainPage();
+                                      },
+                                      child: OldCurrentPosition())
+                                ],
+                              )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            );
+          }
+        },
+      )),
     );
   }
 

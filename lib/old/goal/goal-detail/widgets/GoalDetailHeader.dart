@@ -49,7 +49,7 @@ class GoalDetailHeader extends StatelessWidget {
                           margin: EdgeInsets.only(left: 10.w, right: 10.w),
                           child: Center(
                             child: PercentageText(
-                                "40P",
+                                "${controller.todayPoint.value}P",
                                 wWhiteColor
                             ),
                           ),

@@ -28,6 +28,9 @@ class YoungHealthApi with ChangeNotifier {
       },
     );
 
+    print("----");
+    print(utf8.decode(response.bodyBytes));
+
 
     if (response.statusCode == 201) {
       Map<String, dynamic> jsonResponse = json.decode(

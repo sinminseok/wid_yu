@@ -3,15 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:wid_yu/young/album/popup/EditRewardPopup.dart';
 
 import '../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../common/common-widget/button/PurpleButton.dart';
-import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
-import '../../../../common/utils/FilePath.dart';
 import '../../../../final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
-import '../../popup/SaveRewardPopup.dart';
 import '../controller/EditPhotoController.dart';
 
 class EditPhotoView extends StatefulWidget {

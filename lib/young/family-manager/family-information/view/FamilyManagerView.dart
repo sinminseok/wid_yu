@@ -115,6 +115,7 @@ class _FamilyManagerByYoungState extends State<FamilyManagerByYoung> {
             borderRadius: BorderRadius.all(Radius.circular(5))),
         child: InkWell(
           onTap: () {
+            print(young.id);
             Navigator.push(
                 context,
                 PageTransition(

@@ -39,6 +39,8 @@ class EditPhotoApi with ChangeNotifier{
     var response = await http.Response.fromStream(await formData.send());
 
 
+    print("GGGGG");
+    print(utf8.decode(response.bodyBytes));
 
     //{"success":true,"message":"리워드 추가 완료","data":[{"rewardIdx":0,"userIdx":160,"uploaderIdx":159,"description":"asd","type":"IMAGE","url":"https://widyu-bucket.s3.ap-northeast-2.amazonaws.com/IMG_20240519_004730.jpg","status":0,"point":30,"profileImageUrl":null}]}
 
@@ -71,6 +73,8 @@ class EditPhotoApi with ChangeNotifier{
     var response = await http.Response.fromStream(await formData.send());
 
 
+    print("dasdasd");
+    print(utf8.decode(response.bodyBytes));
 
     if(response.statusCode == 200){
       return true;

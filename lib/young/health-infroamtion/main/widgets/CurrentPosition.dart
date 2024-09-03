@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/FilePath.dart';
 import '../controller/YoungHealthInformationController.dart';
+import 'NotConnectMap.dart';
 
 class CurrentPosition extends StatelessWidget {
   YoungHealthInformationController controller;
@@ -46,7 +47,7 @@ class CurrentPosition extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+         Container(
           width: 272.w,
           height: 300.h,
           margin: EdgeInsets.only(top: 10.h, bottom: 20.h),
@@ -59,7 +60,7 @@ class CurrentPosition extends StatelessWidget {
             initialCameraPosition: initialCameraPosition,
             markers: markers,
           ),
-        ),
+        )
       ],
     );
   }

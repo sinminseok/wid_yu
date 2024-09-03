@@ -15,6 +15,61 @@ class OldHealthApi with ChangeNotifier {
   final String LOAD_HEALTH_URL = ROOT_API + "health/info/of-senior/main";
   final String LOAD_HEALTH_DETAIL_URL = ROOT_API + "health/info/of-senior/HEARTBIT";
 
+  Future<bool> sendPositionInit(double latitude, double longitude) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var session = prefs.getString("session");
+
+    var response = await http.patch(
+      Uri.parse(ROOT_API + 'health/update/location'),
+      headers: {
+        'Cookie': 'JSESSIONID=$session',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode({
+        'latitude': latitude,
+        'longitude': longitude,
+      }),
+    );
+
+    print("----");
+    print(utf8.decode(response.bodyBytes));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      print('Failed to send position: ${response.statusCode}');
+      return false;
+    }
+  }
+
+  Future<bool> sendTest() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var session = prefs.getString("session");
+
+    var response = await http.post(
+      Uri.parse(ROOT_API + 'health/append/heart-bit'),
+      headers: {
+        'Cookie': 'JSESSIONID=$session',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode({
+        'heartBit': 95.7,
+      }),
+    );
+
+    print("----");
+    print(utf8.decode(response.bodyBytes));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      print('Failed to send position: ${response.statusCode}');
+      return false;
+    }
+  }
+
   Future<OldHealthResponse?>? loadMainPage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -30,6 +85,8 @@ class OldHealthApi with ChangeNotifier {
     );
 
 
+    print("GGG");
+    print(utf8.decode(response.bodyBytes));
 
     if(response.statusCode == 201){
       return OldHealthResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
@@ -51,10 +108,9 @@ class OldHealthApi with ChangeNotifier {
       },
     );
 
-
-    print("GGGGG");
+    print("hkhkhkhk");
     print(utf8.decode(response.bodyBytes));
-    print(response.statusCode);
+
 
     if(response.statusCode == 201){
       return OldHealthDetailResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);

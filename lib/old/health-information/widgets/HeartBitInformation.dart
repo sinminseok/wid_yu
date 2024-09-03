@@ -45,7 +45,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     return InkWell(
 
         onTap: (){
-          Get.to(() => OldHeartBitDetailView(), transition: Transition.fadeIn);
+          Get.to(() => OldHeartBitDetailView(widget.controller.healthResponse.heartBit), transition: Transition.fadeIn);
         },
         child: _buildHeartBitInformation());
   }

@@ -30,7 +30,7 @@ class Disease {
 class UserResponse {
   int userIdx;
   String name;
-  String profileImageUrl;
+  String? profileImageUrl;
   String userType;
   String inviteCode;
   String phoneNumber;

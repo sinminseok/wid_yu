@@ -24,7 +24,11 @@ class YoungEditByYoungController extends GetxController {
   YoungEditByYoungController(YoungInformationResponseDto user) {
 
     _user.value = user;
-    _addressController.value = _user.value.address!;
+    if(user.address == null){
+      _addressController.value = "주소를 등록해주세요.";
+    }else{
+      _addressController.value = user.address!;
+    }
     _brithController = TextEditingController(text: _user.value.birth);
 
   }

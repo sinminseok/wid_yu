@@ -1,5 +1,8 @@
 
+import 'dart:ffi';
+
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
@@ -10,6 +13,8 @@ class OldGoalDetailController extends GetxController{
   List<GoalResponse> _goals = [];
 
   RxDouble _todayPercentage = 0.0.obs;
+  RxInt _todayPoint = 0.obs;
+
   List<PercentageOfDay> _monthPercentage = [];
 
   Future<bool> loadInit() async{
@@ -18,7 +23,7 @@ class OldGoalDetailController extends GetxController{
     int? uerIdx = await prefs.getInt("user_idx");
     //YoungGoalApi().loadPercentage(uerIdx!);
     _monthPercentage = await YoungGoalApi().loadMonthPercentage(uerIdx!);
-
+    _todayPoint.value = await YoungGoalApi().loadTodayPoint();
     return true;
   }
 
@@ -51,13 +56,13 @@ class OldGoalDetailController extends GetxController{
     return filter;
   }
 
-
-
   OldGoalDetailController(this._goals);
 
   List<GoalResponse> get goals => _goals;
 
   List<PercentageOfDay> get monthPercentage => _monthPercentage;
+
+  RxInt get todayPoint => _todayPoint;
 
   RxDouble get todayPercentage => _todayPercentage;
 }

@@ -66,17 +66,17 @@ class _YoungGoalViewState extends State<YoungGoalView> {
               controller: controller.scrollController,
               child: Column(
                 children: [
-                  InkWell(
-                    onTap: ()async{
-                      final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-                      var s = await prefs.getString("fcmToken");
-                      print(s);
-                    },
-                    child: Container(
-                      child: Body2Text("asdasd", kTextBlackColor),
-                    ),
-                  ),
+                  // InkWell(
+                  //   onTap: ()async{
+                  //     final SharedPreferences prefs = await SharedPreferences.getInstance();
+                  //
+                  //     var s = await prefs.getString("fcmToken");
+                  //     print(s);
+                  //   },
+                  //   child: Container(
+                  //     child: Body2Text("asdasd", kTextBlackColor),
+                  //   ),
+                  // ),
                   HeaderInformation(controller),
                   SwitchButton(controller),
                   controller.totalMyGoal.length == 0?EmptyGoal(false): YoungMyMission(

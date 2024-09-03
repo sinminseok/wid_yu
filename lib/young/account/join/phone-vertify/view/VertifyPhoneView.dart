@@ -53,7 +53,7 @@ class _VerificationPhoneViewState extends State<VerificationPhoneView> {
 
   Widget _buildNextButton() {
     //todo 리패토링
-    return Obx(() => !controller.canNextStep
+    return Obx(() => controller.canNextStep && controller.isCheckAgree
         ? Center(
             child: Container(
                 margin: EdgeInsets.only(top: 25.h, bottom: 0.h),

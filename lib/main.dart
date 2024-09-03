@@ -19,7 +19,7 @@ void main() async {
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
-  print(message.notification)
+  print(message.notification);
   final dbHelper = DatabaseHelper.instance;
 
   if (message.notification != null) {

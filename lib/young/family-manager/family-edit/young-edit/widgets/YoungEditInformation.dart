@@ -20,9 +20,8 @@ class YoungEditInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w),
+      margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w, bottom: 10.h),
       width: 335.w,
-      height: 208.h,
       decoration: BoxDecoration(
         color: wWhiteColor,
         border: Border.all(color: wGrey100Color),
@@ -104,7 +103,7 @@ class YoungEditInformation extends StatelessWidget {
 
   Widget _buildBrith() {
     return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 0.h, left: 16.w, right: 16.w),
+      margin: EdgeInsets.only(top: 16.h, bottom: 20.h, left: 16.w, right: 16.w),
       width: 310.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

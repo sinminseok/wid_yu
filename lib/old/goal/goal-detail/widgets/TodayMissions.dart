@@ -25,7 +25,7 @@ class TodayMissions extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildMissionDate(),
+        //_buildMissionDate(),
         _buildTodayMission(),
       ],
     );

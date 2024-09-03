@@ -12,13 +12,14 @@ import 'package:wid_yu/final-dto/young-dto/response/user/YoungMainGoalResponse.d
 import '../../../../final-dto/young-dto/response/user/OldResponseByYoung.dart';
 
 class YoungGoalApi with ChangeNotifier {
-  final String YOUNG_TODAY_PERCENTAGE = ROOT_API + 'reward/rate/today/';
-  final String YOUNG_MONTH_PERCENTAGE = ROOT_API + "reward/rate/montly/";
+  final String YOUNG_TODAY_PERCENTAGE = ROOT_API + 'goals/rate/today/';
+  final String TODAY_POINT = ROOT_API + "goals/point/today/";
+  final String YOUNG_MONTH_PERCENTAGE = ROOT_API + "goals/rate/montly/";
 
-  void loadPercentage(int userIdx) async{
+  Future<double> loadPercentage(int userIdx) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var session =await prefs.getString("session");
+    var session = await prefs.getString("session");
 
     var response = await http.get(
       Uri.parse(YOUNG_TODAY_PERCENTAGE + userIdx.toString()),
@@ -29,8 +30,45 @@ class YoungGoalApi with ChangeNotifier {
       },
     );
 
-    print("dasdasdas");
-    print(json.decode(utf8.decode(response.bodyBytes)));
+    if (response.statusCode == 200) {
+
+      var jsonResponse = json.decode(utf8.decode(response.bodyBytes));
+
+        var data = jsonResponse['data'];
+        // Convert the data to a double and return it
+        return data is double ? data : double.tryParse(data.toString()) ?? 0.0;
+
+    } else {
+      print('Failed todasdas load data: ${response.statusCode}');
+    }
+
+    // Return a default value if the request fails or the data is invalid
+    return 0.0;
+  }
+
+  Future<int> loadTodayPoint() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? uerIdx = await prefs.getInt("user_idx");
+    var session = await prefs.getString("session");
+
+    var response = await http.get(
+      Uri.parse(TODAY_POINT + uerIdx.toString()),
+      headers: {
+        'Cookie': 'JSESSIONID=$session', // 세션을 쿠키로 전달
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
+
+    print("DASDASDASDASDASD");
+    print(utf8.decode(response.bodyBytes));
+
+    if(response.statusCode == 200){
+
+    }
+
+
+    return 1;
   }
 
   Future<List<PercentageOfDay>> loadMonthPercentage(int userIdx) async {
@@ -55,6 +93,8 @@ class YoungGoalApi with ChangeNotifier {
       },
     );
 
+    print("HHHH");
+    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(utf8.decode(response.bodyBytes));
