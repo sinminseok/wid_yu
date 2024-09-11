@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 import 'package:http/http.dart' as http;
 import '../../../../final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 

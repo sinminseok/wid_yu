@@ -4,14 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 import 'package:wid_yu/final-dto/young-dto/response/user/YoungMainGoalResponse.dart';
 
 import '../../../../final-dto/young-dto/response/user/OldResponseByYoung.dart';
 import '../dto/HealthResponse.dart';
 
 class HeartBitDetailApi with ChangeNotifier {
-  final String YOUNG_GOAL_API = ROOT_API;
 
 
   //HEARTBIT
@@ -32,10 +31,11 @@ class HeartBitDetailApi with ChangeNotifier {
 
 
     print(utf8.decode(response.bodyBytes));
+    print(response.statusCode);
     print("------");
 
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return HealthResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
     }
     return null;

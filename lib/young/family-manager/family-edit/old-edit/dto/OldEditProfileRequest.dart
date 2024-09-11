@@ -1,9 +1,9 @@
 
-import 'package:wid_yu/dto/old-dto/request/OldDiseaseRequest.dart';
+import 'package:wid_yu/final-dto/old-dto/request/OldDiseaseRequest.dart';
 
 import 'OldEditDiseaseRequest.dart';
 
-import 'package:wid_yu/dto/old-dto/request/OldDiseaseRequest.dart';
+import 'package:wid_yu/final-dto/old-dto/request/OldDiseaseRequest.dart';
 import 'OldEditDiseaseRequest.dart';
 
 class OldEditProfileRequest {

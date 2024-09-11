@@ -5,7 +5,7 @@ import 'package:http_parser/http_parser.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 
 import '../dto/OldEditDiseaseRequest.dart';
 import '../dto/OldEditProfileRequest.dart';

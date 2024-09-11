@@ -1,9 +1,6 @@
 
-import 'package:wid_yu/common/dto/user/UserType.dart';
 
-import '../../../../dto/young-dto/response/goal/GoalResponse.dart';
 import '../goal/GoalResponse.dart';
-import '../goal/GoalTimeResponse.dart';
 import 'UserType.dart';
 
 //최종

@@ -3,6 +3,9 @@ import 'package:sqflite/sqflite.dart';
 
 import 'Meaasge.dart';
 
+/**
+ * FCM 정보를 CRUD 할 클래스
+ */
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
 

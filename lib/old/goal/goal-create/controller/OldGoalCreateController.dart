@@ -1,18 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/user/User.dart';
 import 'package:wid_yu/common/utils/PopUp.dart';
 import 'package:wid_yu/final-dto/common-dto/request/goal/GoalGeneratorRequest.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 import 'package:wid_yu/old/goal/goal-create/api/OldGoalCreateApi.dart';
 
-import '../../../../common/dto/goal/GoalTime.dart';
-import '../../../../common/dto/goal/GoalTimeStatus.dart';
-import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';
-import '../../../../final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 import '../../../../young/goal/goal-create/api/YoungGoalCreateApi.dart';
 import '../popup/OldGoalPopup.dart';
 

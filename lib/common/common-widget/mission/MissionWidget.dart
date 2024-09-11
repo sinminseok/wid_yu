@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:wid_yu/common/dto/goal/GoalType.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../final-dto/common-dto/response/goal/GoalResponse.dart';
 import '../../../goal-conduct/common-goal-conduct/view/CommonConductView.dart';
 import '../../../goal-conduct/drug-goal-conduct/view/DrugConductView.dart';
 import '../../../goal-conduct/walk-goal-conduct/view/WalkConductView.dart';
+import '../../dto/goal/GoalType.dart';
 import '../../utils/Color.dart';
 import '../mission-time/MissionTimeWidget.dart';
 

@@ -4,16 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/old/health-information/api/OldHealthApi.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
-import '../../../common/utils/FilePath.dart';
-import '../../../common/utils/constants/HealthExplanationConstants.dart';
-import '../../../final-dto/common-dto/response/user/UserResponse.dart';
-import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
 import '../dto/OldHealthDetailResponse.dart';
 
 class OldHeartBitDetailView extends StatefulWidget {
@@ -68,7 +63,7 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
                   ),
                   child: Column(
                     children: [
-                      _buildGraph(),
+                      _buildGraph(oldHealthDetailResponse),
                       _buildAvaeage(),
                     ],
                   ),
@@ -286,32 +281,7 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
   }
 
 
-  Widget _buildGraph() {
-    return OldHealthGraph([
-      78,
-      80,
-      75,
-      83,
-      85,
-      84,
-      75,
-      79,
-      80,
-      82,
-      81,
-      78,
-      75,
-      77,
-      85,
-      90,
-      88,
-      77,
-      74,
-      84,
-      72,
-      73,
-      74,
-      83
-    ]);
+  Widget _buildGraph(OldHealthDetailResponse? oldHealthDetailResponse) {
+    return OldHealthGraph(oldHealthDetailResponse!.graphData);
   }
 }

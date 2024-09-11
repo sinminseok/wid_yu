@@ -1,5 +1,0 @@
-//
-// enum UserType{
-//   YOUNG,
-//   OLD
-// }

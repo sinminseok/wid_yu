@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/common-widget/mission-time/DoneMissionTimeWidget.dart';
 import 'package:wid_yu/common/common-widget/mission-time/NoneMissionTimeWidget.dart';
 import 'package:wid_yu/common/common-widget/mission-time/YetMissionTimeWidget.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 import '../../dto/goal/GoalTimeStatus.dart';
 import '../../utils/Color.dart';

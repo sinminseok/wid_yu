@@ -18,7 +18,6 @@ class YoungGoalDetailController extends GetxController{
     int? uerIdx = await prefs.getInt("user_idx");
     _todayPercentage.value = await YoungGoalApi().loadPercentage(uerIdx!);
     _monthPercentage = await YoungGoalApi().loadMonthPercentage(uerIdx!);
-
     return true;
   }
 

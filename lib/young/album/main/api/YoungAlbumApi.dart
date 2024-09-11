@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
 
 
@@ -26,6 +26,9 @@ class YoungAlbumApi with ChangeNotifier {
         'Accept': 'application/json',
       },
     );
+
+    print("---------");
+    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
       return true;

@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 
 class OldGoalMainApi extends ChangeNotifier {

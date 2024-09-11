@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 
 class YoungLoginApi extends ChangeNotifier {
   final YOUNG_LOGIN_URL = ROOT_API + "guardian/login";

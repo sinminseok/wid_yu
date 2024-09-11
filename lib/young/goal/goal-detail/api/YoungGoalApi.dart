@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/PercentageOfDay.dart';
 import 'package:wid_yu/final-dto/young-dto/response/user/YoungMainGoalResponse.dart';
 
@@ -93,8 +93,6 @@ class YoungGoalApi with ChangeNotifier {
       },
     );
 
-    print("HHHH");
-    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(utf8.decode(response.bodyBytes));

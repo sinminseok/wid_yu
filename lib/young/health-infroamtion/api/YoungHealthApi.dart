@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:wid_yu/old/health-information/dto/OldHealthResponse.dart';
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 import 'package:flutter/cupertino.dart';
 

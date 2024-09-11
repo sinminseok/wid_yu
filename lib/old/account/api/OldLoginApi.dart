@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../common/api/CommonApiUrl.dart';
+import '../../../common/urls/CommonApiUrl.dart';
 
 class OldLoginApi with ChangeNotifier {
   Future<bool> loginOld(String key, String _fcmToken) async {

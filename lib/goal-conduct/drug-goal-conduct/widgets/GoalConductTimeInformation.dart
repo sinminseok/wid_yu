@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/common-widget/mission-time/MissionTimeWidget.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
-
-import '../../../../common/dto/goal/GoalTimeStatus.dart';
 import '../controller/DrugConductController.dart';
 
 

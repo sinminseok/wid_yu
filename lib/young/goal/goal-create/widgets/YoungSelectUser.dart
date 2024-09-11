@@ -4,12 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/young/goal/goal-create/controller/YoungGoalCreateController.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/CustomText.dart';
-import '../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
 import '../dto/UserSelectResponse.dart';
 
 class YoungSelectUser extends StatelessWidget {

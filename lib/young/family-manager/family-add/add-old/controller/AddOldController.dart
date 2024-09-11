@@ -2,16 +2,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
 import 'package:wid_yu/young/account/join/api/YoungJoinTotalApi.dart';
-import 'package:wid_yu/young/family-manager/family-add/add-old/api/AddOldApi.dart';
 
 import '../../../../../common/dto/disease/Disease.dart';
-import '../../../../../common/dto/health/Health.dart';
 import '../../../../../common/utils/exception/InvalidInformationException.dart';
-import '../../../../../dto/old-dto/request/OldDiseaseRequest.dart';
-import '../../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../../../final-dto/old-dto/request/OldDiseaseRequest.dart';
+import '../../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 import '../../../../account/join/old-information/dto/OldLoginDto.dart';
 
 class AddOldController extends GetxController{

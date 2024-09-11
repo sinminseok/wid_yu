@@ -9,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/utils/PopUp.dart';
 import 'package:wid_yu/young/account/login/api/YoungLoginApi.dart';
 
-import '../../../../common/api/AwsServices.dart';
 import '../../../frame/YoungFrameView.dart';
 
 class YoungLoginController extends GetxController {

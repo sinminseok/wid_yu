@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/young/family-manager/dto/OldInformationResponseDto.dart';
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import '../../dto/YoungInformationResponseDto.dart';
 
 class FamilyManagerApi with ChangeNotifier {

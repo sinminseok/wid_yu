@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 
 import '../../../../../common/utils/CustomText.dart';
 import '../../../../../common/utils/Color.dart';
-import '../../../../../dto/old-dto/request/OldDiseaseRequest.dart';
-import '../../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../../../final-dto/old-dto/request/OldDiseaseRequest.dart';
+import '../../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 
 class SaveOldInformation extends StatelessWidget {
   OldGeneratorRequest old;

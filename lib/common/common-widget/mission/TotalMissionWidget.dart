@@ -3,16 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/mission-time/TotalMissionWidget.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/goal/goal-edit/view/GoalEditView.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 
-import '../../../dto/young-dto/response/goal/GoalResponse.dart';
 import '../../../final-dto/common-dto/response/goal/GoalResponse.dart';
-import '../../dto/goal/GoalType.dart';
 import '../../utils/Color.dart';
 
 class TotalMissionWidget extends StatelessWidget {

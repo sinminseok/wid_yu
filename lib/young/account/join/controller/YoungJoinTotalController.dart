@@ -6,8 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../common/dto/disease/Disease.dart';
 import '../../../../common/utils/PopUp.dart';
 import '../../../../common/utils/exception/InvalidInformationException.dart';
-import '../../../../dto/old-dto/request/OldDiseaseRequest.dart';
-import '../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../../final-dto/old-dto/request/OldDiseaseRequest.dart';
+import '../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 import '../api/YoungJoinTotalApi.dart';
 import '../finish/JoinSuccessOnlyYoungView.dart';
 import '../old-information/dto/OldLoginDto.dart'; //f6b0414

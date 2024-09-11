@@ -2,25 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
-import 'package:wid_yu/common/dto/goal/GoalType.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
-import 'package:wid_yu/common/dto/user/YoungUser.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserType.dart';
 import 'package:wid_yu/final-dto/young-dto/response/user/YoungMainGoalResponse.dart';
 import 'package:wid_yu/young/goal/main/api/YoungGoalApi.dart';
-import '../../../../common/dto/health/Health.dart';
 import '../../../../common/view/popup/AlarmOnPopup.dart';
 
 class YoungGoalController extends GetxController {
   // 나머지 코드는 그대로 유지됩니다.
   RxBool isLoading = true.obs;
-  //Rx<UserResponse> myUser = UserResponse("name", "url", 10, UserType.GUARDIAN, []).obs;
-  //RxList<UserResponse> olds = <UserResponse>[UserResponse("name", "url", 10, UserType.GUARDIAN, []), UserResponse("name", "url", 10, UserType.GUARDIAN, [])].obs;
 
   // 메인화면 전체 데이터
   late Rx<YoungMainGoalResponse> _totalInformation = initCurrent.obs;

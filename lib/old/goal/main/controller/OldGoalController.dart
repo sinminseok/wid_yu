@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/dto/young-dto/response/goal/GoalResponse.dart';
 import 'package:wid_yu/final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 import 'package:wid_yu/old/goal/main/api/OldGoalMainApi.dart';
 
-import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/view/popup/AlarmOnPopup.dart';
 import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
 

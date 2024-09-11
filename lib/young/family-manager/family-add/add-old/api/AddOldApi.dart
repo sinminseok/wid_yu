@@ -4,10 +4,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 import 'package:wid_yu/young/family-manager/dto/OldInformationResponseDto.dart';
 
-import '../../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 
 
 class AddOldApi with ChangeNotifier {

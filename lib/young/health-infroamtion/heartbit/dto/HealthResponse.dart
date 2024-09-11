@@ -1,7 +1,7 @@
 class HealthResponse {
   int _userIdx;
   String _name;
-  String _profileUrl;
+  String? _profileUrl; // nullable로 변경
   double _dailyAverage;
   String _compareAverage;
   String _healthType;
@@ -11,7 +11,7 @@ class HealthResponse {
   HealthResponse({
     required int userIdx,
     required String name,
-    required String profileUrl,
+    String? profileUrl, // nullable 필드로 설정
     required double dailyAverage,
     required String compareAverage,
     required String healthType,
@@ -19,6 +19,7 @@ class HealthResponse {
   })  : _userIdx = userIdx,
         _name = name,
         _profileUrl = profileUrl,
+        // nullable 필드로 설정
         _dailyAverage = dailyAverage,
         _compareAverage = compareAverage,
         _healthType = healthType,
@@ -30,6 +31,7 @@ class HealthResponse {
       userIdx: json['userIdx'],
       name: json['name'],
       profileUrl: json['profileImageUrl'],
+      // nullable 필드
       dailyAverage: json['dailyAverage'],
       compareAverage: json['compareAverage'],
       healthType: json['healthType'],
@@ -37,12 +39,17 @@ class HealthResponse {
     );
   }
 
-  // Getter methods for private fields (optional)
+  // Getter methods
   int get userIdx => _userIdx;
+
   String get name => _name;
-  String get profileUrl => _profileUrl;
+
+  String? get profileUrl => _profileUrl; // nullable로 변경
   double get dailyAverage => _dailyAverage;
+
   String get compareAverage => _compareAverage;
+
   String get healthType => _healthType;
+
   List<double> get graphData => _graphData;
 }

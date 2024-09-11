@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/utils/Converter.dart';
+import 'package:wid_yu/common/utils/Converter.dart';
 
-import '../../../../common/api/CommonApiUrl.dart';
-import '../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
+import '../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 import '../old-information/dto/OldLoginDto.dart';
 
 class YoungJoinTotalApi with ChangeNotifier {

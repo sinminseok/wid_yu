@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/young/goal/goal-create/dto/UserSelectResponse.dart';
 
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalGeneratorRequest.dart';
 
 class YoungGoalCreateApi with ChangeNotifier {

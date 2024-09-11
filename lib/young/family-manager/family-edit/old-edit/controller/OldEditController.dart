@@ -5,18 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
-import 'package:wid_yu/dto/old-dto/request/OldGeneratorRequest.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
 import 'package:wid_yu/old/frame/OldFrameView.dart';
-import 'package:wid_yu/utils/Converter.dart';
+import 'package:wid_yu/common/utils/Converter.dart';
 import 'package:wid_yu/young/family-manager/dto/OldInformationResponseDto.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/api/OldEditApi.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/dto/OldEditProfileRequest.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
-import '../../../../../common/dto/health/Health.dart';
 import '../dto/OldEditDiseaseRequest.dart';
 
 class OldEditByYoungController extends GetxController {

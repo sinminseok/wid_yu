@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/young/goal/goal-create/dto/UserSelectResponse.dart';
 import 'package:wid_yu/young/goal/goal-edit/dto/GoalEditRequest.dart';
 
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalGeneratorRequest.dart';
 
 class GoalEditApi with ChangeNotifier {

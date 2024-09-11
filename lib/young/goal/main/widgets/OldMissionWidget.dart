@@ -2,17 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart';
-import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
 import '../../../../common/common-widget/mission/MissionWidget.dart';
-import '../../../../common/dto/goal/GoalTime.dart';
-import '../../../../common/dto/goal/GoalTimeStatus.dart';
-import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/utils/Color.dart';
-import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
 
 /*
  보호자가 목표 화면에서 볼 보호자 미션

@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/utils/Converter.dart';
+import 'package:wid_yu/common/utils/Converter.dart';
 
-import '../../../../../common/api/CommonApiUrl.dart';
+import '../../../../../common/urls/CommonApiUrl.dart';
 
 
 class PhoneEditApi with ChangeNotifier {

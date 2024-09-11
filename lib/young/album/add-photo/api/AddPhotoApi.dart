@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http_parser/http_parser.dart';
 import 'dart:convert';
 
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/young-dto/request/reward/YoungRewardGeneratorRequest.dart';
 
 class AddPhotoApi {

@@ -2,9 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../../common/dto/user/User.dart';
 import '../../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
-import '../../../../../final-dto/common-dto/response/user/UserResponse.dart';
 
 class OldEditByOldController extends GetxController{
   Rx<UserProfileResponse> _user = UserProfileResponse("name", "url", "address", "br",).obs;

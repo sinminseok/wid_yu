@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/dto/young-dto/request/goal/GoalStatusRequest.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';

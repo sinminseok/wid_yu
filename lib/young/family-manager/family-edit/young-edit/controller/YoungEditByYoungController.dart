@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
-import 'package:wid_yu/common/dto/user/YoungUser.dart';
 import 'package:wid_yu/young/family-manager/dto/YoungInformationResponseDto.dart';
 import 'package:wid_yu/young/family-manager/family-edit/young-edit/api/YoungEditApi.dart';
 import 'package:wid_yu/young/family-manager/family-edit/young-edit/dto/YoundEditProfileRequest.dart';
 import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
-import '../../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
 
 class YoungEditByYoungController extends GetxController {
   Rx<YoungInformationResponseDto> _user = dubby.obs;

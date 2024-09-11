@@ -39,7 +39,7 @@ class _GoalCalendarState extends State<GoalCalendar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildMonthSuccess(),
+        // _buildMonthSuccess(),
         isOpenCalendar ? _buildCallendar() : Container()
       ],
     );
@@ -148,7 +148,7 @@ class _GoalCalendarState extends State<GoalCalendar> {
     int totalDaysInMonth = DateTime(year, month + 1, 0).day;
 
     return Container(
-        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 30.h),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 30.h, top: 30.h),
         width: 335.w,
         decoration: BoxDecoration(
             border: Border.all(color: wGrey100Color, width: 1.w),

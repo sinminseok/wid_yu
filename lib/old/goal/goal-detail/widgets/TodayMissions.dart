@@ -1,14 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 import 'package:wid_yu/old/goal/goal-detail/controller/OldGoalDetailController.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/DrugMissionWidget.dart';
 import '../../../../common/common-widget/mission-detail/WalkMissionWidget.dart';
-import '../../../../common/dto/goal/GoalType.dart';
 import '../../../../common/utils/Color.dart';
 
 class TodayMissions extends StatelessWidget {

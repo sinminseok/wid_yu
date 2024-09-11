@@ -1,15 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/utils/PopUp.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
 import 'package:wid_yu/young/goal/goal-create/api/YoungGoalCreateApi.dart';
 import 'package:wid_yu/young/goal/goal-create/dto/UserSelectResponse.dart';
-import 'package:wid_yu/young/goal/main/api/YoungGoalApi.dart';
 
-import '../../../../dto/young-dto/request/goal/GoalStatusRequest.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalGeneratorRequest.dart';
 import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';
 import '../popup/YoungGoalPopup.dart';

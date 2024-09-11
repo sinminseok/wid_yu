@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:wid_yu/old/health-information/dto/OldHealthResponse.dart';
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -33,9 +33,10 @@ class OldHealthApi with ChangeNotifier {
     );
 
     print("----");
+
     print(utf8.decode(response.bodyBytes));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return true;
     } else {
       print('Failed to send position: ${response.statusCode}');
@@ -43,32 +44,6 @@ class OldHealthApi with ChangeNotifier {
     }
   }
 
-  Future<bool> sendTest() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var session = prefs.getString("session");
-
-    var response = await http.post(
-      Uri.parse(ROOT_API + 'health/append/heart-bit'),
-      headers: {
-        'Cookie': 'JSESSIONID=$session',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: jsonEncode({
-        'heartBit': 95.7,
-      }),
-    );
-
-    print("----");
-    print(utf8.decode(response.bodyBytes));
-
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      print('Failed to send position: ${response.statusCode}');
-      return false;
-    }
-  }
 
   Future<OldHealthResponse?>? loadMainPage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

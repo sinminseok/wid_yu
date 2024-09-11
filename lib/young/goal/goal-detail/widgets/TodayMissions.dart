@@ -2,12 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
-import 'package:wid_yu/common/dto/goal/GoalType.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 import 'package:wid_yu/young/goal/goal-detail/controller/YoungGoalDetailController.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';

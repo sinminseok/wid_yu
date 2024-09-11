@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
-import 'package:wid_yu/utils/Converter.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
+import 'package:wid_yu/common/utils/Converter.dart';
 
 import '../dto/FindIdResponse.dart';
 

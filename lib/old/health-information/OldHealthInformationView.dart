@@ -17,6 +17,7 @@ import 'package:wid_yu/young/family-manager/dto/YoungInformationResponseDto.dart
 
 import '../../common/utils/Color.dart';
 import '../../young/family-manager/dto/OldInformationResponseDto.dart';
+import '../../young/health-infroamtion/main/widgets/NotConnectMap.dart';
 
 class OldHealthInformationView extends StatefulWidget {
   const OldHealthInformationView({Key? key}) : super(key: key);
@@ -37,28 +38,28 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
 
   @override
   void dispose() {
-    remove();
+    // remove();
     super.dispose();
   }
 
-  void remove() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var object = prefs.get("health");
-    if (object == null) {
-      prefs.setBool("health", true);
-    } else {
-      prefs.remove("health");
-    }
-  }
-
-  Future<bool> loadHealthData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var object = prefs.get("health");
-    if (object == null) {
-      return true;
-    }
-    return false;
-  }
+  // void remove() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var object = prefs.get("health");
+  //   if (object == null) {
+  //     prefs.setBool("health", true);
+  //   } else {
+  //     prefs.remove("health");
+  //   }
+  // }
+  //
+  // Future<bool> loadHealthData() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var object = prefs.get("health");
+  //   if (object == null) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,12 +101,15 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
                                       _buildHealthInformation(),
                                     ],
                                   ),
-                                  InkWell(
-                                      onTap: () {
+                                  controller.healthResponse.latitude == 0.0
+                                      ? NotConnectMap()
+                                      : InkWell(
+                                          onTap: () {
 //                                HealthInformationPopup().createGoalPopup(olds, youngs, context);
-                                        //OldHealthApi().loadMainPage();
-                                      },
-                                      child: OldCurrentPosition())
+                                            //OldHealthApi().loadMainPage();
+                                          },
+                                          child: OldCurrentPosition(
+                                              controller.healthResponse))
                                 ],
                               )
                       ],

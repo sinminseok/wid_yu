@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/disease/Disease.dart';
-import 'package:wid_yu/common/dto/health/Health.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserType.dart';
 import 'package:wid_yu/young/health-infroamtion/api/YoungHealthApi.dart';
 import 'package:wid_yu/young/health-infroamtion/dto/HealthAllResponse.dart';
 
-import '../../../../final-dto/common-dto/response/user/UserResponse.dart';
 import '../../../../old/health-information/dto/OldHealthResponse.dart';
 import '../../../../old/health-information/popup/HealthInformationPopup.dart';
 

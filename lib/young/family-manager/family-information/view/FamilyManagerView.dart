@@ -2,16 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/view/EditOldView.dart';
 import 'package:wid_yu/young/family-manager/family-information/controller/FamilyManagerController.dart';
 
 import '../../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../../common/utils/Color.dart';
-import '../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
 import '../../dto/OldInformationResponseDto.dart';
 import '../../dto/YoungInformationResponseDto.dart';
 import '../../family-add/AddFamilyView.dart';

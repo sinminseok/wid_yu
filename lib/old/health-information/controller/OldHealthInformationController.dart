@@ -11,15 +11,14 @@ class OldHealthInformationController extends GetxController {
 
   Future<bool> loadInit(BuildContext context) async {
     //todo
-    // Position? position = await _getCurrentPosition();
-    // if (position != null) {
-    //   print("Current position: ${position.latitude}, ${position.longitude}");
-    //   // 위치 정보를 활용한 추가 로직을 여기에 작성하세요.
-    //   OldHealthApi().sendPositionInit(position!.latitude, position.longitude);
-    // }else{
-    //
-    // }
-    await OldHealthApi().sendTest();
+    Position? position = await _getCurrentPosition();
+    if (position != null) {
+      print("Current position: ${position.latitude}, ${position.longitude}");
+      // 위치 정보를 활용한 추가 로직을 여기에 작성하세요.
+      await OldHealthApi().sendPositionInit(position!.latitude, position.longitude);
+    }else{
+
+    }
 
     _healthResponse = await OldHealthApi().loadMainPage();
 

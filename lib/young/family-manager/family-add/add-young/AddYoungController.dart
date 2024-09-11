@@ -3,17 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/utils/Converter.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/user/YoungUser.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserType.dart';
-import 'package:wid_yu/young/account/join/api/YoungJoinTotalApi.dart';
 
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import 'ProfileResponse.dart';
 
 class AddYoungController extends GetxController {
