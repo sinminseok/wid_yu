@@ -14,8 +14,9 @@ TODO
 - [ ] 심박수 데이터 정보 넣기 
 
 FCM 알림
-- SQL Light 사용 : DatabaseHelper 클래스에 CRUD 메서드 선언
 
+- SQL Light 사용 : DatabaseHelper 클래스에 CRUD 메서드 선언
+- 
 시니어 건강 데이터 조회 방법
 
 - 위치 정보 조회 : 위듀 어플에서 조회
