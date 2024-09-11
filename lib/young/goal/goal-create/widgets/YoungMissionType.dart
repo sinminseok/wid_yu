@@ -19,7 +19,7 @@ class YoungMissionType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Center(
       child: Container(
-        margin: EdgeInsets.only(left: 67.w, top: 20.h),
+        margin: EdgeInsets.only(left: 75.w, top: 20.h),
         child: Stack(
           children: [
             Container(

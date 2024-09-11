@@ -1,46 +1,65 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
+import '../dto/OldHealthResponse.dart';
 
 class OldCurrentPosition extends StatelessWidget {
-  const OldCurrentPosition({Key? key}) : super(key: key);
+  OldHealthResponse healthResponse;
+
+
+  OldCurrentPosition(this.healthResponse);
 
   @override
   Widget build(BuildContext context) {
+    // Define the initial camera position
+    final CameraPosition initialCameraPosition = CameraPosition(
+      target: LatLng(37.50508097213444, 126.95493073306663),
+      zoom: 18,
+    );
+
+    // Create a marker
+    final Marker marker = Marker(
+      markerId: MarkerId('currentPositionMarker'),
+      position: LatLng(healthResponse.latitude, healthResponse.longitude),
+      infoWindow: InfoWindow(
+        title: 'Current Position',
+        snippet: 'This is your current position.',
+      ),
+    );
+
+    // Add the marker to a set
+    final Set<Marker> markers = {marker};
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           margin: EdgeInsets.only(top: 20.h),
-          child: Text("내 위치", style: TextStyle(color: wGrey700Color, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+          child: Text(
+            "위치",
+            style: TextStyle(
+              color: wGrey700Color,
+              fontWeight: FontWeight.w600,
+              fontSize: 14.sp,
+            ),
+          ),
         ),
         Container(
-          width: 315.w,
+          width: 300.w,
           height: 300.h,
           margin: EdgeInsets.only(top: 10.h, bottom: 20.h),
           decoration: BoxDecoration(
-              border: Border.all(color: wGrey200Color),
-              borderRadius: BorderRadius.all(Radius.circular(6))
+            border: Border.all(color: wGrey200Color),
+            borderRadius: BorderRadius.all(Radius.circular(6)),
           ),
-          child: Center(
-            child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 16.w,
-                  height: 16.h,
-                  child: Image.asset(commonImagePath + "icon/location-not-icon.png"),
-                ),
-                Container(
-                  child: Text("위치 정보를 가져올 수 없어요.", style: TextStyle(color: wGrey500Color, fontSize: 12.sp, fontWeight: FontWeight.w500),),
-                )
-              ],
-            ),
+          child: GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: initialCameraPosition,
+            markers: markers,
           ),
         )
       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/account/join/phone-vertify/widgets/AgreeJoin.dart';
@@ -52,13 +53,16 @@ class _VerificationPhoneViewState extends State<VerificationPhoneView> {
 
   Widget _buildNextButton() {
     //todo 리패토링
-    return Obx(() => !controller.canNextStep
+    return Obx(() => controller.canNextStep && controller.isCheckAgree
         ? Center(
             child: Container(
                 margin: EdgeInsets.only(top: 25.h, bottom: 0.h),
                 child: InkWell(
-                    onTap: () {
-
+                    onTap: () async{
+                      final SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setString("young_join_name", controller.nameController.text);
+                      await prefs.setString("young_join_phone_number", controller.phoneNumberController.text);
+                      
                       Get.offAll(() => YoungJoinView(controller));
                       //todo 테스트 되면 이거로 변경
                       // if (controller.agree) {

@@ -19,7 +19,7 @@ class HeaderInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => OldGoalDetailView());
+        Get.to(() => OldGoalDetailView(controller.user!,controller.todayGoals!));
       },
       child: Container(
         margin: EdgeInsets.only(),
@@ -91,16 +91,14 @@ class HeaderInformation extends StatelessWidget {
           child: Center(
             child: Image.asset("assets/images/user/old-man-goal.png"),
           ),
-        ):Container(
-          width: 83.h,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: wWhiteColor,
-              border: Border.all(color: wGrey200Color)),
-          child: Center(
-            child: Image.network("${controller.user!.profileImageUrl}"),
+        ):ClipOval(
+          child: Image.network(
+            controller.user!.profileImageUrl!,
+            fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+            width: 83.h,
+            height: 83.h,
           ),
-        )
+        ),
       ],
     );
   }

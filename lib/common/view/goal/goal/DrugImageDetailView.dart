@@ -7,8 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 
+import '../../../../final-dto/common-dto/response/goal/GoalTimeResponse.dart';
+
 class DrugImageDetailView extends StatefulWidget {
-  const DrugImageDetailView({Key? key}) : super(key: key);
+  GoalTimeResponse? timeResponse;
+
+
+  DrugImageDetailView(this.timeResponse);
 
   @override
   State<DrugImageDetailView> createState() => _DrugImageDetailViewState();
@@ -31,7 +36,7 @@ class _DrugImageDetailViewState extends State<DrugImageDetailView> {
 
               _buildAppBar(),
               _buildImages(),
-              _buildDotIndex(),
+              //_buildDotIndex(),
 
             ],
           ),
@@ -50,87 +55,15 @@ class _DrugImageDetailViewState extends State<DrugImageDetailView> {
           PageView.builder(
             physics: BouncingScrollPhysics(),
             controller: _pageController,
-            itemCount: 4, // 이미지의 개수
+            itemCount: 1, // 이미지의 개수
             itemBuilder: (context, index) {
-              return Image.asset("assets/images/drug-photo.png", fit: BoxFit.fitWidth,);
+              return Image.network(widget.timeResponse!.imgUrl!, fit: BoxFit.fitWidth,);
             },
             onPageChanged: (index) {
               setState(() {
                 _currentPage = index;
               });
             },
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 250.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 9.w),
-                  width: 35.w,
-                  height: 35.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.3),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 3,
-                        offset: Offset(1, 1),
-                      ),
-                    ],
-                  ),
-                  child: InkWell(
-                    onTap: (){
-                      _pageController.previousPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    child: Center(
-                      child: Container(
-                          width: 11.w,
-                          height: 11.h,
-
-                          child: Image.asset("assets/images/icon/back-icon.png",width: 10.w,)),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(right: 9.w),
-                  width: 35.w,
-                  height: 35.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.3),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 3,
-                        offset: Offset(1, 1),
-                      ),
-                    ],
-                  ),
-                  child: InkWell(
-                    onTap: (){
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    child: Center(
-                      child: Container(
-                          width: 11.w,
-                          height: 11.h,
-
-                          child: Image.asset("assets/images/icon/next-icon.png",width: 10.w,)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       )
@@ -153,7 +86,7 @@ class _DrugImageDetailViewState extends State<DrugImageDetailView> {
           ),
           Container(
             margin: EdgeInsets.only(right: 35.w),
-            child: Title3Text("14:00", wWhiteColor),
+            child: Title3Text("${widget.timeResponse!.time}", wWhiteColor),
           ),
           Container(
 

@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/utils/Converter.dart';
+import 'package:wid_yu/common/utils/Converter.dart';
 
-import '../../../../common/api/CommonApiUrl.dart';
-import '../../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
+import '../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 import '../old-information/dto/OldLoginDto.dart';
 
 class YoungJoinTotalApi with ChangeNotifier {
@@ -41,7 +41,6 @@ class YoungJoinTotalApi with ChangeNotifier {
   // 인증번호 확인 api
   Future<bool> checkVerificationCode(
       String certificationCode, String phoneNumber) async {
-    print(certificationCode);
     phoneNumber = phoneNumber.replaceAll(RegExp('\\s'), "");
     var response =
         await http.post(Uri.parse(CHECK_SMS_NUMBER_URL + phoneNumber),
@@ -53,7 +52,8 @@ class YoungJoinTotalApi with ChangeNotifier {
               'certificationCode': certificationCode,
             }));
 
-    print(response.body);
+    print(utf8.decode(response.bodyBytes));
+
     if (response.statusCode == 200) {
       return true;
     }
@@ -62,10 +62,6 @@ class YoungJoinTotalApi with ChangeNotifier {
 
   // createYoungAccount 부양자 회원가입 pai
   Future<bool> joinYoungAccount(String id, String pw, String name, String phoneNumber) async {
-    print(id);
-    print(pw);
-    print(name);
-    print(phoneNumber);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await http.post(Uri.parse(JOIN_YOUNG_URL),
         headers: {
@@ -79,7 +75,6 @@ class YoungJoinTotalApi with ChangeNotifier {
           'name' : name,
         }));
 
-    print(response.body);
 
     if (response.statusCode == 201) {
       // 응답 데이터를 JSON으로 디코딩
@@ -89,8 +84,8 @@ class YoungJoinTotalApi with ChangeNotifier {
       Map<String, dynamic> data = responseData['data'];
       int idx = data['userIdx'];
 
-      prefs.setString("young_join_id", id);
-      prefs.setInt("user_idx", idx);
+      await prefs.setString("young_join_id", id);
+      await prefs.setInt("user_idx", idx);
       return true;
     }
     return false;
@@ -106,7 +101,9 @@ class YoungJoinTotalApi with ChangeNotifier {
       },
     );
 
+    print(CHECK_DUPLICATE_ID_URL + "${id}");
     print(jsonDecode(utf8.decode(response.bodyBytes)));
+    print(response.statusCode);
     // 응답 데이터를 JSON으로 디코딩
     Map<String, dynamic> responseData =
     jsonDecode(utf8.decode(response.bodyBytes));
@@ -136,6 +133,7 @@ class YoungJoinTotalApi with ChangeNotifier {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
+
       body: json.encode(oldGeneratorRequest.toJson()), // OldGeneratorRequest를 JSON으로 인코딩하여 전송
     );
 
@@ -144,7 +142,8 @@ class YoungJoinTotalApi with ChangeNotifier {
     Map<String, dynamic> responseData = json.decode(response.body);
     String? data = responseData['data'];
 
-    print(response.body);
+    print(utf8.decode(response.bodyBytes));
+    print(response.statusCode);
 
     if (response.statusCode == 201) {
       Map<String, dynamic> responseData = json.decode(response.body);

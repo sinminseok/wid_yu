@@ -9,6 +9,7 @@ import 'package:wid_yu/old/album/photo-detail/view/OldPhotoDetailView.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
+import '../../../young/album/photo-detail/view/PhotoDetailView.dart';
 
 class OldPhotoWidget extends StatefulWidget {
   YoungRewardReadResponse reward;
@@ -61,18 +62,34 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
           Container(
             child: Row(
               children: [
+
                 Container(
-                  width: 40.w,
-                  height: 40.h,
+                  margin: EdgeInsets.only(top: 0.h),
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: wGrey200Color
+                    border: Border.all(color: wGrey100Color),
+                    shape: BoxShape.circle,
+                    color: wWhiteColor,
                   ),
-                  child: Image.asset(commonImagePath + "user/youngMan.png"),
+                  height: 33.h,
+                  width: 33.h, // 원형을 만들기 위해 width와 height를 동일하게 설정
+                  clipBehavior: Clip.hardEdge, // 내용이 Container의 경계를 넘지 않도록 설정
+                  child: widget.reward.uploaderImageUrl == null
+                      ? Image.asset(
+                    "assets/common/user/youngMan.png",
+                    fit: BoxFit.cover, // 이미지를 Container에 맞게 조정
+                  )
+                      : ClipOval(
+                    child: Image.network(
+                      widget.reward.uploaderImageUrl!,
+                      fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                      width: 33.h,
+                      height: 33.h,
+                    ),
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 9.w),
-                  child: SubTitle2Text("이승철 님", wTextBlackColor),
+                  child: SubTitle2Text("${widget.reward.uploaderName} 님", wTextBlackColor),
                 )
               ],
             ),
@@ -86,7 +103,7 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
   Widget _buildPhoto(){
     return InkWell(
       onTap: (){
-        Get.to(() => OldPhotoDetailView());
+        Get.to(() => PhotoDetailView(widget.reward));
       },
       child: Container(
         margin: EdgeInsets.only(top: 15.h,left: 20.w,right: 20.w),
@@ -94,7 +111,7 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
         height: 210.h,
         child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(3)),
-            child: Image.asset("assets/common/album/family_photo.png", fit: BoxFit.fitWidth,)),
+            child: Image.network(widget.reward.url!, fit: BoxFit.fitWidth,)),
       ),
     );
   }
@@ -116,18 +133,18 @@ class _OldPhotoWidgetState extends State<OldPhotoWidget> {
 
               style: TextStyle(height: 1.8.h,fontFamily: "body2",color: kTextBlackColor, fontWeight: FontWeight.w500,fontSize: 14.sp),),
           ),
-          InkWell(
-            onTap: (){
-              setState(() {
-                isLike = !isLike;
-              });
-            },
-            child: isLike?Container(
-              child: Icon(Icons.favorite, color: wOrange200Color),
-            ):Container(
-              child: Icon(Icons.favorite_border, color: wOrange200Color),
-            )
-          )
+          // InkWell(
+          //   onTap: (){
+          //     setState(() {
+          //       isLike = !isLike;
+          //     });
+          //   },
+          //   child: isLike?Container(
+          //     child: Icon(Icons.favorite, color: wOrange200Color),
+          //   ):Container(
+          //     child: Icon(Icons.favorite_border, color: wOrange200Color),
+          //   )
+          // )
         ],
       ),
     );

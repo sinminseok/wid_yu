@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/constants/HealthType.dart';
 import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
 import 'package:wid_yu/young/health-infroamtion/main/widgets/YoungHealthGraph.dart';

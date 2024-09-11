@@ -1,19 +1,27 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../common/api/CommonApiUrl.dart';
+import '../../../common/urls/CommonApiUrl.dart';
 
 class OldLoginApi with ChangeNotifier {
-  Future<bool> loginOld(String key) async {
+  Future<bool> loginOld(String key, String _fcmToken) async {
+    print("CALLL = "+ _fcmToken);
+
     var response = await http.post(Uri.parse(ROOT_API + "senior/login"), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     }, body: jsonEncode({
-      "inviteCode": key
+      "inviteCode": key,
+      "fcmToken" : _fcmToken
     }));
+
+
+
+    print(utf8.decode(response.bodyBytes));
 
 
     //todo 세션 저장
@@ -22,6 +30,7 @@ class OldLoginApi with ChangeNotifier {
       var extractJSessionId2 = await extractJSessionId(response);
       print(extractJSessionId2);
       prefs.setString("session", extractJSessionId2!);
+      //prefs.setString("fcmToken", fcmToken);
       return true;
     } else {
       return false;

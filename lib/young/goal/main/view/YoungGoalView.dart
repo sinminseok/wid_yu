@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 import 'package:wid_yu/young/goal/main/widgets/FloatingButton.dart';
 import 'package:wid_yu/young/goal/main/widgets/HeaderInformation.dart';
@@ -64,7 +66,17 @@ class _YoungGoalViewState extends State<YoungGoalView> {
               controller: controller.scrollController,
               child: Column(
                 children: [
-
+                  // InkWell(
+                  //   onTap: ()async{
+                  //     final SharedPreferences prefs = await SharedPreferences.getInstance();
+                  //
+                  //     var s = await prefs.getString("fcmToken");
+                  //     print(s);
+                  //   },
+                  //   child: Container(
+                  //     child: Body2Text("asdasd", kTextBlackColor),
+                  //   ),
+                  // ),
                   HeaderInformation(controller),
                   SwitchButton(controller),
                   controller.totalMyGoal.length == 0?EmptyGoal(false): YoungMyMission(

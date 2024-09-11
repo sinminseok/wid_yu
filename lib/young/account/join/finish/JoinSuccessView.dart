@@ -13,9 +13,9 @@ import '../widgets/ProgressBar.dart';
 import '../widgets/SignupAppBar.dart';
 
 class JoinSuccessView extends StatefulWidget {
-  String name;
-  String phoneNumber;
-  String id;
+  String? name;
+  String? phoneNumber;
+  String? id;
 
   List<OldLoginDto> olds;
 

@@ -9,9 +9,10 @@ import '../../../../common/utils/Color.dart';
 
 class GoalDetailHeader extends StatelessWidget {
   OldGoalDetailController controller;
+  double percentage;
 
 
-  GoalDetailHeader(this.controller);
+  GoalDetailHeader(this.controller, this.percentage);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class GoalDetailHeader extends StatelessWidget {
                           margin: EdgeInsets.only(left: 10.w, right: 10.w),
                           child: Center(
                             child: PercentageText(
-                                "40P",
+                                "${controller.todayPoint.value}P",
                                 wWhiteColor
                             ),
                           ),
@@ -88,7 +89,7 @@ class GoalDetailHeader extends StatelessWidget {
         backgroundColor: wGrey200Color,
         radius: 60.0.sp,
         lineWidth: 10.0,
-        percent: 0.7,
+        percent: percentage,
         center: _buildCircularProgressCenter(),
         circularStrokeCap: CircularStrokeCap.round,
 

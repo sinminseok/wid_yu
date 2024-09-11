@@ -2,11 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
-import 'package:wid_yu/common/dto/goal/GoalType.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 import 'package:wid_yu/young/goal/goal-detail/controller/YoungGoalDetailController.dart';
 
 import '../../../../common/common-widget/mission-detail/CommonMissionWidget.dart';
@@ -21,11 +16,6 @@ class TodayMission extends StatelessWidget {
 
   TodayMission(this._controller);
 
-  // final List<GoalResponse> items = [
-  //   GoalResponse(goalIdx: 1, title: "12", description: "312", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
-  //   GoalResponse(goalIdx: 1,  title: "12", description: "312", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
-  //   GoalResponse(goalIdx: 1,  title: "12", description: "312", type: GoalType.MEDICATION.toString(), day: "1111111", times: []),
-  // ];
 
 
   @override
@@ -33,7 +23,7 @@ class TodayMission extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildMissionDate(),
+        //_buildMissionDate(),
         _buildTodayMission(),
       ],
     );
@@ -42,9 +32,10 @@ class TodayMission extends StatelessWidget {
   Widget _buildTodayMission() {
     return Column(
       children: [
+        SizedBox(height: 30.h,),
         DrugMissionWidget(_controller.toDrugGoals()),
-        //WalkMissionWidget(items[0]),
-        //CommonMissionWidget(items[0]),
+        WalkMissionWidget(_controller.toWaolGoals()),
+        CommonMissionWidget(_controller.toCommonGoals()),
       ],
     );
   }

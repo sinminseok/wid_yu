@@ -13,7 +13,6 @@ class YoungGoalCalendar extends StatefulWidget {
 
   YoungGoalDetailController _controller;
 
-
   YoungGoalCalendar(this._controller);
 
   @override
@@ -37,7 +36,8 @@ class _YoungGoalCalendarState extends State<YoungGoalCalendar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildMonthSuccess(),
+        //todo
+        // _buildMonthSuccess(),
         isOpenCalendar?_buildCallendar():Container()
       ],
     );
@@ -72,21 +72,21 @@ class _YoungGoalCalendarState extends State<YoungGoalCalendar> {
                     margin: EdgeInsets.only(top: 15.h, left: 20.w),
                     child: Column(
                       children: [
-                        Container(
-                          height: 24.h,
-                          child: Body1Text(
-                              "80%",
-                              wGrey500Color
-                          ),
-                        ),
-                        Container(
-                          height: 21.h,
-                          margin: EdgeInsets.only(top: 6.h),
-                          child: Body2Text(
-                              "저번달 평균",
-                              wGrey500Color
-                          ),
-                        ),
+                        // Container(
+                        //   height: 24.h,
+                        //   child: Body1Text(
+                        //       "80%",
+                        //       wGrey500Color
+                        //   ),
+                        // ),
+                        // Container(
+                        //   height: 21.h,
+                        //   margin: EdgeInsets.only(top: 6.h),
+                        //   child: Body2Text(
+                        //       "저번달 평균",
+                        //       wGrey500Color
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -97,7 +97,7 @@ class _YoungGoalCalendarState extends State<YoungGoalCalendar> {
                         Container(
                           height: 30.h,
                           child: PercentageText(
-                              "13%",
+                              "das%",
                               wPurpleColor
                           ),
                         ),
@@ -144,7 +144,7 @@ class _YoungGoalCalendarState extends State<YoungGoalCalendar> {
     int totalDaysInMonth = DateTime(year, month + 1, 0).day;
 
     return Container(
-        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 30.h),
+        margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 30.h, top: 30.h),
         width: 335.w,
         decoration: BoxDecoration(
             border: Border.all(color: wGrey100Color, width: 1.w),

@@ -9,9 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/common-widget/appbar/CommonAppbar.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/common/utils/PopUp.dart';
+import 'package:wid_yu/common/utils/SnackBar.dart';
 import 'package:wid_yu/final-dto/young-dto/response/reward/YoungRewardReadResponse.dart';
-import 'package:wid_yu/old/album/collect-new-photo/controller/CollectPhotoController.dart';
 import 'package:wid_yu/old/album/collect-new-photo/popup/BuyPhotoPopup.dart';
 import 'package:wid_yu/old/album/main/controller/OldAlbumController.dart';
 import 'package:wid_yu/old/album/widgets/OldPhotoWidget.dart';
@@ -21,8 +20,6 @@ import '../../../../common/utils/FilePath.dart';
 
 class CollectPhotoView extends StatelessWidget {
   OldAlbumController _controller;
-
-
 
   CollectPhotoView(this._controller);
 
@@ -158,21 +155,11 @@ class CollectPhotoView extends StatelessWidget {
           onTap: () async{
             int? point  = await getPoint();
 
-            BuyPhotoPopup().showDialog(context, reward, point!);
-
-            //todo 변경
-            // if(point! - reward.point >=0){
-            //   BuyPhotoPopup().showDialog(context, reward, point!);
-            // }else{
-            //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //     content: Text('포인트가 부족합니다.'),
-            //     duration: Duration(seconds: 3),
-            //     action: SnackBarAction(
-            //       label: '확인',
-            //       onPressed: () {},
-            //     ),
-            //   ));
-            // }
+            if(point! <= 0 ){
+              CustomSnackBar().show(context, "포인트가 부족합니다.");
+            }else{
+              BuyPhotoPopup().showDialog(context, reward, point!);
+            }
 
           },
           child: Container(

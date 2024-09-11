@@ -9,16 +9,15 @@ import '../../../../final-dto/common-dto/response/goal/PercentageOfDay.dart';
 class YoungGoalDetailController extends GetxController{
   List<GoalResponse> _goals = [];
 
-  RxDouble _todayPercentage = 0.0.obs;
+  RxDouble _todayPercentage = 10.0.obs;
   List<PercentageOfDay> _monthPercentage = [];
 
   Future<bool> loadInit() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     int? uerIdx = await prefs.getInt("user_idx");
-    //YoungGoalApi().loadPercentage(uerIdx!);
+    _todayPercentage.value = await YoungGoalApi().loadPercentage(uerIdx!);
     _monthPercentage = await YoungGoalApi().loadMonthPercentage(uerIdx!);
-
     return true;
   }
 

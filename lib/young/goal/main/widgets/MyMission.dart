@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wid_yu/common/common-widget/mission/EmptyGoal.dart';
 import 'package:wid_yu/common/common-widget/mission/TotalMissionWidget.dart';
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 import 'package:wid_yu/young/goal/goal-detail/view/YoungGoalDetailView.dart';
@@ -23,7 +24,7 @@ class YoungMyMission extends StatelessWidget {
   }
 
   Widget _buildTodayMission() {
-    return InkWell(
+    return controller.todayMyGoal.length == 0?EmptyGoal(false): InkWell(
       onTap: () {
         //Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
       },
@@ -91,7 +92,7 @@ class YoungMyMission extends StatelessWidget {
 
     for (int index = 0; index < controller.totalMyGoal.length; index++) {
       missionWidgets.add(
-          TotalMissionWidget(controller.totalMyGoal[index]));
+          TotalMissionWidget(false, controller.totalMyGoal[index]));
 
       if (index < controller.totalMyGoal.length - 1) {
         missionWidgets.add(

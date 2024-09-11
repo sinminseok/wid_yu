@@ -20,7 +20,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   void initState() {
     super.initState();
     //todo url 변경
-    _controller = VideoPlayerController.network("https://widyu-bucket.s3.ap-northeast-2.amazonaws.com/test_trimmed%3AMay9%2C2024-20%3A50%3A27.mp4");
+    _controller = VideoPlayerController.network("${widget.videoUrl}");
     _initializeVideoPlayerFuture = _controller.initialize();
   }
 

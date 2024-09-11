@@ -7,33 +7,48 @@ import 'package:wid_yu/old/goal/goal-detail/widgets/GoalDetailHeader.dart';
 import 'package:wid_yu/old/goal/goal-detail/widgets/TodayMissions.dart';
 
 import '../../../../common/utils/Color.dart';
+import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
+import '../../../../final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 
 class OldGoalDetailView extends StatefulWidget {
-  const OldGoalDetailView({Key? key}) : super(key: key);
+  List<GoalResponse> _goals;
+  OldMainGoalResponse _oldInformation;
+
+
+  OldGoalDetailView(this._oldInformation,this._goals);
 
   @override
   _GoalDetailView createState() => _GoalDetailView();
 }
 
 class _GoalDetailView extends State<OldGoalDetailView> {
-  OldGoalDetailController controller = OldGoalDetailController();
+
 
 
   @override
   Widget build(BuildContext context) {
+    OldGoalDetailController controller = OldGoalDetailController(widget._goals);
     return Scaffold(
-      appBar: CommonAppBar(canBack: true, title: "부모님 님",color: wOrangeBackGroundColor,),
+      appBar: CommonAppBar(canBack: true, title: "",color: wOrangeBackGroundColor,),
       backgroundColor: wOrangeBackGroundColor,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GoalDetailHeader(controller),
-            TodayMissions(controller),
-            GoalCalendar(controller)
-          ],
-        ),
+        child: FutureBuilder(future: controller.loadInit(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
+          }else if (snapshot.hasError){
+            return Text("ERR");
+          }else{
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GoalDetailHeader(controller, widget._oldInformation.percentage),
+                TodayMissions(controller),
+                GoalCalendar(controller)
+              ],
+            );
+          }
+        },)
       ),
     );
   }

@@ -1,24 +1,33 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 
 import '../../utils/CustomText.dart';
 import '../../utils/Color.dart';
 import '../mission-time/MissionTimeWidget.dart';
 
-class WalkMissionWidget extends StatelessWidget {
-  final GoalResponse _goal;
+class WalkMissionWidget extends StatefulWidget {
+  final List<GoalResponse> _goals;
 
-  WalkMissionWidget(this._goal);
-
-  //List<GoalTime> times = [MissionTime("12:00", TimeType.DONE)];
+  WalkMissionWidget(this._goals);
 
   @override
+  State<WalkMissionWidget> createState() => _WalkMissionWidgetState();
+}
+
+class _WalkMissionWidgetState extends State<WalkMissionWidget> {
+  //List<GoalTime> times = [MissionTime("12:00", TimeType.DONE)];
+  @override
   Widget build(BuildContext context) {
+    return Column(
+      children: widget._goals.map((e) => _buildCard(context,e)).toList(),
+    );
+  }
+
+  Widget _buildCard(BuildContext context, GoalResponse goalResponse){
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 26.h,right: 20.w, left: 20.w),
@@ -30,8 +39,8 @@ class WalkMissionWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            _buildMissionInfo(),
-            _buildTime(context),
+            _buildMissionInfo(goalResponse),
+            _buildTime(context, goalResponse),
 
           ],
         ),
@@ -39,19 +48,19 @@ class WalkMissionWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildTime(BuildContext context) {
+  Widget _buildTime(BuildContext context, GoalResponse goalResponse) {
     return Container(
         margin: EdgeInsets.only(left: 50.w, top: 10.h, bottom: 20.h),
-        child: MissionTimeWidget(_goal.times, context));
+        child: MissionTimeWidget(goalResponse.times!, context));
   }
 
-  Widget _buildMissionInfo() {
+  Widget _buildMissionInfo(GoalResponse goalResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h, left: 10.w),
       child: Row(
         children: [
           _buildMissionIcon(),
-          _buildMissionDetails(),
+          _buildMissionDetails(goalResponse),
 
         ],
       ),
@@ -72,27 +81,26 @@ class WalkMissionWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildMissionDetails() {
+  Widget _buildMissionDetails(GoalResponse goalResponse) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           margin: EdgeInsets.only(left: 10.w,top: 6.h),
           child: Title3Text(
-              _goal.title,
+              goalResponse.title!,
               wTextBlackColor
           ),
         ),
         Container(
           margin: EdgeInsets.only(left: 10.w, top: 5.h),
           child: Body2Text(
-              _goal.description,
+              goalResponse.description!,
               wGrey800Color
           ),
         )
       ],
     );
   }
-
 }
 

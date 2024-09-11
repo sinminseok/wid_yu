@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 
 class YoungLoginApi extends ChangeNotifier {
   final YOUNG_LOGIN_URL = ROOT_API + "guardian/login";
@@ -21,15 +21,14 @@ class YoungLoginApi extends ChangeNotifier {
         body: json.encode({'id': id, 'password': pw, 'fcmToken': fcmToken}));
 
 
-    print(jsonDecode(utf8.decode(response.bodyBytes)));
-    print(response.statusCode);
+    print(utf8.decode(response.bodyBytes));
 
     //쿠키 저장
     if (response.statusCode == 200) {
       if (isAuthLogin) {}
       var extractJSessionId2 = await extractJSessionId(response);
-      print(extractJSessionId2);
       prefs.setString("session", extractJSessionId2!);
+      prefs.setString("fcmToken", fcmToken);
       return true;
     }
     return false;

@@ -60,7 +60,6 @@ dependencies:
   video_editor: ^3.0.0
   chewie: ^1.7.4
   fraction: ^5.0.2
-  flutter_blue: ^0.8.0
   flutter_svg: ^2.0.5
   remedi_kopo: ^0.0.2
   dots_indicator: ^3.0.0
@@ -69,12 +68,14 @@ dependencies:
   flutter_sms: ^2.3.3
   firebase_core: ^2.24.2
   firebase_messaging: ^14.7.10
-
+  flutter_local_notifications: ^17.1.2
   webview_flutter: ^2.8.0
   dio: ^5.4.3+1
   video_thumbnail: ^0.5.3
   mask_text_input_formatter: ^2.9.0
-
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  google_maps_flutter: ^2.2.8
 dev_dependencies:
   flutter_test:
     sdk: flutter

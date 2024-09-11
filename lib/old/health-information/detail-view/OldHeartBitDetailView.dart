@@ -2,21 +2,20 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
+import 'package:wid_yu/old/health-information/api/OldHealthApi.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
-import '../../../common/utils/FilePath.dart';
-import '../../../common/utils/constants/HealthExplanationConstants.dart';
-import '../../../final-dto/common-dto/response/user/UserResponse.dart';
-import '../../../young/health-infroamtion/main/widgets/YoungHealthGraph.dart';
+import '../dto/OldHealthDetailResponse.dart';
 
 class OldHeartBitDetailView extends StatefulWidget {
-  final UserResponse? user;
+  double currentHeartBit;
 
-  OldHeartBitDetailView(this.user);
+
+  OldHeartBitDetailView(this.currentHeartBit);
 
   @override
   State<OldHeartBitDetailView> createState() => _OldHeartBitDetailViewState();
@@ -24,43 +23,62 @@ class OldHeartBitDetailView extends StatefulWidget {
 
 class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
   bool isExpand = false;
+  OldHealthDetailResponse? oldHealthDetailResponse;
+
+  Future<bool> loadDeatilData() async{
+    oldHealthDetailResponse = await OldHealthApi().loadDetailPage();
+    if(oldHealthDetailResponse != null){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: wWhiteColor,
+      backgroundColor: wYellow100Color,
       appBar: CommonAppBar(
         title: "심박수",
-        color: wWhiteColor,
+        color: wYellow100Color,
         canBack: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 15.h),
-              width: 330.w,
-              height: 420.h,
-              decoration: BoxDecoration(
-                  color: wWhiteColor,
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
-              child: Column(
-                children: [
-                  _buildGraph(),
-                  _buildAvaeage(),
-                ],
-              ),
-            ),
-            _buildInformation(),
-          ],
-        ),
+        child: FutureBuilder(future: loadDeatilData(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
+          }else if(snapshot.hasError){
+            return Text("ERROR");
+          }else{
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 15.h),
+                  width: 330.w,
+                  height: 420.h,
+                  decoration: BoxDecoration(
+                      color: wWhiteColor,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  child: Column(
+                    children: [
+                      _buildGraph(oldHealthDetailResponse),
+                      _buildAvaeage(),
+                    ],
+                  ),
+                ),
+                _buildInformation(),
+              ],
+            );
+          }
+        },)
       ),
     );
   }
 
   Widget _buildAvaeage(){
+    double value = oldHealthDetailResponse!.dailyAverage - widget.currentHeartBit;
     return Center(
       child: Container(
         width: 335.w,
@@ -70,6 +88,20 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
           children: [
             Container(
               width: 150.w,
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if(value != 0)Container(
+                      margin: EdgeInsets.only(bottom: 10.h),
+                      child: Text("평소보다", style: TextStyle(color: wGrey400Color, fontSize: 14.sp, fontWeight: FontWeight.w600),),
+                    ),
+                    if(value>0)_buildLow(),
+                    if(value>0)_buildHigh(),
+                  ],
+                ),
+              ),
             ),
             Container(
               width: 1,
@@ -91,7 +123,7 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          child: Text("78", style: TextStyle(color: wTextBlackColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
+                          child: Text("${oldHealthDetailResponse?.dailyAverage}", style: TextStyle(color: wTextBlackColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 5.w),
@@ -106,6 +138,38 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildLow(){
+    double value = oldHealthDetailResponse!.dailyAverage - widget.currentHeartBit;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: Text("${value}", style: TextStyle(color: wOrangeColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 5.w),
+          child: Text("낮아요", style: TextStyle(color: wOrangeColor, fontSize: 14.sp),),
+        )
+      ],
+    );
+  }
+
+  Widget _buildHigh(){
+    double value =  widget.currentHeartBit - oldHealthDetailResponse!.dailyAverage;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: Text("${value}", style: TextStyle(color: wOrangeColor, fontSize: 20.sp, fontWeight: FontWeight.w600),),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 5.w),
+          child: Text("높아요", style: TextStyle(color: wOrangeColor, fontSize: 14.sp),),
+        )
+      ],
     );
   }
 
@@ -174,6 +238,10 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
     return Container(
       width: 145.w,
       height: 130.h,
+      decoration: BoxDecoration(
+        color: wWhiteBackGroundColor,
+        borderRadius: BorderRadius.all(Radius.circular(6))
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -213,32 +281,7 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
   }
 
 
-  Widget _buildGraph() {
-    return OldHealthGraph([
-      78,
-      80,
-      75,
-      83,
-      85,
-      84,
-      75,
-      79,
-      80,
-      82,
-      81,
-      78,
-      75,
-      77,
-      85,
-      90,
-      88,
-      77,
-      74,
-      84,
-      72,
-      73,
-      74,
-      83
-    ]);
+  Widget _buildGraph(OldHealthDetailResponse? oldHealthDetailResponse) {
+    return OldHealthGraph(oldHealthDetailResponse!.graphData);
   }
 }

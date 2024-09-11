@@ -3,12 +3,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/old/goal/main/view/OldGoalView.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
 import '../../../common/utils/Color.dart';
 import '../main/view/YoungGoalView.dart';
 
 class SaveFinishPopup {
-  void showDialog(BuildContext context) {
+  void showDialog(BuildContext context, bool isOld) {
     showGeneralDialog(
         context: context,
         barrierDismissible: false,
@@ -20,12 +23,14 @@ class SaveFinishPopup {
             Animation secondaryAnimation) {
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
+              backgroundColor: wWhiteBackGroundColor,
               contentPadding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               content: DefaultTextStyle(
                 style: TextStyle(fontSize: 16, color: Colors.black),
                 child: Container(
+                  color: wWhiteBackGroundColor,
                   width: 345.w,
                   height: 409.h,
                   child: Column(
@@ -48,12 +53,19 @@ class SaveFinishPopup {
                       ),
                       InkWell(
                         onTap: (){
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  YoungGoalView()), (route) => false);
+                          if(isOld){
+                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    OldFrameView(0)), (route) => false);
+                          }else{
+                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    YoungFrameView(0)), (route) => false);
+                          }
+
                         },
                         child: Container(
-                          margin: EdgeInsets.only(top: 60.h),
+                          margin: EdgeInsets.only(top: 40.h),
                           width: 250.w,
                           height: 44.h,
                           decoration: BoxDecoration(

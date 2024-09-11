@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/young/goal/goal-create/controller/YoungGoalCreateController.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/CustomText.dart';
-import '../../../../final-dto/common-dto/response/user/UserProfileResponse.dart';
+import '../dto/UserSelectResponse.dart';
 
 class YoungSelectUser extends StatelessWidget {
   YoungGoalCreateController controller;
@@ -36,11 +35,11 @@ class YoungSelectUser extends StatelessWidget {
     );
   }
 
-  Widget _buildUser(UserProfileResponse user, int index){
+  Widget _buildUser(UserSelectResponse user, int index){
     return Obx(() => controller.selectUser == user ? _buildSelectUser(user): _buildNotSelectUser(user, index));
   }
 
-  Widget _buildSelectUser(UserProfileResponse user){
+  Widget _buildSelectUser(UserSelectResponse user){
     return Container(
       width: 88.w,
       height: 36.w,
@@ -56,7 +55,7 @@ class YoungSelectUser extends StatelessWidget {
     );
   }
 
-  Widget _buildNotSelectUser(UserProfileResponse user, int index){
+  Widget _buildNotSelectUser(UserSelectResponse user, int index){
     return Container(
       width: 88.w,
       height: 36.w,

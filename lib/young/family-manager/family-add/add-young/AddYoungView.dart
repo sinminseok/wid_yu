@@ -9,6 +9,7 @@ import 'package:wid_yu/young/family-manager/family-add/api/FamilyManagerApi.dart
 
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
+import 'ProfileResponse.dart';
 
 class AddYoungView extends StatefulWidget {
   const AddYoungView({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _AddYoungViewState extends State<AddYoungView> {
             children: [
               controller.findUsers.length == 0?_buildMainText():Container(),
               _buildFindYoungForm(),
-              controller.findUsers.length == 0?Container():_buildFindYoung(),
+              controller.findUsers.length == 0?Container():_buildFindYoung(controller.findUsers[0]),
               controller.findUsers.length == 0?Container():_buildAddButton(),
             ],
           ),
@@ -48,7 +49,10 @@ class _AddYoungViewState extends State<AddYoungView> {
       margin: EdgeInsets.only(top: 20.h),
       child: InkWell(
           onTap: ()async{
-            bool response = await FamilyManagerApi().addYoungAccount(132);
+            bool response = await FamilyManagerApi().addYoungAccount(controller.findUsers[0].userIdx!);
+
+            print("------");
+            print(response);
             if(response){
               Navigator.pop(context);
               Navigator.pop(context);
@@ -120,7 +124,7 @@ class _AddYoungViewState extends State<AddYoungView> {
                 ),
                 // 원하는 아이콘을 사용하도록 변경
                 onPressed: () {
-                  controller.findYoungUser();
+                  controller.findYoungUser(context);
                 },
               ),
             ),
@@ -130,7 +134,7 @@ class _AddYoungViewState extends State<AddYoungView> {
     );
   }
 
-  Widget _buildFindYoung() {
+  Widget _buildFindYoung(ProfileResponse user) {
     return Container(
       width: 335.w,
       height: 220.h,
@@ -167,17 +171,24 @@ class _AddYoungViewState extends State<AddYoungView> {
               border: Border.all(color: wGrey500Color)
             ),
             child: Center(
-              child: Image.asset("assets/common/user/youngMan.png"),
+              child: user.profileUrl==null?Image.asset("assets/common/user/youngMan.png"):ClipOval(
+                child: Image.network(
+                  user.profileUrl!,
+                  fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                  width: 90.h,
+                  height: 90.h,
+                ),
+              ),
             ),
           ),
           Container(
             height: 27.h,
             margin: EdgeInsets.only(top: 16.h),
-            child: Title3Text("보호자2 님", wGrey800Color),
+            child: Title3Text("${user.name} 님", wGrey800Color),
           ),
           Container(
             height: 21.h,
-            child: Body2Text("@Qhghwk22", wGrey600Color),
+            child: Body2Text("@${user.id}", wGrey600Color),
           )
         ],
       ),

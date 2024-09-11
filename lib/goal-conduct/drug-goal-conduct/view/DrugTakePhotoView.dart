@@ -19,8 +19,9 @@ class DrugTakePhoto extends StatefulWidget {
   XFile xFile;
   GoalTimeResponse goalTimeResponse;
   DrugConductController _controller;
+  bool _isOld;
 
-  DrugTakePhoto(this.xFile,this.goalTimeResponse ,this._controller);
+  DrugTakePhoto(this.xFile,this.goalTimeResponse ,this._controller, this._isOld);
 
   @override
   State<DrugTakePhoto> createState() => _DrugTakePhotoState();
@@ -89,7 +90,14 @@ class _DrugTakePhotoState extends State<DrugTakePhoto> {
                     ),
                     child: InkWell(
                       onTap: ()async{
-                        await widget._controller.successDrugGoal(widget.goalTimeResponse, widget.xFile);
+
+                        bool response = await widget._controller.successDrugGoal(widget.goalTimeResponse, widget.xFile);
+
+                        if(response){
+                          Get.offAll(() => FinishConductView(widget._isOld));
+                        }else{
+
+                        }
                         //Get.offAll(() => FinishConductView());
                       },
                       child: Center(

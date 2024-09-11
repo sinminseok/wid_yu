@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/PopUp.dart';
-import 'package:wid_yu/young/account/join/old-information/api/OldInformationApi.dart';
-import 'package:wid_yu/young/account/join/old-information/controller/OldInformationController.dart';
 import 'package:wid_yu/young/account/join/old-information/dto/OldLoginDto.dart';
 
 import '../../../common/utils/Color.dart';
-import '../../../dto/old-dto/request/OldGeneratorRequest.dart';
+import '../../../final-dto/old-dto/request/OldGeneratorRequest.dart';
 import '../join/controller/YoungJoinTotalController.dart';
 import '../join/finish/JoinSuccessView.dart';
 import '../join/old-information/view/OtherOldInformationView.dart';
@@ -121,16 +118,21 @@ class AccountPopup {
                                   OldLoginDto? createOldAccount =await controller.joinOld(old);
 
                                   print("object");
-                                  print(createOldAccount);
+                                  print(id);
+                                  print(name);
+                                  print(phoneNumber);
+
 
                                   if(createOldAccount == null){
                                     ToastMessage().showtoast("다시 시도해주세요.");
                                   }else{
-                                    Navigator.push(
+
+
+                                     Navigator.push(
                                         context,
                                         PageTransition(
                                             type: PageTransitionType.fade,
-                                            child: (JoinSuccessView(id!,name!, phoneNumber!,[createOldAccount]))));
+                                            child: (JoinSuccessView(name, phoneNumber, id,[createOldAccount]))));
                                   }
 
                                 },

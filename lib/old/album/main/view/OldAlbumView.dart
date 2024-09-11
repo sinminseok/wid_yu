@@ -56,11 +56,7 @@ class _OldAlbumViewState extends State<OldAlbumView> {
                     child: Obx(() => Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // InkWell(
-                            //     onTap: () {
-                            //       controller.loadInit();
-                            //     },
-                            //     child: _buildMainText()),
+
                             PointWidget(controller.point!),
                             SelectRewardType(controller),
 
@@ -110,9 +106,9 @@ class _OldAlbumViewState extends State<OldAlbumView> {
               mainAxisSpacing: 10.0, // 아이템 사이의 간격을 설정합니다
               crossAxisSpacing: 10.0, // 열 사이의 간격을 설정합니다
             ),
-            itemCount: 5,
+            itemCount: controller.buyVideos.length,
             itemBuilder: (context, index) {
-              return OldVideoWidget(controller.buyVideos[1]);
+              return OldVideoWidget(controller.buyVideos[index]);
             },
           ),
         ),

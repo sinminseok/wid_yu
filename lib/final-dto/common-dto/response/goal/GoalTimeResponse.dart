@@ -34,13 +34,13 @@ class GoalTimeResponse {
     String time = '${timeComponents[0]}:${timeComponents[1]}';
 
     return GoalTimeResponse(
-      goalStatusIdx: json['goalStatusIdx'],
-      goalIdx: json['goalIdx'],
-      time: time,
-      status: json['status'],
-      pillNum: json['pillNum'],
-      imgUrl: json['imgUrl'],
-      point: json['point'],
+      goalStatusIdx: json['goalStatusIdx'] as int?,
+      goalIdx: json['goalIdx'] as int?,
+      time: time as String?,
+      status: json['status'] as int?,
+      pillNum: json['pillNum'] as int?,
+      imgUrl: json['imgUrl'] as String?,
+      point: json['point'] as int?,
     );
   }
 

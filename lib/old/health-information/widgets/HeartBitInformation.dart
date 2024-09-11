@@ -45,15 +45,17 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
     return InkWell(
 
         onTap: (){
-          Get.to(() => OldHeartBitDetailView(widget.controller.user.value), transition: Transition.fadeIn);
+          Get.to(() => OldHeartBitDetailView(widget.controller.healthResponse.heartBit), transition: Transition.fadeIn);
         },
         child: _buildHeartBitInformation());
   }
 
   Widget _buildHeartBitInformation(){
-    double? userHeartBit = widget.controller.getUserHeartBit()?.toDouble();
-    if(60 < userHeartBit! && 100 > userHeartBit!){
+    double hb = widget.controller.healthResponse.heartBit;
+    if(60 < hb! && 100 > hb!){
       return _buildNormal();
+    }else if((100 <= hb && hb < 120) || 30 <= hb && hb < 60){
+      return _buildAttention();
     }
     return _buildDangerous();
   }
@@ -144,7 +146,7 @@ class _HeartBitInformationState extends State<HeartBitInformation> with TickerPr
                             children: [
                               Container(
                                 child: Text(
-                                  "${widget.controller.getUserHeartBit()}",
+                                  "${widget.controller.healthResponse.heartBit}",
                                   style: TextStyle(
                                     fontFamily: "percentage",
                                     fontSize: 22.sp,

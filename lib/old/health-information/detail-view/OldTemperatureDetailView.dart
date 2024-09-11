@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
 import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph.dart';
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';

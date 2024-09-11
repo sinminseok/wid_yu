@@ -20,7 +20,6 @@ class YoungEditInformation extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w),
       width: 335.w,
-      height: 168.h,
       decoration: BoxDecoration(
         color: wWhiteColor,
         border: Border.all(color: wGrey100Color),
@@ -75,33 +74,7 @@ class YoungEditInformation extends StatelessWidget {
             child: SubTitle2Text("집주소", wGrey600Color),
           ),
           Container(
-            width: 150.w,
-            child: TextFormField(
-              onChanged: (value) {
-                controller.validateCanSave();
-              },
-              controller: controller.addressController,
-              style: TextStyle(color: Colors.black),
-              // 텍스트 색상을 검정색으로 설정
-              textAlign: TextAlign.right,
-              // 텍스트를 왼쪽으로 정렬
-              cursorColor: kTextBlackColor,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(bottom: 3.h),
-                hintText: "주소",
-                hintStyle: TextStyle(
-                    color: wGrey300Color,
-                    fontSize: 14.sp,
-                    fontFamily: "Body1"),
-                border: InputBorder.none,
-                isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-              ),
-
-              // child: Body1Text(
-              //     "${controller.user.brith}",
-              //     kTextBlackColor
-              // ),
-            ),
+            child: Body1Text("${controller.user.address}", kTextBlackColor)
           )
         ],
       ),
@@ -110,7 +83,7 @@ class YoungEditInformation extends StatelessWidget {
 
   Widget _buildBrith() {
     return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 0.h, left: 16.w, right: 16.w),
+      margin: EdgeInsets.only(top: 16.h, bottom:20.h, left: 16.w, right: 16.w),
       width: 310.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,39 +92,8 @@ class YoungEditInformation extends StatelessWidget {
             height: 21.h,
             child: SubTitle2Text("출생연도", wGrey600Color),
           ),
-          InkWell(
-            onTap: () {
-             // Get.to(() => EditPhoneNumberView(), transition: Transition.fade);
-            },
-            child: Container(
-              width: 90.w,
-
-              child: TextFormField(
-                onChanged: (value) {
-                  controller.validateCanSave();
-                },
-                controller: controller.brithController,
-                style: TextStyle(color: Colors.black),
-                // 텍스트 색상을 검정색으로 설정
-                textAlign: TextAlign.right,
-                // 텍스트를 왼쪽으로 정렬
-                cursorColor: kTextBlackColor,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(bottom: 3.h),
-                  hintText: "1900.00.00",
-                  hintStyle: TextStyle(
-                      color: wGrey300Color,
-                      fontSize: 14.sp,
-                      fontFamily: "Body1"),
-                  border: InputBorder.none,
-                  isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                ),
-              ),
-              // child: Body1Text(
-              //     "${controller.user.brith}",
-              //     kTextBlackColor
-              // ),
-            ),
+          Container(
+              child: Body1Text("${controller.user.birth}", kTextBlackColor)
           )
         ],
       ),

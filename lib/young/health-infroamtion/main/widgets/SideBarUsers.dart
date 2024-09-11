@@ -7,6 +7,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/FilePath.dart';
+import '../../../../old/health-information/dto/OldHealthResponse.dart';
 import '../controller/YoungHealthInformationController.dart';
 
 class SideBarUsers extends StatelessWidget {
@@ -30,6 +31,7 @@ class SideBarUsers extends StatelessWidget {
   }
 
   Widget _buildUser(int index){
+    OldHealthResponse user = controller.users[index];
     return InkWell(
       onTap: () {
         controller.pickUser(index);
@@ -37,7 +39,7 @@ class SideBarUsers extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(bottom: 10.h, left: 0),
         width: 69.w,
-        height: 75.h,
+        height: 95.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(10),
@@ -69,23 +71,29 @@ class SideBarUsers extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(top: 6.h),
-                          width: 40.w,
-                          height: 40.h,
+                          width: 43.w,
+                          height: 43.w,
+
                           decoration: BoxDecoration(
                             color: wWhiteColor,
                             shape: BoxShape.circle,
                             border: Border.all(
                               //todo
-                              color: wGrey200Color,
-                              // color: controller
-                              //     .users[index].isConnect!
-                              //     ? wErrorColor
-                              //     : wGrey200Color,
+                              color: user.state == 1!
+                                  ? wErrorColor
+                                  : wGrey200Color,
                               width: 3.sp,
                             ),
                           ),
-                          child: Image.asset(
+                          child: user.profileImageUrl == null ?Image.asset(
                             "assets/images/user/small-old-man-circle.png",
+                          ):ClipOval(
+                            child: Image.network(
+                              user.profileImageUrl!,
+                              fit: BoxFit.fitWidth, // 이미지를 원에 맞게 조정
+                              width: 33.w,
+                              height: 33.w,
+                            ),
                           ),
                         ),
                         // Positioned(
@@ -105,7 +113,7 @@ class SideBarUsers extends StatelessWidget {
                       margin: EdgeInsets.only(top: 4.h),
                       height: 18.h,
                       child: HelperText(
-                        "김옥례 ",
+                        "${user.name} ",
                           // "${controller.users[index].name}",
                           wGrey800Color),
                     )

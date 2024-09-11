@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/FilePath.dart';
 import 'package:wid_yu/common/view/goal/goal/DrugImageDetailView.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 
+import '../../../final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 import '../../utils/Color.dart';
 
 /*
@@ -26,14 +26,6 @@ class DrugMissionWidget extends StatefulWidget {
 class _DrugMissionWidget extends State<DrugMissionWidget> {
   ScrollController _scrollController = ScrollController();
 
-  List<Widget> datas = [
-    _finishDrugWidget(),
-    _doNotDrugWidget(),
-    _willDrugWidget(),
-    _finishDrugWidget(),
-    _finishDrugWidget(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,24 +33,23 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
     );
   }
 
-  Widget _buildCard(GoalResponse goal){
+  Widget _buildCard(GoalResponse goal) {
     return Stack(
       children: [
         Center(
           child: Container(
             width: 335.w,
             height: 320.h,
-            margin: EdgeInsets.only(left: 20.w, right: 20.w),
+            margin: EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h),
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(color: kLightGreyColor),
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             child: Column(
-
               children: [
                 _buildMissionHeadInfo(goal),
-                _buildDrugMissions(),
+                _buildDrugMissions(goal),
               ],
             ),
           ),
@@ -82,7 +73,7 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
               ],
             ),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 // 다음 항목으로 스크롤 이동
                 _scrollController.animateTo(
                   _scrollController.offset + 120.0, // 조절 가능한 이동 거리
@@ -94,8 +85,10 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
                 child: Container(
                     width: 11.w,
                     height: 11.h,
-
-                    child: Image.asset("assets/images/icon/next-icon.png",width: 10.w,)),
+                    child: Image.asset(
+                      "assets/images/icon/next-icon.png",
+                      width: 10.w,
+                    )),
               ),
             ),
           ),
@@ -112,11 +105,11 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
           Center(
             child: Container(
               margin: EdgeInsets.only(top: 3.h),
-
               child: Image.asset(
                 width: 55.w,
                 height: 55.h,
-                "assets/images/mission/drug-mission-icon.png",fit: BoxFit.fitHeight,
+                "assets/images/mission/drug-mission-icon.png",
+                fit: BoxFit.fitHeight,
               ),
             ),
           ),
@@ -128,11 +121,11 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
                 Container(
                   height: 27.h,
                   margin: EdgeInsets.only(left: 0.w, top: 10.h),
-                  child: Title3Text(goal.title, wTextBlackColor),
+                  child: Title3Text(goal.title!, wTextBlackColor),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 0.w, top: 1.h),
-                  child: Body2Text(goal.description, wGrey800Color),
+                  child: Body2Text(goal.description!, wGrey800Color),
                 )
               ],
             ),
@@ -142,21 +135,25 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
     );
   }
 
-  Widget _buildDrugMissions() {
-    return Container(
-        width: 335.w,
-        height: 215.h,
-        child: Container(
-          margin: EdgeInsets.only(left: 5.w,right: 7.w),
-          child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-              controller: _scrollController, // 추가된 부분
-              scrollDirection: Axis.horizontal,
-              itemCount: datas.length,
-              itemBuilder: (BuildContext ctx, int idx) {
-                return datas[idx];
-              }),
-        ));
+  Widget _buildDrugMissions(GoalResponse goal) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+          width: 335.w,
+          height: 215.h,
+          child: Container(
+            margin: EdgeInsets.only(left: 5.w, right: 7.w),
+            child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                controller: _scrollController,
+                // 추가된 부분
+                scrollDirection: Axis.horizontal,
+                itemCount: goal.times!.length,
+                itemBuilder: (BuildContext ctx, int idx) {
+                  return _filter(goal.times![idx]);
+                }),
+          )),
+    );
 
     // Row(
     //   children: [
@@ -184,13 +181,21 @@ class _DrugMissionWidget extends State<DrugMissionWidget> {
     // );
   }
 
-
+  Widget _filter(GoalTimeResponse goalResponse) {
+    if (goalResponse.status == -1) {
+      return _doNotDrugWidget(goalResponse);
+    } else if (goalResponse.status == 0) {
+      return _willDrugWidget(goalResponse);
+    } else {
+      return _finishDrugWidget(goalResponse);
+    }
+  }
 }
 
 /*
   복용 완료 위젯
    */
-Widget _finishDrugWidget() {
+Widget _finishDrugWidget(GoalTimeResponse goalResponse) {
   return Container(
     margin: EdgeInsets.only(left: 7.w, top: 20.h),
     child: Stack(
@@ -208,19 +213,18 @@ Widget _finishDrugWidget() {
             child: Column(
               children: [
                 InkWell(
-                  onTap: (){
-                    print("dasda");
-                    Get.to(()=> DrugImageDetailView());
+                  onTap: () {
+                    Get.to(() => DrugImageDetailView(goalResponse));
                   },
                   child: Container(
                       margin: EdgeInsets.only(top: 20.h),
                       width: 80.w,
                       height: 109.h,
                       child: Center(
-                          child: Image.asset(
-                            "assets/images/common/goal/test.png",
-                            fit: BoxFit.fitHeight,
-                          ))),
+                          child: Image.network(
+                        "${goalResponse.imgUrl}",
+                        fit: BoxFit.fitHeight,
+                      ))),
                 ),
                 Container(
                   height: 24.h,
@@ -243,16 +247,16 @@ Widget _finishDrugWidget() {
               color: wOrangeColor),
           child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ChipText("12:00", wWhiteColor),
-                  Container(
-                      width: 12.w,
-                      height: 12.h,
-                      margin: EdgeInsets.only(left: 4.w),
-                      child: Image.asset("assets/images/icon/check-icon.png"))
-                ],
-              )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ChipText("${goalResponse.time}", wWhiteColor),
+              Container(
+                  width: 12.w,
+                  height: 12.h,
+                  margin: EdgeInsets.only(left: 4.w),
+                  child: Image.asset("assets/images/icon/check-icon.png"))
+            ],
+          )),
         )
       ],
     ),
@@ -262,7 +266,7 @@ Widget _finishDrugWidget() {
 /*
   미복용 위젯
    */
-Widget _doNotDrugWidget() {
+Widget _doNotDrugWidget(GoalTimeResponse goalResponse) {
   return Container(
     margin: EdgeInsets.only(left: 7.w, top: 20.h),
     child: Stack(
@@ -307,7 +311,7 @@ Widget _doNotDrugWidget() {
               border: Border.all(color: wGrey300Color),
               color: wGrey200Color),
           child: Center(
-            child: ChipText("12:00", wWhiteColor),
+            child: ChipText("${goalResponse.time}", wWhiteColor),
           ),
         )
       ],
@@ -318,7 +322,7 @@ Widget _doNotDrugWidget() {
 /*
   복용 예정 위젯
    */
-Widget _willDrugWidget() {
+Widget _willDrugWidget(GoalTimeResponse goalResponse) {
   return Container(
     margin: EdgeInsets.only(left: 7.w, top: 20.h),
     child: Stack(
@@ -341,7 +345,6 @@ Widget _willDrugWidget() {
                     margin: EdgeInsets.only(top: 53.h),
                     width: 48.w,
                     height: 48.h,
-
                     child: Center(
                         child: Image.asset(
                             "assets/images/mission/drug-mission-icon.png")),
@@ -367,7 +370,7 @@ Widget _willDrugWidget() {
             color: Colors.white,
           ),
           child: Center(
-            child: ChipText("12:00", wGrey500Color),
+            child: ChipText("${goalResponse.time}", wGrey500Color),
           ),
         )
       ],

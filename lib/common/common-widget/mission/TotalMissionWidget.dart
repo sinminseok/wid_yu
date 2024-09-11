@@ -3,40 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/common-widget/mission-time/TotalMissionWidget.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
-import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/goal/goal-edit/view/GoalEditView.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
 
-import '../../../dto/young-dto/response/goal/GoalResponse.dart';
 import '../../../final-dto/common-dto/response/goal/GoalResponse.dart';
-import '../../dto/goal/GoalType.dart';
 import '../../utils/Color.dart';
 
 class TotalMissionWidget extends StatelessWidget {
   final GoalResponse _goal;
+  final bool _isOld;
 
-  TotalMissionWidget(this._goal);
+  TotalMissionWidget(this._isOld, this._goal);
 
-  // List<GoalTimeResponse> times = [
-  //
-  //   goalTime1,
-  //   goalTime2,
-  //   goalTime3,
-  //   // MissionTime("15:00", TimeType.YET),
-  // ];
-
-  // List<String> days = [
-  //   "일",
-  //   "토",
-  //   "금",
-  //   "목",
-  //   "수",
-  //   "화",
-  //   "월"
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +71,7 @@ class TotalMissionWidget extends StatelessWidget {
                           Container(
                             width: 70.w,
                             margin: EdgeInsets.only(left: 10.w),
-                            child: Title3Text(_goal.title, kTextBlackColor),
+                            child: Title3Text(_goal.title!, kTextBlackColor),
                           ),
                           Container(
                               width: 120.w,
@@ -119,11 +97,11 @@ class TotalMissionWidget extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 10.w, top: 0.h),
-                      child: Body2Text(_goal.description, wGrey800Color),
+                      child: Body2Text(_goal.description!, wGrey800Color),
                     ),
                     Container(
                         margin: EdgeInsets.only(top: 15.h, left: 0.w),
-                        child: TotalMissionTimeWidget(_goal.times, context)),
+                        child: TotalMissionTimeWidget(_goal.times!, context)),
                   ],
                 ),
               )
@@ -137,7 +115,8 @@ class TotalMissionWidget extends StatelessWidget {
   Widget _buildNextIcon() {
     return InkWell(
       onTap: () {
-        Get.to(() => GoalEditView(_goal), transition: Transition.fadeIn);
+
+        Get.to(() => GoalEditView(_isOld, _goal), transition: Transition.fadeIn);
       },
       child: Container(
         margin: EdgeInsets.only(right: 10.w),

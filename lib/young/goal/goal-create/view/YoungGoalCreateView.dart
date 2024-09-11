@@ -3,17 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
-import '../../../../common/view/goal/popup/GoalPopup.dart';
-import '../../../../old/goal/goal-create/popup/OldGoalPopup.dart';
-import '../../popup/SaveFinishPopup.dart';
 import '../controller/YoungGoalCreateController.dart';
-import '../popup/YoungGoalPopup.dart';
 import '../widgets/YoungMissionAddTime.dart';
 import '../widgets/YoungMissionSetTime.dart';
 import '../widgets/YoungMissionTerm.dart';
 import '../widgets/YoungMissionText.dart';
 import '../widgets/YoungMissionType.dart';
-import '../widgets/YoungSelectPhoto.dart';
 import '../widgets/YoungSelectUser.dart';
 
 
@@ -33,19 +28,29 @@ class _YoungGoalCreateView extends State<YoungGoalCreateView> {
       backgroundColor: Colors.white,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            YoungMissionType(controller),
-            YoungSelectUser(controller),
-            YoungMissionText(controller),
-            YoungMissionTerm(controller),
-            YoungMissionSetTime(controller),
-            YoungMissionAddTime(controller),
-         //   YoungMissionSelectPhoto(controller),
-            _buildSaveButton()
-          ],
-        ),
+        child: FutureBuilder(future: controller.loadAllUser(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }else if(snapshot.hasError){
+            return Text("ERROR");
+          }else{
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                YoungMissionType(controller),
+                YoungSelectUser(controller),
+                YoungMissionText(controller),
+                YoungMissionTerm(controller),
+                YoungMissionSetTime(controller),
+                YoungMissionAddTime(controller),
+                //   YoungMissionSelectPhoto(controller),
+                _buildSaveButton()
+              ],
+            );
+          }
+        },)
       ),
     );
   }

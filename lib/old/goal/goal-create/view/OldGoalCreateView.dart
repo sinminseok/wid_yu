@@ -38,7 +38,7 @@ class _OldGoalCreateViewState extends State<OldGoalCreateView> {
             OldMissionTerm(controller),
             OldMissionSetTime(controller),
             OldMissionAddTime(controller),
-            OldMissionSelectPhoto(controller),
+            //OldMissionSelectPhoto(controller),
             _buildSaveButton()
           ],
         ),

@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../../../common/api/CommonApiUrl.dart';
+import '../../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 
 class OldGoalMainApi extends ChangeNotifier {
@@ -12,6 +12,7 @@ class OldGoalMainApi extends ChangeNotifier {
 
   //보호자 메인페이지
   Future<OldMainGoalResponse?>? loadMainPage() async {
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var session =await prefs.getString("session");
@@ -25,6 +26,8 @@ class OldGoalMainApi extends ChangeNotifier {
         'Accept': 'application/json',
       },
     );
+
+
 
     print(json.decode(utf8.decode(response.bodyBytes)));
 

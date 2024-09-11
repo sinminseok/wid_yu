@@ -3,13 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/goal/GoalTime.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/young/goal/goal-edit/controller/GoalEditController.dart';
-import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
+import 'package:wid_yu/young/goal/goal-edit/dto/GoalTimeEditRequest.dart';
 
 import '../../../../common/utils/Color.dart';
-import '../../../../final-dto/common-dto/request/goal/GoalTimeGeneratorRequest.dart';
 
 
 class EditMissionAddTime extends StatelessWidget {
@@ -35,7 +33,7 @@ class EditMissionAddTime extends StatelessWidget {
     ));
   }
 
-  Widget _buildDrugTimeWidget(GoalTimeGeneratorRequest goalTime) {
+  Widget _buildDrugTimeWidget(GoalTimeEditRequest goalTime) {
     return Container(
       width: 125.w,
       height: 36.h,

@@ -23,7 +23,7 @@ class OldAlbumController extends GetxController {
     for (int i = 0; i < list.length; i++) {
       if (list[i].status == 0) {
         _lockRewards.add(list[i]);
-        _buyVideos.add(list[i]);
+        //_buyVideos.add(list[i]);
       } else {
         if (list[i].type == "IMAGE") {
           _buyPhotos.add(list[i]);
@@ -31,6 +31,7 @@ class OldAlbumController extends GetxController {
           _buyVideos.add(list[i]);
         }
       }
+
     }
 
     _point = prefs.getInt("point");

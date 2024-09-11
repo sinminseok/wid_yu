@@ -27,7 +27,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -44,6 +44,7 @@ android {
     }
 
     defaultConfig {
+
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.wid_yu"
         // You can update the following values to match your application needs.
@@ -68,7 +69,10 @@ flutter {
 }
 
 dependencies {
+
     implementation platform('com.google.firebase:firebase-bom:29.0.2')
+    //추가
+    implementation 'com.google.firebase:firebase-messaging'
     //추가
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

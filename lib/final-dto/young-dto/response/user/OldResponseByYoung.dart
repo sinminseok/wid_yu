@@ -30,12 +30,12 @@ class OldResponseByYoung{
 
   factory OldResponseByYoung.fromJson(Map<String, dynamic> json) {
     List<GoalResponse>? goalsAndStatus = [];
-    if (json['goalsAndStatus'] != null) {
-      goalsAndStatus = List<GoalResponse>.from(json['goalsAndStatus'].map((x) => GoalResponse.fromJson(x)));
+    if (json['goals'] != null) {
+      goalsAndStatus = List<GoalResponse>.from(json['goals'].map((x) => GoalResponse.fromJson(x)));
     }
     return OldResponseByYoung(
       name: json['name'],
-      profile: json['profile'],
+      profile: json['profileImageUrl'],
 
       userType: json['userType'],
       percentage : json['percentage'],
@@ -62,4 +62,4 @@ class OldResponseByYoung{
 
 }
 
-OldResponseByYoung old = OldResponseByYoung(name: "할머니", profile: null, userType: "SENIOR", oldIndex: 2, point: 40, goalsAndStatus: [goal1], percentage: 0.4);
+OldResponseByYoung old = OldResponseByYoung(name: "할머니", profile: null, userType: "SENIOR", oldIndex: 2, point: 40, goalsAndStatus: [], percentage: 0.4);

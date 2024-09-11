@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
 import 'package:wid_yu/young/goal/goal-edit/controller/GoalEditController.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 
@@ -15,9 +17,10 @@ import '../widgets/EditMissionTextForm.dart';
 import '../widgets/EditMissionType.dart';
 
 class GoalEditView extends StatefulWidget {
+  bool _isOld;
   GoalResponse _goalResponse;
 
-  GoalEditView(this._goalResponse);
+  GoalEditView(this._isOld, this._goalResponse);
 
   @override
   _GoalEditView createState() => _GoalEditView();
@@ -44,7 +47,7 @@ class _GoalEditView extends State<GoalEditView> {
             EditMissionTerm(controller),
             EditMissionSetTime(controller),
             EditMissionAddTime(controller),
-            EditMissionSelectPhoto(controller),
+            //EditMissionSelectPhoto(controller),
             _buildSaveButton(controller),
             _buildDeleteGoal(controller),
           ],
@@ -79,9 +82,9 @@ class _GoalEditView extends State<GoalEditView> {
       margin: EdgeInsets.only(bottom: 60.h),
       child: InkWell(
         onTap: ()async{
-          bool response = await _controller.deleteGoal(widget._goalResponse.goalIdx);
+          bool response = await _controller.deleteGoal(widget._goalResponse.goalIdx!);
           if(response){
-            Navigator.pop(context);
+            widget._isOld?Get.to(() => OldFrameView(0)): Get.to(() => YoungFrameView(0));
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text('목표가 삭제 됐습니다.'),
               duration: Duration(seconds: 3),

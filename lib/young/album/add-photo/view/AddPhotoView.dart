@@ -41,15 +41,14 @@ class _AddPhotoViewState extends State<AddPhotoView> {
     }
   }
 
-  Future<bool> test() async{
+  Future<bool> createReward() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
 
     var userIdx = await prefs.getInt("user_idx");
     var youngRewardGeneratorRequest = YoungRewardGeneratorRequest(userIdx: userIdx, url: image_picked?.path, description: _textController.text);
-    AddPhotoApi().createPhotoReward(youngRewardGeneratorRequest);
+    return await AddPhotoApi().createPhotoReward(youngRewardGeneratorRequest, "IMAGE");
 
-    return true;
   }
 
   @override
@@ -208,7 +207,7 @@ class _AddPhotoViewState extends State<AddPhotoView> {
               if(image_picked == null || _textController.text == ""){
                 ToastMessage().showtoast("정보를 모두 입력해주세요.");
               }else{
-                var bool = await test();
+                var bool = await createReward();
                 if(bool){
                   SaveRewardPopup().showDialog(context);
                 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
@@ -11,7 +12,6 @@ import '../../../dto/YoungInformationResponseDto.dart';
 import '../../phone-number-edit/view/EditPhoneNumberView.dart';
 
 class YoungEditInformation extends StatelessWidget {
-
   YoungEditByYoungController controller;
   YoungInformationResponseDto _young;
 
@@ -20,9 +20,8 @@ class YoungEditInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w),
+      margin: EdgeInsets.only(top: 15.h, right: 20.w, left: 20.w, bottom: 10.h),
       width: 335.w,
-      height: 208.h,
       decoration: BoxDecoration(
         color: wWhiteColor,
         border: Border.all(color: wGrey100Color),
@@ -31,8 +30,9 @@ class YoungEditInformation extends StatelessWidget {
       child: Column(
         children: [
           _buildPhoneNumber(),
+
           _buildDivider(),
-          _buildAddress(),
+          _buildAddress(context),
           _buildDivider(),
           _buildBrith()
         ],
@@ -65,8 +65,9 @@ class YoungEditInformation extends StatelessWidget {
     );
   }
 
-  Widget _buildAddress() {
-    return Container(
+
+  Widget _buildAddress(BuildContext context) {
+    return Obx(() => Container(
       margin: EdgeInsets.only(top: 16.h, bottom: 14.h, left: 16.w, right: 16.w),
       width: 310.w,
       child: Row(
@@ -76,43 +77,33 @@ class YoungEditInformation extends StatelessWidget {
             height: 21.h,
             child: SubTitle2Text("집주소", wGrey600Color),
           ),
-          Container(
-            width: 150.w,
-            child: TextFormField(
-              onChanged: (value) {
-                controller.validateCanSave();
-              },
-              controller: controller.addressController,
-              style: TextStyle(color: Colors.black),
-              // 텍스트 색상을 검정색으로 설정
-              textAlign: TextAlign.right,
-              // 텍스트를 왼쪽으로 정렬
-              cursorColor: kTextBlackColor,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(bottom: 3.h),
-                hintText: "주소",
-                hintStyle: TextStyle(
-                    color: wGrey300Color,
-                    fontSize: 14.sp,
-                    fontFamily: "Body1"),
-                border: InputBorder.none,
-                isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
+          Row(
+            children: [
+              controller.addressController == ""?Container(
+                margin: EdgeInsets.only(right: 5.w),
+              child: Body2Text("집주소 검색", wGrey300Color)
+          ):Container(
+                  width: 150.w,
+                  child: Body1Text("${controller.addressController}", wTextBlackColor)
               ),
-
-              // child: Body1Text(
-              //     "${controller.user.brith}",
-              //     kTextBlackColor
-              // ),
-            ),
+              InkWell(
+                onTap: (){
+                  controller.addressAPI(context);
+                },
+                child: Container(
+                  child: Icon(Icons.search),
+                ),
+              )
+            ],
           )
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildBrith() {
     return Container(
-      margin: EdgeInsets.only(top: 16.h, bottom: 0.h, left: 16.w, right: 16.w),
+      margin: EdgeInsets.only(top: 16.h, bottom: 20.h, left: 16.w, right: 16.w),
       width: 310.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,12 +117,18 @@ class YoungEditInformation extends StatelessWidget {
               //Get.to(() => EditPhoneNumberView(), transition: Transition.fade);
             },
             child: Container(
-              width: 90.w,
+              width: 130.w,
 
               child: TextFormField(
+                keyboardType: TextInputType.number,
+
                 onChanged: (value) {
                   controller.validateCanSave();
                 },
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(6),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
                 controller: controller.brithController,
                 style: TextStyle(color: Colors.black),
                 // 텍스트 색상을 검정색으로 설정
@@ -140,7 +137,7 @@ class YoungEditInformation extends StatelessWidget {
                 cursorColor: kTextBlackColor,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(bottom: 3.h),
-                  hintText: "1900.00.00",
+                  hintText: "주민번호 앞 6자리",
                   hintStyle: TextStyle(
                       color: wGrey300Color,
                       fontSize: 14.sp,

@@ -1,18 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart';
+import 'package:wid_yu/old/family-manager/family-information/view/OldFamilyManagerView.dart';
+import 'package:wid_yu/old/health-information/api/OldHealthApi.dart';
 import 'package:wid_yu/old/health-information/controller/OldHealthInformationController.dart';
+import 'package:wid_yu/old/health-information/popup/HealthInformationPopup.dart';
 import 'package:wid_yu/old/health-information/widgets/HeartBitInformation.dart';
-import 'package:wid_yu/old/health-information/widgets/O2Information.dart';
 import 'package:wid_yu/old/health-information/widgets/OldCurrentPosition.dart';
-import 'package:wid_yu/old/health-information/widgets/OldHealthFloatingButton.dart';
 import 'package:wid_yu/old/health-information/widgets/OldNotConnect.dart';
-import 'package:wid_yu/old/health-information/widgets/TemperatureInformation.dart';
+import 'package:wid_yu/young/family-manager/dto/YoungInformationResponseDto.dart';
 
 import '../../common/utils/Color.dart';
+import '../../young/family-manager/dto/OldInformationResponseDto.dart';
+import '../../young/health-infroamtion/main/widgets/NotConnectMap.dart';
 
 class OldHealthInformationView extends StatefulWidget {
   const OldHealthInformationView({Key? key}) : super(key: key);
@@ -24,7 +29,6 @@ class OldHealthInformationView extends StatefulWidget {
 
 class _OldHealthInformationViewState extends State<OldHealthInformationView> {
   OldHealthInformationController controller = OldHealthInformationController();
-  FlutterBlue flutterBlue = FlutterBlue.instance;
 
   @override
   void initState() {
@@ -34,28 +38,28 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
 
   @override
   void dispose() {
-    remove();
+    // remove();
     super.dispose();
   }
 
-  void remove() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var object = prefs.get("health");
-    if (object == null) {
-      prefs.setBool("health", true);
-    } else {
-      prefs.remove("health");
-    }
-  }
-
-  Future<bool> loadHealthData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var object = prefs.get("health");
-    if (object == null) {
-      return true;
-    }
-    return false;
-  }
+  // void remove() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var object = prefs.get("health");
+  //   if (object == null) {
+  //     prefs.setBool("health", true);
+  //   } else {
+  //     prefs.remove("health");
+  //   }
+  // }
+  //
+  // Future<bool> loadHealthData() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var object = prefs.get("health");
+  //   if (object == null) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,42 +68,68 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       //floatingActionButton: OldHealthFloatingButton(controller),
       backgroundColor: wYellow100Color,
+
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                width: 341.w,
-                margin: EdgeInsets.only(top: 10.h),
-                decoration: BoxDecoration(
-                  color: wWhiteColor,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-                child: Column(
-                  children: [
-                    //OldNotConnect(),
-                    Column(
+          child: FutureBuilder(
+        future: controller.loadInit(context),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Container();
+          } else {
+            return Column(
+              children: [
+                Center(
+                  child: Container(
+                    width: 341.w,
+                    margin: EdgeInsets.only(top: 10.h),
+                    decoration: BoxDecoration(
+                      color: wWhiteColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    child: Column(
                       children: [
-                        _buildHealthInformation(),
+                        controller.healthResponse.state == 0
+                            ? OldNotConnect()
+                            : Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      _buildHealthInformation(),
+                                    ],
+                                  ),
+                                  controller.healthResponse.latitude == 0.0
+                                      ? NotConnectMap()
+                                      : InkWell(
+                                          onTap: () {
+//                                HealthInformationPopup().createGoalPopup(olds, youngs, context);
+                                            //OldHealthApi().loadMainPage();
+                                          },
+                                          child: OldCurrentPosition(
+                                              controller.healthResponse))
+                                ],
+                              )
                       ],
                     ),
-                    OldCurrentPosition()
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+                  ),
+                )
+              ],
+            );
+          }
+        },
+      )),
     );
   }
 
   Widget _buildHealthInformation() {
     return Column(
       children: [
-        O2Information(controller),
+        //O2Information(controller),
         HeartBitInformation(controller),
-        TemperatureInformation(controller),
+        //TemperatureInformation(controller),
       ],
     );
     //todo
@@ -136,7 +166,9 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
                 width: 30.w,
                 height: 30.h,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => OldFamilyManagerView());
+                  },
                   child: Image.asset(
                       "assets/common/icon/family-information-icon.png"),
                 ),

@@ -137,7 +137,7 @@ class YoungMissionTerm extends StatelessWidget {
                 BorderRadius.all(Radius.circular(5))),
             child: InkWell(
               onTap: (){
-                controller.selectTuesday();
+                controller.selectThursday();
                 controller.validateCanSave();
               },
               child: Center(

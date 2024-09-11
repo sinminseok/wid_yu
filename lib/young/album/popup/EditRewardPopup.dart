@@ -26,7 +26,12 @@ class EditRewardPopup {
               content: DefaultTextStyle(
                   style: TextStyle(fontSize: 16, color: Colors.black),
                   child: Container(
+
                     width: 335.w,
+                    decoration: BoxDecoration(
+                        color: wWhiteBackGroundColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6))
+                    ),
                     height: 380.h,
                     child: Column(
                       children: [

@@ -2,19 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/goal/Goal.dart';
-import 'package:wid_yu/common/dto/goal/GoalType.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/dto/young-dto/response/goal/GoalResponse.dart';
-import 'package:wid_yu/goal-conduct/common-goal-conduct/view/CommonConductView.dart';
-import 'package:wid_yu/goal-conduct/drug-goal-conduct/view/DrugConductView.dart';
-import 'package:wid_yu/goal-conduct/walk-goal-conduct/view/WalkConductView.dart';
-import 'package:wid_yu/old/goal/goal-detail/view/OldGoalDetailView.dart';
-import 'package:wid_yu/young/goal/goal-detail/view/YoungGoalDetailView.dart';
 
 import '../../../final-dto/common-dto/response/goal/GoalResponse.dart';
-import '../../dto/goal/GoalTime.dart';
-import '../../dto/goal/GoalTimeStatus.dart';
+import '../../../goal-conduct/common-goal-conduct/view/CommonConductView.dart';
+import '../../../goal-conduct/drug-goal-conduct/view/DrugConductView.dart';
+import '../../../goal-conduct/walk-goal-conduct/view/WalkConductView.dart';
+import '../../dto/goal/GoalType.dart';
 import '../../utils/Color.dart';
 import '../mission-time/MissionTimeWidget.dart';
 
@@ -31,17 +26,23 @@ class MissionWidget extends StatelessWidget {
     return InkWell(
       onTap: (){
         if(_isOld){
-          Get.to(() => OldGoalDetailView());
+          if(_goal.type == "MEDICATION"){
+            Get.to(() => DrugConductView(_goal, _isOld));
+          }else if(_goal.type == "WALKING"){
+            Get.to(() => WalkConductView(_goal, _isOld));
+          }else{
+            Get.to(() => CommonConductView(_goal, _isOld));
+          }
         }else{
-          //Get.to(() => YoungGoalDetailView());
+          if(_goal.type == "MEDICATION"){
+            Get.to(() => DrugConductView(_goal, _isOld));
+          }else if(_goal.type == "WALKING"){
+            Get.to(() => WalkConductView(_goal, _isOld));
+          }else{
+            Get.to(() => CommonConductView(_goal, _isOld));
+          }
         }
-        // if(_goal.type == "MEDICATION"){
-        //   Get.to(() => DrugConductView(_goal));
-        // }else if(_goal.type == "WALKING"){
-        //   Get.to(() => WalkConductView(_goal));
-        // }else{
-        //   Get.to(() => CommonConductView(_goal));
-        // }
+
 
       },
       child: Container(
@@ -59,6 +60,8 @@ class MissionWidget extends StatelessWidget {
 
                       InkWell(
                         onTap: (){
+
+                          print(_goal.type);
                         },
                         child: Center(
                             child: Container(
@@ -76,14 +79,14 @@ class MissionWidget extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 10.w),
                               child: Title3Text(
-                                  _goal.title,
+                                  _goal.title!,
                                   kTextBlackColor
                               ),
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 10.w, top: 5.h),
                               child: Body2Text(
-                                  _goal.description,
+                                  _goal.description!,
                                 wGrey800Color
                               ),
                             )
@@ -100,7 +103,7 @@ class MissionWidget extends StatelessWidget {
                 margin: EdgeInsets.only(top: 7.h,left: 50.w),
 
                 //todo todo
-                child: MissionTimeWidget(_goal.times, context)),
+                child: MissionTimeWidget(_goal.times!, context)),
 
           ],
         ),

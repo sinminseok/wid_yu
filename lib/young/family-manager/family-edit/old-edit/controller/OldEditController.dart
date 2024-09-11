@@ -1,24 +1,32 @@
 import 'dart:ui';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wid_yu/common/dto/user/OldUser.dart';
-import 'package:wid_yu/dto/old-dto/request/OldGeneratorRequest.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserProfileResponse.dart';
-import 'package:wid_yu/final-dto/common-dto/response/user/UserResponse.dart';
-import 'package:wid_yu/utils/Converter.dart';
+import 'package:remedi_kopo/remedi_kopo.dart';
+import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/common/utils/Converter.dart';
 import 'package:wid_yu/young/family-manager/dto/OldInformationResponseDto.dart';
+import 'package:wid_yu/young/family-manager/family-edit/old-edit/api/OldEditApi.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/dto/OldEditProfileRequest.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
-import '../../../../../common/dto/health/Health.dart';
 import '../dto/OldEditDiseaseRequest.dart';
 
 class OldEditByYoungController extends GetxController {
-  //OldEditProfileRequest? _user;
+  String? _name;
+
+  List<int> _deleteId = [];
+  List<OldEditDiseaseRequest> _addDisease = [];
+  List<OldEditDiseaseRequest> _editDisease = [];
+
   List<OldEditDiseaseRequest> diseases = [];
+  Rx<OldInformationResponseDto> _user = dubbyOld.obs;
+  XFile? _changeProfile = null;
 
   // 사용자 정보 관련 컨트롤러
-  late TextEditingController _addressController;
+  late Rx<String> _addressController = "".obs;
   late TextEditingController _brithController;
   late TextEditingController _phoneNumberController;
 
@@ -30,18 +38,16 @@ class OldEditByYoungController extends GetxController {
   RxBool _canSave = false.obs;
 
   OldEditByYoungController(OldInformationResponseDto user) {
+    _user.value = user;
+    _name = user.name!;
     initTextController(user);
     toEditDto(user);
     _phoneNumberController = TextEditingController(text: user.phoneNumber);
-    _addressController = TextEditingController(text: user.address);
+    _addressController.value = user.address!;
     _brithController = TextEditingController(text: user.birth);
   }
 
-  void updateProfileImage(String imagePath){
-
-  }
-
-  void updatePhoneNumber(String number){
+  void updatePhoneNumber(String number) {
     _phoneNumberController.text = ConverterCutom.toServerPhoneNumber(number);
   }
 
@@ -54,7 +60,7 @@ class OldEditByYoungController extends GetxController {
         List.generate(user.diseases!.length, (_) => TextEditingController());
   }
 
-  OldEditProfileRequest toEditDto(OldInformationResponseDto user) {
+  void toEditDto(OldInformationResponseDto user) {
     diseases = [];
     for (int i = 0; i < user.diseases!.length; i++) {
       diseases.add(OldEditDiseaseRequest(
@@ -69,14 +75,6 @@ class OldEditByYoungController extends GetxController {
       _explainControllers[i] =
           TextEditingController(text: user.diseases![i].explanation);
     }
-
-    return OldEditProfileRequest(
-        name: '',
-        profileImageUrl: '',
-        phoneNumber: '',
-        address: '',
-        birth: '',
-        diseases: diseases);
   }
 
   void deleteDeisease(int index, OldEditDiseaseRequest disease) {
@@ -84,10 +82,27 @@ class OldEditByYoungController extends GetxController {
     _drugNameControllers.removeAt(index);
     _diseaseControllers.removeAt(index);
     _explainControllers.removeAt(index);
+
+    if(disease.diseaseIdx != null){
+      _deleteId.add(disease.diseaseIdx!);
+    }
   }
 
-  void editInformation() {
-    print(diseases.length);
+  void addressAPI(BuildContext context) async {
+    KopoModel model = await Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (context) => RemediKopo(),
+      ),
+    );
+
+    String address =
+
+        "${model.zonecode!} ${model.address!} ${model.buildingName!}";
+    _addressController.value = address;
+  }
+
+  void editFromYoung(BuildContext context) async {
 
     for (int i = 0; i < diseases.length; i++) {
       String updateDiseaseName = _diseaseControllers[i].text;
@@ -98,13 +113,109 @@ class OldEditByYoungController extends GetxController {
     }
 
     for (int i = 0; i < diseases.length; i++) {
-      print(diseases[i].drugName);
-      print(diseases[i].diseaseIdx);
-      print(diseases[i].name);
-      print(diseases[i].explanation);
-      print("--------");
+      if(diseases[i].diseaseIdx != null){
+        _editDisease.add(diseases[i]);
+      }else{
+        _addDisease.add(diseases[i]);
+      }
     }
 
+    //질병 추가
+    for (int i = 0; i < _addDisease.length; i++) {
+
+      await OldEditApi().addDisease(_addDisease[i], _user.value.userIdx!);
+    }
+
+    // 질병 삭제
+    for (int i = 0; i < _deleteId.length; i++) {
+
+      await OldEditApi().deleteDisease(_deleteId[i], _user.value.userIdx!);
+    }
+
+
+    OldEditProfileRequest oldInformation = OldEditProfileRequest(name: _name, phoneNumber: _phoneNumberController.text, address: _addressController.value, birth: _brithController.text, diseases: _editDisease);
+
+    String? url = _changeProfile == null ? null : _changeProfile?.path;
+
+    // 프로필 사진 수정
+    if(url != null){
+      await OldEditApi().editProfileImageByYoung(url!, _user.value.userIdx!);
+    }
+
+    // 정보 수정 (+ 수정된 질병)
+    await OldEditApi().editProfileByYoung(oldInformation, _user.value.userIdx!);
+
+
+    Get.to(() => YoungFrameView(0));
+
+    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //   content: Text('동영상이 업로드 됐습니다.'),
+    //   duration: Duration(seconds: 3),
+    //   action: SnackBarAction(
+    //     label: '확인',
+    //     onPressed: () {},
+    //   ),
+    // ));
+
+  }
+
+  void editFromOld(BuildContext context) async {
+
+    for (int i = 0; i < diseases.length; i++) {
+      String updateDiseaseName = _diseaseControllers[i].text;
+      String updateDrugName = _drugNameControllers[i].text;
+      String updateExplain = _explainControllers[i].text;
+
+      diseases[i].update(updateDiseaseName, updateDrugName, updateExplain);
+    }
+
+    for (int i = 0; i < diseases.length; i++) {
+      if(diseases[i].diseaseIdx != null){
+        _editDisease.add(diseases[i]);
+      }else{
+        _addDisease.add(diseases[i]);
+      }
+    }
+
+    //질병 추가
+    for (int i = 0; i < _addDisease.length; i++) {
+
+      await OldEditApi().addDisease(_addDisease[i], _user.value.userIdx!);
+    }
+
+    // 질병 삭제
+    for (int i = 0; i < _deleteId.length; i++) {
+
+      await OldEditApi().deleteDisease(_deleteId[i], _user.value.userIdx!);
+    }
+
+
+    OldEditProfileRequest oldInformation = OldEditProfileRequest(name: _name, phoneNumber: _phoneNumberController.text, address: _addressController.value, birth: _brithController.text, diseases: _editDisease);
+
+    String? url = _changeProfile == null ? null : _changeProfile?.path;
+
+    // 프로필 사진 수정
+    if(url != null){
+      await OldEditApi().editProfileImageByOld(url!);
+    }
+
+    // 정보 수정 (+ 수정된 질병)
+    await OldEditApi().editProfileByOld(oldInformation, );
+
+    Get.to(() => OldFrameView(0));
+
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('프로필 수정 완료.'),
+      duration: Duration(seconds: 3),
+      action: SnackBarAction(
+        label: '확인',
+        onPressed: () {},
+      ),
+    ));
+  }
+
+  void updateProfileUrl(XFile xFile) {
+    _changeProfile = xFile;
   }
 
   void addDisease() {
@@ -123,13 +234,11 @@ class OldEditByYoungController extends GetxController {
     diseases.add(oldEditDiseaseRequest);
   }
 
-
-
-  TextEditingController get addressController => _addressController;
+  String get addressController => _addressController.value;
 
   List<TextEditingController> get drugNameControllers => _drugNameControllers;
 
-  //OldEditProfileRequest? get user => _user;
+  String? get name => _name; //OldEditProfileRequest? get user => _user;
 
   bool get canSave => _canSave.value;
 
@@ -140,4 +249,8 @@ class OldEditByYoungController extends GetxController {
   List<TextEditingController> get diseaseControllers => _diseaseControllers;
 
   List<TextEditingController> get explainControllers => _explainControllers;
+
+  OldInformationResponseDto get user => _user.value;
+
+  XFile? get changeProfile => _changeProfile;
 }

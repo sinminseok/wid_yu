@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wid_yu/common/api/CommonApiUrl.dart';
+import 'package:wid_yu/common/urls/CommonApiUrl.dart';
 import 'package:wid_yu/common/dto/goal/GoalTimeStatus.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
 import 'package:http/http.dart' as http;
@@ -40,8 +40,6 @@ class GoalConductApi {
     // 요청 보내기
     var response = await http.Response.fromStream(await formData.send());
 
-    print("object");
-    print(response.statusCode);
     print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {

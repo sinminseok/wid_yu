@@ -30,8 +30,7 @@ class _YoungVideoWidgetState extends State<YoungVideoWidget> {
 
   Future<void> _generateThumbnail() async {
     final uint8list = await VideoThumbnail.thumbnailData(
-      video:
-          "https://widyu-bucket.s3.ap-northeast-2.amazonaws.com/test_trimmed%3AMay9%2C2024-20%3A50%3A27.mp4",
+      video: widget.reward.url!,
       imageFormat: ImageFormat.PNG,
       maxWidth: 100,
       quality: 50,
@@ -46,7 +45,7 @@ class _YoungVideoWidgetState extends State<YoungVideoWidget> {
     return InkWell(
         onTap: () {
           // 비디오를 재생하는 화면으로 이동하는 로직을 여기에 추가
-          Get.to(() => VideoPlayerScreen(widget.reward.url));
+          Get.to(() => VideoPlayerScreen(widget.reward.url!));
         },
         child: Stack(
           children: [

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,22 +13,28 @@ import 'package:wid_yu/young/family-manager/family-edit/young-edit/widgets/Young
 
 import '../../../../../common/utils/Color.dart';
 import '../../../../../common/utils/FilePath.dart';
+import '../../../../../young/family-manager/dto/YoungInformationResponseDto.dart';
 import '../controller/YoungEditByOldController.dart';
 import '../widget/YoundEditInformation.dart';
 
 class YoungEditByOldView extends StatefulWidget {
-  const YoungEditByOldView({Key? key}) : super(key: key);
+  YoungInformationResponseDto _young;
+
+
+  YoungEditByOldView(this._young);
 
   @override
   _EditYoungByOldView createState() => _EditYoungByOldView();
 }
 
 class _EditYoungByOldView extends State<YoungEditByOldView> {
-  YoungEditByOldController controller = YoungEditByOldController();
+
   bool _switchValue = true;
 
   @override
   Widget build(BuildContext context) {
+    YoungEditByOldController controller = YoungEditByOldController(widget._young);
+
     return Theme(
       data: ThemeData(
         splashColor: Colors.transparent,
@@ -39,9 +46,9 @@ class _EditYoungByOldView extends State<YoungEditByOldView> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              //YoungEditProfile(controller),
+              _buildProfile(),
               _buildUserInformation(),
-              _buildFamilyRelationship(),
+              //_buildFamilyRelationship(),
               YoungEditInformation(controller),
             ],
           ),
@@ -50,6 +57,48 @@ class _EditYoungByOldView extends State<YoungEditByOldView> {
     );
   }
 
+  Widget _buildProfile(){
+    return Center(
+        child: Container(
+          margin: EdgeInsets.only(left: 0.w, top: 0.h),
+          child: Stack(
+            children: [
+              Container(
+                width: 100.w,
+                height: 100.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: widget._young.profileImageUrl == null?  Image.asset("assets/images/user/blur-young.png",
+                    width: 100.w, height: 100.h, fit: BoxFit.fitWidth):Container(
+                  margin: EdgeInsets.only(top: 0.h),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: wGrey100Color),
+                    shape: BoxShape.circle,
+                    color: wWhiteColor,
+                  ),
+                  height: 83.h,
+                  width: 83.h,
+                  // 원형을 만들기 위해 width와 height를 동일하게 설정
+                  clipBehavior: Clip.hardEdge,
+                  // 내용이 Container의 경계를 넘지 않도록 설정
+                  child: ClipOval(
+                    child: Image.network(
+                      widget._young.profileImageUrl!,
+                      fit: BoxFit.cover, // 이미지를 원에 맞게 조정
+                      width: 83.h,
+                      height: 83.h,
+                    ),
+                  ),
+                ),
+
+
+              ),
+
+            ],
+          ),
+        ));
+  }
 
 
   AppBar _buildAppBar() {
@@ -71,18 +120,18 @@ class _EditYoungByOldView extends State<YoungEditByOldView> {
                     height: 19.h,fit: BoxFit.contain,)
               ),
             ),
-            Obx(() => controller.canSave?InkWell(
-              onTap: (){
-                CustomSnackBar().show(context, "서버 연동 후 구현");
-              },
-              child: Container(
-                margin: EdgeInsets.only(top: 0.h, right: 10.w),
-                child: SubTitle2Text("저장", wGrey800Color),
-              ),
-            ):Container(
-              margin: EdgeInsets.only(top: 0.h, right: 10.w),
-              child: SubTitle2Text("저장", wGrey500Color),
-            ))
+            // Obx(() => controller.canSave?InkWell(
+            //   onTap: (){
+            //     CustomSnackBar().show(context, "서버 연동 후 구현");
+            //   },
+            //   child: Container(
+            //     margin: EdgeInsets.only(top: 0.h, right: 10.w),
+            //     child: SubTitle2Text("저장", wGrey800Color),
+            //   ),
+            // ):Container(
+            //   margin: EdgeInsets.only(top: 0.h, right: 10.w),
+            //   child: SubTitle2Text("저장", wGrey500Color),
+            // ))
           ],
         ));
   }
@@ -93,17 +142,19 @@ class _EditYoungByOldView extends State<YoungEditByOldView> {
       children: [
         Container(
           height: 27.h,
-          margin: EdgeInsets.only(top: 0.h),
-          child: Title3Text("보호자 님", wGrey800Color),
+          margin: EdgeInsets.only(top: 10.h),
+          child: Title3Text("${widget._young.name} 님", wGrey800Color),
         ),
         Container(
           margin: EdgeInsets.only(top: 2.h),
           height: 27.h,
-          child: Body2Text("@ID", wGrey600Color),
+          child: Body2Text("@${widget._young.id}", wGrey600Color),
         ),
       ],
     );
   }
+
+
 
   Widget _buildFamilyRelationship() {
     return Container(

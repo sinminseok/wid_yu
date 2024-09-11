@@ -33,7 +33,7 @@ class OldMissionSetTime extends StatelessWidget {
             child: Column(
               children: [
                 _buildPickTime(),
-                _buildPickDrugCount(),
+                controller.drug? _buildPickDrugCount() : Container(),
                 _buildAddTimeButton(),
               ],
             ),
