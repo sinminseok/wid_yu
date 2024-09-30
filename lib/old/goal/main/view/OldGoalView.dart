@@ -100,7 +100,7 @@ class _OldGoalView extends State<OldGoalView> {
                             context,
                             PageTransition(
                               type: PageTransitionType.fade,
-                              child: OldMessageView(),
+                              child: OldMessageView(controller.todayGoals!, controller.totalGoals!,controller.user!),
                             ),
                           );
                         },

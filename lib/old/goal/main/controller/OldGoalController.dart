@@ -14,11 +14,6 @@ class OldGoalController extends GetxController {
 
   RxBool _switchValue = false.obs;
 
-  // List<GoalResponse> myMission = [
-  //   GoalResponse(goalIdx: 1,title: "타으틸", description: "ahrcy", type: GoalType.MEDICATION.toString(), day: "1100001", times: []),
-  //   GoalResponse(goalIdx: 1,  title: "타으틸", description: "ahrcy", type: GoalType.MEDICATION.toString(), day: "1100001", times: []),
-  //
-  // ];
 
   Future<bool> loadInit() async {
     _user = await OldGoalMainApi().loadMainPage();

@@ -21,7 +21,6 @@ class YoungLoginApi extends ChangeNotifier {
         body: json.encode({'id': id, 'password': pw, 'fcmToken': fcmToken}));
 
 
-    print(utf8.decode(response.bodyBytes));
 
     //쿠키 저장
     if (response.statusCode == 200) {

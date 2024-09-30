@@ -29,12 +29,6 @@ class HeartBitDetailApi with ChangeNotifier {
       },
     );
 
-
-    print(utf8.decode(response.bodyBytes));
-    print(response.statusCode);
-    print("------");
-
-
     if (response.statusCode == 201) {
       return HealthResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
     }

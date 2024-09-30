@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:wid_yu/old/health-information/dto/OldHealthResponse.dart';
+import 'package:wid_yu/final-dto/old-dto/response/OldHealthResponse.dart';
 import 'package:wid_yu/young/health-infroamtion/heartbit/view/HeartBitDetailView.dart';
 
 import '../../../../common/utils/Color.dart';

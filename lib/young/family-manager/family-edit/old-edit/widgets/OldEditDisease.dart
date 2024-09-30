@@ -7,7 +7,7 @@ import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldDiseaseController.dart';
 import 'package:wid_yu/young/family-manager/family-edit/old-edit/controller/OldEditController.dart';
 
-import '../../../../../common/dto/disease/Disease.dart';
+import '../../../../../final-dto/common-dto/response/Disease.dart';
 import '../dto/OldEditDiseaseRequest.dart';
 
 class OldEditDisease extends StatefulWidget {

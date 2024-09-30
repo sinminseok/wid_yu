@@ -11,6 +11,7 @@ import '../../../../final-dto/young-dto/response/reward/YoungRewardReadResponse.
 class OldAlbumApi with ChangeNotifier {
   final String OLD_ALBUM_LOAD_API = ROOT_API + "reward/senior/all";
   final String OLD_BUY_REWARD_URL = ROOT_API + "reward/buy/";
+  final String OLD_POINT_GET_URL = ROOT_API + "senior/point/";
 
   Future<List<YoungRewardReadResponse>> loadAllReward() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,14 +28,14 @@ class OldAlbumApi with ChangeNotifier {
     );
 
 
-    print(json.decode(utf8.decode(response.bodyBytes)));
-
+    print(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       rewards = List<YoungRewardReadResponse>.from(json
           .decode(utf8.decode(response.bodyBytes))["data"]
           .map((x) => YoungRewardReadResponse.fromJson(x)));
 
     }
+
 
     return rewards;
   }
@@ -61,5 +62,34 @@ class OldAlbumApi with ChangeNotifier {
     }
 
     return false;
+  }
+
+
+  Future<int> getPoint(String userId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var session = await prefs.getString("session");
+
+    var response = await http.get(
+      Uri.parse(OLD_POINT_GET_URL+userId.toString()),
+      headers: {
+        'Cookie': 'JSESSIONID=${session}',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
+
+    print("--------");
+    print(utf8.decode(response.bodyBytes));
+    print(json
+        .decode(utf8.decode(response.bodyBytes))["data"]);
+
+    print(json.decode(utf8.decode(response.bodyBytes)));
+
+    if (response.statusCode == 200) {
+      return json
+          .decode(utf8.decode(response.bodyBytes))["data"];
+    }
+
+    return 0;
   }
 }

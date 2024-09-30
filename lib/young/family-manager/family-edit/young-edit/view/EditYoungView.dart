@@ -154,7 +154,6 @@ class _EditYoungView extends State<EditYoungView> {
         toggleSize: 30.0,
         value: _switchValue,
         onToggle: (value) {
-          print(value);
           if(value == false){
             ShowFamilyPopup().showDialog(context);
           }

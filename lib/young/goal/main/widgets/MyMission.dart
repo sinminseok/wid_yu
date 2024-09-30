@@ -24,7 +24,7 @@ class YoungMyMission extends StatelessWidget {
   }
 
   Widget _buildTodayMission() {
-    return controller.todayMyGoal.length == 0?EmptyGoal(false): InkWell(
+    return controller.todayMyGoal.length == 0 ? EmptyGoal(false): InkWell(
       onTap: () {
         //Get.to(() => YoungGoalDetailView(), transition: Transition.fadeIn);
       },

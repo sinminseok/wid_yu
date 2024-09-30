@@ -7,6 +7,7 @@ import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart
 
 import '../../../../common/common-widget/mission/MissionWidget.dart';
 import '../../../../common/utils/Color.dart';
+import '../../../../utils/ConvertPercentage.dart';
 
 /*
  보호자가 목표 화면에서 볼 보호자 미션
@@ -117,7 +118,7 @@ class _OldMissionWidgetState extends State<OldMissionWidget> {
                         ),
                         Container(
                           child: Title3Text(
-                              "${widget.old.percentage!}%", wPurpleColor),
+                              "${ConvertPercentage().toPercentage(widget.old.percentage!)}%", wPurpleColor),
                         ),
                         Container(
                           child: Title3Text(" 를 달성했어요.", kTextBlackColor),

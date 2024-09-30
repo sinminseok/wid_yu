@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../common/dto/disease/Disease.dart';
+import '../../../../final-dto/common-dto/response/Disease.dart';
 import '../../../../common/utils/PopUp.dart';
 import '../../../../common/utils/exception/InvalidInformationException.dart';
 import '../../../../final-dto/old-dto/request/OldDiseaseRequest.dart';
@@ -47,22 +47,22 @@ class YoungJoinTotalController extends GetxController {
   // 인증번호 검증 메서드
   void checkNumber() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    _canNextStep.value = true;
+    // _canNextStep.value = true;
     //todo 아래로 변경
-    // if (_verifyNumberController.text.length != 4) {
-    //   ToastMessage().showtoast("인증번호를 입력해주세요.");
-    // } else {
-    //   //_canNextStep.value = true;
-    //   var response = await api.checkVerificationCode(
-    //       _verifyNumberController.text, _phoneNumberController.text);
-    //   if (response) {
-    //     _canNextStep.value = true;
-    //     await prefs.setString("young_join_name", _nameController.text);
-    //     await prefs.setString("young_join_phone_number", _phoneNumberController.text);
-    //   } else {
-    //     ToastMessage().showtoast("인증 번호가 다릅니다.");
-    //   }
-    // }
+    if (_verifyNumberController.text.length != 4) {
+      ToastMessage().showtoast("인증번호를 입력해주세요.");
+    } else {
+      //_canNextStep.value = true;
+      var response = await api.checkVerificationCode(
+          _verifyNumberController.text, _phoneNumberController.text);
+      if (response) {
+        _canNextStep.value = true;
+        await prefs.setString("young_join_name", _nameController.text);
+        await prefs.setString("young_join_phone_number", _phoneNumberController.text);
+      } else {
+        ToastMessage().showtoast("인증 번호가 다릅니다.");
+      }
+    }
   }
 
   // 이용약관 동의 메서드

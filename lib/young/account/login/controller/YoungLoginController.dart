@@ -44,7 +44,7 @@ class YoungLoginController extends GetxController {
         if (_isChecked.value) {
           // 자동로그인 세팅
           final SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setBool("auto_login", true);
+          prefs.setBool("auto_login_young", true);
           prefs.setString("login_id", idController.text);
           prefs.setString("login_pw", passworController.text);
         }

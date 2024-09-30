@@ -34,7 +34,9 @@ class OldAlbumController extends GetxController {
 
     }
 
-    _point = prefs.getInt("point");
+    var userId = await prefs.get("user_idx");
+    _point = await OldAlbumApi().getPoint(userId.toString());
+
 
     return true;
   }

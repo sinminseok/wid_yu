@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:wid_yu/young/health-infroamtion/api/YoungHealthApi.dart';
 import 'package:wid_yu/young/health-infroamtion/dto/HealthAllResponse.dart';
 
-import '../../../../old/health-information/dto/OldHealthResponse.dart';
+import '../../../../final-dto/old-dto/response/OldHealthResponse.dart';
 import '../../../../old/health-information/popup/HealthInformationPopup.dart';
 
 class YoungHealthInformationController extends GetxController {

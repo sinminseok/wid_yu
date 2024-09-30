@@ -7,7 +7,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/FilePath.dart';
-import '../../../../old/health-information/dto/OldHealthResponse.dart';
+import '../../../../final-dto/old-dto/response/OldHealthResponse.dart';
 import '../controller/YoungHealthInformationController.dart';
 
 class SideBarUsers extends StatelessWidget {

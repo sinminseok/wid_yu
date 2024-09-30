@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../final-dto/common-dto/response/goal/GoalResponse.dart';
@@ -13,7 +14,7 @@ class OldGoalDetailController extends GetxController{
   List<GoalResponse> _goals = [];
 
   RxDouble _todayPercentage = 0.0.obs;
-  RxInt _todayPoint = 0.obs;
+  RxDouble _todayPoint = 0.0.obs;
 
   List<PercentageOfDay> _monthPercentage = [];
 
@@ -62,7 +63,7 @@ class OldGoalDetailController extends GetxController{
 
   List<PercentageOfDay> get monthPercentage => _monthPercentage;
 
-  RxInt get todayPoint => _todayPoint;
+  RxDouble get todayPoint => _todayPoint;
 
   RxDouble get todayPercentage => _todayPercentage;
 }

@@ -9,7 +9,7 @@ import '../../../final-dto/common-dto/response/goal/GoalResponse.dart';
 import '../../../goal-conduct/common-goal-conduct/view/CommonConductView.dart';
 import '../../../goal-conduct/drug-goal-conduct/view/DrugConductView.dart';
 import '../../../goal-conduct/walk-goal-conduct/view/WalkConductView.dart';
-import '../../dto/goal/GoalType.dart';
+import '../../../final-dto/common-dto/response/GoalType.dart';
 import '../../utils/Color.dart';
 import '../mission-time/MissionTimeWidget.dart';
 
@@ -25,23 +25,23 @@ class MissionWidget extends StatelessWidget {
 
     return InkWell(
       onTap: (){
-        if(_isOld){
-          if(_goal.type == "MEDICATION"){
-            Get.to(() => DrugConductView(_goal, _isOld));
-          }else if(_goal.type == "WALKING"){
-            Get.to(() => WalkConductView(_goal, _isOld));
-          }else{
-            Get.to(() => CommonConductView(_goal, _isOld));
-          }
-        }else{
-          if(_goal.type == "MEDICATION"){
-            Get.to(() => DrugConductView(_goal, _isOld));
-          }else if(_goal.type == "WALKING"){
-            Get.to(() => WalkConductView(_goal, _isOld));
-          }else{
-            Get.to(() => CommonConductView(_goal, _isOld));
-          }
-        }
+        // if(_isOld){
+        //   if(_goal.type == "MEDICATION"){
+        //     Get.to(() => DrugConductView(_goal, _isOld));
+        //   }else if(_goal.type == "WALKING"){
+        //     Get.to(() => WalkConductView(_goal, _isOld));
+        //   }else{
+        //     Get.to(() => CommonConductView(_goal, _isOld));
+        //   }
+        // }else{
+        //   if(_goal.type == "MEDICATION"){
+        //     Get.to(() => DrugConductView(_goal, _isOld));
+        //   }else if(_goal.type == "WALKING"){
+        //     Get.to(() => WalkConductView(_goal, _isOld));
+        //   }else{
+        //     Get.to(() => CommonConductView(_goal, _isOld));
+        //   }
+        // }
 
 
       },

@@ -26,8 +26,6 @@ class YoungGoalCreateApi with ChangeNotifier {
         },
         body: json.encode(dto.toJson()));
 
-    print(response.body);
-    print(response.statusCode);
 
     if (response.statusCode == 200) {
       return true;

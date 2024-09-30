@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:wid_yu/utils/ConvertPercentage.dart';
 
 import '../../../../common/utils/CustomText.dart';
 import '../../../../common/utils/Color.dart';
@@ -38,7 +39,7 @@ class GoalDetailHeader extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(top: 8.h),
                         child: Title1Text(
-                            "오늘 ${_percentage}% 달성!",
+                            "오늘 ${ConvertPercentage().toPercentage(_percentage)}% 달성!",
                             wGrey800Color
                         ),
                       ),

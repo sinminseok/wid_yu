@@ -1,8 +1,16 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
+import 'package:wid_yu/old/account/api/OldLoginApi.dart';
+import 'package:wid_yu/old/frame/OldFrameView.dart';
+import 'package:wid_yu/old/goal/main/view/OldGoalView.dart';
+import 'package:wid_yu/young/account/login/api/YoungLoginApi.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
+import 'package:wid_yu/young/goal/main/view/YoungGoalView.dart';
 
 import '../../../old/account/view/OldLoginView.dart';
 import '../../../young/account/login/view/YoungLoginView.dart';
@@ -17,6 +25,27 @@ class SelectUserView extends StatefulWidget {
 class _SelectUserViewState extends State<SelectUserView> {
 
 
+  Future<bool> checkAutoLogin()async{
+    String? _fcmToken = await FirebaseMessaging.instance.getToken();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? responseYoung = await prefs.getBool("auto_login_young");
+    bool? responseOld = await prefs.getBool("auto_login_old");
+    String? youngId = await prefs.getString("login_id");
+    String? youngPw = await prefs.getString("login_pw");
+    String? oldId = await prefs.getString("login_key");
+    if(responseYoung != null && responseYoung == true){
+      await YoungLoginApi().loginYoung(true, youngId!, youngPw!, _fcmToken!);
+      Get.to(() => YoungFrameView(0));
+    }
+
+    else if(responseOld != null && responseOld == true){
+      await OldLoginApi().loginOld(oldId!, _fcmToken!);
+      Get.to(() => OldFrameView(0));
+    }
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -25,21 +54,31 @@ class _SelectUserViewState extends State<SelectUserView> {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildLogo(),
-              _buildMainText(),
-              _buildYoungButton(),
-              _buildOldButton(),
-            ],
-          ),
-        ),
-      ),
+      child: FutureBuilder(future: checkAutoLogin(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return Center(child: CircularProgressIndicator());
+        }else if (snapshot.hasError){
+          return Text("ERROR");
+        }else{
+          return   Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildLogo(),
+                  _buildMainText(),
+                  _buildYoungButton(),
+                  _buildOldButton(),
+                ],
+              ),
+            ),
+          );
+
+      }
+      },)
     );
   }
+
 
   Widget _buildOldButton() {
     return Container(

@@ -9,7 +9,6 @@ import '../../../common/urls/CommonApiUrl.dart';
 
 class OldLoginApi with ChangeNotifier {
   Future<bool> loginOld(String key, String _fcmToken) async {
-    print("CALLL = "+ _fcmToken);
 
     var response = await http.post(Uri.parse(ROOT_API + "senior/login"), headers: {
       'Content-Type': 'application/json',

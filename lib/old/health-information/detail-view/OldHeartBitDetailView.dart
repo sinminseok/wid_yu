@@ -9,7 +9,8 @@ import 'package:wid_yu/old/health-information/detail-view/widgets/OldHealthGraph
 
 import '../../../common/common-widget/appbar/CommonAppbar.dart';
 import '../../../common/utils/Color.dart';
-import '../dto/OldHealthDetailResponse.dart';
+import '../../../common/utils/CustomText.dart';
+import '../../../final-dto/old-dto/response/OldHealthDetailResponse.dart';
 
 class OldHeartBitDetailView extends StatefulWidget {
   double currentHeartBit;
@@ -93,10 +94,10 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if(value != 0)Container(
-                      margin: EdgeInsets.only(bottom: 10.h),
-                      child: Text("평소보다", style: TextStyle(color: wGrey400Color, fontSize: 14.sp, fontWeight: FontWeight.w600),),
-                    ),
+                    // if(value != 0)Container(
+                    //                     //   margin: EdgeInsets.only(bottom: 10.h),
+                    //                     //   child: Text("평소보다", style: TextStyle(color: wGrey400Color, fontSize: 14.sp, fontWeight: FontWeight.w600),),
+                    //                     // ),
                     if(value>0)_buildLow(),
                     if(value>0)_buildHigh(),
                   ],
@@ -234,6 +235,7 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
     );
   }
 
+  //todo 데이터 추가
   Widget _buildNormalInformation() {
     return Container(
       width: 145.w,
@@ -282,6 +284,21 @@ class _OldHeartBitDetailViewState extends State<OldHeartBitDetailView> {
 
 
   Widget _buildGraph(OldHealthDetailResponse? oldHealthDetailResponse) {
-    return OldHealthGraph(oldHealthDetailResponse!.graphData);
+    return oldHealthDetailResponse?.graphData == null?_buildEmptyGraph():OldHealthGraph(oldHealthDetailResponse!.graphData!);
   }
+
+  Widget _buildEmptyGraph() {
+    return Container(
+      width: 330.w,
+      height: 320.h,
+      decoration: BoxDecoration(
+          border: Border.all(color: wGrey100Color),
+          borderRadius: BorderRadius.all(Radius.circular(5))
+      ),
+      child: Center(
+        child: Body2Text("오늘 심박수 측정을 아직 하지 않았습니다.", kTextBlackColor),
+      ),
+    );
+    ;  }
+
 }

@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../../common/dto/disease/Disease.dart';
+import '../../../../../final-dto/common-dto/response/Disease.dart';
 
 
 class OldDiseaseEditByOldController extends GetxController{

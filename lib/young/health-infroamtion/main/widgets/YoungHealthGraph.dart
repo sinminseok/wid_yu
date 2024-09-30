@@ -2,13 +2,13 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/common/utils/constants/HealthType.dart';
 
 class YoungHealthGraph extends StatefulWidget {
   final List<double> data;
   final HealthType healthType;
-
 
   YoungHealthGraph(this.data, this.healthType);
 
@@ -19,11 +19,17 @@ class YoungHealthGraph extends StatefulWidget {
 class _YoungHealthGraphState extends State<YoungHealthGraph> {
   Color stateColor = wPurpleColor;
 
-
   List<Color> gradientColors = [
     wPurpleColor,
     wPurpleBackGroundColor,
   ];
+
+  String getTodayDate() {
+    DateTime now = DateTime.now();
+    DateFormat formatter = DateFormat('yyyy.MM.dd');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
 
   late int average;
   late int maxValue;
@@ -68,23 +74,49 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 15.h,left: 15.w),
+          margin: EdgeInsets.only(top: 15.h, left: 15.w),
           child: Row(
             children: [
-              widget.healthType == HealthType.SP02? Container(
-                child: Text("Spo2 %", style: TextStyle(color: wTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),),
-              ):Container(),
-              widget.healthType == HealthType.HEART_BIT? Container(
-                child: Text("PR bpm", style: TextStyle(color: wTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),),
-              ):Container(),
-              widget.healthType == HealthType.TEMPERATURE? Container(
-                child: Text("Temperature", style: TextStyle(color: wTextBlackColor, fontSize: 14.sp, fontWeight: FontWeight.w600),),
-              ):Container(),
-              Container(
-                margin: EdgeInsets.only(left: 10.w
+              if (widget.healthType == HealthType.SP02)
+                Container(
+                  child: Text(
+                    "Spo2 %",
+                    style: TextStyle(
+                        color: wTextBlackColor,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
-                child: Text("2023.10.24", style: TextStyle(color: wGrey500Color, fontSize: 14.sp, fontWeight: FontWeight.w500),),
-              )
+              if (widget.healthType == HealthType.HEART_BIT)
+                Container(
+                  child: Text(
+                    "PR bpm",
+                    style: TextStyle(
+                        color: wTextBlackColor,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              if (widget.healthType == HealthType.TEMPERATURE)
+                Container(
+                  child: Text(
+                    "Temperature",
+                    style: TextStyle(
+                        color: wTextBlackColor,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              Container(
+                margin: EdgeInsets.only(left: 10.w),
+                child: Text(
+                  getTodayDate(),
+                  style: TextStyle(
+                      color: wGrey500Color,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ],
           ),
         ),
@@ -95,8 +127,9 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
               Container(
                 width: 290.w,
                 height: 270.h,
-                margin: EdgeInsets.only(left: 7.w, right: 0.w, bottom: 0.h, top: 10.h),
-                child:Column(
+                margin:
+                EdgeInsets.only(left: 7.w, right: 0.w, bottom: 0.h, top: 10.h),
+                child: Column(
                   children: [
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -105,19 +138,19 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
                         children: [
                           SizedBox(
                             width: 1370.w,
-                            height: 200.h,// Set a finite width for LineChart
-
+                            height: 200.h,
                             child: LineChart(
                               LineChartData(
-                                // 터치 데이터 설정
                                 lineTouchData: LineTouchData(
                                   touchTooltipData: LineTouchTooltipData(
-                                    tooltipBgColor: stateColor,
-                                    getTooltipItems: (List<LineBarSpot> touchedSpots) {
-                                      return touchedSpots.map((LineBarSpot touchedSpot) {
-                                        // 터치한 지점에 대한 툴팁 아이템 생성
+                                    //tooltipBgColor: stateColor,
+                                    tooltipPadding: EdgeInsets.all(8),
+                                    getTooltipItems:
+                                        (List<LineBarSpot> touchedSpots) {
+                                      return touchedSpots
+                                          .map((LineBarSpot touchedSpot) {
                                         return LineTooltipItem(
-                                          "${touchedSpot.y}", // 여기에 값을 변경할 수 있습니다.
+                                          "${touchedSpot.y}",
                                           TextStyle(color: wWhiteColor),
                                         );
                                       }).toList();
@@ -127,17 +160,17 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
                                 ),
                                 gridData: FlGridData(
                                   show: false,
-                                  drawHorizontalLine: false,
+                                  drawVerticalLine: false,
                                 ),
                                 titlesData: FlTitlesData(
                                   show: true,
-                                  leftTitles: SideTitles(
-                                    showTitles: false,
+                                  leftTitles: AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false),
+                                  ),
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: SideTitles(showTitles: false),
                                   ),
                                 ),
-
-
-                                //add
                                 borderData: FlBorderData(
                                   show: true,
                                   border: Border.all(color: wWhiteColor),
@@ -145,26 +178,26 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
                                 minX: -0.4.w,
                                 maxX: widget.data.length.toDouble() - 1,
                                 minY: 0,
-                                maxY: widget.data
-                                    .reduce((maxValue, element) =>
-                                    max(maxValue, element))
-                                    .toDouble() +
+                                maxY: widget.data.reduce((maxValue, element) =>
+                                    max(maxValue, element)) +
                                     18.5,
                                 lineBarsData: [
                                   LineChartBarData(
                                     spots: List.generate(
                                       widget.data.length,
-                                          (index) =>
-                                          FlSpot(index.toDouble(), widget.data[index]),
+                                          (index) => FlSpot(
+                                          index.toDouble(), widget.data[index]),
                                     ),
                                     isCurved: true,
-                                    colors: [stateColor, stateColor],
+                                    color: stateColor,
                                     dotData: FlDotData(show: false),
                                     belowBarData: BarAreaData(
                                       show: true,
-                                      gradientFrom: Offset(0, 0),  // 시작 지점
-                                      gradientTo: Offset(0, 1),
-                                      colors: gradientColors,
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: gradientColors,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -173,31 +206,30 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
                           ),
                           Chart_Bottom()
                         ],
-                      )
+                      ),
                     ),
                   ],
-                )
+                ),
               ),
               Container(
                 width: 25.w,
-                //done
                 height: 190.h,
                 margin: EdgeInsets.only(right: 3.w, bottom: 30.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      child: Text("${maxValue}",
-                          style: TextStyle(color: wGrey300Color)),
+                    Text(
+                      "$maxValue",
+                      style: TextStyle(color: wGrey300Color),
                     ),
-                    Container(
-                      child: Text("${average}",
-                          style: TextStyle(color: wGrey300Color)),
+                    Text(
+                      "$average",
+                      style: TextStyle(color: wGrey300Color),
                     ),
-                    Container(
-                      child: Text("${minValue}",
-                          style: TextStyle(color: wGrey300Color)),
-                    )
+                    Text(
+                      "$minValue",
+                      style: TextStyle(color: wGrey300Color),
+                    ),
                   ],
                 ),
               ),
@@ -216,7 +248,7 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
       child: Row(
         children: List.generate(
           24,
-          (hour) => Expanded(
+              (hour) => Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -251,7 +283,6 @@ class _YoungHealthGraphState extends State<YoungHealthGraph> {
                     style: TextStyle(color: wGrey300Color, fontSize: 12.sp),
                   ),
                 ),
-                // Add a dashed line between each hour
               ],
             ),
           ),
@@ -269,8 +300,8 @@ class DashedLinePainter extends CustomPainter {
       ..strokeWidth = 1.0
       ..style = PaintingStyle.stroke;
 
-    double dashWidth = 3.0; // Increase the dash width
-    double dashSpace = 2.0; // No space between dashes
+    double dashWidth = 3.0;
+    double dashSpace = 2.0;
 
     double startY = size.height / 0.8;
     double endX = 60.w;

@@ -10,6 +10,7 @@ import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart
 import 'package:wid_yu/young/goal/main/controller/YoungGoalController.dart';
 
 import '../../../../common/utils/Color.dart';
+import '../../../../utils/ConvertPercentage.dart';
 import '../../goal-create/view/YoungGoalCreateView.dart';
 
 class YoungGoalFloatinButton extends StatefulWidget {
@@ -164,7 +165,7 @@ class _YoungGoalFloatinButtonState extends State<YoungGoalFloatinButton> {
                             ),
                             Container(
                               child: Text(
-                                "${old.percentage}%",
+                                "${ConvertPercentage().toPercentage(old.percentage!)}%",
                                 style: TextStyle(
                                     color: wPurpleColor,
                                     fontWeight: FontWeight.w900,

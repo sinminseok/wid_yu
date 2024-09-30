@@ -5,7 +5,7 @@ import 'package:wid_yu/common/common-widget/mission-time/DoneMissionTimeWidget.d
 import 'package:wid_yu/common/common-widget/mission-time/NoneMissionTimeWidget.dart';
 import 'package:wid_yu/common/common-widget/mission-time/YetMissionTimeWidget.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalTimeResponse.dart';
-import '../../dto/goal/GoalTimeStatus.dart';
+import '../../../final-dto/common-dto/response/GoalTimeStatus.dart';
 import '../../utils/Color.dart';
 
 /*

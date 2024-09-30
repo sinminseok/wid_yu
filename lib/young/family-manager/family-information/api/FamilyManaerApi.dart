@@ -28,9 +28,6 @@ class FamilyManagerApi with ChangeNotifier {
     );
 
 
-    print(utf8.decode(response.bodyBytes));
-    print("ASFASFAS");
-    print(json.decode(utf8.decode(response.bodyBytes))["data"]["apiUserResponseDto"]);
 
     if(response.statusCode == 200){
       List<YoungInformationResponseDto> answer = [];

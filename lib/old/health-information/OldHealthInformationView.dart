@@ -2,22 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wid_yu/common/utils/CustomText.dart';
-import 'package:wid_yu/final-dto/young-dto/response/user/OldResponseByYoung.dart';
 import 'package:wid_yu/old/family-manager/family-information/view/OldFamilyManagerView.dart';
-import 'package:wid_yu/old/health-information/api/OldHealthApi.dart';
 import 'package:wid_yu/old/health-information/controller/OldHealthInformationController.dart';
-import 'package:wid_yu/old/health-information/popup/HealthInformationPopup.dart';
 import 'package:wid_yu/old/health-information/widgets/HeartBitInformation.dart';
 import 'package:wid_yu/old/health-information/widgets/OldCurrentPosition.dart';
 import 'package:wid_yu/old/health-information/widgets/OldNotConnect.dart';
-import 'package:wid_yu/young/family-manager/dto/YoungInformationResponseDto.dart';
 
 import '../../common/utils/Color.dart';
-import '../../young/family-manager/dto/OldInformationResponseDto.dart';
 import '../../young/health-infroamtion/main/widgets/NotConnectMap.dart';
+import 'api/OldHealthApi.dart';
 
 class OldHealthInformationView extends StatefulWidget {
   const OldHealthInformationView({Key? key}) : super(key: key);
@@ -42,31 +36,11 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
     super.dispose();
   }
 
-  // void remove() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   var object = prefs.get("health");
-  //   if (object == null) {
-  //     prefs.setBool("health", true);
-  //   } else {
-  //     prefs.remove("health");
-  //   }
-  // }
-  //
-  // Future<bool> loadHealthData() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   var object = prefs.get("health");
-  //   if (object == null) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      //floatingActionButton: OldHealthFloatingButton(controller),
       backgroundColor: wYellow100Color,
 
       body: SingleChildScrollView(
@@ -92,6 +66,16 @@ class _OldHealthInformationViewState extends State<OldHealthInformationView> {
                     ),
                     child: Column(
                       children: [
+                        // InkWell(
+                        //   onTap: ()async{
+                        //
+                        //
+                        //     OldHealthApi().sendHeartBit();
+                        //   },
+                        //   child: Container(
+                        //     child: Body2Text("DASDASd", kTextBlackColor),
+                        //   ),
+                        // ),
                         controller.healthResponse.state == 0
                             ? OldNotConnect()
                             : Column(
