@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../../../common/dto/disease/Disease.dart';
+import '../../../../../final-dto/common-dto/response/Disease.dart';
 
 class OldDiseaseEditByYoungController extends GetxController{
   RxList<Disease> _disease = [Disease("감기1", "타이레놀1", "복용방법버버버ㅓㅂ1"),

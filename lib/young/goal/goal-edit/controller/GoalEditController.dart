@@ -92,7 +92,7 @@ class GoalEditController extends GetxController {
     _sunday.value = (day[0] == '1');
   }
 
-  void updateGoal(BuildContext context) async {
+  void updateGoal(BuildContext context, bool isOld) async {
     //todo useridx 선택
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -108,7 +108,7 @@ class GoalEditController extends GetxController {
     bool response = await GoalEditApi().editGoalApi(goalEditRequest);
 
     if(response){
-      SaveFinishPopup().showDialog(context, false);
+      SaveFinishPopup().showDialog(context, isOld);
     }else{
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('네트워크 오류'),

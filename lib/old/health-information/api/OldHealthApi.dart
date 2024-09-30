@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:wid_yu/old/health-information/dto/OldHealthResponse.dart';
+import 'package:wid_yu/final-dto/old-dto/response/OldHealthResponse.dart';
 import '../../../common/urls/CommonApiUrl.dart';
 import '../../../../final-dto/old-dto/response/user/OldMainGoalResponse.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../young/health-infroamtion/dto/HealthAllResponse.dart';
-import '../dto/OldHealthDetailResponse.dart';
+import '../../../final-dto/old-dto/response/OldHealthDetailResponse.dart';
 
 class OldHealthApi with ChangeNotifier {
   final String LOAD_HEALTH_URL = ROOT_API + "health/info/of-senior/main";
@@ -32,9 +32,6 @@ class OldHealthApi with ChangeNotifier {
       }),
     );
 
-    print("----");
-
-    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 201) {
       return true;
@@ -60,9 +57,6 @@ class OldHealthApi with ChangeNotifier {
     );
 
 
-    print("GGG");
-    print(utf8.decode(response.bodyBytes));
-
     if(response.statusCode == 201){
       return OldHealthResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
     }
@@ -83,8 +77,9 @@ class OldHealthApi with ChangeNotifier {
       },
     );
 
-    print("hkhkhkhk");
+    print("object");
     print(utf8.decode(response.bodyBytes));
+
 
 
     if(response.statusCode == 201){
@@ -107,7 +102,6 @@ class OldHealthApi with ChangeNotifier {
       },
     );
 
-    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 201) {
       return HealthAllResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
@@ -115,5 +109,22 @@ class OldHealthApi with ChangeNotifier {
       print("Failed to load data. Status code: ${response.statusCode}");
     }
     return null;
+  }
+
+  void sendHeartBit()async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var session = await prefs.getString("session");
+
+    var response = await http.post(Uri.parse(ROOT_API+"health/append/heart-bit"),
+        headers: {
+          'Cookie': 'JSESSIONID=$session', // 세션을 쿠키로 전달
+          'Content-Type': 'application/json',
+        },
+      body: jsonEncode({
+        'heartBit': 91.4,
+      }));
+
+
   }
 }

@@ -4,7 +4,7 @@ class OldHealthDetailResponse {
   String? _profileImageUrl;
   double _dailyAverage;
   String _compareAverage;
-  List<double> _graphData;
+  List<double>? _graphData;
 
   // Constructor using required
   OldHealthDetailResponse({
@@ -13,7 +13,7 @@ class OldHealthDetailResponse {
     required String? profileImageUrl,
     required double dailyAverage,
     required String compareAverage,
-    required List<double> graphData,
+    required List<double>? graphData,
   })  : _userIdx = userIdx,
         _name = name,
         _profileImageUrl = profileImageUrl,
@@ -30,11 +30,11 @@ class OldHealthDetailResponse {
 
       dailyAverage: json['dailyAverage'],
       compareAverage: json['compareAverage'],
-      graphData: List<double>.from(json['graphData']),
+      graphData: json['graphData'] != null ? List<double>.from(json['graphData']) : null, // null 처리 추가
     );
   }
 
-  List<double> get graphData => _graphData;
+  List<double>? get graphData => _graphData;
 
   String get compareAverage => _compareAverage;
 

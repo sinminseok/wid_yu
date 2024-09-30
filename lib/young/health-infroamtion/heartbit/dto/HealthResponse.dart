@@ -5,7 +5,7 @@ class HealthResponse {
   double _dailyAverage;
   String _compareAverage;
   String _healthType;
-  List<double> _graphData;
+  List<double>? _graphData;
 
   // 생성자
   HealthResponse({
@@ -15,7 +15,7 @@ class HealthResponse {
     required double dailyAverage,
     required String compareAverage,
     required String healthType,
-    required List<double> graphData,
+    required List<double>? graphData,
   })  : _userIdx = userIdx,
         _name = name,
         _profileUrl = profileUrl,
@@ -31,13 +31,13 @@ class HealthResponse {
       userIdx: json['userIdx'],
       name: json['name'],
       profileUrl: json['profileImageUrl'],
-      // nullable 필드
       dailyAverage: json['dailyAverage'],
       compareAverage: json['compareAverage'],
       healthType: json['healthType'],
-      graphData: List<double>.from(json['graphData']),
+      graphData: json['graphData'] != null ? List<double>.from(json['graphData']) : null, // null 처리 추가
     );
   }
+
 
   // Getter methods
   int get userIdx => _userIdx;
@@ -51,5 +51,5 @@ class HealthResponse {
 
   String get healthType => _healthType;
 
-  List<double> get graphData => _graphData;
+  List<double>? get graphData => _graphData;
 }

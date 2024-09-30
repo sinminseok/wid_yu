@@ -112,6 +112,7 @@ class CollectPhotoView extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                   )),
             ),
+
             Container(
               margin: EdgeInsets.only(top: 15.h, bottom: 20.h),
               width: 310.w,
@@ -153,12 +154,11 @@ class CollectPhotoView extends StatelessWidget {
       children: [
         InkWell(
           onTap: () async{
-            int? point  = await getPoint();
-
-            if(point! <= 0 ){
+            int response= _controller.point! - reward.point!;
+            if(response < 0 ){
               CustomSnackBar().show(context, "포인트가 부족합니다.");
             }else{
-              BuyPhotoPopup().showDialog(context, reward, point!);
+              BuyPhotoPopup().showDialog(context, reward, _controller.point!);
             }
 
           },

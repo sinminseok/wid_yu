@@ -16,14 +16,14 @@ class CurrentPosition extends StatelessWidget {
   Widget build(BuildContext context) {
     // Define the initial camera position
     final CameraPosition initialCameraPosition = CameraPosition(
-      target: LatLng(37.50508097213444, 126.95493073306663),
+      target: LatLng(controller.currentUser!.latitude, controller.currentUser!.longitude),
       zoom: 18,
     );
 
     // Create a marker
     final Marker marker = Marker(
       markerId: MarkerId('currentPositionMarker'),
-      position: LatLng(37.50508097213444, 126.95493073306663),
+      position: LatLng(controller.currentUser!.latitude, controller.currentUser!.longitude),
       infoWindow: InfoWindow(
         title: 'Current Position',
         snippet: 'This is your current position.',

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 import 'package:wid_yu/young/account/join/api/YoungJoinTotalApi.dart';
 
-import '../../../../../common/dto/disease/Disease.dart';
+import '../../../../../final-dto/common-dto/response/Disease.dart';
 import '../../../../../common/utils/exception/InvalidInformationException.dart';
 import '../../../../../final-dto/old-dto/request/OldDiseaseRequest.dart';
 import '../../../../../final-dto/old-dto/request/OldGeneratorRequest.dart';

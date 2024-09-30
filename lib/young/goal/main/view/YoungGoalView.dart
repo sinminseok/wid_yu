@@ -66,27 +66,11 @@ class _YoungGoalViewState extends State<YoungGoalView> {
               controller: controller.scrollController,
               child: Column(
                 children: [
-                  // InkWell(
-                  //   onTap: ()async{
-                  //     final SharedPreferences prefs = await SharedPreferences.getInstance();
-                  //
-                  //     var s = await prefs.getString("fcmToken");
-                  //     print(s);
-                  //   },
-                  //   child: Container(
-                  //     child: Body2Text("asdasd", kTextBlackColor),
-                  //   ),
-                  // ),
                   HeaderInformation(controller),
                   SwitchButton(controller),
                   controller.totalMyGoal.length == 0?EmptyGoal(false): YoungMyMission(
                     controller: controller,
                   ),
-                  //OldMissionWidget(controller)
-                  // Container(
-                  //   child: Text("${controller.totalInformation.seniorsGoalList?[0].name}", style: TextStyle(color: wTextBlackColor),),
-                  //
-                  // ),
                   Obx(() => controller.isBottomScroll.value
                       ? Container(
                     width: 340.w,
@@ -134,7 +118,7 @@ class _YoungGoalViewState extends State<YoungGoalView> {
                         context,
                         PageTransition(
                             type: PageTransitionType.fade,
-                            child: (YoungMessageView())));
+                            child: (YoungMessageView(controller.totalInformation, controller.totalMyGoal, controller.todayMyGoal))));
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 8.w, top: 10.h),

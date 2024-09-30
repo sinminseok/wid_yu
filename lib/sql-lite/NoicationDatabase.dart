@@ -32,6 +32,7 @@ class DatabaseHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
       body TEXT NOT NULL,
+      dateTime TEXT NOT NULL,
       isRead INTEGER NOT NULL
     )
     ''');
@@ -54,8 +55,4 @@ class DatabaseHelper {
     await db.delete('messages', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> markMessageAsRead(int id) async {
-    final db = await instance.database;
-    await db.update('messages', {'isRead': 1}, where: 'id = ?', whereArgs: [id]);
-  }
 }

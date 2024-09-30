@@ -130,7 +130,7 @@ class _GoalEditView extends State<GoalEditView> {
   Widget _buildCanSaveButton(GoalEditController _controller){
     return InkWell(
       onTap: () {
-        _controller.updateGoal(context);
+        _controller.updateGoal(context, widget._isOld);
         //SaveFinishPopup().showDialog(context);
       },
       child: Center(

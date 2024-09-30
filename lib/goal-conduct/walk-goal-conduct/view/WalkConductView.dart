@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:wid_yu/final-dto/common-dto/response/goal/GoalResponse.dart';
+import 'package:wid_yu/young/frame/YoungFrameView.dart';
 
 import '../../../../common/utils/Color.dart';
 import '../../../../common/utils/CustomText.dart';
@@ -60,27 +61,37 @@ class _WalkConductViewState extends State<WalkConductView> {
       margin: EdgeInsets.only(bottom: 60.h),
       child: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 0.h),
-            height: 24.h,
-            child: ButtonText("다시 알림", wPurpleColor),
-          ),
+          // Container(
+          //   margin: EdgeInsets.only(top: 0.h),
+          //   height: 24.h,
+          //   child: ButtonText("다시 알림", wPurpleColor),
+          // ),
           Container(
             margin: EdgeInsets.only(top: 20.h),
             width: 335.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 108.w,
-                  height: 44.h,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: wGrey300Color),
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      color: wGrey200Color
-                  ),
-                  child: Center(
-                    child: ButtonText("끄기", wGrey600Color),
+                InkWell(
+                  onTap: (){
+                    if(widget.isOld){
+                      Get.to(() => OldFrameView(0));
+                    }else{
+                      Get.to(() => YoungFrameView(0));
+                    }
+
+                  },
+                  child: Container(
+                    width: 108.w,
+                    height: 44.h,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: wGrey300Color),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                        color: wGrey200Color
+                    ),
+                    child: Center(
+                      child: ButtonText("끄기", wGrey600Color),
+                    ),
                   ),
                 ),
                 Container(

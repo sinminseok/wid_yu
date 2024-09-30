@@ -51,8 +51,6 @@ class YoungGoalCreateController {
   }
 
   void createGoal(BuildContext context) async{
-    //todo useridx 선택
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     GoalGeneratorRequest goalGeneratorRequest = GoalGeneratorRequest(
         userIdx: selectUser.value.userIdx,
@@ -61,7 +59,7 @@ class YoungGoalCreateController {
         description: _contentController.text,
         type: createGoalType().toString(),
         day: createDays(),
-        goalStatusList: addTimes.value);
+        goalStatusList: addTimes);
 
 
     var createGoalApi =await YoungGoalCreateApi().createGoalApi(goalGeneratorRequest);

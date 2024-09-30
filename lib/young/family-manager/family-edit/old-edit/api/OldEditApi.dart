@@ -31,8 +31,6 @@ class OldEditApi with ChangeNotifier {
             },
             body: json.encode(disease.toJson()));
 
-    print(utf8.decode(response.bodyBytes));
-    print(response.statusCode);
 
     if (response.statusCode == 200) {
       return true;
@@ -72,7 +70,6 @@ class OldEditApi with ChangeNotifier {
 
     var session = await prefs.getString("session");
 
-    print(dto.toJson());
 
     var response =
         await http.patch(Uri.parse(OLD_EDIT_URL + userIdx.toString()),
@@ -83,8 +80,6 @@ class OldEditApi with ChangeNotifier {
             },
             body: json.encode(dto.toJson()));
 
-    print(utf8.decode(response.bodyBytes));
-    print(response.statusCode);
     return true;
   }
 
@@ -117,9 +112,6 @@ class OldEditApi with ChangeNotifier {
     // 요청 보내기
     var response = await http.Response.fromStream(await formData.send());
 
-    print(utf8.decode(response.bodyBytes));
-
-    //{"success":true,"message":"리워드 추가 완료","data":[{"rewardIdx":0,"userIdx":160,"uploaderIdx":159,"description":"asd","type":"IMAGE","url":"https://widyu-bucket.s3.ap-northeast-2.amazonaws.com/IMG_20240519_004730.jpg","status":0,"point":30,"profileImageUrl":null}]}
 
     if (response.statusCode == 200) {
       return true;
@@ -142,8 +134,6 @@ class OldEditApi with ChangeNotifier {
         },
         body: json.encode(dto.toJson()));
 
-    print(utf8.decode(response.bodyBytes));
-    print(response.statusCode);
     return true;
   }
 
@@ -174,9 +164,6 @@ class OldEditApi with ChangeNotifier {
     // 요청 보내기
     var response = await http.Response.fromStream(await formData.send());
 
-    print(utf8.decode(response.bodyBytes));
-
-    //{"success":true,"message":"리워드 추가 완료","data":[{"rewardIdx":0,"userIdx":160,"uploaderIdx":159,"description":"asd","type":"IMAGE","url":"https://widyu-bucket.s3.ap-northeast-2.amazonaws.com/IMG_20240519_004730.jpg","status":0,"point":30,"profileImageUrl":null}]}
 
     if (response.statusCode == 200) {
       return true;

@@ -18,14 +18,12 @@ void main() async {
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print("--as-d-asd-asd-");
-  print(message.notification);
   final dbHelper = DatabaseHelper.instance;
 
   if (message.notification != null) {
     final newMessage = MessageFcm(
       title: message.notification!.title ?? 'No Title',
-      body: message.notification!.body ?? 'No Body',
+      body: message.notification!.body ?? 'No Body', dateTime: DateTime.now().toString(),
     );
     await dbHelper.insertMessage(newMessage);
   }
@@ -85,7 +83,7 @@ class _MyAppState extends State<MyApp> {
 
         final newMessage = MessageFcm(
           title: message.notification!.title ?? 'No Title',
-          body: message.notification!.body ?? 'No Body',
+          body: message.notification!.body ?? 'No Body', dateTime: DateTime.now().toString(),
         );
         await DatabaseHelper.instance.insertMessage(newMessage);
       }

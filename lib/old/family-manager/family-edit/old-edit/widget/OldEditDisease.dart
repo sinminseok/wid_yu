@@ -7,7 +7,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/common/utils/Color.dart';
 import 'package:wid_yu/old/family-manager/family-edit/old-edit/controller/OldDiseaseEditByOldController.dart';
 
-import '../../../../../common/dto/disease/Disease.dart';
+import '../../../../../final-dto/common-dto/response/Disease.dart';
 
 class OldEditByOldDisease extends StatelessWidget {
   OldDiseaseEditByOldController controller;

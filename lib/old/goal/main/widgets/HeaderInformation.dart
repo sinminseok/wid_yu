@@ -8,6 +8,7 @@ import 'package:wid_yu/common/utils/CustomText.dart';
 import 'package:wid_yu/old/goal/main/controller/OldGoalController.dart';
 
 import '../../../../common/utils/Color.dart';
+import '../../../../utils/ConvertPercentage.dart';
 import '../../goal-detail/view/OldGoalDetailView.dart';
 
 class HeaderInformation extends StatelessWidget {
@@ -42,7 +43,7 @@ class HeaderInformation extends StatelessWidget {
                     child: Row(
                       children: [
                         Title3Text("오늘은", kTextBlackColor),
-                        PercentageText(" ${controller.user!.percentage}%", wPurpleColor),
+                        PercentageText(" ${ConvertPercentage().toPercentage(controller.user!.percentage!)}%", wPurpleColor),
                         Title3Text("를 달성했어요.", kTextBlackColor),
                       ],
                     ),

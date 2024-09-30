@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,18 +15,15 @@ import '../../../../common/utils/CustomText.dart';
 import '../../../sql-lite/Meaasge.dart';
 import '../../../sql-lite/NoicationDatabase.dart';
 
-class OldNotSuccessGoalAlarm extends StatelessWidget {
+class OldHealthAlarm extends StatelessWidget {
   bool isOld;
   DatabaseHelper databaseHelper;
   MessageFcm messageFcm;
 
-
-  OldNotSuccessGoalAlarm(this.isOld, this.databaseHelper, this.messageFcm);
+  OldHealthAlarm(this.isOld, this.databaseHelper, this.messageFcm);
 
   @override
   Widget build(BuildContext context) {
-    final dbHelper = DatabaseHelper.instance;
-
     return Container(
       margin: EdgeInsets.only(top: 15.h, bottom: 15.h),
       width: 370.w,
@@ -42,11 +37,11 @@ class OldNotSuccessGoalAlarm extends StatelessWidget {
     );
   }
 
-  Widget _buildContent(){
+  Widget _buildContent() {
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 9.w,top: 20.h),
+          margin: EdgeInsets.only(left: 9.w, top: 20.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +51,8 @@ class OldNotSuccessGoalAlarm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      child: SubTitle2Text("${messageFcm.title}", wGrey800Color),
+                      child:
+                          SubTitle2Text("${messageFcm.title}", wGrey800Color),
                     ),
                   ],
                 ),
@@ -66,40 +62,40 @@ class OldNotSuccessGoalAlarm extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                 Row(
-                   children: [
-                     Container(
-                       margin: EdgeInsets.only(top: 8.h),
-                       child: Body2Text("확인하러 가기", wGrey700Color),
-                     ),
-                     InkWell(
-                       onTap: (){
-                         if(isOld){
-                           Get.to(() => OldFrameView(0));
-                         }else{
-                           Get.to(() => YoungFrameView(0));
-                         }
-                         //Get.to(() => OldGoalDetailView());
-                       },
-                       child: Container(
-                           width: 14.w,
-                           height: 14.h,
-                           margin: EdgeInsets.only(top: 8.h,left: 5.w),
-                           child: Image.asset("assets/images/icon/next-icon.png")
-                       ),
-                     ),
-                   ],
-                 ),
-
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 8.h),
+                          child: Body2Text("확인하러 가기", wGrey700Color),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            databaseHelper.deleteMessage(messageFcm.id!);
+                            if (isOld) {
+                              Get.to(() => OldFrameView(2));
+                            } else {
+                              Get.to(() => YoungFrameView(2));
+                            }
+                            //Get.to(() => OldGoalDetailView());
+                          },
+                          child: Container(
+                              width: 14.w,
+                              height: 14.h,
+                              margin: EdgeInsets.only(top: 8.h, left: 5.w),
+                              child: Image.asset(
+                                  "assets/images/icon/next-icon.png")),
+                        ),
+                      ],
+                    ),
                     Container(
                       margin: EdgeInsets.only(top: 10.h),
                       width: 100.w,
-                      child: Body2Text(messageFcm.formatDateTime(), kTextBlackColor),
+                      child: Body2Text(
+                          messageFcm.formatDateTime(), kTextBlackColor),
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         )
@@ -107,12 +103,15 @@ class OldNotSuccessGoalAlarm extends StatelessWidget {
     );
   }
 
-  Widget _buildImage(){
+  Widget _buildImage() {
     return Container(
       margin: EdgeInsets.only(left: 19.w),
       width: 30.w,
       height: 30.h,
-      child: Image.asset("assets/common/popup/delete_icon.png",fit: BoxFit.cover,),
+      child: Image.asset(
+        "assets/common/health-information/heart-icon.png",
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

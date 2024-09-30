@@ -27,10 +27,6 @@ class OldGoalMainApi extends ChangeNotifier {
       },
     );
 
-
-
-    print(json.decode(utf8.decode(response.bodyBytes)));
-
     if(response.statusCode == 200){
       OldMainGoalResponse oldMainGoalResponse = OldMainGoalResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
       prefs.setInt("point", json.decode(utf8.decode(response.bodyBytes))["data"]["point"]);

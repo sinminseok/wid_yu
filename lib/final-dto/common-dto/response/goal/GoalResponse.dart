@@ -1,5 +1,5 @@
 
-import 'package:wid_yu/common/dto/goal/GoalType.dart';
+import 'package:wid_yu/final-dto/common-dto/response/GoalType.dart';
 
 import 'GoalTimeResponse.dart';
 

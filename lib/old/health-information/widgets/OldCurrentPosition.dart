@@ -5,7 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../common/utils/Color.dart';
 import '../../../common/utils/FilePath.dart';
-import '../dto/OldHealthResponse.dart';
+import '../../../final-dto/old-dto/response/OldHealthResponse.dart';
 
 class OldCurrentPosition extends StatelessWidget {
   OldHealthResponse healthResponse;
@@ -17,7 +17,7 @@ class OldCurrentPosition extends StatelessWidget {
   Widget build(BuildContext context) {
     // Define the initial camera position
     final CameraPosition initialCameraPosition = CameraPosition(
-      target: LatLng(37.50508097213444, 126.95493073306663),
+      target: LatLng(healthResponse!.latitude, healthResponse.longitude),
       zoom: 18,
     );
 

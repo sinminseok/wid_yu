@@ -230,7 +230,23 @@ class _HeartBitDetailViewState extends State<HeartBitDetailView> {
   }
 
   Widget _buildGraph() {
-    return YoungHealthGraph(
-        _controller.healthResponse.graphData, HealthType.HEART_BIT);
+    return _controller.healthResponse.graphData == null?_buildEmptyGraph():YoungHealthGraph(
+        _controller.healthResponse.graphData!, HealthType.HEART_BIT);
   }
+
+  Widget _buildEmptyGraph() {
+    return Container(
+      width: 330.w,
+      height: 360.h,
+      decoration: BoxDecoration(
+        border: Border.all(color: wGrey100Color),
+        borderRadius: BorderRadius.all(Radius.circular(5))
+      ),
+      child: Center(
+        child: Body2Text("오늘 심박수 측정을 아직 하지 않았습니다.", kTextBlackColor),
+      ),
+    );
+;  }
+
+
 }

@@ -28,11 +28,6 @@ class YoungGoalApi with ChangeNotifier {
       },
     );
 
-    print((json
-       .decode(utf8.decode(response.bodyBytes))["data"]));
-
-    print("------");
-
 
     if (response.statusCode == 200) {
       //todo 변경
