@@ -3,8 +3,8 @@
 
 **사용 버전**
 
-Flutter : 3.19.5
-Dart SDK : 3,4.0
+Flutter : 3.24.3
+Dart SDK : 3.4.0
 
 ----
 
