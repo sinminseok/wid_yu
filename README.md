@@ -23,8 +23,13 @@
 
 **어플 화면**
 
+`보호자 화면`
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;">
-
+        <img src="https://github.com/user-attachments/assets/c5359d8c-60bc-4ccb-b0da-cefee420493d" style="width: 150px;">
+        <img src="https://github.com/user-attachments/assets/c5359d8c-60bc-4ccb-b0da-cefee420493d" style="width: 150px;">
+        <img src="https://github.com/user-attachments/assets/c5359d8c-60bc-4ccb-b0da-cefee420493d" style="width: 150px;">
 
 </div>
+
+`시니어 화면`
 
