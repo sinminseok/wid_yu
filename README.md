@@ -13,19 +13,18 @@
 
 **프로젝트 기능**
 
-
+```
 (1) 보호자와 시니어 사이의 소통 공간을 제공하고, 부호자가 부여한 미션 (약복용, 산책) 을 수행한다.  
 (2) 미션을 통해 얻은 리워드를 통해 보호자가 제공한 사진,비디오등을 확인할 수 있다.  
 (3) 시니어가 착용한 웨어러블 기기(WearOS) 로 생체 신호를 수신받아 위험한 상태로 변할경우 알림을 활성화 한다.  
-
+```
 
 -----
 
 **어플 화면**
 
-`보호자 화면`
+### 보호자 화면
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;">
-        <img src="https://github.com/user-attachments/assets/c5359d8c-60bc-4ccb-b0da-cefee420493d" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/293e0ea4-ca98-47bd-a6c6-e4feabdaa5bb" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/8ed7ddfd-3720-4340-9bc5-1cb2e8f5a382" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/6dd46510-dda2-45ab-be04-ea8cb1b83c15" style="width: 150px;">
@@ -36,7 +35,7 @@
         <img src="https://github.com/user-attachments/assets/8dd5d6e2-796a-4610-a961-c1816c2c98d5" style="width: 150px;">
 </div>
 
-`시니어 화면`
+### 시니어 화면
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;">
         <img src="https://github.com/user-attachments/assets/456f128d-885f-4ef4-ba76-e2cc44ab158c" style="width: 150px;">
