@@ -28,16 +28,12 @@
         <img src="https://github.com/user-attachments/assets/c5359d8c-60bc-4ccb-b0da-cefee420493d" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/293e0ea4-ca98-47bd-a6c6-e4feabdaa5bb" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/8ed7ddfd-3720-4340-9bc5-1cb2e8f5a382" style="width: 150px;">
-        
         <img src="https://github.com/user-attachments/assets/6dd46510-dda2-45ab-be04-ea8cb1b83c15" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/cac2b8cf-44c5-4670-9406-22aff84e8fe7" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/54485c38-e69b-4f39-99e7-38e4f3188eee" style="width: 150px;">
-
         <img src="https://github.com/user-attachments/assets/253c7973-536a-4f80-aa4a-e70a0d6761f4" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/29c8c3ae-1daf-4479-b1b0-98d3bf8ef1ce" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/8dd5d6e2-796a-4610-a961-c1816c2c98d5" style="width: 150px;">
-
-
 </div>
 
 `시니어 화면`
