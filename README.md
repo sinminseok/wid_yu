@@ -1,12 +1,17 @@
-## Widyu 프로젝트
+## 🎯 Widyu 프로젝트
 -----
 
-**사용 버전**
+**담당 업무**
 
-Flutter : 3.24.3  
-Dart SDK : 3.4.0
+✅ 참여 기간 : 2023.08.01 ~ 2024.05.23 
+
+✅ 담당 업무 : Andorid 개발 및 WearOS 어플 개발
+        
+✅ 담당업무 관여율 : 100 %
 
 ----
+
+
 
 **프로젝트 기능**
 
@@ -17,5 +22,10 @@ Dart SDK : 3.4.0
 
 ----
 
+**어플 화면**
 
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;">
+
+
+</div>
 
