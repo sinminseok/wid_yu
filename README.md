@@ -23,7 +23,7 @@
 
 **어플 화면**
 
-### 보호자 화면
+## 보호자 화면
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;">
         <img src="https://github.com/user-attachments/assets/293e0ea4-ca98-47bd-a6c6-e4feabdaa5bb" style="width: 150px;">
         <img src="https://github.com/user-attachments/assets/8ed7ddfd-3720-4340-9bc5-1cb2e8f5a382" style="width: 150px;">
